@@ -54,7 +54,7 @@ reference frame*
 
 Let's discuss what these terms mean. First, recall that a set of vectors
 $V = \{v_1, v_2, ..., v_n\}$ is orthonormal if for all
-$i, j\in\{1,2, ..., n\}$, the following is true:
+$i, j\in\{1,2, ..., n\},$ the following is true:
 
 $$
     ||v_i|| &= 1 \; \text{(unit magnitude)}\\ 
@@ -65,7 +65,7 @@ In three dimensions, for example, an orthonormal
 reference frame is a set of three vectors with unit magnitude that are
 all mutually orthogonal (perpendicular). In the image above, for
 example, our reference frame is composed of three mutually orthogonal
-unit vectors: $\{e_1, e_2, e_3\}$.
+unit vectors: $\{e_1, e_2, e_3\}.$
 In an orthonormal frame, we may find the position coordinates of a
 particle by taking the projection of the particle's position onto each
 of the the basis vectors of the frame. For the image above, for example:
@@ -80,7 +80,7 @@ What does it mean for a coordinate frame to be right
 handed? For a three-dimensional space, if a frame is right handed, the
 cross product of the first two basis vectors is equal to the third basis
 vector. In the image above, for example, we find that taking
-$e_1 \times e_2$ gives us $e_3$, which makes the frame right-handed.\
+$e_1 \times e_2$ gives us $e_3,$ which makes the frame right-handed.\
 Why is this a property we're interested in? In right-handed coordinate
 frames, we may apply the "right hand rule\" to compute cross products
 within the frame. This is something we'll find extremely convenient in
@@ -132,7 +132,7 @@ As can be seen in the image above, although the representations of the
 point $p$ appear to be different when written with respect to Frame A
 and Frame B, the point itself is the same position in space.\
 A **vector** is defined as the difference between two points. For
-example, if we have two points $p, q \in \mathbb{R}^3$, we may define a
+example, if we have two points $p, q \in \mathbb{R}^3,$ we may define a
 vector $v\in \mathbb{R}^3$ by: 
 
 $$\begin{aligned}
@@ -149,13 +149,13 @@ One major consequence of this definition is that unlike a point, a
 vector is *not* a quantity that "belongs\" to a position in physical
 space! Let's think about why this is.\
 Imagine we have four different points,
-$p, \; q, \; r, \; s \in \mathbb{R}^3$, such that: 
+$p, \; q, \; r, \; s \in \mathbb{R}^3,$ such that: 
 
 $$\begin{aligned}
     p - q = r - s
 \end{aligned}$$ 
 
-If we define a vector $v = p-q$, then $v = r - s$ as
+If we define a vector $v = p-q,$ then $v = r - s$ as
 well. Thus, even if we change the points, as long as the difference
 between the points is the same, the vector remains unchanged.
 
@@ -176,7 +176,7 @@ a *single* particle, but are rather composed of *many* particles.
 
 ![image](/images/arbbody.png)
 
-*Above: An arbitrary body $\mathcal{B}$, composed of many particles*
+*Above: An arbitrary body $\mathcal{B},$ composed of many particles*
 
 
 However, a large set of particles seems like a challenging, impractical
@@ -196,7 +196,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Where $||p||$ represents the standard Euclidean norm on
-$\mathbb{R}^3$.\
+$\mathbb{R}^3.$\
 Visually, what does this rigid body assumption look like? Consider the
 following sketch, where a cell phone has been drawn at two instances in
 time. We may make the reasonable assumption that the cell phone is a
@@ -205,13 +205,13 @@ rigid body.
 
 ![image](/images/cellphone.png)
 
-*Above: A cell phone that gets rotated after time $t$. Notice how the
+*Above: A cell phone that gets rotated after time $t.$ Notice how the
 distance between the two points remains the same.*
 
 
 As you can see, since the cell phone is a rigid body, the distance
 between points $p_1$ and $p_2$ at time 0 is the same as the distance
-between the points at time $t$, after we've rotated the phone.\
+between the points at time $t,$ after we've rotated the phone.\
 Thinking more broadly about rigid bodies in robotics, we may consider
 quadcopter drones, links of robot arms, aircraft, and many more to be
 rigid bodies.
@@ -227,7 +227,7 @@ rigid body transformations.
 :label: rigid_trans
 **Rigid body transformation**\
 Let $g$ be the transformation defined by
-$g:\mathbb{R}^3\to \mathbb{R}^3$. $g$ is a rigid body transformation
+$g:\mathbb{R}^3\to \mathbb{R}^3.$ $g$ is a rigid body transformation
 if:
 
 1.  $g$ preserves length: For all $p_1, p_2 \in \mathbb{R}^3$
@@ -252,7 +252,7 @@ if:
 Let's examine the significance of these two conditions.\
 We can think about the first condition in an intuitive sense through our
 cell-phone rotation example. If we define the rotation of the cell phone
-as a transformation, $g$, we know: 
+as a transformation, $g,$ we know: 
 
 $$\begin{aligned}
     ||g(p_1) - g(p_2)|| = ||p_1 - p_2||
@@ -265,8 +265,7 @@ transformations: $g$ preserves orientation. Consider the transformation
 pictured below, where we rotate about the z axis by 90 degrees, and x,
 y, and z form an orthonormal basis.
 
-
-![image](/images/rigidorient.png)\
+![image](/images/rigidorient.png)
 
 
 Let's show that this transformation respects the second property of
@@ -291,7 +290,7 @@ $$\begin{aligned}
     g(x) \times g(y) = g(z)
 \end{aligned}$$ 
 
-Thus, since both are equal to $g(z)$, we conclude:
+Thus, since both are equal to $g(z),$ we conclude:
 
 $$\begin{aligned}
     g(x\times y) = g(x) \times g(y)
@@ -306,12 +305,12 @@ We can easily construct a counter example with a small modification of
 the transformation above. Consider the transformation:
 
 
-![image](/images/counterexrot.png)\
+![image](/images/counterexrot.png)
 
 
 Here, we see that g does *not* preserve the orientation. Instead of
-having $g(x\times y) = g(x) \times g(y)$, we have
-$-g(x\times y) = g(x) \times g(y)$, as $z$ gets flipped by the
+having $g(x\times y) = g(x) \times g(y),$ we have
+$-g(x\times y) = g(x) \times g(y),$ as $z$ gets flipped by the
 transformation.\
 Thus, to avoid this orientation "flip\" happening in rigid body
 transformations, we include the second condition in the definition.
@@ -359,7 +358,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Now, recognizing the right hand side as the polarization
-identity applied to $g(x)^Tg(y)$, we reach our goal: 
+identity applied to $g(x)^Tg(y),$ we reach our goal: 
 
 $$\begin{aligned}
     x^Ty &= \frac{1}{4}(||g(x) + g(y)||^2 - ||g(x) - g(y)||^2) = g(x)^Tg(y)\\
@@ -395,7 +394,7 @@ $$\begin{aligned}
 
 Now, let's show that the three vectors are still
 orthogonal. Recall that if two vectors, $x, y$ are orthogonal, than
-$x^Ty = 0$. Thus, for our original coordinate frame, we have:
+$x^Ty = 0.$ Thus, for our original coordinate frame, we have:
 
 $$\begin{aligned}
     x^Ty = x^Tz = y^Tz = 0
@@ -417,8 +416,7 @@ If we were to attach a coordinate frame to a rigid body, using the
 proposition above, we could use a rigid body transformation to describe
 how the coordinate frame, and thus the rigid body, moves with time.
 
-
-![image](/images/gframe.png)\
+![image](/images/gframe.png)
 
 *Above: By fixing a coordinate frame to the phone, we can use a rigid
 body transformation to describe how the phone's configuration in space
@@ -439,13 +437,13 @@ arbitrary rigid body motion. For example, consider the rigid body motion
 below:
 
 
-![image](/images/rigidmotion.png)\
+![image](/images/rigidmotion.png)
 
 *Above: A rigid body translates and rotates between two configurations.*
 
 
 As can be seen in the image above, to change from configuration
-$\mathcal{B}$ to configuration $\mathcal{B}'$, the rigid body
+$\mathcal{B}$ to configuration $\mathcal{B}',$ the rigid body
 *translated* and *rotated*. In general, we propose that *any* rigid body
 motion can be broken up into a translation and rotation.\
 In this section, we'll choose to restrict our analysis to rotations, and
@@ -463,7 +461,7 @@ Consider the following scenario, where we have a rigid body and two
 coordinate frames, one of which is attached to the rigid body.
 
 
-![image](/images/rotationmatrix.png)\
+![image](/images/rotationmatrix.png)
 
 *Above: How can we describe the angular position of the object in
 space?*
@@ -514,7 +512,7 @@ world frame have been provided for you.
 ![image](/images/examplerot.png)
 
 
-Let's begin by forming the rotation matrix $R_{ab}$, between frames A
+Let's begin by forming the rotation matrix $R_{ab},$ between frames A
 and B. We see from the image that the x-axis of the B frame is at
 $(-1, 0, 0)$ in frame A, the y axis of the B frame remains at
 $(0, 1, 0)$ in frame A, and the z axis of the B frame is $(0, 0, -1)$ in
@@ -569,7 +567,7 @@ $$\begin{aligned}
 ```{prf:proposition}
 :label: ON_rotation
 **Rotation matrices are orthonormal**\
-If $R$ is a rotation matrix with columns $r_1, r_2, r_3$, then for all
+If $R$ is a rotation matrix with columns $r_1, r_2, r_3,$ then for all
 $i, j \in \{1, 2, 3\}$ 
 
 $$\begin{aligned}
@@ -600,8 +598,8 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Let's now rewrite the above definition in linear
-algebraic terms. Recall that for arbitrary vectors $x, y$,
-$||x||^2 = x^Tx$, and that the dot product $x\cdot y = x^T y$.\
+algebraic terms. Recall that for arbitrary vectors $x, y,$
+$||x||^2 = x^Tx,$ and that the dot product $x\cdot y = x^T y.$\
 Using these facts, we rewrite the above as: 
 
 $$\begin{aligned}
@@ -619,9 +617,9 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 This proves the first part of the proposition. Let's now
-show that the above implies $R^TR = RR^T = I$.\
+show that the above implies $R^TR = RR^T = I.$\
 To do this, let's expand the expression $R^TR$ in terms of the
-definition of the rotation matrix, $R = [r_1 \; r_2 \; r_3]$.
+definition of the rotation matrix, $R = [r_1 \; r_2 \; r_3].$
 
 $$\begin{aligned}
     R^TR &= \begin{bmatrix}
@@ -660,7 +658,7 @@ $$\begin{aligned}
      = I
 \end{aligned}$$ 
 
-To prove the statement $RR^T = I$, we follow the same
+To prove the statement $RR^T = I,$ we follow the same
 exact procedure, and find that $RR^T = I$ as well.\
 Thus, for any rotation matrix, we have the useful property that:
 
@@ -668,7 +666,7 @@ $$\begin{aligned}
     R^TR = RR^T = I
 \end{aligned}$$ 
 
-This concludes our proof. $\square$
+This concludes our proof. $\square$\
 So far, we've proved that rotation matrices are *orthonormal* - their
 columns are mutually orthogonal and of unit magnitude. What else can we
 show about these matrices?
@@ -676,8 +674,8 @@ show about these matrices?
 ```{prf:proposition}
 :label: rotation_det
 **Determinant of a rotation matrix**\
-For any rotation matrix $R \in \mathbb{R}^{3x3}$,
-$\mathrm{det}(R) = 1$.
+For any rotation matrix $R \in \mathbb{R}^{3x3},$
+$\mathrm{det}(R) = 1.$
 ```
 
 **Proof:** We'll tackle the proof of this statement in two parts. First,
@@ -685,12 +683,12 @@ we'll show that the determinant of a rotation matrix must be 1 or -1.
 Then, we'll apply a special identity to show that it must, in fact,
 be 1. Let's get started!\
 We'll begin this problem with a review of a few key facts from linear
-algebra. First, recall that for any matrix $A$,
-$\text{det}(A^T) = \text{det}(A)$. Next, recall that for any
+algebra. First, recall that for any matrix $A,$
+$\text{det}(A^T) = \text{det}(A).$ Next, recall that for any
 matrices $A$ and $B$ that can be multiplied,
-$\text{det}(AB) = \text{det}(A)\text{det}(B)$. With this in mind,
+$\text{det}(AB) = \text{det}(A)\text{det}(B).$ With this in mind,
 we can begin the proof.\
-Previously, we showed that $R^TR = I$. Let's see if we can use this to
+Previously, we showed that $R^TR = I.$ Let's see if we can use this to
 our advantage. Start by taking the determinant of both sides:
 
 $$\begin{aligned}
@@ -709,7 +707,7 @@ $$\begin{aligned}
 
 How do we proceed from here to show that the determinant
 is *just* 1? Let's think about how we define the determinant for a 3x3
-matrix. Recall that for a 3x3 matrix $R$, where: 
+matrix. Recall that for a 3x3 matrix $R,$ where: 
 
 $$\begin{aligned}
     R &= \begin{bmatrix}
@@ -732,7 +730,7 @@ $$\begin{aligned}
 
 Let's think about what this expression means in terms of
 reference frame vectors. Using the right hand rule, we know that since
-our frame is *right handed*, $r_2 \times r_3 = r_1$. Thus, we may
+our frame is *right handed*, $r_2 \times r_3 = r_1.$ Thus, we may
 substitute in for $r_2 \times r_3$: 
 
 $$\begin{aligned}
@@ -759,9 +757,9 @@ $$\begin{aligned}
 
 This definition reads as follows: the set $SO(3)$ is defined as the set
 of all real $3\times 3$ matrices $R$ such that $R^TR = I$ and
-$\mathrm{det}(R) = 1$.\
+$\mathrm{det}(R) = 1.$\
 The "special\" in special orthogonal refers to the fact that the
-determinant of the matrix is $+1$, while the "orthogonal\" refers to the
+determinant of the matrix is $+1,$ while the "orthogonal\" refers to the
 orthogonality of the matrix.\
 We may easily generalize this definition to $n$ dimensions as
 follows:[^1] 
@@ -771,7 +769,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 *Every* rotation matrix defined according to our
-coordinate frame method will be an element of $SO(3)$.
+coordinate frame method will be an element of $SO(3).$
 
 ### Mathematical Groups
 
@@ -785,7 +783,7 @@ For example, in linear algebra, if a set of vectors formed a vector
 space, we knew that set would be closed under addition and scalar
 multiplication.\
 In this section, we'll show that the set of all $3\times 3$ rotation
-matrices, $SO(3)$, falls into a type of category called a **group**.
+matrices, $SO(3),$ falls into a type of category called a **group**.
 With this realization will come a number of useful properties we'll come
 to enjoy over the duration of this course.\
 How is a group defined? Before we state the exact definition, it's
@@ -817,12 +815,12 @@ $$\begin{aligned}
 ```
 
 For example, addition over the set of real numbers is a binary
-operation. If we have two numbers, $a, b \in \mathbb{R}$, we can apply
-the binary operation $+$ to create a new element: $c = a + b$.\
+operation. If we have two numbers, $a, b \in \mathbb{R},$ we can apply
+the binary operation $+$ to create a new element: $c = a + b.$\
 Similarly, matrix multiplication is another binary operation. Let
-$A \in \mathbb{R}^{m\times n}$ and $B \in \mathbb{R}^{n\times m}$. Then,
+$A \in \mathbb{R}^{m\times n}$ and $B \in \mathbb{R}^{n\times m}.$ Then,
 we may apply the binary operation $\cdot$ to create a new matrix
-$C = A\cdot B$.\
+$C = A\cdot B.$\
 We're now ready to discuss the definition of a group. After reading,
 take a moment to appreciate how we maintain both precision and
 generality in the definition![^2]
@@ -837,28 +835,28 @@ generality in the definition![^2]
 A group $(G, \circ)$ is a set $G$ together with a binary operation
 $\circ$ defined on $G$ where the following hold:
 
-1.  $G$ is closed under $\circ$: For all $g_1, g_2 \in G$,
+1.  $G$ is closed under $\circ$: For all $g_1, g_2 \in G,$
     $g_1 \circ g_2 \in G$
 
     
     ![image](/images/closure.png)
 
-    *Above: The set on the left is closed under $\circ$. Applying the
+    *Above: The set on the left is closed under $\circ.$ Applying the
     binary operation to two elements will never take it out of the set.
-    The set on the right is not closed under $\circ$, as $\circ$ can
-    take elements of $G$ out of the set.**
+    The set on the right is not closed under $\circ,$ as $\circ$ can
+    take elements of $G$ out of the set.*
     
 
 2.  $G$ contains an identity element: There exists an element $e\in G$
-    such that for any $g \in G$, $e \circ g = g \circ e = g$.
+    such that for any $g \in G,$ $e \circ g = g \circ e = g.$
 
 3.  $G$ contains a unique inverse for every element: For every element
-    $g\in G$, there exists a unique element $g^{-1} \in G$ such that
-    $g\circ g^{-1} = g^{-1} \circ g = e$, where $e$ is the identity
+    $g\in G,$ there exists a unique element $g^{-1} \in G$ such that
+    $g\circ g^{-1} = g^{-1} \circ g = e,$ where $e$ is the identity
     element.
 
-4.  $\circ$ is associative on $G$: For all $g_1, g_2, g_3 \in G$,
-    $g_1\circ(g_2\circ g_3) = (g_1\circ g_2)\circ g_3$.
+4.  $\circ$ is associative on $G$: For all $g_1, g_2, g_3 \in G,$
+    $g_1\circ(g_2\circ g_3) = (g_1\circ g_2)\circ g_3.$
 
 ```
 
@@ -870,35 +868,35 @@ binary operation of addition is a group. To show this, we must prove
 that each of the four conditions above is satisfied. Let's go down the
 list!
 
-1.  First, we want to show $\mathbb{R}$ is closed under $+$. That is,
-    for all $a, b \in \mathbb{R}$, $a + b \in \mathbb{R}$. We know that
+1.  First, we want to show $\mathbb{R}$ is closed under $+.$ That is,
+    for all $a, b \in \mathbb{R},$ $a + b \in \mathbb{R}.$ We know that
     the sum of any two real numbers will give us another real number.
     Thus, this property is satisfied.
 
 2.  Next, we want to show that $\mathbb{R}$ contains an identity element
-    under $+$. We know that for any $a \in \mathbb{R}$, $a + 0 = a$.
-    Thus, an identity element exists for all $a \in \mathbb{R}$.
+    under $+.$ We know that for any $a \in \mathbb{R},$ $a + 0 = a.$
+    Thus, an identity element exists for all $a \in \mathbb{R}.$
 
 3.  Now, we want to show that an additive inverse exists for each
-    $a \in \mathbb{R}$. We know that for any $a \in \mathbb{R}$,
-    $a + (-a) = 0$. Thus, every element of $\mathbb{R}$ has an inverse
+    $a \in \mathbb{R}.$ We know that for any $a \in \mathbb{R},$
+    $a + (-a) = 0.$ Thus, every element of $\mathbb{R}$ has an inverse
     under addition.
 
 4.  Finally, we want to show that addition is associative. By properties
     of addition, we know that this is true, as $(a+b)+c = a+(b+c)$ for
-    all $a, b, c \in \mathbb{R}$.
+    all $a, b, c \in \mathbb{R}.$
 
 As $(\mathbb{R}, +)$ satisfies all of the necessary properties, we
 conclude that $\mathbb{R}$ is a group under addition. This completes our
 proof! $\square$
 Now that we've defined a group and have gone over a simple proof, let's
-try to show that the set of all $3\times 3$ rotation matrices, $SO(3)$,
+try to show that the set of all $3\times 3$ rotation matrices, $SO(3),$
 is a group under matrix multiplication.
 
 ```{prf:proposition}
 :label: so3_group
 **$\mathbf{(SO(3), \cdot)}$ is a group**\
-The set of all $3\times 3$ rotation matrices, $SO(3)$, is a group under
+The set of all $3\times 3$ rotation matrices, $SO(3),$ is a group under
 the binary operation of matrix multiplication.
 ```
 
@@ -907,7 +905,7 @@ $(\mathbb{R}, +)$: we'll go through each group property and show, one at
 a time, that each property holds in $SO(3)$ under matrix multiplication.
 
 1.  First, we want to show that given any two rotation matrices
-    $R_1, R_2 \in SO(3)$, their product $R_1R_2 \in SO(3)$. This will
+    $R_1, R_2 \in SO(3),$ their product $R_1R_2 \in SO(3).$ This will
     prove that $SO(3)$ is closed under matrix multiplication.\
     How do we go about showing this? Recall the definition of $SO(3)$:
 
@@ -915,11 +913,11 @@ a time, that each property holds in $SO(3)$ under matrix multiplication.
             SO(3) := \{R\in \mathbb{R}^{3x3}| \; R^TR = I,\; \mathrm{det}(R) = 1\}
     \end{aligned}$$ 
     
-    Thus, to show that $R_1R_2\in SO(3)$, we must show
-    that $\mathrm{det}(R_1R_2) = 1$ and that $(R_1R_2)^T(R_1R_2) = I$.\
+    Thus, to show that $R_1R_2\in SO(3),$ we must show
+    that $\mathrm{det}(R_1R_2) = 1$ and that $(R_1R_2)^T(R_1R_2) = I.$\
     Let's start by showing that the determinant of $R_1R_2$ equals 1.
-    Remember, since $R_1, R_2 \in SO(3)$, we already know that
-    $\mathrm{det}(R_1) = \mathrm{det}(R_2) = 1$. Let's expand the
+    Remember, since $R_1, R_2 \in SO(3),$ we already know that
+    $\mathrm{det}(R_1) = \mathrm{det}(R_2) = 1.$ Let's expand the
     expression $\mathrm{det}(R_1R_2)$: 
     
     $$\begin{aligned}
@@ -927,51 +925,51 @@ a time, that each property holds in $SO(3)$ under matrix multiplication.
     \end{aligned}$$ 
     
     Perfect! Now, we need to show
-    $(R_1R_2)^T(R_1R_2) = I$. Let's expand this expression:
+    $(R_1R_2)^T(R_1R_2) = I.$ Let's expand this expression:
     
     $$\begin{aligned}
             (R_1R_2)^T(R_1R_2) = R_2^TR_1^TR_1R_2
         
     \end{aligned}$$ 
     
-    Since $R_1, R_2 \in SO(3)$, we know
-    $R_1^TR_1 = R_2^TR_2 = I$. Thus: 
+    Since $R_1, R_2 \in SO(3),$ we know
+    $R_1^TR_1 = R_2^TR_2 = I.$ Thus: 
     
     $$\begin{aligned}
             R_2^TR_1^TR_1R_2 = R_2^TIR_2 = R_2^TR_2 = I
     \end{aligned}$$ 
     
-    Therefore, the product $R_1R_2 \in SO(3)$.
+    Therefore, the product $R_1R_2 \in SO(3).$
 
 2.  Next, we want to show $SO(3)$ contains an identity element under
     matrix multiplication. We need a matrix $E\in SO(3)$ such that for
-    any other matrix $R \in SO(3)$, we have: $RE = ER = R$. What might
+    any other matrix $R \in SO(3),$ we have: $RE = ER = R.$ What might
     this matrix be?\
-    Immediately, we consider the $3\times 3$ identity matrix, $I$. We
-    know that for any matrix $R \in SO(3)$, we have: $RI = IR = R$. Now,
+    Immediately, we consider the $3\times 3$ identity matrix, $I.$ We
+    know that for any matrix $R \in SO(3),$ we have: $RI = IR = R.$ Now,
     all we need to do is show that the identity matrix $I\in SO(3)$ and
     we're good to go!\
-    Clearly, $\mathrm{det}(I) = 1$ and $I^TI = II^T = I$. Thus,
+    Clearly, $\mathrm{det}(I) = 1$ and $I^TI = II^T = I.$ Thus,
     $I\in SO(3)$ is the identity element.
 
 3.  Now, we want to show a unique multiplicative inverse exists for
-    every $R \in SO(3)$. Recall that the inverse of a matrix $A$ is a
-    matrix $A^{-1}$ such that $AA^{-1} = A^{-1}A = I$.\
+    every $R \in SO(3).$ Recall that the inverse of a matrix $A$ is a
+    matrix $A^{-1}$ such that $AA^{-1} = A^{-1}A = I.$\
     First, let's show that every element of $SO(3)$ is actually
     invertible. Recall that a matrix is invertible if its determinant is
     nonzero.\
-    Because for all $R\in SO(3)$, $\mathrm{det}(R) = 1$, we know
+    Because for all $R\in SO(3),$ $\mathrm{det}(R) = 1,$ we know
     rotation matrices will always be invertible. Further, from our
     knowledge of linear algebra, we know that whatever this inverse
     matrix might be, it is unique.\
-    How can we find this matrix? We know that for all $R\in SO(3)$,
-    $R^TR = RR^T = I$. Thus, looking at the definition of a matrix
+    How can we find this matrix? We know that for all $R\in SO(3),$
+    $R^TR = RR^T = I.$ Thus, looking at the definition of a matrix
     inverse, we conclude $R^{-1} = R^T$ for all rotation matrices
-    $R \in SO(3)$. Because we can always take the transpose of a matrix,
-    a multiplicative inverse exists for every element of $SO(3)$.
+    $R \in SO(3).$ Because we can always take the transpose of a matrix,
+    a multiplicative inverse exists for every element of $SO(3).$
 
 4.  Finally, we want to show that matrix multiplication is associative
-    on $SO(3)$. Because matrix multiplication is associative for *all*
+    on $SO(3).$ Because matrix multiplication is associative for *all*
     matrices, this is automatically true.
 
 Now that we've shown $(SO(3), \cdot)$ meets all of the conditions to be
@@ -981,30 +979,30 @@ under matrix multiplication. This completes the proof! $\square$
 
 ![image](/images/so3prop.png)
 
-*Above: A visualization of some of the properties of $SO(3)$.*
+*Above: A visualization of some of the properties of $SO(3).$*
 
 
 Amazing! We've just shown that despite it representing a fairly
 restrictive physical idea, $SO(3)$ has a lot of great properties and
 structure that we can make use of! However, it's easy to make some
-mistakes regarding properties of $SO(3)$. Always keep in mind: although
-$SO(3)$ *is* a subset of $\mathbb{R}^{3\times 3}$, it is *not* a vector
+mistakes regarding properties of $SO(3).$ Always keep in mind: although
+$SO(3)$ *is* a subset of $\mathbb{R}^{3\times 3},$ it is *not* a vector
 space!\
 This means the following:
 
 1.  $SO(3)$ is *not* closed under addition. That is, if
-    $R_1, R_2 \in SO(3)$, it's *not* always true that
-    $R_1 + R_2 \in SO(3)$. As a counterexample, let $R_1 = R_2 = I$.
-    Then, $R_1+R_2 = 2I$. When we take the determinant, we find:
-    $\mathrm{det}(R_1+R_2) = 2$, which means the sum is *not* in
-    $SO(3)$.
+    $R_1, R_2 \in SO(3),$ it's *not* always true that
+    $R_1 + R_2 \in SO(3).$ As a counterexample, let $R_1 = R_2 = I.$
+    Then, $R_1+R_2 = 2I.$ When we take the determinant, we find:
+    $\mathrm{det}(R_1+R_2) = 2,$ which means the sum is *not* in
+    $SO(3).$
 
 2.  $SO(3)$ is *not* closed under scalar multiplication. If
-    $R \in SO(3)$ and $c \in \mathbb{R}$, it's *not* true that
-    $cR \in SO(3)$. Once again, we can take the identity matrix as an
-    example of this. if $R = I$ and $c = 2$, then
-    $\mathrm{det}(R) = \mathrm{det}(2I) =8$. Thus, the scalar multiple
-    is not in $SO(3)$.
+    $R \in SO(3)$ and $c \in \mathbb{R},$ it's *not* true that
+    $cR \in SO(3).$ Once again, we can take the identity matrix as an
+    example of this. if $R = I$ and $c = 2,$ then
+    $\mathrm{det}(R) = \mathrm{det}(2I) =8.$ Thus, the scalar multiple
+    is not in $SO(3).$
 
 
 ![image](/images/so3r3x3.png)
@@ -1015,10 +1013,10 @@ subspace.*
 
 
 Because every rotation of a rigid body has an associated rotation
-matrix, $R \in SO(3)$, we call $SO(3)$ the **configuration space** of a
+matrix, $R \in SO(3),$ we call $SO(3)$ the **configuration space** of a
 rigid body which is able to rotate. This simply means that whatever the
 rotational configuration of the body is, we'll be able to describe it
-with some rotation matrix $R$.
+with some rotation matrix $R.$
 
 ### Rotation Matrices as Coordinate Transformations
 
@@ -1062,7 +1060,7 @@ $$\begin{aligned}
 Now, let's rewrite it in terms of frame A. To do this,
 instead of writing the vector using the basis vectors of frame B, as
 viewed in frame B, we'll use the basis vectors of frame B as viewed in
-frame A. We denote these $\{x_{ab}, y_{ab}, z_{ab}\}$. 
+frame A. We denote these $\{x_{ab}, y_{ab}, z_{ab}\}.$ 
 
 $$\begin{aligned}
     v_a = v_{bx}x_{ab} + v_{by}y_{ab} + v_{bz}z_{ab}
@@ -1086,8 +1084,8 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 As you may recall, we defined the rotation matrix of
-frame B with respect to frame A, $R_{ab}$, as
-$R_{ab} = [x_{ab} \; y_{ab} \; z_{ab}]$. Thus, rewriting the expression
+frame B with respect to frame A, $R_{ab},$ as
+$R_{ab} = [x_{ab} \; y_{ab} \; z_{ab}].$ Thus, rewriting the expression
 above, we find: 
 
 $$\begin{aligned}
@@ -1100,14 +1098,14 @@ frame, rotation matrices *also* transform vectors from the body frame to
 the world frame.\
 Let's do a quick example to see how this works in practice.\
 **Example:** In frame B, the vector $v$ has the representation
-$v_b = (1, 1, 3)$. Rewrite this vector in frame A, given the relative
+$v_b = (1, 1, 3).$ Rewrite this vector in frame A, given the relative
 configurations of the two frames:
 
 
 ![image](/images/transformex.png)
 
 
-Let's begin by writing out the rotation matrix $R_{ab}$. Once we have
+Let's begin by writing out the rotation matrix $R_{ab}.$ Once we have
 the matrix, all we need to do is multiply it by the vector in frame B to
 find its equivalent representation in frame A. 
 
@@ -1123,7 +1121,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Now, we simply multiply $R_{ab}$ and $v_b$ to find
-$v_a$. 
+$v_a.$ 
 
 $$\begin{aligned}
     v_a = R_{ab}v_b = \begin{bmatrix}
@@ -1176,8 +1174,8 @@ Before we do this, however, we'll need to develop a little bit more
 linear algebraic machinery to help us out.\
 The first tool we'll need is the cross product. Let's think back to how
 we traditionally defined the cross product of two vectors. Recall that
-given two vectors, $a, b\in \mathbb{R}^3$, their cross product,
-$a\times b$, was defined: 
+given two vectors, $a, b\in \mathbb{R}^3,$ their cross product,
+$a\times b,$ was defined: 
 
 $$\begin{aligned}
     a\times b = 
@@ -1189,8 +1187,8 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Geometrically, what does this give us? Using some simple
-algebra, we can show that for any vectors $a, b\in \mathbb{R}^3$,
-$a\times b$ is orthogonal to both $a$ and $b$. Using this fact, and
+algebra, we can show that for any vectors $a, b\in \mathbb{R}^3,$
+$a\times b$ is orthogonal to both $a$ and $b.$ Using this fact, and
 applying the right hand rule to find the direction of the vector, this
 gives us the following image:
 
@@ -1202,13 +1200,13 @@ to the two*
 
 
 It's interesting to note that the cross product of $a$ and $b$ is not
-only perpendicular to $a$ and $b$, but also the *entire plane* spanned
-by $a$ and $b$.\
+only perpendicular to $a$ and $b,$ but also the *entire plane* spanned
+by $a$ and $b.$\
 Let's try to think critically about how else we could represent a cross
 product. As you may recall from your math coursework, the cross product
 is *linear* in each vector. For example, in the equations below, we
-observe that the cross product is linear in $a$, where
-$a, b, c \in \mathbb{R}^3$ and $d \in \mathbb{R}$. 
+observe that the cross product is linear in $a,$ where
+$a, b, c \in \mathbb{R}^3$ and $d \in \mathbb{R}.$ 
 
 $$\begin{aligned}
     d(a \times b) &= (da)\times b\\
@@ -1217,7 +1215,7 @@ $$\begin{aligned}
 
 This linearity tells us that we can actually think of
 taking the cross product of any vector in $\mathbb{R}^3$ with the vector
-$a$ as a linear transformation from $\mathbb{R}^3$ to $\mathbb{R}^3$.
+$a$ as a linear transformation from $\mathbb{R}^3$ to $\mathbb{R}^3.$
 
 
 ![image](/images/lincross.png)
@@ -1227,9 +1225,9 @@ transformation from $\mathbb{R}^3\to \mathbb{R}^3$*
 
 
 Because this cross product "transformation\" is a linear transformation
-from $\mathbb{R}^3\to \mathbb{R}^3$, we may write it as a $3\times 3$
+from $\mathbb{R}^3\to \mathbb{R}^3,$ we may write it as a $3\times 3$
 matrix! Let's define the matrix of the linear transformation of taking
-the cross product with a vector $a \in \mathbb{R}^3$.
+the cross product with a vector $a \in \mathbb{R}^3.$
 
 
 ```{prf:definition}
@@ -1267,7 +1265,7 @@ Thus, any time we want to take the cross product of two vectors, we can
 equivalently write it as a matrix-vector multiplication. This will help
 us prove some useful properties of the cross product! Note that the
 notations $(a)^\wedge$ and $\hat{a}$ are both used to represent the hat
-map of $a$.
+map of $a.$
 
 
 ![image](/images/hatmap.png)
@@ -1282,7 +1280,7 @@ it interfaces with rotation matrices.
 ```{prf:proposition}
 :label: hatmap
 **Hat map properties**\
-For all $R \in SO(3)$ and all $v, w \in \mathbb{R}^3$, the following
+For all $R \in SO(3)$ and all $v, w \in \mathbb{R}^3,$ the following
 hold: 
 
 $$\begin{aligned}
@@ -1294,8 +1292,8 @@ $$\begin{aligned}
 **Proof:** Let's start with the first statement. In this problem, the
 proof is quite computational - we'll take a direct algebraic approach
 and perform the matrix multiplications.\
-To begin, let's call the rows of $R$ $\{r_1, r_2, r_3\}$, such that
-$R^T = [r_1\; r_2 \; r_3]$. To compute the left hand side, we want to
+To begin, let's call the rows of $R$ $\{r_1, r_2, r_3\},$ such that
+$R^T = [r_1\; r_2 \; r_3].$ To compute the left hand side, we want to
 perform the multiplication: 
 
 $$\begin{aligned}
@@ -1361,10 +1359,10 @@ $$\begin{aligned}
 
 Now, we can apply a further simplification of the above.
 You may recall from your math classes that for any vectors
-$a, b, c\in \mathbb{R}^3$,
-$a\cdot(b\times c) = c\cdot (a\times b) = b\cdot (c\times a)$. This is
+$a, b, c\in \mathbb{R}^3,$
+$a\cdot(b\times c) = c\cdot (a\times b) = b\cdot (c\times a).$ This is
 known as the scalar triple product. Further, we recall that the
-coordinate frame formed from the rotation matrix, $\{r_1, r_2, r_3\}$,
+coordinate frame formed from the rotation matrix, $\{r_1, r_2, r_3\},$
 is right handed.\
 Let's apply these ideas to the off-diagonal terms in the matrix and see
 if we notice any familiar structure. 
@@ -1419,8 +1417,8 @@ body transformations. Let's do it!
 ```{prf:proposition}
 :label: rigid_rotation
 **Rotations are rigid body transformations**\
-Given an arbitrary rotation $R \in SO(3)$, $R$ is a rigid body
-transformation. This means for all $R \in SO(3)$, all points
+Given an arbitrary rotation $R \in SO(3),$ $R$ is a rigid body
+transformation. This means for all $R \in SO(3),$ all points
 $p, q\in \mathbb{R}^3$ and all vectors $v, w\in \mathbb{R}^3$:
 
 1.  Multiplication by $R$ preserves length: $||R(p-q)|| = ||p - q||$
@@ -1430,10 +1428,10 @@ $p, q\in \mathbb{R}^3$ and all vectors $v, w\in \mathbb{R}^3$:
 ```
 
 **Proof:** Let's begin by proving the first statement. Our approach in
-this problem will be to prove that $||R(p-q)||^2 = ||p - q||^2$. This
+this problem will be to prove that $||R(p-q)||^2 = ||p - q||^2.$ This
 will allow us to convert this from a problem about distance to a problem
 about matrix multiplication, which will be easier to work with.\
-First, we recall the fact that for any vector $v$, $v^Tv = ||v||^2$.
+First, we recall the fact that for any vector $v,$ $v^Tv = ||v||^2.$
 Let's apply this to the left hand side: 
 
 $$\begin{aligned}
@@ -1442,8 +1440,8 @@ $$\begin{aligned}
     &= (p^T-q^T)R^TR(p-q)
 \end{aligned}$$ 
 
-Now, recalling that for any $R\in SO(3)$,
-$R^T = R^{-1}$, we get: 
+Now, recalling that for any $R\in SO(3),$
+$R^T = R^{-1},$ we get: 
 
 $$\begin{aligned}
     ||R(p-q)||^2 &= (p^T-q^T)R^TR(p-q)\\
@@ -1451,10 +1449,10 @@ $$\begin{aligned}
     &= ||p-q||^2
 \end{aligned}$$ 
 
-Thus, if $||R(p-q)||^2 = ||p-q||^2$, then
-$||R(p-q)|| = ||p-q||$, as the norm of a vector is always greater than
+Thus, if $||R(p-q)||^2 = ||p-q||^2,$ then
+$||R(p-q)|| = ||p-q||,$ as the norm of a vector is always greater than
 or equal to 0. This proves the first part! Let's move on to the second.\
-Recall that we'd like to show $R(v\times w) = (Rv) \times (Rw)$. We can
+Recall that we'd like to show $R(v\times w) = (Rv) \times (Rw).$ We can
 do this by making use of the statement we just proved about the hat
 map.\
 Let's begin by rewriting the right hand side of the statement in terms
@@ -1465,7 +1463,7 @@ $$\begin{aligned}
     &= (R\hat{v}R^T)(Rw)
 \end{aligned}$$ 
 
-Now, remembering that $R^{-1} = R^T$, we simplify:
+Now, remembering that $R^{-1} = R^T,$ we simplify:
 
 $$\begin{aligned}
     (Rv) \times (Rw) &= (R\hat{v}R^{-1})(Rw)\\
@@ -1502,12 +1500,12 @@ review of an important ordinary differential equation.\
 Upon first glance, this might seem only tangentially related to what
 we've been talking about, but this equation will soon open up an almost
 miraculous resolution of rotation matrices. Let's begin!\
-The differential equation $\dot{x}(t) = ax(t)$, where
-$a, x, t \in \mathbb{R}$, is one of the simplest yet most fundamental
+The differential equation $\dot{x}(t) = ax(t),$ where
+$a, x, t \in \mathbb{R},$ is one of the simplest yet most fundamental
 differential equations in math. Let's review its solution.\
 Note that if you haven't seen "dot\" notation before, it simply
 represents a derivative with respect to time. If you see two dots above
-a variable, for example $\ddot{x}$, that refers to the second derivative
+a variable, for example $\ddot{x},$ that refers to the second derivative
 of $x$ with respect to time.\
 To begin, we'll rewrite this equation using Leibniz notation for
 derivatives to get a clearer picture of what's going on.
@@ -1537,7 +1535,7 @@ $$\begin{aligned}
 
 Great! All of the variables have now been separated.
 Now, we're ready to integrate. Let's begin our integration at time
-$t = 0$, and assume an initial condition of $x(0) = x_0$.\
+$t = 0,$ and assume an initial condition of $x(0) = x_0.$\
 Note that when performing integration, we switch from $x$ and $t$ to
 "dummy variables\" $\chi$ and $\tau$ to maintain proper mathematical
 notation. 
@@ -1566,7 +1564,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Thus, the solution to $\dot{x}(t) = ax(t)$ with an
-initial condition $x(0) = x_0$ is $x(t) = e^{at}x_0$.\
+initial condition $x(0) = x_0$ is $x(t) = e^{at}x_0.$\
 As we move through this section, keep this result in the back of your
 mind - the title of this section, *exponential coordinates*, is a small
 hint towards this solution's importance!
@@ -1635,7 +1633,7 @@ $$\begin{aligned}
 
 Let's think back to how we defined $SO(3)$ to try and
 answer these questions. Recall that one of our conditions for a matrix
-$R$ being an element of $SO(3)$ was that $R^TR = I$. Written out
+$R$ being an element of $SO(3)$ was that $R^TR = I.$ Written out
 element-wise, this implied that for all $i, j \in \{1, 2, 3\}$:
 
 $$\begin{aligned}
@@ -1735,8 +1733,8 @@ dotted line as it goes.
 
 
 As can be seen in the image above, if we use the right hand rule to take
-the cross product between $\omega$ and $r$, we find that we get the
-velocity, $v$. We also see that the direction of $\omega$ gives us the
+the cross product between $\omega$ and $r,$ we find that we get the
+velocity, $v.$ We also see that the direction of $\omega$ gives us the
 **axis of rotation**, while the magnitude of $\omega$ gives us the rate
 of rotation.\
 In component form, the angular velocity vector is written:
@@ -1756,7 +1754,7 @@ radians per second.\
 Let's now bring this discussion back to our study of rotation matrices.
 Clearly, the angular velocity vector is intrinsic to the motion of a
 rotating body. Furthermore, it has 3 independent components, which is
-the number we were looking for to parameterize $SO(3)$. How can we use
+the number we were looking for to parameterize $SO(3).$ How can we use
 this vector to help us describe rotations?
 
 ### An Exponential Solution
@@ -1803,14 +1801,14 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Where $q_0$ is the position of $q$ at time $t = 0$ and
-$e^{\hat\omega t}$ is the **matrix exponential** of $\hat\omega t$.\
+$e^{\hat\omega t}$ is the **matrix exponential** of $\hat\omega t.$\
 The matrix exponential is defined as follows:
 
 ```{prf:definition}
 :label: matrix_exp
 **The matrix exponential**\
-Given any matrix $A \in \mathbb{R}^{n\times n}$, the matrix exponential
-of A, denoted $e^A$, is computed according to the Taylor series
+Given any matrix $A \in \mathbb{R}^{n\times n},$ the matrix exponential
+of A, denoted $e^A,$ is computed according to the Taylor series
 expansion of $e^x$: 
 
 $$\begin{aligned}
@@ -1818,11 +1816,11 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Where $I$ is the $n\times n$ identity matrix and
-$A^0 = I$.
+$A^0 = I.$
 ```
 
 Using the powerful concept of the matrix exponential, we've solved the
-differential equation for the rotational motion of the point $q$. But,
+differential equation for the rotational motion of the point $q.$ But,
 we're not quite done yet! We still need to link this back to rotation
 matrices.
 
@@ -1836,10 +1834,10 @@ the time equals the angle (assuming zero initial condition).*
 Recall that earlier, we stated that $\omega$ has unit magnitude. This
 means that the rigid body rotates with an angular velocity of 1 radian
 per second. If a single second corresponds to a single radian, then we
-can replace time, $t$, in the differential equation with an angular
-displacement, $\theta$, as the two are equivalent (at time 0,
+can replace time, $t,$ in the differential equation with an angular
+displacement, $\theta,$ as the two are equivalent (at time 0,
 displacement will always be 0).\
-Thus, replacing $t$ with $\theta$, we have: 
+Thus, replacing $t$ with $\theta,$ we have: 
 
 $$\begin{aligned}
     q(\theta) = e^{\hat\omega \theta}q_0
@@ -1853,7 +1851,7 @@ $$\begin{aligned}
 
 Thus, using the matrix exponential, we can calculate the
 position of q given *any* angle $\theta$ and any axis of rotation
-$\omega$. Because we are *rotating* from $q_0$ to $q(\theta)$, the
+$\omega.$ Because we are *rotating* from $q_0$ to $q(\theta),$ the
 transformation $e^{\hat\omega \theta}$ is a rotation matrix:
 
 $$\begin{aligned}
@@ -1861,11 +1859,11 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 This rotation matrix gives us a rotation of angle
-$\theta$ about an axis of rotation $\omega$.\
+$\theta$ about an axis of rotation $\omega.$\
 Thus, we conclude that we can parameterize a rotation matrix
 $R\in SO(3)$ through an axis of rotation, $\omega \in \mathbb{R}^3$ (an
 angular velocity of unit magnitude), and an angle of rotation $\theta$
-as $R(\omega, \theta) = e^{\hat\omega\theta}$. What an amazing result!
+as $R(\omega, \theta) = e^{\hat\omega\theta}.$ What an amazing result!
 
 ### $so(3)$
 
@@ -1874,7 +1872,7 @@ Although we've done much of the work, our development of these
 let's take a moment to briefly discuss the class of matrices used in
 these exponential solutions.\
 Recall from the definition of the hat map that if we have a vector
-$\omega = (\omega_1, \omega_2, \omega_3)\in \mathbb{R}^3$, its hat map
+$\omega = (\omega_1, \omega_2, \omega_3)\in \mathbb{R}^3,$ its hat map
 is: 
 
 $$\begin{aligned}
@@ -1902,7 +1900,7 @@ $$\begin{aligned}
     \hat{\omega}^T = -\hat\omega
 \end{aligned}$$ 
 
-For all $\omega \in \mathbb{R}^3$. All matrices with
+For all $\omega \in \mathbb{R}^3.$ All matrices with
 this property are called **skew symmetric**.\
 Using linear algebra, we can prove the useful fact that the set of skew
 symmetric matrices is a *vector space*! This means that adding any two
@@ -1911,14 +1909,14 @@ skew symmetric matrices will produce another skew symmetric matrix
 by a constant will also produce another skew symmetric matrix (closure
 under scalar multiplication).\
 We refer to the vector space of all $3\times 3$ skew symmetric matrices
-as $\mathbf{so(3)}$. Formally, we define $so(3)$ to be:
+as $\mathbf{so(3)}.$ Formally, we define $so(3)$ to be:
 
 $$\begin{aligned}
     so(3) := \{A \in \mathbb{R}^{3x3} \;| \; A^T = -A\} \subset \mathbb{R}^{3\times 3}
 \end{aligned}$$
 
 Let's think about the different maps and transformations
-we've discussed in terms of $so(3)$ and $SO(3)$.\
+we've discussed in terms of $so(3)$ and $SO(3).$\
 First, consider the hat map. Recall that this took us from a vector in
 $\mathbb{R}^3$ to a skew symmetric matrix. 
 
@@ -1955,8 +1953,8 @@ form for the infinite series above.
 This will allow us to write out the rotation matrix about an axis in a
 fully closed form. Let's begin!
 As the matrix exponential involves computing higher and higher powers of
-the matrix $\hat{\omega}$, let's begin by computing a couple of powers
-of $\hat{\omega}$. We'll then look for any patterns and see if that
+the matrix $\hat{\omega},$ let's begin by computing a couple of powers
+of $\hat{\omega}.$ We'll then look for any patterns and see if that
 allows us to close the infinite series.
 Recall that $\hat{\omega}$ is defined: 
 
@@ -1992,7 +1990,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Let's see if there's any way we can write this in terms
-of lower powers of $\hat\omega$. First, let's pull out a multiple of the
+of lower powers of $\hat\omega.$ First, let's pull out a multiple of the
 identity matrix: 
 
 $$\begin{aligned}
@@ -2026,7 +2024,7 @@ $$\begin{aligned}
 
 Now, recall that when constructing the rotation matrix
 with exponential coordinates, we assumed that $\omega$ was a unit
-vector! Therefore, $\omega_1^2 + \omega_2^2 + \omega_3^2 = 1$, and we
+vector! Therefore, $\omega_1^2 + \omega_2^2 + \omega_3^2 = 1,$ and we
 can further simplify to: 
 
 $$\begin{aligned}
@@ -2034,7 +2032,7 @@ $$\begin{aligned}
 \end{aligned}$$ 
 
 Great! Now, let's calculate one more exponent of
-$\hat\omega$. It's in this step that we'll find the simplification we
+$\hat\omega.$ It's in this step that we'll find the simplification we
 need to write a closed form expression for the matrix exponential!
 Let's start by breaking up the cube of $\hat\omega$ into two parts.
 
@@ -2073,7 +2071,7 @@ $$\begin{aligned}
 What does this mean for the matrix exponential problem?
 As we can see above, higher exponents of $\hat\omega$ "map back" to
 lower exponents! This will allow us to *recursively* compute higher
-powers of $\hat\omega$.
+powers of $\hat\omega.$
 Let's plug these results into the matrix exponential and see what
 simplifications we get!
 
@@ -2099,7 +2097,7 @@ $$\begin{aligned}
 
 This pattern of even and odd exponents of $\hat\omega$
 will continue as we continue to compute higher exponents. Let's separate
-out the expressions with $\hat\omega^2$ and $\hat\omega$.
+out the expressions with $\hat\omega^2$ and $\hat\omega.$
 
 $$\begin{aligned}
     e^{\hat\omega \theta} = I + \hat\omega(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - ...) + \hat\omega^2(\frac{\theta^2}{2!} - \frac{\theta^4}{4!} + ...)
@@ -2117,7 +2115,7 @@ Thus, we've written the matrix exponential for a
 rotation matrix in an entirely closed form. The equation above is
 referred to as **Rodrigues' Formula**.\
 In summary, we can use Rodrigues' Formula to find the rotation matrix
-about a unit axis $\omega$ through an angle $\theta$.
+about a unit axis $\omega$ through an angle $\theta.$
 
 [^1]: The notation "$:=$\" means "is defined as.\"
 

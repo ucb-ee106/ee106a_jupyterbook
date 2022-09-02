@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Further Representations of Rotations" href="further_repr.html" />
     <link rel="prev" title="Welcome to 106A!" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -118,6 +119,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Rigid Body Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="further_repr.html">
+   Further Representations of Rotations
   </a>
  </li>
 </ul>
@@ -572,7 +578,7 @@ right-handed <strong>reference frame</strong>.</p>
 reference frame</em></p>
 <p>Let’s discuss what these terms mean. First, recall that a set of vectors
 <span class="math notranslate nohighlight">\(V = \{v_1, v_2, ..., v_n\}\)</span> is orthonormal if for all
-<span class="math notranslate nohighlight">\(i, j\in\{1,2, ..., n\}\)</span>, the following is true:</p>
+<span class="math notranslate nohighlight">\(i, j\in\{1,2, ..., n\},\)</span> the following is true:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     ||v_i|| &amp;= 1 \; \text{(unit magnitude)}\\ 
@@ -582,7 +588,7 @@ reference frame</em></p>
 reference frame is a set of three vectors with unit magnitude that are
 all mutually orthogonal (perpendicular). In the image above, for
 example, our reference frame is composed of three mutually orthogonal
-unit vectors: <span class="math notranslate nohighlight">\(\{e_1, e_2, e_3\}\)</span>.
+unit vectors: <span class="math notranslate nohighlight">\(\{e_1, e_2, e_3\}.\)</span>
 In an orthonormal frame, we may find the position coordinates of a
 particle by taking the projection of the particle’s position onto each
 of the the basis vectors of the frame. For the image above, for example:</p>
@@ -596,7 +602,7 @@ of the the basis vectors of the frame. For the image above, for example:</p>
 handed? For a three-dimensional space, if a frame is right handed, the
 cross product of the first two basis vectors is equal to the third basis
 vector. In the image above, for example, we find that taking
-<span class="math notranslate nohighlight">\(e_1 \times e_2\)</span> gives us <span class="math notranslate nohighlight">\(e_3\)</span>, which makes the frame right-handed.<br />
+<span class="math notranslate nohighlight">\(e_1 \times e_2\)</span> gives us <span class="math notranslate nohighlight">\(e_3,\)</span> which makes the frame right-handed.<br />
 Why is this a property we’re interested in? In right-handed coordinate
 frames, we may apply the “right hand rule” to compute cross products
 within the frame. This is something we’ll find extremely convenient in
@@ -639,7 +645,7 @@ the same fundamental physical position.</p>
 point <span class="math notranslate nohighlight">\(p\)</span> appear to be different when written with respect to Frame A
 and Frame B, the point itself is the same position in space.<br />
 A <strong>vector</strong> is defined as the difference between two points. For
-example, if we have two points <span class="math notranslate nohighlight">\(p, q \in \mathbb{R}^3\)</span>, we may define a
+example, if we have two points <span class="math notranslate nohighlight">\(p, q \in \mathbb{R}^3,\)</span> we may define a
 vector <span class="math notranslate nohighlight">\(v\in \mathbb{R}^3\)</span> by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -651,12 +657,12 @@ vector <span class="math notranslate nohighlight">\(v\in \mathbb{R}^3\)</span> b
 vector is <em>not</em> a quantity that “belongs” to a position in physical
 space! Let’s think about why this is.<br />
 Imagine we have four different points,
-<span class="math notranslate nohighlight">\(p, \; q, \; r, \; s \in \mathbb{R}^3\)</span>, such that:</p>
+<span class="math notranslate nohighlight">\(p, \; q, \; r, \; s \in \mathbb{R}^3,\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     p - q = r - s
 \end{aligned}\]</div>
-<p>If we define a vector <span class="math notranslate nohighlight">\(v = p-q\)</span>, then <span class="math notranslate nohighlight">\(v = r - s\)</span> as
+<p>If we define a vector <span class="math notranslate nohighlight">\(v = p-q,\)</span> then <span class="math notranslate nohighlight">\(v = r - s\)</span> as
 well. Thus, even if we change the points, as long as the difference
 between the points is the same, the vector remains unchanged.</p>
 <p><img alt="image" src="_images/twovecs.png" /></p>
@@ -669,7 +675,7 @@ Let’s now move beyond simple points and think about how we may describe
 objects in the real world. Real-world objects typically don’t consist of
 a <em>single</em> particle, but are rather composed of <em>many</em> particles.</p>
 <p><img alt="image" src="_images/arbbody.png" /></p>
-<p><em>Above: An arbitrary body <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>, composed of many particles</em></p>
+<p><em>Above: An arbitrary body <span class="math notranslate nohighlight">\(\mathcal{B},\)</span> composed of many particles</em></p>
 <p>However, a large set of particles seems like a challenging, impractical
 description to deal with! How can we possibly describe the trajectory of
 a real-world body if we have to keep track of infinitely many
@@ -686,17 +692,17 @@ following must hold for all time t:</p>
     ||p_1(t) - p_2(t)|| = ||p_1(0) - p_2(0)|| = \mathrm{constant}
 \end{aligned}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(||p||\)</span> represents the standard Euclidean norm on
-<span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.<br />
+<span class="math notranslate nohighlight">\(\mathbb{R}^3.\)</span><br />
 Visually, what does this rigid body assumption look like? Consider the
 following sketch, where a cell phone has been drawn at two instances in
 time. We may make the reasonable assumption that the cell phone is a
 rigid body.</p>
 <p><img alt="image" src="_images/cellphone.png" /></p>
-<p><em>Above: A cell phone that gets rotated after time <span class="math notranslate nohighlight">\(t\)</span>. Notice how the
+<p><em>Above: A cell phone that gets rotated after time <span class="math notranslate nohighlight">\(t.\)</span> Notice how the
 distance between the two points remains the same.</em></p>
 <p>As you can see, since the cell phone is a rigid body, the distance
 between points <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> at time 0 is the same as the distance
-between the points at time <span class="math notranslate nohighlight">\(t\)</span>, after we’ve rotated the phone.<br />
+between the points at time <span class="math notranslate nohighlight">\(t,\)</span> after we’ve rotated the phone.<br />
 Thinking more broadly about rigid bodies in robotics, we may consider
 quadcopter drones, links of robot arms, aircraft, and many more to be
 rigid bodies.</p>
@@ -712,7 +718,7 @@ rigid body transformations.</p>
 <div class="definition-content section" id="proof-content">
 <p><strong>Rigid body transformation</strong><br />
 Let <span class="math notranslate nohighlight">\(g\)</span> be the transformation defined by
-<span class="math notranslate nohighlight">\(g:\mathbb{R}^3\to \mathbb{R}^3\)</span>. <span class="math notranslate nohighlight">\(g\)</span> is a rigid body transformation
+<span class="math notranslate nohighlight">\(g:\mathbb{R}^3\to \mathbb{R}^3.\)</span> <span class="math notranslate nohighlight">\(g\)</span> is a rigid body transformation
 if:</p>
 <ol>
 <li><p><span class="math notranslate nohighlight">\(g\)</span> preserves length: For all <span class="math notranslate nohighlight">\(p_1, p_2 \in \mathbb{R}^3\)</span></p>
@@ -736,7 +742,7 @@ if:</p>
 </div><p>Let’s examine the significance of these two conditions.<br />
 We can think about the first condition in an intuitive sense through our
 cell-phone rotation example. If we define the rotation of the cell phone
-as a transformation, <span class="math notranslate nohighlight">\(g\)</span>, we know:</p>
+as a transformation, <span class="math notranslate nohighlight">\(g,\)</span> we know:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     ||g(p_1) - g(p_2)|| = ||p_1 - p_2||
@@ -747,7 +753,7 @@ Let’s now work on visualizing the second condition for rigid body
 transformations: <span class="math notranslate nohighlight">\(g\)</span> preserves orientation. Consider the transformation
 pictured below, where we rotate about the z axis by 90 degrees, and x,
 y, and z form an orthonormal basis.</p>
-<p><img alt="image" src="_images/rigidorient.png" />\</p>
+<p><img alt="image" src="_images/rigidorient.png" /></p>
 <p>Let’s show that this transformation respects the second property of
 rigid body transformations. In our computations below, we use the right
 hand rule to quickly compute cross products.<br />
@@ -768,7 +774,7 @@ the right hand rule:</p>
 \[\begin{aligned}
     g(x) \times g(y) = g(z)
 \end{aligned}\]</div>
-<p>Thus, since both are equal to <span class="math notranslate nohighlight">\(g(z)\)</span>, we conclude:</p>
+<p>Thus, since both are equal to <span class="math notranslate nohighlight">\(g(z),\)</span> we conclude:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     g(x\times y) = g(x) \times g(y)
@@ -780,10 +786,10 @@ the orientation between them remains the same.<br />
 What, then, would be a counterexample of a rigid transformation?<br />
 We can easily construct a counter example with a small modification of
 the transformation above. Consider the transformation:</p>
-<p><img alt="image" src="_images/counterexrot.png" />\</p>
+<p><img alt="image" src="_images/counterexrot.png" /></p>
 <p>Here, we see that g does <em>not</em> preserve the orientation. Instead of
-having <span class="math notranslate nohighlight">\(g(x\times y) = g(x) \times g(y)\)</span>, we have
-<span class="math notranslate nohighlight">\(-g(x\times y) = g(x) \times g(y)\)</span>, as <span class="math notranslate nohighlight">\(z\)</span> gets flipped by the
+having <span class="math notranslate nohighlight">\(g(x\times y) = g(x) \times g(y),\)</span> we have
+<span class="math notranslate nohighlight">\(-g(x\times y) = g(x) \times g(y),\)</span> as <span class="math notranslate nohighlight">\(z\)</span> gets flipped by the
 transformation.<br />
 Thus, to avoid this orientation “flip” happening in rigid body
 transformations, we include the second condition in the definition.</p>
@@ -827,7 +833,7 @@ transformation, it preserves the length of vectors. This implies:</p>
     x^Ty = \frac{1}{4}(||g(x) + g(y)||^2 - ||g(x) - g(y)||^2)
 \end{aligned}\]</div>
 <p>Now, recognizing the right hand side as the polarization
-identity applied to <span class="math notranslate nohighlight">\(g(x)^Tg(y)\)</span>, we reach our goal:</p>
+identity applied to <span class="math notranslate nohighlight">\(g(x)^Tg(y),\)</span> we reach our goal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     x^Ty &amp;= \frac{1}{4}(||g(x) + g(y)||^2 - ||g(x) - g(y)||^2) = g(x)^Tg(y)\\
@@ -860,7 +866,7 @@ Thus:</p>
 \end{aligned}\end{split}\]</div>
 <p>Now, let’s show that the three vectors are still
 orthogonal. Recall that if two vectors, <span class="math notranslate nohighlight">\(x, y\)</span> are orthogonal, than
-<span class="math notranslate nohighlight">\(x^Ty = 0\)</span>. Thus, for our original coordinate frame, we have:</p>
+<span class="math notranslate nohighlight">\(x^Ty = 0.\)</span> Thus, for our original coordinate frame, we have:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     x^Ty = x^Tz = y^Tz = 0
@@ -879,7 +885,7 @@ What does this result mean for us in the context of rigid body motion?<br />
 If we were to attach a coordinate frame to a rigid body, using the
 proposition above, we could use a rigid body transformation to describe
 how the coordinate frame, and thus the rigid body, moves with time.</p>
-<p><img alt="image" src="_images/gframe.png" />\</p>
+<p><img alt="image" src="_images/gframe.png" /></p>
 <p><em>Above: By fixing a coordinate frame to the phone, we can use a rigid
 body transformation to describe how the phone’s configuration in space
 changes.</em></p>
@@ -896,10 +902,10 @@ of rigid body motion.<br />
 To begin, let’s think about the different parts that make up any
 arbitrary rigid body motion. For example, consider the rigid body motion
 below:</p>
-<p><img alt="image" src="_images/rigidmotion.png" />\</p>
+<p><img alt="image" src="_images/rigidmotion.png" /></p>
 <p><em>Above: A rigid body translates and rotates between two configurations.</em></p>
 <p>As can be seen in the image above, to change from configuration
-<span class="math notranslate nohighlight">\(\mathcal{B}\)</span> to configuration <span class="math notranslate nohighlight">\(\mathcal{B}'\)</span>, the rigid body
+<span class="math notranslate nohighlight">\(\mathcal{B}\)</span> to configuration <span class="math notranslate nohighlight">\(\mathcal{B}',\)</span> the rigid body
 <em>translated</em> and <em>rotated</em>. In general, we propose that <em>any</em> rigid body
 motion can be broken up into a translation and rotation.<br />
 In this section, we’ll choose to restrict our analysis to rotations, and
@@ -914,7 +920,7 @@ fact to develop a description of the rotational configuration of a rigid
 body.<br />
 Consider the following scenario, where we have a rigid body and two
 coordinate frames, one of which is attached to the rigid body.</p>
-<p><img alt="image" src="_images/rotationmatrix.png" />\</p>
+<p><img alt="image" src="_images/rotationmatrix.png" /></p>
 <p><em>Above: How can we describe the angular position of the object in
 space?</em></p>
 <p>When describing the configuration of a rigid body, we always define two
@@ -957,7 +963,7 @@ the inertial and body frames, where A is the inertial frame and B and C
 are two body frames. The coordinates of the body frame vectors in the
 world frame have been provided for you.</p>
 <p><img alt="image" src="_images/examplerot.png" /></p>
-<p>Let’s begin by forming the rotation matrix <span class="math notranslate nohighlight">\(R_{ab}\)</span>, between frames A
+<p>Let’s begin by forming the rotation matrix <span class="math notranslate nohighlight">\(R_{ab},\)</span> between frames A
 and B. We see from the image that the x-axis of the B frame is at
 <span class="math notranslate nohighlight">\((-1, 0, 0)\)</span> in frame A, the y axis of the B frame remains at
 <span class="math notranslate nohighlight">\((0, 1, 0)\)</span> in frame A, and the z axis of the B frame is <span class="math notranslate nohighlight">\((0, 0, -1)\)</span> in
@@ -1010,7 +1016,7 @@ matrix, where:</p>
 <p class="admonition-title"><span class="caption-number">Proposition 3 </span></p>
 <div class="proposition-content section" id="proof-content">
 <p><strong>Rotation matrices are orthonormal</strong><br />
-If <span class="math notranslate nohighlight">\(R\)</span> is a rotation matrix with columns <span class="math notranslate nohighlight">\(r_1, r_2, r_3\)</span>, then for all
+If <span class="math notranslate nohighlight">\(R\)</span> is a rotation matrix with columns <span class="math notranslate nohighlight">\(r_1, r_2, r_3,\)</span> then for all
 <span class="math notranslate nohighlight">\(i, j \in \{1, 2, 3\}\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -1037,8 +1043,8 @@ definition, for all <span class="math notranslate nohighlight">\(i, j \in \{1, 2
     r_i\cdot r_j &amp;= 0 \; \text{for $i\neq j$ }
 \end{aligned}\end{split}\]</div>
 <p>Let’s now rewrite the above definition in linear
-algebraic terms. Recall that for arbitrary vectors <span class="math notranslate nohighlight">\(x, y\)</span>,
-<span class="math notranslate nohighlight">\(||x||^2 = x^Tx\)</span>, and that the dot product <span class="math notranslate nohighlight">\(x\cdot y = x^T y\)</span>.<br />
+algebraic terms. Recall that for arbitrary vectors <span class="math notranslate nohighlight">\(x, y,\)</span>
+<span class="math notranslate nohighlight">\(||x||^2 = x^Tx,\)</span> and that the dot product <span class="math notranslate nohighlight">\(x\cdot y = x^T y.\)</span><br />
 Using these facts, we rewrite the above as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -1054,9 +1060,9 @@ Using these facts, we rewrite the above as:</p>
     \end{cases}
 \end{aligned}\end{split}\]</div>
 <p>This proves the first part of the proposition. Let’s now
-show that the above implies <span class="math notranslate nohighlight">\(R^TR = RR^T = I\)</span>.<br />
+show that the above implies <span class="math notranslate nohighlight">\(R^TR = RR^T = I.\)</span><br />
 To do this, let’s expand the expression <span class="math notranslate nohighlight">\(R^TR\)</span> in terms of the
-definition of the rotation matrix, <span class="math notranslate nohighlight">\(R = [r_1 \; r_2 \; r_3]\)</span>.</p>
+definition of the rotation matrix, <span class="math notranslate nohighlight">\(R = [r_1 \; r_2 \; r_3].\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     R^TR &amp;= \begin{bmatrix}
@@ -1092,14 +1098,14 @@ above to find:</p>
     \end{bmatrix}
      = I
 \end{aligned}\end{split}\]</div>
-<p>To prove the statement <span class="math notranslate nohighlight">\(RR^T = I\)</span>, we follow the same
+<p>To prove the statement <span class="math notranslate nohighlight">\(RR^T = I,\)</span> we follow the same
 exact procedure, and find that <span class="math notranslate nohighlight">\(RR^T = I\)</span> as well.<br />
 Thus, for any rotation matrix, we have the useful property that:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     R^TR = RR^T = I
 \end{aligned}\]</div>
-<p>This concludes our proof. <span class="math notranslate nohighlight">\(\square\)</span>
+<p>This concludes our proof. <span class="math notranslate nohighlight">\(\square\)</span><br />
 So far, we’ve proved that rotation matrices are <em>orthonormal</em> - their
 columns are mutually orthogonal and of unit magnitude. What else can we
 show about these matrices?</p>
@@ -1107,20 +1113,20 @@ show about these matrices?</p>
 <p class="admonition-title"><span class="caption-number">Proposition 4 </span></p>
 <div class="proposition-content section" id="proof-content">
 <p><strong>Determinant of a rotation matrix</strong><br />
-For any rotation matrix <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{3x3}\)</span>,
-<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1\)</span>.</p>
+For any rotation matrix <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{3x3},\)</span>
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1.\)</span></p>
 </div>
 </div><p><strong>Proof:</strong> We’ll tackle the proof of this statement in two parts. First,
 we’ll show that the determinant of a rotation matrix must be 1 or -1.
 Then, we’ll apply a special identity to show that it must, in fact,
 be 1. Let’s get started!<br />
 We’ll begin this problem with a review of a few key facts from linear
-algebra. First, recall that for any matrix <span class="math notranslate nohighlight">\(A\)</span>,
-<span class="math notranslate nohighlight">\(\text{det}(A^T) = \text{det}(A)\)</span>. Next, recall that for any
+algebra. First, recall that for any matrix <span class="math notranslate nohighlight">\(A,\)</span>
+<span class="math notranslate nohighlight">\(\text{det}(A^T) = \text{det}(A).\)</span> Next, recall that for any
 matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> that can be multiplied,
-<span class="math notranslate nohighlight">\(\text{det}(AB) = \text{det}(A)\text{det}(B)\)</span>. With this in mind,
+<span class="math notranslate nohighlight">\(\text{det}(AB) = \text{det}(A)\text{det}(B).\)</span> With this in mind,
 we can begin the proof.<br />
-Previously, we showed that <span class="math notranslate nohighlight">\(R^TR = I\)</span>. Let’s see if we can use this to
+Previously, we showed that <span class="math notranslate nohighlight">\(R^TR = I.\)</span> Let’s see if we can use this to
 our advantage. Start by taking the determinant of both sides:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -1137,7 +1143,7 @@ first part of our proof:</p>
 \end{aligned}\]</div>
 <p>How do we proceed from here to show that the determinant
 is <em>just</em> 1? Let’s think about how we define the determinant for a 3x3
-matrix. Recall that for a 3x3 matrix <span class="math notranslate nohighlight">\(R\)</span>, where:</p>
+matrix. Recall that for a 3x3 matrix <span class="math notranslate nohighlight">\(R,\)</span> where:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     R &amp;= \begin{bmatrix}
@@ -1158,7 +1164,7 @@ algebraic manipulation to arrive at the identity:</p>
 \end{aligned}\]</div>
 <p>Let’s think about what this expression means in terms of
 reference frame vectors. Using the right hand rule, we know that since
-our frame is <em>right handed</em>, <span class="math notranslate nohighlight">\(r_2 \times r_3 = r_1\)</span>. Thus, we may
+our frame is <em>right handed</em>, <span class="math notranslate nohighlight">\(r_2 \times r_3 = r_1.\)</span> Thus, we may
 substitute in for <span class="math notranslate nohighlight">\(r_2 \times r_3\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -1182,9 +1188,9 @@ orthogonal group</strong>, denoted <span class="math notranslate nohighlight">\(
 </div>
 </div><p>This definition reads as follows: the set <span class="math notranslate nohighlight">\(SO(3)\)</span> is defined as the set
 of all real <span class="math notranslate nohighlight">\(3\times 3\)</span> matrices <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(R^TR = I\)</span> and
-<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1\)</span>.<br />
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1.\)</span><br />
 The “special” in special orthogonal refers to the fact that the
-determinant of the matrix is <span class="math notranslate nohighlight">\(+1\)</span>, while the “orthogonal” refers to the
+determinant of the matrix is <span class="math notranslate nohighlight">\(+1,\)</span> while the “orthogonal” refers to the
 orthogonality of the matrix.<br />
 We may easily generalize this definition to <span class="math notranslate nohighlight">\(n\)</span> dimensions as
 follows:<a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
@@ -1193,7 +1199,7 @@ follows:<a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
     SO(n) := \{R\in \mathbb{R}^{nxn}| \; R^TR = I,\; \mathrm{det}(R) = 1\}
 \end{aligned}\]</div>
 <p><em>Every</em> rotation matrix defined according to our
-coordinate frame method will be an element of <span class="math notranslate nohighlight">\(SO(3)\)</span>.</p>
+coordinate frame method will be an element of <span class="math notranslate nohighlight">\(SO(3).\)</span></p>
 </div>
 <div class="section" id="mathematical-groups">
 <h3>Mathematical Groups<a class="headerlink" href="#mathematical-groups" title="Permalink to this headline">#</a></h3>
@@ -1207,7 +1213,7 @@ For example, in linear algebra, if a set of vectors formed a vector
 space, we knew that set would be closed under addition and scalar
 multiplication.<br />
 In this section, we’ll show that the set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation
-matrices, <span class="math notranslate nohighlight">\(SO(3)\)</span>, falls into a type of category called a <strong>group</strong>.
+matrices, <span class="math notranslate nohighlight">\(SO(3),\)</span> falls into a type of category called a <strong>group</strong>.
 With this realization will come a number of useful properties we’ll come
 to enjoy over the duration of this course.<br />
 How is a group defined? Before we state the exact definition, it’s
@@ -1236,12 +1242,12 @@ A binary operation acts as follows:</p>
 \end{aligned}\]</div>
 </div>
 </div><p>For example, addition over the set of real numbers is a binary
-operation. If we have two numbers, <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, we can apply
-the binary operation <span class="math notranslate nohighlight">\(+\)</span> to create a new element: <span class="math notranslate nohighlight">\(c = a + b\)</span>.<br />
+operation. If we have two numbers, <span class="math notranslate nohighlight">\(a, b \in \mathbb{R},\)</span> we can apply
+the binary operation <span class="math notranslate nohighlight">\(+\)</span> to create a new element: <span class="math notranslate nohighlight">\(c = a + b.\)</span><br />
 Similarly, matrix multiplication is another binary operation. Let
-<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> and <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{n\times m}\)</span>. Then,
+<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> and <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{n\times m}.\)</span> Then,
 we may apply the binary operation <span class="math notranslate nohighlight">\(\cdot\)</span> to create a new matrix
-<span class="math notranslate nohighlight">\(C = A\cdot B\)</span>.<br />
+<span class="math notranslate nohighlight">\(C = A\cdot B.\)</span><br />
 We’re now ready to discuss the definition of a group. After reading,
 take a moment to appreciate how we maintain both precision and
 generality in the definition!<a class="footnote-reference brackets" href="#id4" id="id2">2</a></p>
@@ -1254,22 +1260,22 @@ definition</p>
 A group <span class="math notranslate nohighlight">\((G, \circ)\)</span> is a set <span class="math notranslate nohighlight">\(G\)</span> together with a binary operation
 <span class="math notranslate nohighlight">\(\circ\)</span> defined on <span class="math notranslate nohighlight">\(G\)</span> where the following hold:</p>
 <ol>
-<li><p><span class="math notranslate nohighlight">\(G\)</span> is closed under <span class="math notranslate nohighlight">\(\circ\)</span>: For all <span class="math notranslate nohighlight">\(g_1, g_2 \in G\)</span>,
+<li><p><span class="math notranslate nohighlight">\(G\)</span> is closed under <span class="math notranslate nohighlight">\(\circ\)</span>: For all <span class="math notranslate nohighlight">\(g_1, g_2 \in G,\)</span>
 <span class="math notranslate nohighlight">\(g_1 \circ g_2 \in G\)</span></p>
 <p><img alt="image" src="_images/closure.png" /></p>
-<p><em>Above: The set on the left is closed under <span class="math notranslate nohighlight">\(\circ\)</span>. Applying the
+<p><em>Above: The set on the left is closed under <span class="math notranslate nohighlight">\(\circ.\)</span> Applying the
 binary operation to two elements will never take it out of the set.
-The set on the right is not closed under <span class="math notranslate nohighlight">\(\circ\)</span>, as <span class="math notranslate nohighlight">\(\circ\)</span> can
-take elements of <span class="math notranslate nohighlight">\(G\)</span> out of the set.</em>*</p>
+The set on the right is not closed under <span class="math notranslate nohighlight">\(\circ,\)</span> as <span class="math notranslate nohighlight">\(\circ\)</span> can
+take elements of <span class="math notranslate nohighlight">\(G\)</span> out of the set.</em></p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span> contains an identity element: There exists an element <span class="math notranslate nohighlight">\(e\in G\)</span>
-such that for any <span class="math notranslate nohighlight">\(g \in G\)</span>, <span class="math notranslate nohighlight">\(e \circ g = g \circ e = g\)</span>.</p></li>
+such that for any <span class="math notranslate nohighlight">\(g \in G,\)</span> <span class="math notranslate nohighlight">\(e \circ g = g \circ e = g.\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span> contains a unique inverse for every element: For every element
-<span class="math notranslate nohighlight">\(g\in G\)</span>, there exists a unique element <span class="math notranslate nohighlight">\(g^{-1} \in G\)</span> such that
-<span class="math notranslate nohighlight">\(g\circ g^{-1} = g^{-1} \circ g = e\)</span>, where <span class="math notranslate nohighlight">\(e\)</span> is the identity
+<span class="math notranslate nohighlight">\(g\in G,\)</span> there exists a unique element <span class="math notranslate nohighlight">\(g^{-1} \in G\)</span> such that
+<span class="math notranslate nohighlight">\(g\circ g^{-1} = g^{-1} \circ g = e,\)</span> where <span class="math notranslate nohighlight">\(e\)</span> is the identity
 element.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\circ\)</span> is associative on <span class="math notranslate nohighlight">\(G\)</span>: For all <span class="math notranslate nohighlight">\(g_1, g_2, g_3 \in G\)</span>,
-<span class="math notranslate nohighlight">\(g_1\circ(g_2\circ g_3) = (g_1\circ g_2)\circ g_3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\circ\)</span> is associative on <span class="math notranslate nohighlight">\(G\)</span>: For all <span class="math notranslate nohighlight">\(g_1, g_2, g_3 \in G,\)</span>
+<span class="math notranslate nohighlight">\(g_1\circ(g_2\circ g_3) = (g_1\circ g_2)\circ g_3.\)</span></p></li>
 </ol>
 </div>
 </div><p>Let’s go over a quick example to see how we can prove a set and binary
@@ -1280,32 +1286,32 @@ binary operation of addition is a group. To show this, we must prove
 that each of the four conditions above is satisfied. Let’s go down the
 list!</p>
 <ol class="simple">
-<li><p>First, we want to show <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is closed under <span class="math notranslate nohighlight">\(+\)</span>. That is,
-for all <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(a + b \in \mathbb{R}\)</span>. We know that
+<li><p>First, we want to show <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is closed under <span class="math notranslate nohighlight">\(+.\)</span> That is,
+for all <span class="math notranslate nohighlight">\(a, b \in \mathbb{R},\)</span> <span class="math notranslate nohighlight">\(a + b \in \mathbb{R}.\)</span> We know that
 the sum of any two real numbers will give us another real number.
 Thus, this property is satisfied.</p></li>
 <li><p>Next, we want to show that <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> contains an identity element
-under <span class="math notranslate nohighlight">\(+\)</span>. We know that for any <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(a + 0 = a\)</span>.
-Thus, an identity element exists for all <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>.</p></li>
+under <span class="math notranslate nohighlight">\(+.\)</span> We know that for any <span class="math notranslate nohighlight">\(a \in \mathbb{R},\)</span> <span class="math notranslate nohighlight">\(a + 0 = a.\)</span>
+Thus, an identity element exists for all <span class="math notranslate nohighlight">\(a \in \mathbb{R}.\)</span></p></li>
 <li><p>Now, we want to show that an additive inverse exists for each
-<span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>. We know that for any <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>,
-<span class="math notranslate nohighlight">\(a + (-a) = 0\)</span>. Thus, every element of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> has an inverse
+<span class="math notranslate nohighlight">\(a \in \mathbb{R}.\)</span> We know that for any <span class="math notranslate nohighlight">\(a \in \mathbb{R},\)</span>
+<span class="math notranslate nohighlight">\(a + (-a) = 0.\)</span> Thus, every element of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> has an inverse
 under addition.</p></li>
 <li><p>Finally, we want to show that addition is associative. By properties
 of addition, we know that this is true, as <span class="math notranslate nohighlight">\((a+b)+c = a+(b+c)\)</span> for
-all <span class="math notranslate nohighlight">\(a, b, c \in \mathbb{R}\)</span>.</p></li>
+all <span class="math notranslate nohighlight">\(a, b, c \in \mathbb{R}.\)</span></p></li>
 </ol>
 <p>As <span class="math notranslate nohighlight">\((\mathbb{R}, +)\)</span> satisfies all of the necessary properties, we
 conclude that <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is a group under addition. This completes our
 proof! <span class="math notranslate nohighlight">\(\square\)</span>
 Now that we’ve defined a group and have gone over a simple proof, let’s
-try to show that the set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices, <span class="math notranslate nohighlight">\(SO(3)\)</span>,
+try to show that the set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices, <span class="math notranslate nohighlight">\(SO(3),\)</span>
 is a group under matrix multiplication.</p>
 <div class="proof proposition admonition" id="so3_group">
 <p class="admonition-title"><span class="caption-number">Proposition 5 </span></p>
 <div class="proposition-content section" id="proof-content">
 <p><strong><span class="math notranslate nohighlight">\(\mathbf{(SO(3), \cdot)}\)</span> is a group</strong><br />
-The set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices, <span class="math notranslate nohighlight">\(SO(3)\)</span>, is a group under
+The set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices, <span class="math notranslate nohighlight">\(SO(3),\)</span> is a group under
 the binary operation of matrix multiplication.</p>
 </div>
 </div><p><strong>Proof:</strong> Let’s follow the same proof template as we did for
@@ -1313,102 +1319,102 @@ the binary operation of matrix multiplication.</p>
 a time, that each property holds in <span class="math notranslate nohighlight">\(SO(3)\)</span> under matrix multiplication.</p>
 <ol>
 <li><p>First, we want to show that given any two rotation matrices
-<span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, their product <span class="math notranslate nohighlight">\(R_1R_2 \in SO(3)\)</span>. This will
+<span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3),\)</span> their product <span class="math notranslate nohighlight">\(R_1R_2 \in SO(3).\)</span> This will
 prove that <span class="math notranslate nohighlight">\(SO(3)\)</span> is closed under matrix multiplication.<br />
 How do we go about showing this? Recall the definition of <span class="math notranslate nohighlight">\(SO(3)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
             SO(3) := \{R\in \mathbb{R}^{3x3}| \; R^TR = I,\; \mathrm{det}(R) = 1\}
     \end{aligned}\]</div>
-<p>Thus, to show that <span class="math notranslate nohighlight">\(R_1R_2\in SO(3)\)</span>, we must show
-that <span class="math notranslate nohighlight">\(\mathrm{det}(R_1R_2) = 1\)</span> and that <span class="math notranslate nohighlight">\((R_1R_2)^T(R_1R_2) = I\)</span>.<br />
+<p>Thus, to show that <span class="math notranslate nohighlight">\(R_1R_2\in SO(3),\)</span> we must show
+that <span class="math notranslate nohighlight">\(\mathrm{det}(R_1R_2) = 1\)</span> and that <span class="math notranslate nohighlight">\((R_1R_2)^T(R_1R_2) = I.\)</span><br />
 Let’s start by showing that the determinant of <span class="math notranslate nohighlight">\(R_1R_2\)</span> equals 1.
-Remember, since <span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, we already know that
-<span class="math notranslate nohighlight">\(\mathrm{det}(R_1) = \mathrm{det}(R_2) = 1\)</span>. Let’s expand the
+Remember, since <span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3),\)</span> we already know that
+<span class="math notranslate nohighlight">\(\mathrm{det}(R_1) = \mathrm{det}(R_2) = 1.\)</span> Let’s expand the
 expression <span class="math notranslate nohighlight">\(\mathrm{det}(R_1R_2)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
             \mathrm{det}(R_1R_2) = \mathrm{det}(R_1)\cdot \mathrm{det}(R_2) = 1\cdot 1 = 1
     \end{aligned}\]</div>
 <p>Perfect! Now, we need to show
-<span class="math notranslate nohighlight">\((R_1R_2)^T(R_1R_2) = I\)</span>. Let’s expand this expression:</p>
+<span class="math notranslate nohighlight">\((R_1R_2)^T(R_1R_2) = I.\)</span> Let’s expand this expression:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
             (R_1R_2)^T(R_1R_2) = R_2^TR_1^TR_1R_2
         
     \end{aligned}\]</div>
-<p>Since <span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, we know
-<span class="math notranslate nohighlight">\(R_1^TR_1 = R_2^TR_2 = I\)</span>. Thus:</p>
+<p>Since <span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3),\)</span> we know
+<span class="math notranslate nohighlight">\(R_1^TR_1 = R_2^TR_2 = I.\)</span> Thus:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
             R_2^TR_1^TR_1R_2 = R_2^TIR_2 = R_2^TR_2 = I
     \end{aligned}\]</div>
-<p>Therefore, the product <span class="math notranslate nohighlight">\(R_1R_2 \in SO(3)\)</span>.</p>
+<p>Therefore, the product <span class="math notranslate nohighlight">\(R_1R_2 \in SO(3).\)</span></p>
 </li>
 <li><p>Next, we want to show <span class="math notranslate nohighlight">\(SO(3)\)</span> contains an identity element under
 matrix multiplication. We need a matrix <span class="math notranslate nohighlight">\(E\in SO(3)\)</span> such that for
-any other matrix <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, we have: <span class="math notranslate nohighlight">\(RE = ER = R\)</span>. What might
+any other matrix <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> we have: <span class="math notranslate nohighlight">\(RE = ER = R.\)</span> What might
 this matrix be?<br />
-Immediately, we consider the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix, <span class="math notranslate nohighlight">\(I\)</span>. We
-know that for any matrix <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, we have: <span class="math notranslate nohighlight">\(RI = IR = R\)</span>. Now,
+Immediately, we consider the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix, <span class="math notranslate nohighlight">\(I.\)</span> We
+know that for any matrix <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> we have: <span class="math notranslate nohighlight">\(RI = IR = R.\)</span> Now,
 all we need to do is show that the identity matrix <span class="math notranslate nohighlight">\(I\in SO(3)\)</span> and
 we’re good to go!<br />
-Clearly, <span class="math notranslate nohighlight">\(\mathrm{det}(I) = 1\)</span> and <span class="math notranslate nohighlight">\(I^TI = II^T = I\)</span>. Thus,
+Clearly, <span class="math notranslate nohighlight">\(\mathrm{det}(I) = 1\)</span> and <span class="math notranslate nohighlight">\(I^TI = II^T = I.\)</span> Thus,
 <span class="math notranslate nohighlight">\(I\in SO(3)\)</span> is the identity element.</p></li>
 <li><p>Now, we want to show a unique multiplicative inverse exists for
-every <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>. Recall that the inverse of a matrix <span class="math notranslate nohighlight">\(A\)</span> is a
-matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> such that <span class="math notranslate nohighlight">\(AA^{-1} = A^{-1}A = I\)</span>.<br />
+every <span class="math notranslate nohighlight">\(R \in SO(3).\)</span> Recall that the inverse of a matrix <span class="math notranslate nohighlight">\(A\)</span> is a
+matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> such that <span class="math notranslate nohighlight">\(AA^{-1} = A^{-1}A = I.\)</span><br />
 First, let’s show that every element of <span class="math notranslate nohighlight">\(SO(3)\)</span> is actually
 invertible. Recall that a matrix is invertible if its determinant is
 nonzero.<br />
-Because for all <span class="math notranslate nohighlight">\(R\in SO(3)\)</span>, <span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1\)</span>, we know
+Because for all <span class="math notranslate nohighlight">\(R\in SO(3),\)</span> <span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1,\)</span> we know
 rotation matrices will always be invertible. Further, from our
 knowledge of linear algebra, we know that whatever this inverse
 matrix might be, it is unique.<br />
-How can we find this matrix? We know that for all <span class="math notranslate nohighlight">\(R\in SO(3)\)</span>,
-<span class="math notranslate nohighlight">\(R^TR = RR^T = I\)</span>. Thus, looking at the definition of a matrix
+How can we find this matrix? We know that for all <span class="math notranslate nohighlight">\(R\in SO(3),\)</span>
+<span class="math notranslate nohighlight">\(R^TR = RR^T = I.\)</span> Thus, looking at the definition of a matrix
 inverse, we conclude <span class="math notranslate nohighlight">\(R^{-1} = R^T\)</span> for all rotation matrices
-<span class="math notranslate nohighlight">\(R \in SO(3)\)</span>. Because we can always take the transpose of a matrix,
-a multiplicative inverse exists for every element of <span class="math notranslate nohighlight">\(SO(3)\)</span>.</p></li>
+<span class="math notranslate nohighlight">\(R \in SO(3).\)</span> Because we can always take the transpose of a matrix,
+a multiplicative inverse exists for every element of <span class="math notranslate nohighlight">\(SO(3).\)</span></p></li>
 <li><p>Finally, we want to show that matrix multiplication is associative
-on <span class="math notranslate nohighlight">\(SO(3)\)</span>. Because matrix multiplication is associative for <em>all</em>
+on <span class="math notranslate nohighlight">\(SO(3).\)</span> Because matrix multiplication is associative for <em>all</em>
 matrices, this is automatically true.</p></li>
 </ol>
 <p>Now that we’ve shown <span class="math notranslate nohighlight">\((SO(3), \cdot)\)</span> meets all of the conditions to be
 a group, we conclude that the set of all rotation matrices is a group
 under matrix multiplication. This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span></p>
 <p><img alt="image" src="_images/so3prop.png" /></p>
-<p><em>Above: A visualization of some of the properties of <span class="math notranslate nohighlight">\(SO(3)\)</span>.</em></p>
+<p><em>Above: A visualization of some of the properties of <span class="math notranslate nohighlight">\(SO(3).\)</span></em></p>
 <p>Amazing! We’ve just shown that despite it representing a fairly
 restrictive physical idea, <span class="math notranslate nohighlight">\(SO(3)\)</span> has a lot of great properties and
 structure that we can make use of! However, it’s easy to make some
-mistakes regarding properties of <span class="math notranslate nohighlight">\(SO(3)\)</span>. Always keep in mind: although
-<span class="math notranslate nohighlight">\(SO(3)\)</span> <em>is</em> a subset of <span class="math notranslate nohighlight">\(\mathbb{R}^{3\times 3}\)</span>, it is <em>not</em> a vector
+mistakes regarding properties of <span class="math notranslate nohighlight">\(SO(3).\)</span> Always keep in mind: although
+<span class="math notranslate nohighlight">\(SO(3)\)</span> <em>is</em> a subset of <span class="math notranslate nohighlight">\(\mathbb{R}^{3\times 3},\)</span> it is <em>not</em> a vector
 space!<br />
 This means the following:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(SO(3)\)</span> is <em>not</em> closed under addition. That is, if
-<span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, it’s <em>not</em> always true that
-<span class="math notranslate nohighlight">\(R_1 + R_2 \in SO(3)\)</span>. As a counterexample, let <span class="math notranslate nohighlight">\(R_1 = R_2 = I\)</span>.
-Then, <span class="math notranslate nohighlight">\(R_1+R_2 = 2I\)</span>. When we take the determinant, we find:
-<span class="math notranslate nohighlight">\(\mathrm{det}(R_1+R_2) = 2\)</span>, which means the sum is <em>not</em> in
-<span class="math notranslate nohighlight">\(SO(3)\)</span>.</p></li>
+<span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3),\)</span> it’s <em>not</em> always true that
+<span class="math notranslate nohighlight">\(R_1 + R_2 \in SO(3).\)</span> As a counterexample, let <span class="math notranslate nohighlight">\(R_1 = R_2 = I.\)</span>
+Then, <span class="math notranslate nohighlight">\(R_1+R_2 = 2I.\)</span> When we take the determinant, we find:
+<span class="math notranslate nohighlight">\(\mathrm{det}(R_1+R_2) = 2,\)</span> which means the sum is <em>not</em> in
+<span class="math notranslate nohighlight">\(SO(3).\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(SO(3)\)</span> is <em>not</em> closed under scalar multiplication. If
-<span class="math notranslate nohighlight">\(R \in SO(3)\)</span> and <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>, it’s <em>not</em> true that
-<span class="math notranslate nohighlight">\(cR \in SO(3)\)</span>. Once again, we can take the identity matrix as an
-example of this. if <span class="math notranslate nohighlight">\(R = I\)</span> and <span class="math notranslate nohighlight">\(c = 2\)</span>, then
-<span class="math notranslate nohighlight">\(\mathrm{det}(R) = \mathrm{det}(2I) =8\)</span>. Thus, the scalar multiple
-is not in <span class="math notranslate nohighlight">\(SO(3)\)</span>.</p></li>
+<span class="math notranslate nohighlight">\(R \in SO(3)\)</span> and <span class="math notranslate nohighlight">\(c \in \mathbb{R},\)</span> it’s <em>not</em> true that
+<span class="math notranslate nohighlight">\(cR \in SO(3).\)</span> Once again, we can take the identity matrix as an
+example of this. if <span class="math notranslate nohighlight">\(R = I\)</span> and <span class="math notranslate nohighlight">\(c = 2,\)</span> then
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = \mathrm{det}(2I) =8.\)</span> Thus, the scalar multiple
+is not in <span class="math notranslate nohighlight">\(SO(3).\)</span></p></li>
 </ol>
 <p><img alt="image" src="_images/so3r3x3.png" /></p>
 <p><em>Above: Although the set <span class="math notranslate nohighlight">\(\mathbb{R}^{3x3}\)</span> is a vector space of
 matrices, <span class="math notranslate nohighlight">\(SO(3) \subset \mathbb{R}^{3x3}\)</span> is just a subset, not a
 subspace.</em></p>
 <p>Because every rotation of a rigid body has an associated rotation
-matrix, <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, we call <span class="math notranslate nohighlight">\(SO(3)\)</span> the <strong>configuration space</strong> of a
+matrix, <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> we call <span class="math notranslate nohighlight">\(SO(3)\)</span> the <strong>configuration space</strong> of a
 rigid body which is able to rotate. This simply means that whatever the
 rotational configuration of the body is, we’ll be able to describe it
-with some rotation matrix <span class="math notranslate nohighlight">\(R\)</span>.</p>
+with some rotation matrix <span class="math notranslate nohighlight">\(R.\)</span></p>
 </div>
 <div class="section" id="rotation-matrices-as-coordinate-transformations">
 <h3>Rotation Matrices as Coordinate Transformations<a class="headerlink" href="#rotation-matrices-as-coordinate-transformations" title="Permalink to this headline">#</a></h3>
@@ -1447,7 +1453,7 @@ representation:</p>
 <p>Now, let’s rewrite it in terms of frame A. To do this,
 instead of writing the vector using the basis vectors of frame B, as
 viewed in frame B, we’ll use the basis vectors of frame B as viewed in
-frame A. We denote these <span class="math notranslate nohighlight">\(\{x_{ab}, y_{ab}, z_{ab}\}\)</span>.</p>
+frame A. We denote these <span class="math notranslate nohighlight">\(\{x_{ab}, y_{ab}, z_{ab}\}.\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     v_a = v_{bx}x_{ab} + v_{by}y_{ab} + v_{bz}z_{ab}
@@ -1469,8 +1475,8 @@ see if anything interesting jumps out at us:</p>
     \end{bmatrix} v_b
 \end{aligned}\end{split}\]</div>
 <p>As you may recall, we defined the rotation matrix of
-frame B with respect to frame A, <span class="math notranslate nohighlight">\(R_{ab}\)</span>, as
-<span class="math notranslate nohighlight">\(R_{ab} = [x_{ab} \; y_{ab} \; z_{ab}]\)</span>. Thus, rewriting the expression
+frame B with respect to frame A, <span class="math notranslate nohighlight">\(R_{ab},\)</span> as
+<span class="math notranslate nohighlight">\(R_{ab} = [x_{ab} \; y_{ab} \; z_{ab}].\)</span> Thus, rewriting the expression
 above, we find:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -1482,10 +1488,10 @@ frame, rotation matrices <em>also</em> transform vectors from the body frame to
 the world frame.<br />
 Let’s do a quick example to see how this works in practice.<br />
 <strong>Example:</strong> In frame B, the vector <span class="math notranslate nohighlight">\(v\)</span> has the representation
-<span class="math notranslate nohighlight">\(v_b = (1, 1, 3)\)</span>. Rewrite this vector in frame A, given the relative
+<span class="math notranslate nohighlight">\(v_b = (1, 1, 3).\)</span> Rewrite this vector in frame A, given the relative
 configurations of the two frames:</p>
 <p><img alt="image" src="_images/transformex.png" /></p>
-<p>Let’s begin by writing out the rotation matrix <span class="math notranslate nohighlight">\(R_{ab}\)</span>. Once we have
+<p>Let’s begin by writing out the rotation matrix <span class="math notranslate nohighlight">\(R_{ab}.\)</span> Once we have
 the matrix, all we need to do is multiply it by the vector in frame B to
 find its equivalent representation in frame A.</p>
 <div class="math notranslate nohighlight">
@@ -1500,7 +1506,7 @@ find its equivalent representation in frame A.</p>
     \end{bmatrix}
 \end{aligned}\end{split}\]</div>
 <p>Now, we simply multiply <span class="math notranslate nohighlight">\(R_{ab}\)</span> and <span class="math notranslate nohighlight">\(v_b\)</span> to find
-<span class="math notranslate nohighlight">\(v_a\)</span>.</p>
+<span class="math notranslate nohighlight">\(v_a.\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     v_a = R_{ab}v_b = \begin{bmatrix}
@@ -1552,8 +1558,8 @@ Before we do this, however, we’ll need to develop a little bit more
 linear algebraic machinery to help us out.<br />
 The first tool we’ll need is the cross product. Let’s think back to how
 we traditionally defined the cross product of two vectors. Recall that
-given two vectors, <span class="math notranslate nohighlight">\(a, b\in \mathbb{R}^3\)</span>, their cross product,
-<span class="math notranslate nohighlight">\(a\times b\)</span>, was defined:</p>
+given two vectors, <span class="math notranslate nohighlight">\(a, b\in \mathbb{R}^3,\)</span> their cross product,
+<span class="math notranslate nohighlight">\(a\times b,\)</span> was defined:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     a\times b = 
@@ -1564,21 +1570,21 @@ given two vectors, <span class="math notranslate nohighlight">\(a, b\in \mathbb{
     \end{bmatrix}
 \end{aligned}\end{split}\]</div>
 <p>Geometrically, what does this give us? Using some simple
-algebra, we can show that for any vectors <span class="math notranslate nohighlight">\(a, b\in \mathbb{R}^3\)</span>,
-<span class="math notranslate nohighlight">\(a\times b\)</span> is orthogonal to both <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. Using this fact, and
+algebra, we can show that for any vectors <span class="math notranslate nohighlight">\(a, b\in \mathbb{R}^3,\)</span>
+<span class="math notranslate nohighlight">\(a\times b\)</span> is orthogonal to both <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b.\)</span> Using this fact, and
 applying the right hand rule to find the direction of the vector, this
 gives us the following image:</p>
 <p><img alt="image" src="_images/crossprod.png" /></p>
 <p><em>Above: the cross product of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> produces a vector perpendicular
 to the two</em></p>
 <p>It’s interesting to note that the cross product of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is not
-only perpendicular to <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, but also the <em>entire plane</em> spanned
-by <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.<br />
+only perpendicular to <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b,\)</span> but also the <em>entire plane</em> spanned
+by <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b.\)</span><br />
 Let’s try to think critically about how else we could represent a cross
 product. As you may recall from your math coursework, the cross product
 is <em>linear</em> in each vector. For example, in the equations below, we
-observe that the cross product is linear in <span class="math notranslate nohighlight">\(a\)</span>, where
-<span class="math notranslate nohighlight">\(a, b, c \in \mathbb{R}^3\)</span> and <span class="math notranslate nohighlight">\(d \in \mathbb{R}\)</span>.</p>
+observe that the cross product is linear in <span class="math notranslate nohighlight">\(a,\)</span> where
+<span class="math notranslate nohighlight">\(a, b, c \in \mathbb{R}^3\)</span> and <span class="math notranslate nohighlight">\(d \in \mathbb{R}.\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     d(a \times b) &amp;= (da)\times b\\
@@ -1586,14 +1592,14 @@ observe that the cross product is linear in <span class="math notranslate nohigh
 \end{aligned}\end{split}\]</div>
 <p>This linearity tells us that we can actually think of
 taking the cross product of any vector in <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> with the vector
-<span class="math notranslate nohighlight">\(a\)</span> as a linear transformation from <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p>
+<span class="math notranslate nohighlight">\(a\)</span> as a linear transformation from <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}^3.\)</span></p>
 <p><img alt="image" src="_images/lincross.png" /></p>
 <p><em>Above: The cross product of a vector with another vector is a linear
 transformation from <span class="math notranslate nohighlight">\(\mathbb{R}^3\to \mathbb{R}^3\)</span></em></p>
 <p>Because this cross product “transformation” is a linear transformation
-from <span class="math notranslate nohighlight">\(\mathbb{R}^3\to \mathbb{R}^3\)</span>, we may write it as a <span class="math notranslate nohighlight">\(3\times 3\)</span>
+from <span class="math notranslate nohighlight">\(\mathbb{R}^3\to \mathbb{R}^3,\)</span> we may write it as a <span class="math notranslate nohighlight">\(3\times 3\)</span>
 matrix! Let’s define the matrix of the linear transformation of taking
-the cross product with a vector <span class="math notranslate nohighlight">\(a \in \mathbb{R}^3\)</span>.</p>
+the cross product with a vector <span class="math notranslate nohighlight">\(a \in \mathbb{R}^3.\)</span></p>
 <div class="proof definition admonition" id="hat_map">
 <p class="admonition-title"><span class="caption-number">Definition 5 </span></p>
 <div class="definition-content section" id="proof-content">
@@ -1626,7 +1632,7 @@ The hat map of a vector,
 equivalently write it as a matrix-vector multiplication. This will help
 us prove some useful properties of the cross product! Note that the
 notations <span class="math notranslate nohighlight">\((a)^\wedge\)</span> and <span class="math notranslate nohighlight">\(\hat{a}\)</span> are both used to represent the hat
-map of <span class="math notranslate nohighlight">\(a\)</span>.</p>
+map of <span class="math notranslate nohighlight">\(a.\)</span></p>
 <p><img alt="image" src="_images/hatmap.png" /></p>
 <p><em>Above: multiplication by the hat map of a vector is equivalent to
 taking the cross product with that vector</em></p>
@@ -1636,7 +1642,7 @@ it interfaces with rotation matrices.</p>
 <p class="admonition-title"><span class="caption-number">Proposition 6 </span></p>
 <div class="proposition-content section" id="proof-content">
 <p><strong>Hat map properties</strong><br />
-For all <span class="math notranslate nohighlight">\(R \in SO(3)\)</span> and all <span class="math notranslate nohighlight">\(v, w \in \mathbb{R}^3\)</span>, the following
+For all <span class="math notranslate nohighlight">\(R \in SO(3)\)</span> and all <span class="math notranslate nohighlight">\(v, w \in \mathbb{R}^3,\)</span> the following
 hold:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -1647,8 +1653,8 @@ hold:</p>
 </div><p><strong>Proof:</strong> Let’s start with the first statement. In this problem, the
 proof is quite computational - we’ll take a direct algebraic approach
 and perform the matrix multiplications.<br />
-To begin, let’s call the rows of <span class="math notranslate nohighlight">\(R\)</span> <span class="math notranslate nohighlight">\(\{r_1, r_2, r_3\}\)</span>, such that
-<span class="math notranslate nohighlight">\(R^T = [r_1\; r_2 \; r_3]\)</span>. To compute the left hand side, we want to
+To begin, let’s call the rows of <span class="math notranslate nohighlight">\(R\)</span> <span class="math notranslate nohighlight">\(\{r_1, r_2, r_3\},\)</span> such that
+<span class="math notranslate nohighlight">\(R^T = [r_1\; r_2 \; r_3].\)</span> To compute the left hand side, we want to
 perform the multiplication:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -1711,10 +1717,10 @@ in the matrix above disappear.</p>
 \end{aligned}\end{split}\]</div>
 <p>Now, we can apply a further simplification of the above.
 You may recall from your math classes that for any vectors
-<span class="math notranslate nohighlight">\(a, b, c\in \mathbb{R}^3\)</span>,
-<span class="math notranslate nohighlight">\(a\cdot(b\times c) = c\cdot (a\times b) = b\cdot (c\times a)\)</span>. This is
+<span class="math notranslate nohighlight">\(a, b, c\in \mathbb{R}^3,\)</span>
+<span class="math notranslate nohighlight">\(a\cdot(b\times c) = c\cdot (a\times b) = b\cdot (c\times a).\)</span> This is
 known as the scalar triple product. Further, we recall that the
-coordinate frame formed from the rotation matrix, <span class="math notranslate nohighlight">\(\{r_1, r_2, r_3\}\)</span>,
+coordinate frame formed from the rotation matrix, <span class="math notranslate nohighlight">\(\{r_1, r_2, r_3\},\)</span>
 is right handed.<br />
 Let’s apply these ideas to the off-diagonal terms in the matrix and see
 if we notice any familiar structure.</p>
@@ -1767,8 +1773,8 @@ body transformations. Let’s do it!</p>
 <p class="admonition-title"><span class="caption-number">Proposition 7 </span></p>
 <div class="proposition-content section" id="proof-content">
 <p><strong>Rotations are rigid body transformations</strong><br />
-Given an arbitrary rotation <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, <span class="math notranslate nohighlight">\(R\)</span> is a rigid body
-transformation. This means for all <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, all points
+Given an arbitrary rotation <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> <span class="math notranslate nohighlight">\(R\)</span> is a rigid body
+transformation. This means for all <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> all points
 <span class="math notranslate nohighlight">\(p, q\in \mathbb{R}^3\)</span> and all vectors <span class="math notranslate nohighlight">\(v, w\in \mathbb{R}^3\)</span>:</p>
 <ol class="simple">
 <li><p>Multiplication by <span class="math notranslate nohighlight">\(R\)</span> preserves length: <span class="math notranslate nohighlight">\(||R(p-q)|| = ||p - q||\)</span></p></li>
@@ -1777,10 +1783,10 @@ transformation. This means for all <span class="math notranslate nohighlight">\(
 </ol>
 </div>
 </div><p><strong>Proof:</strong> Let’s begin by proving the first statement. Our approach in
-this problem will be to prove that <span class="math notranslate nohighlight">\(||R(p-q)||^2 = ||p - q||^2\)</span>. This
+this problem will be to prove that <span class="math notranslate nohighlight">\(||R(p-q)||^2 = ||p - q||^2.\)</span> This
 will allow us to convert this from a problem about distance to a problem
 about matrix multiplication, which will be easier to work with.<br />
-First, we recall the fact that for any vector <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(v^Tv = ||v||^2\)</span>.
+First, we recall the fact that for any vector <span class="math notranslate nohighlight">\(v,\)</span> <span class="math notranslate nohighlight">\(v^Tv = ||v||^2.\)</span>
 Let’s apply this to the left hand side:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -1788,18 +1794,18 @@ Let’s apply this to the left hand side:</p>
     &amp;= ((p^T-q^T)R^T)(R(p-q))\\
     &amp;= (p^T-q^T)R^TR(p-q)
 \end{aligned}\end{split}\]</div>
-<p>Now, recalling that for any <span class="math notranslate nohighlight">\(R\in SO(3)\)</span>,
-<span class="math notranslate nohighlight">\(R^T = R^{-1}\)</span>, we get:</p>
+<p>Now, recalling that for any <span class="math notranslate nohighlight">\(R\in SO(3),\)</span>
+<span class="math notranslate nohighlight">\(R^T = R^{-1},\)</span> we get:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     ||R(p-q)||^2 &amp;= (p^T-q^T)R^TR(p-q)\\
     &amp;= (p^T-q^T)(p-q)\\
     &amp;= ||p-q||^2
 \end{aligned}\end{split}\]</div>
-<p>Thus, if <span class="math notranslate nohighlight">\(||R(p-q)||^2 = ||p-q||^2\)</span>, then
-<span class="math notranslate nohighlight">\(||R(p-q)|| = ||p-q||\)</span>, as the norm of a vector is always greater than
+<p>Thus, if <span class="math notranslate nohighlight">\(||R(p-q)||^2 = ||p-q||^2,\)</span> then
+<span class="math notranslate nohighlight">\(||R(p-q)|| = ||p-q||,\)</span> as the norm of a vector is always greater than
 or equal to 0. This proves the first part! Let’s move on to the second.<br />
-Recall that we’d like to show <span class="math notranslate nohighlight">\(R(v\times w) = (Rv) \times (Rw)\)</span>. We can
+Recall that we’d like to show <span class="math notranslate nohighlight">\(R(v\times w) = (Rv) \times (Rw).\)</span> We can
 do this by making use of the statement we just proved about the hat
 map.<br />
 Let’s begin by rewriting the right hand side of the statement in terms
@@ -1809,7 +1815,7 @@ of the hat map.</p>
     (Rv) \times (Rw) &amp;= (Rv)^\wedge(Rw)\\
     &amp;= (R\hat{v}R^T)(Rw)
 \end{aligned}\end{split}\]</div>
-<p>Now, remembering that <span class="math notranslate nohighlight">\(R^{-1} = R^T\)</span>, we simplify:</p>
+<p>Now, remembering that <span class="math notranslate nohighlight">\(R^{-1} = R^T,\)</span> we simplify:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
     (Rv) \times (Rw) &amp;= (R\hat{v}R^{-1})(Rw)\\
@@ -1842,12 +1848,12 @@ review of an important ordinary differential equation.<br />
 Upon first glance, this might seem only tangentially related to what
 we’ve been talking about, but this equation will soon open up an almost
 miraculous resolution of rotation matrices. Let’s begin!<br />
-The differential equation <span class="math notranslate nohighlight">\(\dot{x}(t) = ax(t)\)</span>, where
-<span class="math notranslate nohighlight">\(a, x, t \in \mathbb{R}\)</span>, is one of the simplest yet most fundamental
+The differential equation <span class="math notranslate nohighlight">\(\dot{x}(t) = ax(t),\)</span> where
+<span class="math notranslate nohighlight">\(a, x, t \in \mathbb{R},\)</span> is one of the simplest yet most fundamental
 differential equations in math. Let’s review its solution.<br />
 Note that if you haven’t seen “dot” notation before, it simply
 represents a derivative with respect to time. If you see two dots above
-a variable, for example <span class="math notranslate nohighlight">\(\ddot{x}\)</span>, that refers to the second derivative
+a variable, for example <span class="math notranslate nohighlight">\(\ddot{x},\)</span> that refers to the second derivative
 of <span class="math notranslate nohighlight">\(x\)</span> with respect to time.<br />
 To begin, we’ll rewrite this equation using Leibniz notation for
 derivatives to get a clearer picture of what’s going on.</p>
@@ -1874,7 +1880,7 @@ both sides.</p>
 \end{aligned}\]</div>
 <p>Great! All of the variables have now been separated.
 Now, we’re ready to integrate. Let’s begin our integration at time
-<span class="math notranslate nohighlight">\(t = 0\)</span>, and assume an initial condition of <span class="math notranslate nohighlight">\(x(0) = x_0\)</span>.<br />
+<span class="math notranslate nohighlight">\(t = 0,\)</span> and assume an initial condition of <span class="math notranslate nohighlight">\(x(0) = x_0.\)</span><br />
 Note that when performing integration, we switch from <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span> to
 “dummy variables” <span class="math notranslate nohighlight">\(\chi\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> to maintain proper mathematical
 notation.</p>
@@ -1900,7 +1906,7 @@ following:</p>
     x(t) &amp;= e^{at}x_0
 \end{aligned}\end{split}\]</div>
 <p>Thus, the solution to <span class="math notranslate nohighlight">\(\dot{x}(t) = ax(t)\)</span> with an
-initial condition <span class="math notranslate nohighlight">\(x(0) = x_0\)</span> is <span class="math notranslate nohighlight">\(x(t) = e^{at}x_0\)</span>.<br />
+initial condition <span class="math notranslate nohighlight">\(x(0) = x_0\)</span> is <span class="math notranslate nohighlight">\(x(t) = e^{at}x_0.\)</span><br />
 As we move through this section, keep this result in the back of your
 mind - the title of this section, <em>exponential coordinates</em>, is a small
 hint towards this solution’s importance!</p>
@@ -1966,7 +1972,7 @@ restrictions holding us back?</p>
 \end{aligned}\end{split}\]</div>
 <p>Let’s think back to how we defined <span class="math notranslate nohighlight">\(SO(3)\)</span> to try and
 answer these questions. Recall that one of our conditions for a matrix
-<span class="math notranslate nohighlight">\(R\)</span> being an element of <span class="math notranslate nohighlight">\(SO(3)\)</span> was that <span class="math notranslate nohighlight">\(R^TR = I\)</span>. Written out
+<span class="math notranslate nohighlight">\(R\)</span> being an element of <span class="math notranslate nohighlight">\(SO(3)\)</span> was that <span class="math notranslate nohighlight">\(R^TR = I.\)</span> Written out
 element-wise, this implied that for all <span class="math notranslate nohighlight">\(i, j \in \{1, 2, 3\}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -2051,8 +2057,8 @@ dotted line as it goes.</p>
 <p><img alt="image" src="_images/3dangvel.png" /></p>
 <p><em>Above: A particle <span class="math notranslate nohighlight">\(p\)</span> orbits the origin in 3D space</em></p>
 <p>As can be seen in the image above, if we use the right hand rule to take
-the cross product between <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(r\)</span>, we find that we get the
-velocity, <span class="math notranslate nohighlight">\(v\)</span>. We also see that the direction of <span class="math notranslate nohighlight">\(\omega\)</span> gives us the
+the cross product between <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(r,\)</span> we find that we get the
+velocity, <span class="math notranslate nohighlight">\(v.\)</span> We also see that the direction of <span class="math notranslate nohighlight">\(\omega\)</span> gives us the
 <strong>axis of rotation</strong>, while the magnitude of <span class="math notranslate nohighlight">\(\omega\)</span> gives us the rate
 of rotation.<br />
 In component form, the angular velocity vector is written:</p>
@@ -2071,7 +2077,7 @@ radians per second.<br />
 Let’s now bring this discussion back to our study of rotation matrices.
 Clearly, the angular velocity vector is intrinsic to the motion of a
 rotating body. Furthermore, it has 3 independent components, which is
-the number we were looking for to parameterize <span class="math notranslate nohighlight">\(SO(3)\)</span>. How can we use
+the number we were looking for to parameterize <span class="math notranslate nohighlight">\(SO(3).\)</span> How can we use
 this vector to help us describe rotations?</p>
 </div>
 <div class="section" id="an-exponential-solution">
@@ -2108,24 +2114,24 @@ We may prove that the solution to this differential equation is:</p>
     q(t) = e^{\hat\omega t}q_0
 \end{aligned}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(q_0\)</span> is the position of <span class="math notranslate nohighlight">\(q\)</span> at time <span class="math notranslate nohighlight">\(t = 0\)</span> and
-<span class="math notranslate nohighlight">\(e^{\hat\omega t}\)</span> is the <strong>matrix exponential</strong> of <span class="math notranslate nohighlight">\(\hat\omega t\)</span>.<br />
+<span class="math notranslate nohighlight">\(e^{\hat\omega t}\)</span> is the <strong>matrix exponential</strong> of <span class="math notranslate nohighlight">\(\hat\omega t.\)</span><br />
 The matrix exponential is defined as follows:</p>
 <div class="proof definition admonition" id="matrix_exp">
 <p class="admonition-title"><span class="caption-number">Definition 6 </span></p>
 <div class="definition-content section" id="proof-content">
 <p><strong>The matrix exponential</strong><br />
-Given any matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span>, the matrix exponential
-of A, denoted <span class="math notranslate nohighlight">\(e^A\)</span>, is computed according to the Taylor series
+Given any matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n},\)</span> the matrix exponential
+of A, denoted <span class="math notranslate nohighlight">\(e^A,\)</span> is computed according to the Taylor series
 expansion of <span class="math notranslate nohighlight">\(e^x\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     e^A = \sum_{n = 0}^{\infty}\frac{A^n}{n!} = I + A + \frac{A^2}{2!} + \frac{A^3}{3!} + ... 
 \end{aligned}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(n\times n\)</span> identity matrix and
-<span class="math notranslate nohighlight">\(A^0 = I\)</span>.</p>
+<span class="math notranslate nohighlight">\(A^0 = I.\)</span></p>
 </div>
 </div><p>Using the powerful concept of the matrix exponential, we’ve solved the
-differential equation for the rotational motion of the point <span class="math notranslate nohighlight">\(q\)</span>. But,
+differential equation for the rotational motion of the point <span class="math notranslate nohighlight">\(q.\)</span> But,
 we’re not quite done yet! We still need to link this back to rotation
 matrices.</p>
 <p><img alt="image" src="_images/unitmag.png" /></p>
@@ -2134,10 +2140,10 @@ the time equals the angle (assuming zero initial condition).</em></p>
 <p>Recall that earlier, we stated that <span class="math notranslate nohighlight">\(\omega\)</span> has unit magnitude. This
 means that the rigid body rotates with an angular velocity of 1 radian
 per second. If a single second corresponds to a single radian, then we
-can replace time, <span class="math notranslate nohighlight">\(t\)</span>, in the differential equation with an angular
-displacement, <span class="math notranslate nohighlight">\(\theta\)</span>, as the two are equivalent (at time 0,
+can replace time, <span class="math notranslate nohighlight">\(t,\)</span> in the differential equation with an angular
+displacement, <span class="math notranslate nohighlight">\(\theta,\)</span> as the two are equivalent (at time 0,
 displacement will always be 0).<br />
-Thus, replacing <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(\theta\)</span>, we have:</p>
+Thus, replacing <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(\theta,\)</span> we have:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     q(\theta) = e^{\hat\omega \theta}q_0
@@ -2149,18 +2155,18 @@ Thus, replacing <span class="math notranslate nohighlight">\(t\)</span> with <sp
 \end{aligned}\]</div>
 <p>Thus, using the matrix exponential, we can calculate the
 position of q given <em>any</em> angle <span class="math notranslate nohighlight">\(\theta\)</span> and any axis of rotation
-<span class="math notranslate nohighlight">\(\omega\)</span>. Because we are <em>rotating</em> from <span class="math notranslate nohighlight">\(q_0\)</span> to <span class="math notranslate nohighlight">\(q(\theta)\)</span>, the
+<span class="math notranslate nohighlight">\(\omega.\)</span> Because we are <em>rotating</em> from <span class="math notranslate nohighlight">\(q_0\)</span> to <span class="math notranslate nohighlight">\(q(\theta),\)</span> the
 transformation <span class="math notranslate nohighlight">\(e^{\hat\omega \theta}\)</span> is a rotation matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     R(\omega, \theta) = e^{\hat\omega \theta} \in SO(3)
 \end{aligned}\]</div>
 <p>This rotation matrix gives us a rotation of angle
-<span class="math notranslate nohighlight">\(\theta\)</span> about an axis of rotation <span class="math notranslate nohighlight">\(\omega\)</span>.<br />
+<span class="math notranslate nohighlight">\(\theta\)</span> about an axis of rotation <span class="math notranslate nohighlight">\(\omega.\)</span><br />
 Thus, we conclude that we can parameterize a rotation matrix
 <span class="math notranslate nohighlight">\(R\in SO(3)\)</span> through an axis of rotation, <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> (an
 angular velocity of unit magnitude), and an angle of rotation <span class="math notranslate nohighlight">\(\theta\)</span>
-as <span class="math notranslate nohighlight">\(R(\omega, \theta) = e^{\hat\omega\theta}\)</span>. What an amazing result!</p>
+as <span class="math notranslate nohighlight">\(R(\omega, \theta) = e^{\hat\omega\theta}.\)</span> What an amazing result!</p>
 </div>
 <div class="section" id="so-3">
 <h3><span class="math notranslate nohighlight">\(so(3)\)</span><a class="headerlink" href="#so-3" title="Permalink to this headline">#</a></h3>
@@ -2169,7 +2175,7 @@ as <span class="math notranslate nohighlight">\(R(\omega, \theta) = e^{\hat\omeg
 let’s take a moment to briefly discuss the class of matrices used in
 these exponential solutions.<br />
 Recall from the definition of the hat map that if we have a vector
-<span class="math notranslate nohighlight">\(\omega = (\omega_1, \omega_2, \omega_3)\in \mathbb{R}^3\)</span>, its hat map
+<span class="math notranslate nohighlight">\(\omega = (\omega_1, \omega_2, \omega_3)\in \mathbb{R}^3,\)</span> its hat map
 is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -2194,7 +2200,7 @@ is:</p>
 \[\begin{aligned}
     \hat{\omega}^T = -\hat\omega
 \end{aligned}\]</div>
-<p>For all <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span>. All matrices with
+<p>For all <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3.\)</span> All matrices with
 this property are called <strong>skew symmetric</strong>.<br />
 Using linear algebra, we can prove the useful fact that the set of skew
 symmetric matrices is a <em>vector space</em>! This means that adding any two
@@ -2203,13 +2209,13 @@ skew symmetric matrices will produce another skew symmetric matrix
 by a constant will also produce another skew symmetric matrix (closure
 under scalar multiplication).<br />
 We refer to the vector space of all <span class="math notranslate nohighlight">\(3\times 3\)</span> skew symmetric matrices
-as <span class="math notranslate nohighlight">\(\mathbf{so(3)}\)</span>. Formally, we define <span class="math notranslate nohighlight">\(so(3)\)</span> to be:</p>
+as <span class="math notranslate nohighlight">\(\mathbf{so(3)}.\)</span> Formally, we define <span class="math notranslate nohighlight">\(so(3)\)</span> to be:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     so(3) := \{A \in \mathbb{R}^{3x3} \;| \; A^T = -A\} \subset \mathbb{R}^{3\times 3}
 \end{aligned}\]</div>
 <p>Let’s think about the different maps and transformations
-we’ve discussed in terms of <span class="math notranslate nohighlight">\(so(3)\)</span> and <span class="math notranslate nohighlight">\(SO(3)\)</span>.<br />
+we’ve discussed in terms of <span class="math notranslate nohighlight">\(so(3)\)</span> and <span class="math notranslate nohighlight">\(SO(3).\)</span><br />
 First, consider the hat map. Recall that this took us from a vector in
 <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> to a skew symmetric matrix.</p>
 <div class="math notranslate nohighlight">
@@ -2244,8 +2250,8 @@ form for the infinite series above.
 This will allow us to write out the rotation matrix about an axis in a
 fully closed form. Let’s begin!
 As the matrix exponential involves computing higher and higher powers of
-the matrix <span class="math notranslate nohighlight">\(\hat{\omega}\)</span>, let’s begin by computing a couple of powers
-of <span class="math notranslate nohighlight">\(\hat{\omega}\)</span>. We’ll then look for any patterns and see if that
+the matrix <span class="math notranslate nohighlight">\(\hat{\omega},\)</span> let’s begin by computing a couple of powers
+of <span class="math notranslate nohighlight">\(\hat{\omega}.\)</span> We’ll then look for any patterns and see if that
 allows us to close the infinite series.
 Recall that <span class="math notranslate nohighlight">\(\hat{\omega}\)</span> is defined:</p>
 <div class="math notranslate nohighlight">
@@ -2279,7 +2285,7 @@ multiplying it by itself.</p>
     \end{bmatrix}
 \end{aligned}\end{split}\]</div>
 <p>Let’s see if there’s any way we can write this in terms
-of lower powers of <span class="math notranslate nohighlight">\(\hat\omega\)</span>. First, let’s pull out a multiple of the
+of lower powers of <span class="math notranslate nohighlight">\(\hat\omega.\)</span> First, let’s pull out a multiple of the
 identity matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -2311,14 +2317,14 @@ expression above is actually <span class="math notranslate nohighlight">\(\omega
 \end{aligned}\]</div>
 <p>Now, recall that when constructing the rotation matrix
 with exponential coordinates, we assumed that <span class="math notranslate nohighlight">\(\omega\)</span> was a unit
-vector! Therefore, <span class="math notranslate nohighlight">\(\omega_1^2 + \omega_2^2 + \omega_3^2 = 1\)</span>, and we
+vector! Therefore, <span class="math notranslate nohighlight">\(\omega_1^2 + \omega_2^2 + \omega_3^2 = 1,\)</span> and we
 can further simplify to:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     \hat{\omega}^2 = \omega\omega^T - I
 \end{aligned}\]</div>
 <p>Great! Now, let’s calculate one more exponent of
-<span class="math notranslate nohighlight">\(\hat\omega\)</span>. It’s in this step that we’ll find the simplification we
+<span class="math notranslate nohighlight">\(\hat\omega.\)</span> It’s in this step that we’ll find the simplification we
 need to write a closed form expression for the matrix exponential!
 Let’s start by breaking up the cube of <span class="math notranslate nohighlight">\(\hat\omega\)</span> into two parts.</p>
 <div class="math notranslate nohighlight">
@@ -2353,7 +2359,7 @@ form so we can achieve this cancellation.</p>
 <p>What does this mean for the matrix exponential problem?
 As we can see above, higher exponents of <span class="math notranslate nohighlight">\(\hat\omega\)</span> “map back” to
 lower exponents! This will allow us to <em>recursively</em> compute higher
-powers of <span class="math notranslate nohighlight">\(\hat\omega\)</span>.
+powers of <span class="math notranslate nohighlight">\(\hat\omega.\)</span>
 Let’s plug these results into the matrix exponential and see what
 simplifications we get!</p>
 <div class="math notranslate nohighlight">
@@ -2376,7 +2382,7 @@ simplifications we get!</p>
 \end{aligned}\]</div>
 <p>This pattern of even and odd exponents of <span class="math notranslate nohighlight">\(\hat\omega\)</span>
 will continue as we continue to compute higher exponents. Let’s separate
-out the expressions with <span class="math notranslate nohighlight">\(\hat\omega^2\)</span> and <span class="math notranslate nohighlight">\(\hat\omega\)</span>.</p>
+out the expressions with <span class="math notranslate nohighlight">\(\hat\omega^2\)</span> and <span class="math notranslate nohighlight">\(\hat\omega.\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     e^{\hat\omega \theta} = I + \hat\omega(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - ...) + \hat\omega^2(\frac{\theta^2}{2!} - \frac{\theta^4}{4!} + ...)
@@ -2392,7 +2398,7 @@ parentheses are the Taylor expansions of <span class="math notranslate nohighlig
 rotation matrix in an entirely closed form. The equation above is
 referred to as <strong>Rodrigues’ Formula</strong>.<br />
 In summary, we can use Rodrigues’ Formula to find the rotation matrix
-about a unit axis <span class="math notranslate nohighlight">\(\omega\)</span> through an angle <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+about a unit axis <span class="math notranslate nohighlight">\(\omega\)</span> through an angle <span class="math notranslate nohighlight">\(\theta.\)</span></p>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -2440,6 +2446,13 @@ about a unit axis <span class="math notranslate nohighlight">\(\omega\)</span> t
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Welcome to 106A!</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="further_repr.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Further Representations of Rotations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

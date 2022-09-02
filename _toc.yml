@@ -8,4 +8,5 @@ chapters:
 # - file: notebooks
 # - file: markdown-notebooks
 - file: rigid_body_rotations
+- file: further_repr
 # - file: example_md_file #EXAMPLE FILE FOR SYNTAX

@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Further Representations of Rotations &#8212; Introduction to Robotics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Rigid Body Rotations" href="rigid_body_rotations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/106A_logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Robotics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to 106A!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="rigid_body_rotations.html">
+   Rigid Body Rotations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Further Representations of Rotations
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ffurther_repr.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/further_repr.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rodrigues-formula-the-finishing-touches">
+   Rodrigues’ Formula: The Finishing Touches
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameterizing-rotations">
+   Parameterizing Rotations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zyx-euler-angles">
+     ZYX Euler Angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#euler-angle-singularities">
+     Euler Angle Singularities
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Further Representations of Rotations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rodrigues-formula-the-finishing-touches">
+   Rodrigues’ Formula: The Finishing Touches
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameterizing-rotations">
+   Parameterizing Rotations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zyx-euler-angles">
+     ZYX Euler Angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#euler-angle-singularities">
+     Euler Angle Singularities
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="further-representations-of-rotations">
+<h1>Further Representations of Rotations<a class="headerlink" href="#further-representations-of-rotations" title="Permalink to this headline">#</a></h1>
+<p>Welcome back! Let’s take a moment to briefly review our developments
+from last section. Recall that we constructed a formula, called
+<strong>Rodrigues’s Formula</strong>, which allowed us to describe a full <span class="math notranslate nohighlight">\(3\times3\)</span>
+rotation matrix using just an axis of rotation and an angle.<br />
+In this section, we’ll work on developing some more details of this
+wonderful formula, and verify that it satisfies all of the properties we
+expect it to. Let’s get started!</p>
+<div class="section" id="rodrigues-formula-the-finishing-touches">
+<h2>Rodrigues’ Formula: The Finishing Touches<a class="headerlink" href="#rodrigues-formula-the-finishing-touches" title="Permalink to this headline">#</a></h2>
+<p>In the previous section, we developed the approach of using <em>exponential
+coordinates</em> to describe a rotation in simpler terms. Recall that we
+developed these exponential coordinates through Rodrigues’ formula,
+which states that for a unit vector <span class="math notranslate nohighlight">\(\omega\in \mathbb{R}^3\)</span> and a
+scalar angle <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+     e^{\hat\omega \theta} = I + \hat\omega\sin\theta + \hat\omega^2(1-\cos\theta)
+\end{aligned}\]</div>
+<p>In words, this tells us that we <em>should</em> be able to
+represent a rotation matrix by an axis of rotation,
+<span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> and an angle <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}.\)</span> Recall
+that this rotation matrix corresponds to a rotation about the axis
+<span class="math notranslate nohighlight">\(\omega\)</span> through an angle <span class="math notranslate nohighlight">\(\theta.\)</span><br />
+But, it’s not enough for us to take this equation simply at face value!
+Before we continue using this equation any further, we must formally
+verify that <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> <em>is</em> actually a valid rotation matrix
+in <span class="math notranslate nohighlight">\(SO(3).\)</span> This will provide a strong foundation for the use of the
+matrix exponential as we move forwards.</p>
+<div class="proof proposition admonition" id="skew_exp">
+<p class="admonition-title"><span class="caption-number">Proposition 8 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Exponentials of skew symmetric matrices produce
+elements of <span class="math notranslate nohighlight">\(\mathbf{SO(3)}\)</span></strong><br />
+Given any unit vector <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> and any scalar
+<span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega\theta}\in SO(3)
+\end{aligned}\]</div>
+</div>
+</div><p><strong>Proof:</strong> To prove that <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\in SO(3),\)</span> we need to
+show that <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> satisfies the two defining properties
+of the <span class="math notranslate nohighlight">\(SO(3)\)</span> group. Recall that for any <span class="math notranslate nohighlight">\(R\in SO(3),\)</span> <span class="math notranslate nohighlight">\(R^TR = I\)</span> and
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1.\)</span><br />
+Let’s start by proving that <span class="math notranslate nohighlight">\(e^{\hat\omega \theta}\)</span> satisfies first
+property! How can we show that
+<span class="math notranslate nohighlight">\((e^{\hat\omega\theta})^T(e^{\hat\omega\theta}) = I\)</span>? If we can show
+that <span class="math notranslate nohighlight">\((e^{\hat\omega\theta})^T = (e^{\hat\omega\theta})^{-1},\)</span> we’ll
+have proven this fact! Let’s give this method a try, and start by taking
+the inverse of <span class="math notranslate nohighlight">\((e^{\hat\omega\theta}).\)</span><br />
+We’ll apply the property of the matrix exponential that for any matrix
+<span class="math notranslate nohighlight">\(A\in \mathbb{R}^{n\times n},\)</span> <span class="math notranslate nohighlight">\((e^A)^{-1} = e^{-A}.\)</span> Note how this is
+just like the normal exponential function!<br />
+Using this property:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (e^{\hat\omega\theta})^{-1} = e^{-\hat\omega\theta}
+\end{aligned}\]</div>
+<p>Now, recall that <span class="math notranslate nohighlight">\(\hat\omega\)</span> is a skew symmetric
+matrix. This means that <span class="math notranslate nohighlight">\(-\hat\omega = \hat\omega^T.\)</span> This allows us to
+simplify to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{-\hat\omega\theta} = e^{\hat\omega^T\theta}
+\end{aligned}\]</div>
+<p>Finally, we apply a second property of the matrix
+exponential: <span class="math notranslate nohighlight">\(e^{A^T} = (e^{A})^T.\)</span> This allows us to conclude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega^T\theta} = (e^{\hat\omega\theta})^T
+\end{aligned}\]</div>
+<p>Thus, through this chain of equalities, we’ve shown that
+<span class="math notranslate nohighlight">\((e^{\hat\omega\theta})^{-1} = (e^{\hat\omega\theta})^T.\)</span> Fantastic!
+Thus, we conclude that for any unit vector <span class="math notranslate nohighlight">\(\omega\)</span> and angle <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (e^{\hat\omega\theta})^T(e^{\hat\omega\theta}) = (e^{\hat\omega\theta})^{-1}(e^{\hat\omega\theta}) = I
+\end{aligned}\]</div>
+<p>This gives us our first property of <span class="math notranslate nohighlight">\(SO(3).\)</span> Now, all
+that remains is to show the second property: that
+<span class="math notranslate nohighlight">\(\mathrm{det}(e^{\hat\omega\theta})=1.\)</span> In this second part of the
+proof, we’ll make use of the following two determinant properties:</p>
+<ol class="simple">
+<li><p>For any matrices <span class="math notranslate nohighlight">\(A, B \in \mathbb{R}^{n\times n},\)</span>
+<span class="math notranslate nohighlight">\(\mathrm{det}(AB) = \mathrm{det}(A)\mathrm{det}(B).\)</span></p></li>
+<li><p>For any matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n},\)</span>
+<span class="math notranslate nohighlight">\(\mathrm{det}(A) = \mathrm{det}(A^T).\)</span></p></li>
+</ol>
+<p>We may begin the second part of the proof by examining the statement we
+just proved: <span class="math notranslate nohighlight">\((e^{\hat\omega\theta})^{T}(e^{\hat\omega\theta}) = I.\)</span>
+Let’s take the determinant of both sides.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathrm{det}((e^{\hat\omega\theta})^{T}(e^{\hat\omega\theta})) &amp;= \mathrm{det}(I)\\
+    \mathrm{det}((e^{\hat\omega\theta})^{T})\mathrm{det}(e^{\hat\omega\theta}) &amp;= 1\\
+    \mathrm{det}(e^{\hat\omega\theta})^2 = 1\\
+    \mathrm{det}(e^{\hat\omega\theta}) = \pm 1 
+\end{aligned}\end{split}\]</div>
+<p>Now that we have the determinant is equal to <span class="math notranslate nohighlight">\(\pm 1,\)</span> we
+need to find a way to show it’s <em>just</em> 1 and can <em>never</em> be <span class="math notranslate nohighlight">\(-1.\)</span> To do
+this, we’ll apply a few subtle tricks from linear algebra and real
+analysis.<br />
+One of the tricks we’ll need involves continuity of functions. Let’s
+review what this means!<br />
+Consider the function graphed below:</p>
+<p><img alt="image" src="_images/discont.png" /><br />
+<em>Above: A function with a point discontinuity at the origin.</em></p>
+<p>Recall that if a function suddenly <em>jumps</em> between two values at any
+point in its domain, it’s considered discontinuous. Further, if the
+function is undefined at a specific point in its domain, such as <span class="math notranslate nohighlight">\(f(x)\)</span>
+in the image above, it’s also considered discontinuous.<a class="footnote-reference brackets" href="#id5" id="id1">1</a><br />
+There are three critical facts about continuity that will help us solve
+this problem. Firstly, the determinant is a continuous function of a
+matrix - its value changes smoothly with the values of a matrix.
+Secondly, the matrix exponential is a continuous function of a matrix,
+just like a standard exponential! Thirdly, the composition of any two
+continuous functions is continuous.<br />
+Applying these facts to our function of interest, we find that
+<span class="math notranslate nohighlight">\(\mathrm{det}(e^{\hat\omega\theta})\)</span> <em>must</em> be a continuous function.
+How does this help us out? Let’s try plugging in a value for theta to
+gain some perspective.<br />
+Using the definition of the matrix exponential, let’s find the
+determinant when <span class="math notranslate nohighlight">\(\theta = 0.\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{det}(e^{\hat\omega\cdot 0}) = \mathrm{det}(e^{0}) = \mathrm{det}(I) = 1
+\end{aligned}\]</div>
+<p>Let’s break down the significance of this result.
+Firstly, we know that since
+<span class="math notranslate nohighlight">\((\mathrm{det}(e^{\hat\omega\theta}))^{-1} = (\mathrm{det}(e^{\hat\omega\theta}))^T,\)</span>
+that the matrix exponential is always invertible. This means its
+determinant is never 0.<br />
+If <span class="math notranslate nohighlight">\(\mathrm{det}(e^{\hat\omega\theta})\)</span> is a continuous function, never
+passes through 0, and equals 1 for a value of <span class="math notranslate nohighlight">\(\theta,\)</span> there’s no way
+it can ever reach <span class="math notranslate nohighlight">\(-1\)</span>! Doing so would require the function to start at
+1,”skip over” <span class="math notranslate nohighlight">\(0,\)</span> and go to <span class="math notranslate nohighlight">\(-1,\)</span> which would make it discontinuous.<br />
+Thus, the determinant may never be <span class="math notranslate nohighlight">\(-1,\)</span> which leads us to conclude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{det}(e^{\hat\omega\theta}) = 1
+\end{aligned}\]</div>
+<p>Now that we have both
+<span class="math notranslate nohighlight">\(\mathrm{det}(e^{\hat\omega\theta}) = 1\)</span> and
+<span class="math notranslate nohighlight">\((e^{\hat\omega\theta})^T(e^{\hat\omega\theta}) = I,\)</span> we conclude
+<span class="math notranslate nohighlight">\(e^{\hat\omega\theta} \in SO(3).\)</span><br />
+This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span><br />
+<br />
+Proving this result is a major step forward in validating the use of
+these exponential coordinates. We’ve just shown that <em>every</em> matrix of
+the form <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> is a valid rotation matrix in <span class="math notranslate nohighlight">\(SO(3).\)</span>
+Now that we’re certain that matrices generated through exponential
+coordinates are in fact valid rotation matrices, we only have one result
+left to prove!<br />
+Now, we’d like to go in the opposite direction. Instead of showing that
+<span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> is a valid rotation matrix, we’d now like to show
+that for any rotation matrix <span class="math notranslate nohighlight">\(R\in SO(3),\)</span> there exists a unit axis of
+rotation <span class="math notranslate nohighlight">\(\omega\)</span> and angle <span class="math notranslate nohighlight">\(\theta\)</span> such that
+<span class="math notranslate nohighlight">\(e^{\hat\omega\theta} = R.\)</span> In doing this, we’ll show that we may find a
+set of exponential coordinates for <em>any</em> valid rotation matrix out
+there.<br />
+How may we approach this proof? In the language of mathematics, we must
+show that the exponential map is a <em>surjective (onto)</em> function. What
+does this mean? Recall that for a function <span class="math notranslate nohighlight">\(f: A \to B\)</span> to be
+surjective, for every <span class="math notranslate nohighlight">\(b \in B,\)</span> there exists an <span class="math notranslate nohighlight">\(a \in A\)</span> such that
+<span class="math notranslate nohighlight">\(f(a) = b.\)</span></p>
+<div class="proof proposition admonition" id="surjective">
+<p class="admonition-title"><span class="caption-number">Proposition 9 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>The exponential map is surjective onto
+<span class="math notranslate nohighlight">\(\mathbf{SO(3)}\)</span></strong><br />
+Given any <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> there exist <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> and
+<span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span> such that <span class="math notranslate nohighlight">\(||\omega|| = 1\)</span> and:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega\theta} = R
+\end{aligned}\]</div>
+</div>
+</div><p><strong>Proof:</strong> How can we prove such a statement? Let’s think about what the
+proposition above is trying to say with the following diagram.</p>
+<p><img alt="image" src="_images/surjective.png" /><br />
+<em>Above: The exponential map is surjective onto <span class="math notranslate nohighlight">\(SO(3).\)</span></em></p>
+<p>If the exponential map is surjective, given any <span class="math notranslate nohighlight">\(R\in SO(3),\)</span> we should
+be able to find some <span class="math notranslate nohighlight">\(\omega\)</span> and some <span class="math notranslate nohighlight">\(\theta\)</span> satisfying
+<span class="math notranslate nohighlight">\(e^{\hat\omega\theta} = R.\)</span> If this is the case, we may prove this
+statement by constructing explicit formulas for <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span>
+given an arbitrary rotation matrix <span class="math notranslate nohighlight">\(R.\)</span> This is known as a constructive
+existence proof.<br />
+To construct our formulas and complete the proof, we’ll take the
+following path:</p>
+<p><img alt="image" src="_images/roadmap_pf.png" /></p>
+<p>This proof can be a little tricky, so if you feel yourself starting to
+lose track of its progress, be sure to check back to the roadmap to gain
+your bearings!<br />
+Let <span class="math notranslate nohighlight">\(R\in SO(3)\)</span> be an arbitrary rotation matrix,
+<span class="math notranslate nohighlight">\(\omega\in \mathbb{R}^3\)</span> be a unit vector, and <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>
+be a scalar angle.<br />
+Let’s begin by finding an explicit formula for <span class="math notranslate nohighlight">\(\theta,\)</span> the angle of
+rotation, in terms of <span class="math notranslate nohighlight">\(R.\)</span> We can get started by applying Rodrigues’
+formula, and matching the entries of <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> with the
+entries of <span class="math notranslate nohighlight">\(R.\)</span><br />
+Defining <span class="math notranslate nohighlight">\(v_\theta = 1-\cos\theta,\)</span> <span class="math notranslate nohighlight">\(c_\theta = \cos\theta,\)</span> and
+<span class="math notranslate nohighlight">\(s_\theta = \sin\theta\)</span> for convenience, we expand Rodrigues’ formula
+for <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    e^{\hat\omega\theta} &amp;= I + \hat\omega\sin\theta + \hat\omega^2(1-\cos\theta)\\
+    &amp;=
+    \begin{bmatrix}
+    1 - v_\theta(\omega_2^2+\omega_3^2) &amp; \omega_1\omega_2v_\theta-\omega_3s_\theta &amp; \omega_1\omega_3v_\theta+\omega_2s_\theta\\
+    \omega_1\omega_2v_\theta+\omega_3s_\theta &amp; 1-v_\theta(\omega_1^2+\omega_3^2) &amp; \omega_2\omega_3v_\theta-\omega_1s_\theta\\
+    \omega_1\omega_3v_\theta-\omega_2s_\theta &amp; \omega_2\omega_3v_\theta+\omega_1s_\theta &amp; 1-v_\theta(\omega_1^2+\omega_2^2)
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Using the fact that <span class="math notranslate nohighlight">\(\omega\)</span> is a unit vector, we
+simplify the terms on the diagonal and equate the result with <span class="math notranslate nohighlight">\(R.\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    e^{\hat\omega\theta} &amp;= 
+    \begin{bmatrix}
+    \omega_1^2v_\theta + c_\theta &amp; \omega_1\omega_2v_\theta-\omega_3s_\theta &amp; \omega_1\omega_3v_\theta+\omega_2s_\theta\\
+    \omega_1\omega_2v_\theta+\omega_3s_\theta &amp; \omega_2^2v_\theta+c_\theta &amp; \omega_2\omega_3v_\theta-\omega_1s_\theta\\
+    \omega_1\omega_3v_\theta-\omega_2s_\theta &amp; \omega_2\omega_3v_\theta+\omega_1s_\theta &amp; \omega_3^2v_\theta+c_\theta
+    \end{bmatrix}\\
+    &amp;= \begin{bmatrix}
+    r_{11} &amp; r_{12} &amp; r_{13}\\
+    r_{21} &amp; r_{22} &amp; r_{23}\\
+    r_{31} &amp; r_{32} &amp; r_{33}
+    \end{bmatrix} = R
+\end{aligned}\end{split}\]</div>
+<p>From here, we have several options to solve for the
+angle <span class="math notranslate nohighlight">\(\theta\)</span> in terms of the rotation matrix entries. As it happens,
+we can simplify this problem greatly by taking the <em>trace</em> of both
+sides. Our motivation behind this will become clear shortly!<br />
+Recalling that the trace of a matrix is the sum of its diagonal entries,
+we compute:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathrm{trace}(e^{\hat\omega\theta}) &amp;= \mathrm{trace}(R)\\
+    \omega_1^2v_\theta + c_\theta + \omega_2^2v_\theta+c_\theta + \omega_3^2v_\theta+c_\theta &amp;= r_{11} + r_{22} + r_{33}\\
+    (\omega_1^2 + \omega_2^2 + \omega_3^2)v_\theta + 3\cos\theta &amp;= r_{11} + r_{22} + r_{33}
+\end{aligned}\end{split}\]</div>
+<p>Applying the property that <span class="math notranslate nohighlight">\(\omega\)</span> is a unit vector,
+and that <span class="math notranslate nohighlight">\(v_\theta = 1 - \cos\theta,\)</span> we simplify:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_\theta + 3\cos\theta &amp;= r_{11} + r_{22} + r_{33}\\
+    1 + 2\cos\theta &amp; = r_{11} + r_{22} + r_{33}
+\end{aligned}\end{split}\]</div>
+<p>Thus, to find an explicit formula for <span class="math notranslate nohighlight">\(\theta\)</span> in terms
+of <span class="math notranslate nohighlight">\(R\)</span> all that remains is to solve the equation above! How, though, can
+we be sure that a solution to this equation always exists?<br />
+To prove the existence of the solution, we make use of the following
+lemma<a class="footnote-reference brackets" href="#id6" id="id2">2</a><a class="footnote-reference brackets" href="#id7" id="id3">3</a> from linear algebra:</p>
+<div class="proof lemma admonition" id="trace_lem">
+<p class="admonition-title"><span class="caption-number">Lemma 1 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>For any matrix <span class="math notranslate nohighlight">\(A \in \mathbf{R}^{n\times n},\)</span> the trace
+of <span class="math notranslate nohighlight">\(A\)</span> is equal to the sum of its eigenvalues, with repeats.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{trace}(A) = \sum_{i = 1}^{n}\lambda_i
+\end{aligned}\]</div>
+</div>
+</div><p>We also make use of the following lemma about rotation matrices:</p>
+<div class="proof lemma admonition" id="eigenval_mag">
+<p class="admonition-title"><span class="caption-number">Lemma 2 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>For all rotation matrices <span class="math notranslate nohighlight">\(R \in SO(3),\)</span>
+<span class="math notranslate nohighlight">\(|\lambda_i| = 1,\)</span> where <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(R.\)</span></p>
+</div>
+</div><p>Furthermore, we know that for all real-valued matrices, eigenvalues come
+in complex conjugate pairs. This means that if <span class="math notranslate nohighlight">\(\lambda_1 = a + bi\)</span> is
+an eigenvalue of a rotation matrix, then <span class="math notranslate nohighlight">\(\lambda_2 = a - bi\)</span> is also an
+eigenvalue of that rotation matrix, where <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}.\)</span><br />
+Although we won’t prove these results here for the sake of brevity,
+trying them on your own is a good exercise!<br />
+Let’s see how these properties affect the trace of a rotation matrix
+<span class="math notranslate nohighlight">\(R\in SO(3).\)</span> If <span class="math notranslate nohighlight">\(R \in SO(3),\)</span> <span class="math notranslate nohighlight">\(R\)</span> will be a <span class="math notranslate nohighlight">\(3\times 3\)</span> matrix, and
+will have three (possibly repeated) eigenvalues. As its eigenvalues
+<em>must</em> come in complex conjugate pairs, <span class="math notranslate nohighlight">\(R\)</span> can have at most two complex
+eigenvalues.<br />
+Let <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \lambda_3\)</span> be the three eigenvalues of <span class="math notranslate nohighlight">\(R,\)</span>
+where <span class="math notranslate nohighlight">\(\lambda_1 \in \mathbb{R},\)</span> <span class="math notranslate nohighlight">\(\lambda_2 = a + bi \in \mathbb{C},\)</span>
+and <span class="math notranslate nohighlight">\(\lambda_3 = a - bi \in \mathbb{C}.\)</span> By the lemma above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathrm{trace}(R) &amp;= \lambda_1 + \lambda_2 + \lambda_3\\
+    &amp;= \lambda_1 + a + bi + a - bi\\
+    &amp;= \lambda_1 + a + a
+\end{aligned}\end{split}\]</div>
+<p>Because each eigenvalue of a rotation matrix <em>must</em> have
+a magnitude of 1, <span class="math notranslate nohighlight">\(|\lambda_i| = 1\)</span> and <span class="math notranslate nohighlight">\(|a| \leq 1.\)</span> This means:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    -1 \leq \lambda_i \leq 1\\
+    -1 \leq a \leq 1
+\end{aligned}\end{split}\]</div>
+<p>Additionally, since we know the determinant of <span class="math notranslate nohighlight">\(R\)</span> must
+equal positive 1, we know that at most two of its eigenvalues can be
+negative.<br />
+Now that we know the values <span class="math notranslate nohighlight">\(\lambda_i\)</span> and <span class="math notranslate nohighlight">\(a\)</span> are restricted to, we
+may form upper and lower bounds on the trace of <span class="math notranslate nohighlight">\(R.\)</span> For a lower bound,
+we take the lowest possible case, where two eigenvalues are negative and
+one eigenvalue is positive. For the upper bound, we take all three
+positive.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    -1  -1 + 1 &amp;\leq \mathrm{trace}(R) \leq 1+1+1\\
+    -1 &amp;\leq \mathrm{trace}(R) \leq 3
+\end{aligned}\end{split}\]</div>
+<p>Let’s now substitute in the expression for the trace of
+<span class="math notranslate nohighlight">\(R\)</span> we derived earlier, and see if using our new bounds bounds, we can
+show the equation always has a solution for <span class="math notranslate nohighlight">\(\theta.\)</span><br />
+Substituting <span class="math notranslate nohighlight">\(\mathrm{trace}(R) = 1 + 2\cos\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    -1 &amp;\leq 1 + 2\cos\theta \leq 3\\
+    -2 &amp;\leq 2\cos\theta \leq 2\\
+    -1 &amp;\leq \cos\theta \leq 1
+\end{aligned}\end{split}\]</div>
+<p>Amazing! Since the range of the cosine function is
+<span class="math notranslate nohighlight">\([-1, 1],\)</span> we know that we will always be able to find a solution to
+this equation for <span class="math notranslate nohighlight">\(\theta.\)</span><br />
+Thus, for every possible rotation matrix <span class="math notranslate nohighlight">\(R,\)</span> there will <em>always</em> be a
+value of <span class="math notranslate nohighlight">\(\theta\)</span> satisfying <span class="math notranslate nohighlight">\(1 + 2\cos\theta = \mathrm{trace}(R).\)</span></p>
+<p><img alt="image" src="_images/cosine.png" /><br />
+<em>Above: The cosine function has a value <span class="math notranslate nohighlight">\(\theta\)</span> for everything between
+1 and -1.</em></p>
+<p>Thus, we now solve for <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    1 + 2\cos\theta &amp;= \mathrm{trace}(R)\\
+    \cos\theta &amp;= \frac{\mathrm{trace}(R) - 1}{2}\\
+    \theta &amp;= \Big( \frac{\mathrm{trace}(R) - 1}{2}\Big)
+\end{aligned}\end{split}\]</div>
+<p>As we proved above, this equation <em>always</em> has a
+solution since cosine is completely defined on the range <span class="math notranslate nohighlight">\([-1, 1].\)</span> This
+completes the first part of our proof!<br />
+We’ve shown that for every rotation matrix <span class="math notranslate nohighlight">\(R,\)</span> we can always find an
+angle of rotation <span class="math notranslate nohighlight">\(\theta\)</span> with exponential coordinates. Now, all that
+remains is to solve for <span class="math notranslate nohighlight">\(\omega.\)</span><br />
+Thankfully, the solution for <span class="math notranslate nohighlight">\(\omega\)</span> is much simpler than that for
+<span class="math notranslate nohighlight">\(\theta.\)</span> We begin by returning to the equation for
+<span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> that we derived earlier. Recall:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    e^{\hat\omega\theta} &amp;= 
+    \begin{bmatrix}
+    \omega_1^2v_\theta + c_\theta &amp; \omega_1\omega_2v_\theta-\omega_3s_\theta &amp; \omega_1\omega_3v_\theta+\omega_2s_\theta\\
+    \omega_1\omega_2v_\theta+\omega_3s_\theta &amp; \omega_2^2v_\theta+c_\theta &amp; \omega_2\omega_3v_\theta-\omega_1s_\theta\\
+    \omega_1\omega_3v_\theta-\omega_2s_\theta &amp; \omega_2\omega_3v_\theta+\omega_1s_\theta &amp; \omega_3^2v_\theta+c_\theta
+    \end{bmatrix}\\
+    &amp;= \begin{bmatrix}
+    r_{11} &amp; r_{12} &amp; r_{13}\\
+    r_{21} &amp; r_{22} &amp; r_{23}\\
+    r_{31} &amp; r_{32} &amp; r_{33}
+    \end{bmatrix} = R
+\end{aligned}\end{split}\]</div>
+<p>Whereas to find <span class="math notranslate nohighlight">\(\theta,\)</span> we equated the diagonal terms
+through the use of the trace, to find <span class="math notranslate nohighlight">\(\omega,\)</span> we will work with the
+off-diagonal terms. Since we know that <span class="math notranslate nohighlight">\(R\)</span> is a symmetric matrix, we
+know:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_{21} &amp;= r_{12}\\
+    r_{31} &amp;= r_{13}\\
+    r_{32} &amp;= r_{23}
+\end{aligned}\end{split}\]</div>
+<p>Subtracting the right side from the left:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_{21} - r_{12} &amp;= 0\\
+    r_{13} - r_{31} &amp;= 0\\
+    r_{32} - r_{23} &amp;= 0
+\end{aligned}\end{split}\]</div>
+<p>Now, we relate each of these three equations to <span class="math notranslate nohighlight">\(\omega\)</span>
+by plugging in the corresponding terms of <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}.\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_{21} - r_{12} &amp;= \omega_1\omega_2v_\theta+\omega_3s_\theta - (\omega_1\omega_2v_\theta-\omega_3s_\theta)\\
+    &amp;= 2\omega_3\sin\theta\\
+    r_{13} - r_{31} &amp;= \omega_1\omega_3v_\theta+\omega_2s_\theta - (\omega_1\omega_3v_\theta-\omega_2s_\theta)\\
+    &amp;= 2\omega_2\sin\theta\\
+    r_{32} - r_{23} &amp;= \omega_2\omega_3v_\theta+\omega_1s_\theta - (\omega_2\omega_3v_\theta-\omega_1s_\theta)\\
+    &amp;= 2\omega_1\sin\theta
+\end{aligned}\end{split}\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(\omega_1, \omega_2, \omega_3,\)</span> we form the
+full vector for <span class="math notranslate nohighlight">\(\omega\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \omega = 
+    \frac{1}{2\sin\theta}
+    \begin{bmatrix}
+    r_{32} - r_{23}\\
+    r_{13} - r_{31}\\
+    r_{21} - r_{12}
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Provided that <span class="math notranslate nohighlight">\(\theta \neq 0,\)</span> we will therefore
+<em>always</em> have a solution for <span class="math notranslate nohighlight">\(\omega\)</span> using this equation! In the
+special case where <span class="math notranslate nohighlight">\(\theta = 0,\)</span> we can pick <em>any</em> arbitrary unit vector
+<span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3,\)</span> as no rotation needs to occur.<br />
+Thus, we’ve identified an expression for <span class="math notranslate nohighlight">\(\theta\)</span> and an expression for
+<span class="math notranslate nohighlight">\(\omega\)</span> given any rotation matrix <span class="math notranslate nohighlight">\(R,\)</span> and conclude that the
+exponential map is surjective onto <span class="math notranslate nohighlight">\(SO(3).\)</span><br />
+This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span><br />
+<br />
+This challenging result has many rewarding consequences! Let’s summarize
+what we’ve gotten out of these proofs with the following definition and
+theorem.</p>
+<div class="proof definition admonition" id="exp_coord_def">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Exponential Coordinates</strong><br />
+Given any rotation matrix <span class="math notranslate nohighlight">\(R\in SO(3),\)</span> any unit vector <span class="math notranslate nohighlight">\(\omega\)</span> and
+angle <span class="math notranslate nohighlight">\(\theta\)</span> satisfying <span class="math notranslate nohighlight">\(e^{\hat\omega\theta}\)</span> are called exponential
+coordinates of <span class="math notranslate nohighlight">\(R.\)</span></p>
+</div>
+</div><p>It’s important to note that the choice of <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span> is <em>not</em>
+unique! If we can use an axis of rotation <span class="math notranslate nohighlight">\(\omega\)</span> and an angle <span class="math notranslate nohighlight">\(\theta\)</span>
+to describe a rotation, we can just as easily use <span class="math notranslate nohighlight">\(-\omega\)</span> and
+<span class="math notranslate nohighlight">\(-\theta\)</span> to describe the same thing.<br />
+Furthermore, rotations through an angle of <span class="math notranslate nohighlight">\(\theta\)</span> are equivalent to
+rotations through an angle of <span class="math notranslate nohighlight">\(\theta + 2\pi n,\)</span> where n is an integer.<br />
+All of the results we’ve proven about rotation matrices and exponential
+coordinates thus far lead us to the following major theorem.</p>
+<div class="proof theorem admonition" id="euler_thm">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><strong>Euler’s Theorem</strong><br />
+Any rotation or orientation <span class="math notranslate nohighlight">\(R\in SO(3)\)</span> is equivalent to a rotation
+about an axis <span class="math notranslate nohighlight">\(\omega\)</span> through an angle <span class="math notranslate nohighlight">\(\theta.\)</span></p>
+</div>
+</div><p>This theorem essentially states what we proved about exponential
+coordinates! We found that for any rotation <span class="math notranslate nohighlight">\(R,\)</span> we can find an axis
+<span class="math notranslate nohighlight">\(\omega\)</span> and an angle <span class="math notranslate nohighlight">\(\theta\)</span> such that <span class="math notranslate nohighlight">\(R = e^{\hat\omega\theta}.\)</span> The
+formal proof of this theorem stems directly from the results we’ve
+proven in this section.</p>
+</div>
+<div class="section" id="parameterizing-rotations">
+<h2>Parameterizing Rotations<a class="headerlink" href="#parameterizing-rotations" title="Permalink to this headline">#</a></h2>
+<p>So far, we’ve focused our discussion on exponential coordinates, an
+important parameteriztion of rotation matrices. Are there other simpler
+parameterizations of rotation matrices?<br />
+In this section, we’ll explore some alternative approaches to
+representing rotations.</p>
+<div class="section" id="zyx-euler-angles">
+<h3>ZYX Euler Angles<a class="headerlink" href="#zyx-euler-angles" title="Permalink to this headline">#</a></h3>
+<p>Euler angles are one of the most popular and intuitive methods of
+representing rotation matrices.<br />
+Here, we’ll discuss one popular choice of Euler Angles, known as ZYX
+Euler Angles.<br />
+The basic idea of ZYX Euler angles is as follows. Instead of thinking
+about every rotation as a transformation that happens all at once, we
+can think about complex rotations as a composition of three simple
+rotations.<br />
+Instead of performing a rotation all at once, first, we rotate about the
+z-axis by an angle <span class="math notranslate nohighlight">\(\psi.\)</span> Next, we rotate about the y-axis by an angle
+<span class="math notranslate nohighlight">\(\theta.\)</span> Finally, we rotate about the x-axis by an angle <span class="math notranslate nohighlight">\(\phi.\)</span><br />
+By composing these three simple transformations, we can parameterize a
+rotation with just three angles, <span class="math notranslate nohighlight">\(\{\psi, \theta, \phi\}.\)</span><br />
+Let’s construct this approach mathematically. Imagine that we have two
+frames, A and B, and that we want to find the rotation matrices <span class="math notranslate nohighlight">\(R_{ba}\)</span>
+and <span class="math notranslate nohighlight">\(R_{ab}.\)</span> Recall that <span class="math notranslate nohighlight">\(R_{ba}\)</span> transforms vectors from frame A to
+frame B, while <span class="math notranslate nohighlight">\(R_{ab}\)</span> transforms vectors from frame B to frame A.</p>
+<p><img alt="image" src="_images/eulertransf.png" /></p>
+<p>Let’s begin by transforming from frame A to frame B. To describe this
+transformation, we define our three simple rotation matrices
+<span class="math notranslate nohighlight">\(R_z(\psi), R_y(\theta), R_x(\phi).\)</span><br />
+Using Rodrigues’ formula, we find the following three formulas for each
+of these matrices:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R_z(\psi) &amp;= e^{\hat z\psi} = 
+    \begin{bmatrix}
+    \cos\psi &amp; -\sin\psi &amp; 0\\
+    \sin\psi &amp; \cos\psi &amp; 0\\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix}\\
+    R_y(\theta) &amp;= e^{\hat y\theta} =
+    \begin{bmatrix}
+    \cos\theta &amp; 0 &amp; \sin\theta\\
+    0 &amp; 1 &amp; 0\\
+    -\sin\theta &amp; 0 &amp; \cos\theta
+    \end{bmatrix}\\
+    R_x(\phi) &amp;=e^{\hat x\phi} = 
+    \begin{bmatrix}
+    1 &amp; 0 &amp; 0\\
+    0 &amp; \cos\phi &amp; -\sin\phi\\
+    0 &amp; \sin\phi &amp; \cos\phi
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Let’s take a moment to think about what these matrices
+mean. Consider the image below:</p>
+<p><img alt="image" src="_images/cd_euler.png" />\</p>
+<p><em>Above: <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> is a change of basis matrix between two frames
+rotated about the z-axis - it doesn’t rotate vectors by an angle <span class="math notranslate nohighlight">\(\psi\)</span>
+about the z-axis. <span class="math notranslate nohighlight">\(R_z(\psi)^{-1} = -R_z(\psi)\)</span> is what rotates vectors
+about the z-axis by an angle <span class="math notranslate nohighlight">\(\psi.\)</span></em></p>
+<p>To get from frame C to frame D, we must rotate about the z-axis by
+<span class="math notranslate nohighlight">\(\psi\)</span> degrees. But, based on the theory we established for rotation
+matrices, this means that the transformation from C to D is <em>not</em>
+<span class="math notranslate nohighlight">\(R_z(\psi),\)</span> but is rather <span class="math notranslate nohighlight">\((R_z(\psi))^{-1} = R_z(-\psi).\)</span> This is
+because <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> is a rotation matrix that takes us from a frame
+rotated by <span class="math notranslate nohighlight">\(\psi\)</span> degrees about the z-axis (frame D) <em>back</em> into our
+original frame (frame C). This is an important detail to keep in mind as
+we proceed!<br />
+Now, let’s consider the role of all three Euler angles in a
+transformation between two arbitrary frames: <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B.\)</span> Imagine we
+have a vector <span class="math notranslate nohighlight">\(a \in A\)</span> that we want to transform to frame B. First,
+let’s rotate it by angle <span class="math notranslate nohighlight">\(\psi\)</span> about the Z axis.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    a' = R_z(-\psi)a
+\end{aligned}\]</div>
+<p>Now, let’s rotate this new vector, <span class="math notranslate nohighlight">\(a',\)</span> by angle
+<span class="math notranslate nohighlight">\(\theta\)</span> about the new y-axis. This gives us:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    a'' = R_y(-\theta)a' = R_y(-\theta)R_z(-\psi)a
+\end{aligned}\]</div>
+<p>Finally, to complete the rotation to frame B, we
+transform <span class="math notranslate nohighlight">\(a''\)</span> by angle <span class="math notranslate nohighlight">\(\phi\)</span> about the new x-axis.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    b = R_x(-\phi)a'' = R_x(-\phi)R_y(-\theta)R_z(-\psi)a
+\end{aligned}\]</div>
+<p>This sequence of rotations appears as follows:</p>
+<p><img alt="image" src="_images/full_euler.png" /></p>
+<p>Thus, we conclude that the rotation matrices <span class="math notranslate nohighlight">\(R_{ba}\)</span> and <span class="math notranslate nohighlight">\(R_{ab}\)</span> are
+expressed:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R_{ba} &amp;=  R_x(-\phi)R_y(-\theta)R_z(-\psi)\\
+    R_{ab} &amp;= (R_{ba})^{-1} = R_z(\psi)R_y(\theta)R_x(\phi)
+\end{aligned}\end{split}\]</div>
+<p>This is how we express rotation matrices using ZYX Euler
+angles! <a class="footnote-reference brackets" href="#id8" id="id4">4</a><br />
+There are <em>many</em> different sequences of Euler angle rotations we can
+take other than just ZYX. If you hear “XYZ Euler angles,” for example,
+that corresponds to a rotation about x followed by a rotation about y,
+followed by a rotation about z.<br />
+The convention on the order of rotation is something that’s largely
+dependent on the field you’re working in. Generally speaking, ZYX and
+XYZ are two of the more popular sets of Euler angles.<br />
+If you’re working in an aerospace field, you might hear the z Euler
+angle, <span class="math notranslate nohighlight">\(\psi,\)</span> referred to as “yaw,” the y Euler angle, <span class="math notranslate nohighlight">\(\theta,\)</span>
+referred to as “pitch,” and the x Euler angle, <span class="math notranslate nohighlight">\(\phi,\)</span> referred to as
+“roll.” Because of this, Euler angles taken in the direction XYZ are
+nicknamed “roll-pitch-yaw” angles.<br />
+These names interestingly come from the different rotational motions of
+an aircraft!</p>
+<p><img alt="image" src="_images/airplane.png" /><br />
+<em>Above: 106A students on a field trip</em></p>
+<p>As a brief aside, an amusing consequence of this convention is that
+texts in aerospace often take z to be pointing downwards, which makes
+vectors such as gravity appear positive instead of negative!</p>
+</div>
+<div class="section" id="euler-angle-singularities">
+<h3>Euler Angle Singularities<a class="headerlink" href="#euler-angle-singularities" title="Permalink to this headline">#</a></h3>
+<p>At this point, you might be wondering why we actually need exponential
+coordinates. If we’re able to describe rotations with these three
+intuitive parameters, what’s the point of taking matrix exponentials and
+working with hat maps?<br />
+The reason we use exponential coordinates is that they are
+<strong>singularity-free</strong>. This means that the definition of exponential
+coordinates will <em>never</em> break down for any angle <span class="math notranslate nohighlight">\(\theta\)</span> or axis of
+rotation <span class="math notranslate nohighlight">\(\omega.\)</span><br />
+Euler angles, on the other hand, are not singularity free. All sets of
+Euler angles, whether they be ZYX, XYZ, ZYZ, and so on, contain
+singularities. Let’s dive into exactly what we mean by this.<br />
+Let’s consider the scenario where <span class="math notranslate nohighlight">\(\theta = \pi/2.\)</span> We arbitrarily
+choose <span class="math notranslate nohighlight">\(\psi, \phi.\)</span> What would a rotation through
+<span class="math notranslate nohighlight">\(\{\psi, \pi/2, \phi\}\)</span> look like?</p>
+<p><img alt="image" src="_images/singularity.png" /></p>
+<p>First, we rotate about the z-axis by an angle <span class="math notranslate nohighlight">\(\psi.\)</span> Then, we rotate
+about the <span class="math notranslate nohighlight">\(y'\)</span>-axis by angle <span class="math notranslate nohighlight">\(\pi/2.\)</span> But, when we perform this second
+rotation, we notice something interesting!<br />
+When we rotate about the y-axis by an angle of <span class="math notranslate nohighlight">\(\pi/2,\)</span> the <span class="math notranslate nohighlight">\(x''\)</span>-axis
+becomes parallel to the original z-axis! This means that when we perform
+our final rotation about x, whatever we do will be <em>redundant</em> with our
+initial rotation about z!<br />
+Thus, when <span class="math notranslate nohighlight">\(\theta = \pi/2,\)</span> we effectively lose an entire degree of
+freedom in describing rotations. Thus, we say we have a <em>singularity</em> at
+<span class="math notranslate nohighlight">\(\theta = \pi/2.\)</span> You can verify that for the ZYX Euler angles,
+<span class="math notranslate nohighlight">\(\theta = -\pi/2\)</span> produces the same effect.<br />
+What consequences do these singularities have for us mathematically?
+Imagine that we have a rotation matrix <span class="math notranslate nohighlight">\(R\)</span> corresponding to some
+rotation about x and z and a rotation of <span class="math notranslate nohighlight">\(\theta = \pi/2\)</span> about y. If we
+wished to find a unique set of Euler angles corresponding to that
+rotation matrix, we wouldn’t be able to! Because the x and z axes align
+when <span class="math notranslate nohighlight">\(\theta = \pi/2,\)</span> we end up with an indeterminate resolution for
+<span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\psi,\)</span> as they both correspond to the exact same axis of
+rotation.<br />
+This phenomenon of “losing a degree of freedom” with Euler angles is
+also referred to as <strong>gimbal lock</strong>. This name comes from singularities
+experienced by a “gimbal,” a mechanical measurement system used to
+estimate the orientation of Apollo rockets in space.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Although these are not the only two conditions for a fully
+rigorous definition of continuity, they are all we’ll need in this
+proof!</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>A Lemma is a small result we make use of in a larger proof</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>As an exercise, try proving this lemma! Start by proving the
+simpler case, where <span class="math notranslate nohighlight">\(A\)</span> is diagonalizable. To prove it in the
+general case, try using the <em>Jordan Canonical Form</em> of <span class="math notranslate nohighlight">\(A.\)</span></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>ZYX Euler angles are also known as 321 Euler angles, Fick
+coordinates, and Euler-Cardan angles. Phew that’s a lot of names!</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="rigid_body_rotations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Rigid Body Rotations</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Massimiliano de Sa<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
