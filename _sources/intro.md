@@ -1,6 +1,6 @@
 # Welcome to 106A!
 In this course, you'll learn about the underlying theory and practice of robotics. In this set of online notes
-we'll guide you through some of the more challenging theory topics in the course.\
+we'll guide you through some of the more challenging theory topics in the course.
 
 ![image](/images/sawyer_robot.jpg)
 
