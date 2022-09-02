@@ -1,0 +1,2469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rigid Body Rotations &#8212; Introduction to Robotics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to 106A!" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/106A_logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Robotics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to 106A!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Rigid Body Rotations
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Frigid_body_rotations.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/rigid_body_rotations.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rigid-bodies-rigid-body-motions">
+   Rigid Bodies &amp; Rigid Body Motions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reference-frames">
+     Reference Frames
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#points-and-vectors-what-s-the-difference">
+     Points and Vectors: What’s the difference?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-rigid-body-transformation">
+     The Rigid Body Transformation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#early-consequences">
+     Early Consequences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotations">
+   Rotations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotation-matrices">
+     Rotation Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-structure-of-rotation-matrices">
+     The Structure of Rotation Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-groups">
+     Mathematical Groups
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotation-matrices-as-coordinate-transformations">
+     Rotation Matrices as Coordinate Transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotations-as-rigid-body-transformations">
+     Rotations as Rigid Body Transformations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-coordinates">
+   Exponential Coordinates
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-important-ode">
+     An Important ODE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constraints-on-mathbf-so-3">
+     Constraints on
+     <span class="math notranslate nohighlight">
+      \(\mathbf{SO(3)}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-angular-velocity-vector">
+     The Angular Velocity Vector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-exponential-solution">
+     An Exponential Solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#so-3">
+     <span class="math notranslate nohighlight">
+      \(so(3)\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#closing-the-exponential">
+     Closing the Exponential
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Rigid Body Rotations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rigid-bodies-rigid-body-motions">
+   Rigid Bodies &amp; Rigid Body Motions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reference-frames">
+     Reference Frames
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#points-and-vectors-what-s-the-difference">
+     Points and Vectors: What’s the difference?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-rigid-body-transformation">
+     The Rigid Body Transformation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#early-consequences">
+     Early Consequences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotations">
+   Rotations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotation-matrices">
+     Rotation Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-structure-of-rotation-matrices">
+     The Structure of Rotation Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematical-groups">
+     Mathematical Groups
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotation-matrices-as-coordinate-transformations">
+     Rotation Matrices as Coordinate Transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotations-as-rigid-body-transformations">
+     Rotations as Rigid Body Transformations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-coordinates">
+   Exponential Coordinates
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-important-ode">
+     An Important ODE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constraints-on-mathbf-so-3">
+     Constraints on
+     <span class="math notranslate nohighlight">
+      \(\mathbf{SO(3)}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-angular-velocity-vector">
+     The Angular Velocity Vector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-exponential-solution">
+     An Exponential Solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#so-3">
+     <span class="math notranslate nohighlight">
+      \(so(3)\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#closing-the-exponential">
+     Closing the Exponential
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="rigid-body-rotations">
+<h1>Rigid Body Rotations<a class="headerlink" href="#rigid-body-rotations" title="Permalink to this headline">#</a></h1>
+<p>We begin our exploration of robotics with a discussion of <em>rigid body
+motion</em>. As we’ll soon see, the concept of a rigid body, and the
+subsequent development of its kinematics, is critical to having an
+understanding of how we can develop intelligent, capable robots.<br />
+We’ll begin this chapter with a precise definition for a rigid body, and
+will move on to classify and describe in detail the motions these rigid
+bodies are able to achieve.<br />
+After this, we’ll be ready to piece together a systematic method for
+describing the motion of almost any manipulator arm. We’ll develop
+methods of solving for the position of a complex connected robot arm
+just from its joint angles, and then move in reverse, solving for a set
+of joint angles given an arbitrary position in space.<br />
+We’ll take a brief detour through the world of computer vision,
+developing a geometric viewpoint on what it means for a robot to “see”
+its environment.<br />
+Finally, we’ll conclude our work with an introduction to the dynamics
+and control of robot manipulators. We’ll learn a fundamental and
+powerful set of equations of motion that extend far beyond robot arms,
+and use these equations to develop predictable and stable feedback
+controllers.</p>
+<p><img alt="roadmap" src="_images/roadmap.png" /></p>
+<p><em>Above: A roadmap for our journey in this class</em></p>
+<p>Along the way, we’ll learn lots of exciting mathematics and apply the
+theory we’ve learned in lab sections. Let’s get started!</p>
+<div class="section" id="rigid-bodies-rigid-body-motions">
+<h2>Rigid Bodies &amp; Rigid Body Motions<a class="headerlink" href="#rigid-bodies-rigid-body-motions" title="Permalink to this headline">#</a></h2>
+<p>What does it mean for a rotation to be rigid? How can we describe a
+rotational motion? In this section, we’ll answer these questions through
+a number of perspectives, ranging from simple intuitive definitions to
+more far-reaching mathematical consequences.</p>
+<div class="section" id="reference-frames">
+<h3>Reference Frames<a class="headerlink" href="#reference-frames" title="Permalink to this headline">#</a></h3>
+<p>Before we discuss the motion of a rigid body, let’s review some
+properties of the motion of a <em>single particle</em> in three dimensions.<br />
+In this class, when discussing the position of the particle, we always
+define the position of a particle with respect to an orthonormal,
+right-handed <strong>reference frame</strong>.</p>
+<p><img alt="image" src="_images/refframe.png" /></p>
+<p><em>Above: The position of a particle is specified with respect to a
+reference frame</em></p>
+<p>Let’s discuss what these terms mean. First, recall that a set of vectors
+<span class="math notranslate nohighlight">\(V = \{v_1, v_2, ..., v_n\}\)</span> is orthonormal if for all
+<span class="math notranslate nohighlight">\(i, j\in\{1,2, ..., n\}\)</span>, the following is true:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    ||v_i|| &amp;= 1 \; \text{(unit magnitude)}\\ 
+    v_i\cdot v_j &amp;= 0 \; \text{for $i\neq j$ } \text{(mutually orthogonal)}
+\end{split}\]</div>
+<p>In three dimensions, for example, an orthonormal
+reference frame is a set of three vectors with unit magnitude that are
+all mutually orthogonal (perpendicular). In the image above, for
+example, our reference frame is composed of three mutually orthogonal
+unit vectors: <span class="math notranslate nohighlight">\(\{e_1, e_2, e_3\}\)</span>.
+In an orthonormal frame, we may find the position coordinates of a
+particle by taking the projection of the particle’s position onto each
+of the the basis vectors of the frame. For the image above, for example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    p_x = p\cdot e_1\\
+    p_y = p\cdot e_2\\
+    p_z = p\cdot e_3
+\end{aligned}\end{split}\]</div>
+<p>What does it mean for a coordinate frame to be right
+handed? For a three-dimensional space, if a frame is right handed, the
+cross product of the first two basis vectors is equal to the third basis
+vector. In the image above, for example, we find that taking
+<span class="math notranslate nohighlight">\(e_1 \times e_2\)</span> gives us <span class="math notranslate nohighlight">\(e_3\)</span>, which makes the frame right-handed.<br />
+Why is this a property we’re interested in? In right-handed coordinate
+frames, we may apply the “right hand rule” to compute cross products
+within the frame. This is something we’ll find extremely convenient in
+the future.<br />
+How may we describe how particles travel within these reference frames?
+Generally, we’re not simply interested in the position of particles that
+are stationary, but rather those that <em>move with time</em>.<br />
+When discussing the motion of a particle in time, our interest shifts
+from looking at a constant position to a <em>function</em> that gives the
+position of the particle at each instant in time.<br />
+The function of time specifying the position of a particle is called a
+<strong>trajectory</strong>. For example, consider the trajectory of the particle
+below:</p>
+<p><img alt="image" src="_images/traj.png" /></p>
+<p>We may describe the trajectory of the particle above through the 3
+dimensional curve:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    p(t) = 
+    \begin{bmatrix}
+    x(t)\\
+    y(t)\\
+    z(t)
+    \end{bmatrix}
+    \in \mathbb{R}^3
+\end{aligned}\end{split}\]</div>
+<p>As time passes, this function traces out a path in
+space. Notice how at every instant in time, this trajectory simply gives
+us a 3D position.</p>
+</div>
+<div class="section" id="points-and-vectors-what-s-the-difference">
+<h3>Points and Vectors: What’s the difference?<a class="headerlink" href="#points-and-vectors-what-s-the-difference" title="Permalink to this headline">#</a></h3>
+<p>Before we move on, it’s important to clarify the subtle differences
+between two mathematical objects: points and vectors.<br />
+A <strong>point</strong> <span class="math notranslate nohighlight">\(p\)</span> is an object that exists in physical space. No matter
+what coordinate frame it’s represented in, a point <em>always</em> refers to
+the same fundamental physical position.</p>
+<p><img alt="image" src="_images/point.png" /></p>
+<p>As can be seen in the image above, although the representations of the
+point <span class="math notranslate nohighlight">\(p\)</span> appear to be different when written with respect to Frame A
+and Frame B, the point itself is the same position in space.<br />
+A <strong>vector</strong> is defined as the difference between two points. For
+example, if we have two points <span class="math notranslate nohighlight">\(p, q \in \mathbb{R}^3\)</span>, we may define a
+vector <span class="math notranslate nohighlight">\(v\in \mathbb{R}^3\)</span> by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v = p - q
+\end{aligned}\]</div>
+<p>Visually, this looks like the following:</p>
+<p><img alt="image" src="_images/vector.png" /></p>
+<p>One major consequence of this definition is that unlike a point, a
+vector is <em>not</em> a quantity that “belongs” to a position in physical
+space! Let’s think about why this is.<br />
+Imagine we have four different points,
+<span class="math notranslate nohighlight">\(p, \; q, \; r, \; s \in \mathbb{R}^3\)</span>, such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    p - q = r - s
+\end{aligned}\]</div>
+<p>If we define a vector <span class="math notranslate nohighlight">\(v = p-q\)</span>, then <span class="math notranslate nohighlight">\(v = r - s\)</span> as
+well. Thus, even if we change the points, as long as the difference
+between the points is the same, the vector remains unchanged.</p>
+<p><img alt="image" src="_images/twovecs.png" /></p>
+<p><em>Above: Notice how despite the defining points being different, the
+vector is unchanged.</em></p>
+<p>Because a vector doesn’t belong to a position in physical space in the
+way that a point does, vectors are sometimes referred to as <strong>free
+vectors</strong>.<br />
+Let’s now move beyond simple points and think about how we may describe
+objects in the real world. Real-world objects typically don’t consist of
+a <em>single</em> particle, but are rather composed of <em>many</em> particles.</p>
+<p><img alt="image" src="_images/arbbody.png" /></p>
+<p><em>Above: An arbitrary body <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>, composed of many particles</em></p>
+<p>However, a large set of particles seems like a challenging, impractical
+description to deal with! How can we possibly describe the trajectory of
+a real-world body if we have to keep track of infinitely many
+particles?<br />
+To simplify our analysis, when describing the motion of many real
+objects, we apply a “rigid body assumption.”<br />
+A <strong>rigid body</strong> is a body in which the distance between any two points
+stays constant with respect to time.<br />
+We may express this mathematically as follows. Consider two arbitrary
+points, <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> on a rigid body. For the body to be rigid, the
+following must hold for all time t:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    ||p_1(t) - p_2(t)|| = ||p_1(0) - p_2(0)|| = \mathrm{constant}
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(||p||\)</span> represents the standard Euclidean norm on
+<span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.<br />
+Visually, what does this rigid body assumption look like? Consider the
+following sketch, where a cell phone has been drawn at two instances in
+time. We may make the reasonable assumption that the cell phone is a
+rigid body.</p>
+<p><img alt="image" src="_images/cellphone.png" /></p>
+<p><em>Above: A cell phone that gets rotated after time <span class="math notranslate nohighlight">\(t\)</span>. Notice how the
+distance between the two points remains the same.</em></p>
+<p>As you can see, since the cell phone is a rigid body, the distance
+between points <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> at time 0 is the same as the distance
+between the points at time <span class="math notranslate nohighlight">\(t\)</span>, after we’ve rotated the phone.<br />
+Thinking more broadly about rigid bodies in robotics, we may consider
+quadcopter drones, links of robot arms, aircraft, and many more to be
+rigid bodies.</p>
+</div>
+<div class="section" id="the-rigid-body-transformation">
+<h3>The Rigid Body Transformation<a class="headerlink" href="#the-rigid-body-transformation" title="Permalink to this headline">#</a></h3>
+<p>Now that we have an idea of what it means for a body to be rigid, let’s
+think about what it means for a <em>transformation</em> to be rigid. In the
+following definition, note the similarities between rigid bodies and
+rigid body transformations.</p>
+<div class="proof definition admonition" id="rigid_trans">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Rigid body transformation</strong><br />
+Let <span class="math notranslate nohighlight">\(g\)</span> be the transformation defined by
+<span class="math notranslate nohighlight">\(g:\mathbb{R}^3\to \mathbb{R}^3\)</span>. <span class="math notranslate nohighlight">\(g\)</span> is a rigid body transformation
+if:</p>
+<ol>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> preserves length: For all <span class="math notranslate nohighlight">\(p_1, p_2 \in \mathbb{R}^3\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            ||g(p_1) - g(p_2)|| = ||p_1 - p_2||
+        
+    \end{aligned}\]</div>
+</li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> preserves relative orientation between vectors: For all
+<span class="math notranslate nohighlight">\(p_1, p_2 \in \mathbb{R}^3\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            g(p_1)\times g(p_2) = g(p_1 \times p_2)
+        
+    \end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\times\)</span> is the vector cross product.</p>
+</li>
+</ol>
+</div>
+</div><p>Let’s examine the significance of these two conditions.<br />
+We can think about the first condition in an intuitive sense through our
+cell-phone rotation example. If we define the rotation of the cell phone
+as a transformation, <span class="math notranslate nohighlight">\(g\)</span>, we know:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    ||g(p_1) - g(p_2)|| = ||p_1 - p_2||
+\end{aligned}\]</div>
+<p>This is because the distance between the two points on
+the phone is the same before and after the rotation.<br />
+Let’s now work on visualizing the second condition for rigid body
+transformations: <span class="math notranslate nohighlight">\(g\)</span> preserves orientation. Consider the transformation
+pictured below, where we rotate about the z axis by 90 degrees, and x,
+y, and z form an orthonormal basis.</p>
+<p><img alt="image" src="_images/rigidorient.png" />\</p>
+<p>Let’s show that this transformation respects the second property of
+rigid body transformations. In our computations below, we use the right
+hand rule to quickly compute cross products.<br />
+From the initial condition, we notice:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    x\times y = z
+\end{aligned}\]</div>
+<p>Taking the transformation, g, of both sides, we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g(x\times y) = g(z)
+\end{aligned}\]</div>
+<p>Now, let’s take the cross product of the transformed
+vectors in configuration 2 and observe the result. Once again applying
+the right hand rule:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g(x) \times g(y) = g(z)
+\end{aligned}\]</div>
+<p>Thus, since both are equal to <span class="math notranslate nohighlight">\(g(z)\)</span>, we conclude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g(x\times y) = g(x) \times g(y)
+\end{aligned}\]</div>
+<p>Which satisfies the second property of a rigid body
+transformation. As we can see from the two /images, even though the
+vectors <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> have moved in space, they have moved <em>together</em>, and
+the orientation between them remains the same.<br />
+What, then, would be a counterexample of a rigid transformation?<br />
+We can easily construct a counter example with a small modification of
+the transformation above. Consider the transformation:</p>
+<p><img alt="image" src="_images/counterexrot.png" />\</p>
+<p>Here, we see that g does <em>not</em> preserve the orientation. Instead of
+having <span class="math notranslate nohighlight">\(g(x\times y) = g(x) \times g(y)\)</span>, we have
+<span class="math notranslate nohighlight">\(-g(x\times y) = g(x) \times g(y)\)</span>, as <span class="math notranslate nohighlight">\(z\)</span> gets flipped by the
+transformation.<br />
+Thus, to avoid this orientation “flip” happening in rigid body
+transformations, we include the second condition in the definition.</p>
+</div>
+<div class="section" id="early-consequences">
+<h3>Early Consequences<a class="headerlink" href="#early-consequences" title="Permalink to this headline">#</a></h3>
+<p>Let’s discuss some simple consequences of the definition of a rigid body
+transformation. The following properties are foundational to our later,
+more detailed descriptions of rigid body motion.<br />
+After you’ve read through the following results, take a moment to
+appreciate how these properties come out of such a simple definition
+with so few assumptions!</p>
+<div class="proof proposition admonition" id="inner_prod_rigid">
+<p class="admonition-title"><span class="caption-number">Proposition 1 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Rigid body transformations preserve inner
+products</strong><br />
+If <span class="math notranslate nohighlight">\(g: \mathbb{R}^3 \to \mathbb{R}^3\)</span> is a rigid body transformation,
+for any vectors <span class="math notranslate nohighlight">\(x, y\in \mathbb{R}^3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    x\cdot y = g(x) \cdot g(y)
+\end{aligned}\]</div>
+</div>
+</div><p><strong>Proof:</strong> Let’s begin our proof of this statement by rewriting the dot
+products in matrix-vector form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    x^Ty = g(x)^Tg(y)
+\end{aligned}\]</div>
+<p>To prove this statement as simply as possible, we make
+use of the <em>polarization identity</em>, which states:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    x^Ty = \frac{1}{4}(||x + y||^2 - ||x - y||^2)
+\end{aligned}\]</div>
+<p>First, recall that since <span class="math notranslate nohighlight">\(g\)</span> is a rigid body
+transformation, it preserves the length of vectors. This implies:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    x^Ty = \frac{1}{4}(||g(x) + g(y)||^2 - ||g(x) - g(y)||^2)
+\end{aligned}\]</div>
+<p>Now, recognizing the right hand side as the polarization
+identity applied to <span class="math notranslate nohighlight">\(g(x)^Tg(y)\)</span>, we reach our goal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    x^Ty &amp;= \frac{1}{4}(||g(x) + g(y)||^2 - ||g(x) - g(y)||^2) = g(x)^Tg(y)\\
+    x^Ty &amp;= g(x)^Tg(y)
+\end{aligned}\end{split}\]</div>
+<p>Thus, rigid body transformations preserve inner products
+between any two vectors. <span class="math notranslate nohighlight">\(\square\)</span><br />
+This important property leads us to a second key point.</p>
+<div class="proof proposition admonition" id="transf_coord_fr">
+<p class="admonition-title"><span class="caption-number">Proposition 2 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Rigid body transformations of coordinate frames</strong><br />
+If <span class="math notranslate nohighlight">\(A = \{x, y, z\}\)</span> is a right-handed orthonormal coordinate frame, and
+<span class="math notranslate nohighlight">\(g: \mathbb{R}^3 \to \mathbb{R}^3\)</span> is a rigid body transformation, then
+<span class="math notranslate nohighlight">\(g(A) =\{g(x), g(y), g(z)\}\)</span> is also a right-handed orthonormal
+coordinate frame.</p>
+</div>
+</div><p><strong>Proof:</strong> Recall that earlier, we defined an orthonormal coordinate
+frame in 3D to be a set of three vectors that are of unit magnitude and
+are all orthogonal to each other. Let’s now show that under a rigid body
+transformation, these two properties still hold.<br />
+First, let’s prove that the transformation of each vector has unit
+magnitude. As g is a rigid body transformation, it preserves length.
+Thus:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    ||x||  = ||g(x)|| = 1\\
+    ||y||  = ||g(y)|| = 1\\
+    ||z||  = ||g(z)|| = 1
+\end{aligned}\end{split}\]</div>
+<p>Now, let’s show that the three vectors are still
+orthogonal. Recall that if two vectors, <span class="math notranslate nohighlight">\(x, y\)</span> are orthogonal, than
+<span class="math notranslate nohighlight">\(x^Ty = 0\)</span>. Thus, for our original coordinate frame, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    x^Ty = x^Tz = y^Tz = 0
+\end{aligned}\]</div>
+<p>Recall that above, we showed that rigid body
+transformations preserve the inner product. Therefore, we may write:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g(x)^Tg(y) = g(x)^Tg(z) = g(y)^Tg(z) = 0
+\end{aligned}\]</div>
+<p>Further, we know that because <span class="math notranslate nohighlight">\(g\)</span> is a rigid body
+transformation, it will preserve the orientation between vectors through
+the cross product. Thus, we conclude g(A) is a right-handed, orthonormal
+coordinate frame. <span class="math notranslate nohighlight">\(\square\)</span><br />
+What does this result mean for us in the context of rigid body motion?<br />
+If we were to attach a coordinate frame to a rigid body, using the
+proposition above, we could use a rigid body transformation to describe
+how the coordinate frame, and thus the rigid body, moves with time.</p>
+<p><img alt="image" src="_images/gframe.png" />\</p>
+<p><em>Above: By fixing a coordinate frame to the phone, we can use a rigid
+body transformation to describe how the phone’s configuration in space
+changes.</em></p>
+<p>In the next section, we’ll discuss how to actually construct these
+transformations, as well as how we may determine some of their unique
+properties.</p>
+</div>
+</div>
+<div class="section" id="rotations">
+<h2>Rotations<a class="headerlink" href="#rotations" title="Permalink to this headline">#</a></h2>
+<p>Now that we have an understanding of what it means for both a body and a
+motion to be rigid, we can begin to construct the underlying mathematics
+of rigid body motion.<br />
+To begin, let’s think about the different parts that make up any
+arbitrary rigid body motion. For example, consider the rigid body motion
+below:</p>
+<p><img alt="image" src="_images/rigidmotion.png" />\</p>
+<p><em>Above: A rigid body translates and rotates between two configurations.</em></p>
+<p>As can be seen in the image above, to change from configuration
+<span class="math notranslate nohighlight">\(\mathcal{B}\)</span> to configuration <span class="math notranslate nohighlight">\(\mathcal{B}'\)</span>, the rigid body
+<em>translated</em> and <em>rotated</em>. In general, we propose that <em>any</em> rigid body
+motion can be broken up into a translation and rotation.<br />
+In this section, we’ll choose to restrict our analysis to rotations, and
+develop a systematic method for describing the rotations of rigid
+bodies.</p>
+<div class="section" id="rotation-matrices">
+<h3>Rotation Matrices<a class="headerlink" href="#rotation-matrices" title="Permalink to this headline">#</a></h3>
+<p>How can we describe the rotational configuration of a rigid body in 3D
+space? Recall that previously, we showed that transformations between
+<em>coordinate frames</em> are rigid body motions. Let’s take advantage of this
+fact to develop a description of the rotational configuration of a rigid
+body.<br />
+Consider the following scenario, where we have a rigid body and two
+coordinate frames, one of which is attached to the rigid body.</p>
+<p><img alt="image" src="_images/rotationmatrix.png" />\</p>
+<p><em>Above: How can we describe the angular position of the object in
+space?</em></p>
+<p>When describing the configuration of a rigid body, we always define two
+reference frames: the <strong>inertial frame</strong> and the <strong>body frame</strong>. The
+inertial frame, also known as the <em>world</em> or <em>global</em> frame, is a frame
+that remains stationary in the environment. In the above, frame A is the
+inertial frame.<br />
+The body frame is a reference frame that remains fixed to the body for
+all time. If the body rotates or translates, the body frame rotates and
+translates with it. In the image above, frame B is the body frame.<br />
+Now that we have two reference frames, we may use our knowledge of
+linear algebra to describe the relative configuration of the two frames.
+By doing this, we will define the <em>orientation</em> of the body in space.<br />
+Let <span class="math notranslate nohighlight">\(x_{ab}, y_{ab}, z_{ab} \in \mathbb{R}^3\)</span> be the three body frame
+vectors as represented in the world frame - <span class="math notranslate nohighlight">\(x_{ab}\)</span> is the vector <span class="math notranslate nohighlight">\(x_b\)</span>
+represented in the world frame, <span class="math notranslate nohighlight">\(y_{ab}\)</span> is the vector <span class="math notranslate nohighlight">\(y_b\)</span> represented
+in the world frame, and <span class="math notranslate nohighlight">\(z_{ab}\)</span> is the vector <span class="math notranslate nohighlight">\(z_b\)</span> represented in the
+world frame.<br />
+Using these vectors, we define the following matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    R_{ab} = 
+    \begin{bmatrix}
+    x_{ab} &amp; y_{ab} &amp; z_{ab}
+    \end{bmatrix}
+\end{aligned}\]</div>
+<p>This matrix is called the <strong>rotation matrix</strong> of B with
+respect to A. It tells us <em>all</em> there is to know about the relative
+<em>orientation</em> of the body with respect to the inertial frame. Why is
+this?<br />
+If the columns of the matrix represent how the body frame appears in the
+world frame, and the body frame is always fixed to the rigid body,
+<span class="math notranslate nohighlight">\(R_{ab}\)</span> must tell us everything we need about the rigid body’s
+configuration.<br />
+Let’s practice finding the rotation matrix between two frames for a few
+simple examples.<br />
+<br />
+<strong>Example:</strong> Find the rotation matrices <span class="math notranslate nohighlight">\(R_{ab}\)</span> and <span class="math notranslate nohighlight">\(R_{ac}\)</span> between
+the inertial and body frames, where A is the inertial frame and B and C
+are two body frames. The coordinates of the body frame vectors in the
+world frame have been provided for you.</p>
+<p><img alt="image" src="_images/examplerot.png" /></p>
+<p>Let’s begin by forming the rotation matrix <span class="math notranslate nohighlight">\(R_{ab}\)</span>, between frames A
+and B. We see from the image that the x-axis of the B frame is at
+<span class="math notranslate nohighlight">\((-1, 0, 0)\)</span> in frame A, the y axis of the B frame remains at
+<span class="math notranslate nohighlight">\((0, 1, 0)\)</span> in frame A, and the z axis of the B frame is <span class="math notranslate nohighlight">\((0, 0, -1)\)</span> in
+frame A. Thus, stacking the vectors alongside each other, we form the
+rotation matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R_{ab} = \begin{bmatrix}
+    -1 &amp; 0 &amp; 0\\
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; -1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Notice that this rotation matrix corresponds to a
+rotation about the y axis of 180 degrees. Note that because we’re
+rotating around the y axis, the corresponding y column in the rotation
+matrix remains unchanged.<br />
+We can then repeat this process to solve for the second rotation matrix.
+Stacking the columns of coordinate vectors next to each other, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R_{ac} = \begin{bmatrix}
+    1/\sqrt{2}&amp; -1/\sqrt{2} &amp; 0\\
+    1/\sqrt{2} &amp; 1/\sqrt{2} &amp; 0\\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>This corresponds to a 45 degree rotation about the z
+axis. Once again, notice that the axis of rotation remains unchanged in
+the rotation matrix.</p>
+</div>
+<div class="section" id="the-structure-of-rotation-matrices">
+<h3>The Structure of Rotation Matrices<a class="headerlink" href="#the-structure-of-rotation-matrices" title="Permalink to this headline">#</a></h3>
+<p>Now that we’ve defined the rotation matrix, and have constructed some
+simple examples, let’s work on developing the underlying structure of
+rotation matrices.<br />
+In this section, we’ll explore common properties shared by all rotation
+matrices, develop some important theorems, and discuss how to formally
+classify the set of rotation matrices.<br />
+Let’s begin by examining some of the relations between the columns of a
+rotation matrix. Let <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{3\times 3}\)</span> be a rotation
+matrix, where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    R = \begin{bmatrix}
+    r_1 &amp; r_2 &amp; r_3
+    \end{bmatrix}
+\end{aligned}\]</div>
+<div class="proof proposition admonition" id="ON_rotation">
+<p class="admonition-title"><span class="caption-number">Proposition 3 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Rotation matrices are orthonormal</strong><br />
+If <span class="math notranslate nohighlight">\(R\)</span> is a rotation matrix with columns <span class="math notranslate nohighlight">\(r_1, r_2, r_3\)</span>, then for all
+<span class="math notranslate nohighlight">\(i, j \in \{1, 2, 3\}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_i^Tr_j = \begin{cases}
+        0 &amp; \text{if } i \neq j\\
+        1 &amp; \text{if } i = j
+    \end{cases}
+\end{aligned}\end{split}\]</div>
+<p>Which implies:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    R^TR = RR^T = I
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(3\times3\)</span> identity matrix.</p>
+</div>
+</div><p><strong>Proof:</strong> First, we recall how we defined the columns of the rotation
+matrix R. If R is a rotation matrix, then <span class="math notranslate nohighlight">\(r_1, r_2, r_3\)</span> <em>must</em> be the
+coordinate vectors of an orthonormal reference frame.<br />
+If they are the coordinate vectors of an orthonormal reference frame, by
+definition, for all <span class="math notranslate nohighlight">\(i, j \in \{1, 2, 3\}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    ||r_i|| &amp;= 1\\
+    r_i\cdot r_j &amp;= 0 \; \text{for $i\neq j$ }
+\end{aligned}\end{split}\]</div>
+<p>Let’s now rewrite the above definition in linear
+algebraic terms. Recall that for arbitrary vectors <span class="math notranslate nohighlight">\(x, y\)</span>,
+<span class="math notranslate nohighlight">\(||x||^2 = x^Tx\)</span>, and that the dot product <span class="math notranslate nohighlight">\(x\cdot y = x^T y\)</span>.<br />
+Using these facts, we rewrite the above as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    ||r_i||^2 &amp;= r_i^Tr_i = 1^2 = 1\\
+    r_i^Tr_j &amp;= 0 \text{ for $i\neq j$ }
+\end{aligned}\end{split}\]</div>
+<p>Therefore, we conclude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_i^Tr_j = \begin{cases}
+        0 &amp; \text{if } i \neq j\\
+        1 &amp; \text{if } i = j
+    \end{cases}
+\end{aligned}\end{split}\]</div>
+<p>This proves the first part of the proposition. Let’s now
+show that the above implies <span class="math notranslate nohighlight">\(R^TR = RR^T = I\)</span>.<br />
+To do this, let’s expand the expression <span class="math notranslate nohighlight">\(R^TR\)</span> in terms of the
+definition of the rotation matrix, <span class="math notranslate nohighlight">\(R = [r_1 \; r_2 \; r_3]\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R^TR &amp;= \begin{bmatrix}
+    r_1 &amp; r_2 &amp; r_3
+    \end{bmatrix}^T
+    \begin{bmatrix}
+    r_1 &amp; r_2 &amp; r_3
+    \end{bmatrix}\\
+    &amp;= \begin{bmatrix}
+    r_1^T \\ r_2^T \\ r_3^T
+    \end{bmatrix} \begin{bmatrix}
+    r_1 &amp; r_2 &amp; r_3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Applying the rules of matrix multiplication, this gives
+us the expression:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R^TR = \begin{bmatrix}
+    r_1^Tr_1 &amp; r_1^Tr_2 &amp; r_1^Tr_3\\
+    r_2^Tr_1 &amp; r_2^Tr_2 &amp; r_2^Tr_3\\
+    r_3^Tr_1 &amp; r_3^Tr_2 &amp; r_3^Tr_3
+    \end{bmatrix}\\
+\end{aligned}\end{split}\]</div>
+<p>Now, we simply apply the <span class="math notranslate nohighlight">\(r_i^Tr_j\)</span> result we proved
+above to find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R^TR = \begin{bmatrix}
+    1 &amp; 0 &amp; 0\\
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix}
+     = I
+\end{aligned}\end{split}\]</div>
+<p>To prove the statement <span class="math notranslate nohighlight">\(RR^T = I\)</span>, we follow the same
+exact procedure, and find that <span class="math notranslate nohighlight">\(RR^T = I\)</span> as well.<br />
+Thus, for any rotation matrix, we have the useful property that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    R^TR = RR^T = I
+\end{aligned}\]</div>
+<p>This concludes our proof. <span class="math notranslate nohighlight">\(\square\)</span>
+So far, we’ve proved that rotation matrices are <em>orthonormal</em> - their
+columns are mutually orthogonal and of unit magnitude. What else can we
+show about these matrices?</p>
+<div class="proof proposition admonition" id="rotation_det">
+<p class="admonition-title"><span class="caption-number">Proposition 4 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Determinant of a rotation matrix</strong><br />
+For any rotation matrix <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{3x3}\)</span>,
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1\)</span>.</p>
+</div>
+</div><p><strong>Proof:</strong> We’ll tackle the proof of this statement in two parts. First,
+we’ll show that the determinant of a rotation matrix must be 1 or -1.
+Then, we’ll apply a special identity to show that it must, in fact,
+be 1. Let’s get started!<br />
+We’ll begin this problem with a review of a few key facts from linear
+algebra. First, recall that for any matrix <span class="math notranslate nohighlight">\(A\)</span>,
+<span class="math notranslate nohighlight">\(\text{det}(A^T) = \text{det}(A)\)</span>. Next, recall that for any
+matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> that can be multiplied,
+<span class="math notranslate nohighlight">\(\text{det}(AB) = \text{det}(A)\text{det}(B)\)</span>. With this in mind,
+we can begin the proof.<br />
+Previously, we showed that <span class="math notranslate nohighlight">\(R^TR = I\)</span>. Let’s see if we can use this to
+our advantage. Start by taking the determinant of both sides:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \mathrm{det}(R^TR) &amp;= \mathrm{det}(I)\\
+    \mathrm{det}(R^T)\mathrm{det}(R) &amp;= 1\\
+    \mathrm{det}(R)\mathrm{det}(R) &amp;= 1\\
+    [\mathrm{det}(R)]^2 &amp;= 1
+\end{aligned}\end{split}\]</div>
+<p>Taking the square root of both sides, we complete the
+first part of our proof:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{det}(R) = \pm 1
+\end{aligned}\]</div>
+<p>How do we proceed from here to show that the determinant
+is <em>just</em> 1? Let’s think about how we define the determinant for a 3x3
+matrix. Recall that for a 3x3 matrix <span class="math notranslate nohighlight">\(R\)</span>, where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R &amp;= \begin{bmatrix}
+    r_{11} &amp;  r_{12} &amp; r_{13}\\
+    r_{21} &amp;  r_{22} &amp; r_{23}\\
+    r_{31} &amp;  r_{32} &amp; r_{33}\\
+    \end{bmatrix}\\
+    \mathrm{det}(R) &amp;= r_{11}(r_{22}r_{33}- r_{23}r_{32}) \\
+    &amp;- r_{12}(r_{21}r_{33}- r_{23}r_{31})\\
+    &amp;+ r_{13}(r_{21}r_{32} - r_{22}r_{31}) 
+\end{aligned}\end{split}\]</div>
+<p>Using the property that the determinant of R is equal to
+the determinant of its transpose, we can perform a little bit of
+algebraic manipulation to arrive at the identity:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{det}(R) = r_1^T(r_2\times r_3)
+\end{aligned}\]</div>
+<p>Let’s think about what this expression means in terms of
+reference frame vectors. Using the right hand rule, we know that since
+our frame is <em>right handed</em>, <span class="math notranslate nohighlight">\(r_2 \times r_3 = r_1\)</span>. Thus, we may
+substitute in for <span class="math notranslate nohighlight">\(r_2 \times r_3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{det}(R) = r_1^Tr_1 = 1
+\end{aligned}\]</div>
+<p>Thus, the determinant of <span class="math notranslate nohighlight">\(R\)</span> must equal 1! This
+concludes our proof. <span class="math notranslate nohighlight">\(\square\)</span><br />
+<br />
+With these properties in our toolbox, we’re now ready to <em>completely</em>
+classify the set of rotation matrices.</p>
+<div class="proof definition admonition" id="so3">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>The special orthogonal group <span class="math notranslate nohighlight">\(\mathbf{SO(3)}\)</span></strong><br />
+The set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices is called the <strong>special
+orthogonal group</strong>, denoted <span class="math notranslate nohighlight">\(\mathbf{SO(3)}.\)</span> This set is defined:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    SO(3) := \{R\in \mathbb{R}^{3x3}| \; R^TR = I,\; \mathrm{det}(R) = 1\}
+\end{aligned}\]</div>
+</div>
+</div><p>This definition reads as follows: the set <span class="math notranslate nohighlight">\(SO(3)\)</span> is defined as the set
+of all real <span class="math notranslate nohighlight">\(3\times 3\)</span> matrices <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(R^TR = I\)</span> and
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1\)</span>.<br />
+The “special” in special orthogonal refers to the fact that the
+determinant of the matrix is <span class="math notranslate nohighlight">\(+1\)</span>, while the “orthogonal” refers to the
+orthogonality of the matrix.<br />
+We may easily generalize this definition to <span class="math notranslate nohighlight">\(n\)</span> dimensions as
+follows:<a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    SO(n) := \{R\in \mathbb{R}^{nxn}| \; R^TR = I,\; \mathrm{det}(R) = 1\}
+\end{aligned}\]</div>
+<p><em>Every</em> rotation matrix defined according to our
+coordinate frame method will be an element of <span class="math notranslate nohighlight">\(SO(3)\)</span>.</p>
+</div>
+<div class="section" id="mathematical-groups">
+<h3>Mathematical Groups<a class="headerlink" href="#mathematical-groups" title="Permalink to this headline">#</a></h3>
+<p>In mathematics, we <em>love</em> categorizing things. In Linear Algebra, we
+often ask if we can categorize a certain set of vectors as a <em>vector
+space</em>. In optimization, we often ask if we can classify a surface as
+<em>convex</em>. The list goes on!<br />
+When we categorized these mathematical objects, we didn’t do so just for
+the sake of organization, but also to gain access to certain properties.
+For example, in linear algebra, if a set of vectors formed a vector
+space, we knew that set would be closed under addition and scalar
+multiplication.<br />
+In this section, we’ll show that the set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation
+matrices, <span class="math notranslate nohighlight">\(SO(3)\)</span>, falls into a type of category called a <strong>group</strong>.
+With this realization will come a number of useful properties we’ll come
+to enjoy over the duration of this course.<br />
+How is a group defined? Before we state the exact definition, it’s
+important to make a few points about how abstract mathematical objects
+are defined. We’ll also take a moment to review the definition of a term
+that might be unfamiliar to some readers.<br />
+When we come up with a mathematical definition, we want it to be as
+<em>general</em> as possible. This means that we want to make as few
+assumptions as we can in our definition, so that definition can <em>apply</em>
+to as many things as possible.<br />
+For example, our definition of <span class="math notranslate nohighlight">\(SO(n)\)</span> is quite general. It makes no
+assumptions about the dimension of the matrix, which means we can apply
+it to a square matrix of <em>any</em> size.<br />
+Before we define a group, we’ll define a very general operation called a
+<strong>binary operation</strong>.</p>
+<div class="proof definition admonition" id="bin">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Binary operation</strong><br />
+An operation <span class="math notranslate nohighlight">\(\circ\)</span> is called a binary operation if we can apply it to
+two elements to produce another element.<br />
+A binary operation acts as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    a\circ b = c
+\end{aligned}\]</div>
+</div>
+</div><p>For example, addition over the set of real numbers is a binary
+operation. If we have two numbers, <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, we can apply
+the binary operation <span class="math notranslate nohighlight">\(+\)</span> to create a new element: <span class="math notranslate nohighlight">\(c = a + b\)</span>.<br />
+Similarly, matrix multiplication is another binary operation. Let
+<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> and <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{n\times m}\)</span>. Then,
+we may apply the binary operation <span class="math notranslate nohighlight">\(\cdot\)</span> to create a new matrix
+<span class="math notranslate nohighlight">\(C = A\cdot B\)</span>.<br />
+We’re now ready to discuss the definition of a group. After reading,
+take a moment to appreciate how we maintain both precision and
+generality in the definition!<a class="footnote-reference brackets" href="#id4" id="id2">2</a></p>
+<p>shaded
+definition</p>
+<div class="proof definition admonition" id="group">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Group</strong><br />
+A group <span class="math notranslate nohighlight">\((G, \circ)\)</span> is a set <span class="math notranslate nohighlight">\(G\)</span> together with a binary operation
+<span class="math notranslate nohighlight">\(\circ\)</span> defined on <span class="math notranslate nohighlight">\(G\)</span> where the following hold:</p>
+<ol>
+<li><p><span class="math notranslate nohighlight">\(G\)</span> is closed under <span class="math notranslate nohighlight">\(\circ\)</span>: For all <span class="math notranslate nohighlight">\(g_1, g_2 \in G\)</span>,
+<span class="math notranslate nohighlight">\(g_1 \circ g_2 \in G\)</span></p>
+<p><img alt="image" src="_images/closure.png" /></p>
+<p><em>Above: The set on the left is closed under <span class="math notranslate nohighlight">\(\circ\)</span>. Applying the
+binary operation to two elements will never take it out of the set.
+The set on the right is not closed under <span class="math notranslate nohighlight">\(\circ\)</span>, as <span class="math notranslate nohighlight">\(\circ\)</span> can
+take elements of <span class="math notranslate nohighlight">\(G\)</span> out of the set.</em>*</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(G\)</span> contains an identity element: There exists an element <span class="math notranslate nohighlight">\(e\in G\)</span>
+such that for any <span class="math notranslate nohighlight">\(g \in G\)</span>, <span class="math notranslate nohighlight">\(e \circ g = g \circ e = g\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G\)</span> contains a unique inverse for every element: For every element
+<span class="math notranslate nohighlight">\(g\in G\)</span>, there exists a unique element <span class="math notranslate nohighlight">\(g^{-1} \in G\)</span> such that
+<span class="math notranslate nohighlight">\(g\circ g^{-1} = g^{-1} \circ g = e\)</span>, where <span class="math notranslate nohighlight">\(e\)</span> is the identity
+element.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\circ\)</span> is associative on <span class="math notranslate nohighlight">\(G\)</span>: For all <span class="math notranslate nohighlight">\(g_1, g_2, g_3 \in G\)</span>,
+<span class="math notranslate nohighlight">\(g_1\circ(g_2\circ g_3) = (g_1\circ g_2)\circ g_3\)</span>.</p></li>
+</ol>
+</div>
+</div><p>Let’s go over a quick example to see how we can prove a set and binary
+operation are a group.<br />
+<strong>Example:</strong> Show that <span class="math notranslate nohighlight">\((\mathbb{R}, +)\)</span> is a group.<br />
+Here, we want to show that the set of all real numbers together with the
+binary operation of addition is a group. To show this, we must prove
+that each of the four conditions above is satisfied. Let’s go down the
+list!</p>
+<ol class="simple">
+<li><p>First, we want to show <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is closed under <span class="math notranslate nohighlight">\(+\)</span>. That is,
+for all <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(a + b \in \mathbb{R}\)</span>. We know that
+the sum of any two real numbers will give us another real number.
+Thus, this property is satisfied.</p></li>
+<li><p>Next, we want to show that <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> contains an identity element
+under <span class="math notranslate nohighlight">\(+\)</span>. We know that for any <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(a + 0 = a\)</span>.
+Thus, an identity element exists for all <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>.</p></li>
+<li><p>Now, we want to show that an additive inverse exists for each
+<span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>. We know that for any <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>,
+<span class="math notranslate nohighlight">\(a + (-a) = 0\)</span>. Thus, every element of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> has an inverse
+under addition.</p></li>
+<li><p>Finally, we want to show that addition is associative. By properties
+of addition, we know that this is true, as <span class="math notranslate nohighlight">\((a+b)+c = a+(b+c)\)</span> for
+all <span class="math notranslate nohighlight">\(a, b, c \in \mathbb{R}\)</span>.</p></li>
+</ol>
+<p>As <span class="math notranslate nohighlight">\((\mathbb{R}, +)\)</span> satisfies all of the necessary properties, we
+conclude that <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is a group under addition. This completes our
+proof! <span class="math notranslate nohighlight">\(\square\)</span>
+Now that we’ve defined a group and have gone over a simple proof, let’s
+try to show that the set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices, <span class="math notranslate nohighlight">\(SO(3)\)</span>,
+is a group under matrix multiplication.</p>
+<div class="proof proposition admonition" id="so3_group">
+<p class="admonition-title"><span class="caption-number">Proposition 5 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong><span class="math notranslate nohighlight">\(\mathbf{(SO(3), \cdot)}\)</span> is a group</strong><br />
+The set of all <span class="math notranslate nohighlight">\(3\times 3\)</span> rotation matrices, <span class="math notranslate nohighlight">\(SO(3)\)</span>, is a group under
+the binary operation of matrix multiplication.</p>
+</div>
+</div><p><strong>Proof:</strong> Let’s follow the same proof template as we did for
+<span class="math notranslate nohighlight">\((\mathbb{R}, +)\)</span>: we’ll go through each group property and show, one at
+a time, that each property holds in <span class="math notranslate nohighlight">\(SO(3)\)</span> under matrix multiplication.</p>
+<ol>
+<li><p>First, we want to show that given any two rotation matrices
+<span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, their product <span class="math notranslate nohighlight">\(R_1R_2 \in SO(3)\)</span>. This will
+prove that <span class="math notranslate nohighlight">\(SO(3)\)</span> is closed under matrix multiplication.<br />
+How do we go about showing this? Recall the definition of <span class="math notranslate nohighlight">\(SO(3)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            SO(3) := \{R\in \mathbb{R}^{3x3}| \; R^TR = I,\; \mathrm{det}(R) = 1\}
+    \end{aligned}\]</div>
+<p>Thus, to show that <span class="math notranslate nohighlight">\(R_1R_2\in SO(3)\)</span>, we must show
+that <span class="math notranslate nohighlight">\(\mathrm{det}(R_1R_2) = 1\)</span> and that <span class="math notranslate nohighlight">\((R_1R_2)^T(R_1R_2) = I\)</span>.<br />
+Let’s start by showing that the determinant of <span class="math notranslate nohighlight">\(R_1R_2\)</span> equals 1.
+Remember, since <span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, we already know that
+<span class="math notranslate nohighlight">\(\mathrm{det}(R_1) = \mathrm{det}(R_2) = 1\)</span>. Let’s expand the
+expression <span class="math notranslate nohighlight">\(\mathrm{det}(R_1R_2)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            \mathrm{det}(R_1R_2) = \mathrm{det}(R_1)\cdot \mathrm{det}(R_2) = 1\cdot 1 = 1
+    \end{aligned}\]</div>
+<p>Perfect! Now, we need to show
+<span class="math notranslate nohighlight">\((R_1R_2)^T(R_1R_2) = I\)</span>. Let’s expand this expression:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            (R_1R_2)^T(R_1R_2) = R_2^TR_1^TR_1R_2
+        
+    \end{aligned}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, we know
+<span class="math notranslate nohighlight">\(R_1^TR_1 = R_2^TR_2 = I\)</span>. Thus:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            R_2^TR_1^TR_1R_2 = R_2^TIR_2 = R_2^TR_2 = I
+    \end{aligned}\]</div>
+<p>Therefore, the product <span class="math notranslate nohighlight">\(R_1R_2 \in SO(3)\)</span>.</p>
+</li>
+<li><p>Next, we want to show <span class="math notranslate nohighlight">\(SO(3)\)</span> contains an identity element under
+matrix multiplication. We need a matrix <span class="math notranslate nohighlight">\(E\in SO(3)\)</span> such that for
+any other matrix <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, we have: <span class="math notranslate nohighlight">\(RE = ER = R\)</span>. What might
+this matrix be?<br />
+Immediately, we consider the <span class="math notranslate nohighlight">\(3\times 3\)</span> identity matrix, <span class="math notranslate nohighlight">\(I\)</span>. We
+know that for any matrix <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, we have: <span class="math notranslate nohighlight">\(RI = IR = R\)</span>. Now,
+all we need to do is show that the identity matrix <span class="math notranslate nohighlight">\(I\in SO(3)\)</span> and
+we’re good to go!<br />
+Clearly, <span class="math notranslate nohighlight">\(\mathrm{det}(I) = 1\)</span> and <span class="math notranslate nohighlight">\(I^TI = II^T = I\)</span>. Thus,
+<span class="math notranslate nohighlight">\(I\in SO(3)\)</span> is the identity element.</p></li>
+<li><p>Now, we want to show a unique multiplicative inverse exists for
+every <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>. Recall that the inverse of a matrix <span class="math notranslate nohighlight">\(A\)</span> is a
+matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> such that <span class="math notranslate nohighlight">\(AA^{-1} = A^{-1}A = I\)</span>.<br />
+First, let’s show that every element of <span class="math notranslate nohighlight">\(SO(3)\)</span> is actually
+invertible. Recall that a matrix is invertible if its determinant is
+nonzero.<br />
+Because for all <span class="math notranslate nohighlight">\(R\in SO(3)\)</span>, <span class="math notranslate nohighlight">\(\mathrm{det}(R) = 1\)</span>, we know
+rotation matrices will always be invertible. Further, from our
+knowledge of linear algebra, we know that whatever this inverse
+matrix might be, it is unique.<br />
+How can we find this matrix? We know that for all <span class="math notranslate nohighlight">\(R\in SO(3)\)</span>,
+<span class="math notranslate nohighlight">\(R^TR = RR^T = I\)</span>. Thus, looking at the definition of a matrix
+inverse, we conclude <span class="math notranslate nohighlight">\(R^{-1} = R^T\)</span> for all rotation matrices
+<span class="math notranslate nohighlight">\(R \in SO(3)\)</span>. Because we can always take the transpose of a matrix,
+a multiplicative inverse exists for every element of <span class="math notranslate nohighlight">\(SO(3)\)</span>.</p></li>
+<li><p>Finally, we want to show that matrix multiplication is associative
+on <span class="math notranslate nohighlight">\(SO(3)\)</span>. Because matrix multiplication is associative for <em>all</em>
+matrices, this is automatically true.</p></li>
+</ol>
+<p>Now that we’ve shown <span class="math notranslate nohighlight">\((SO(3), \cdot)\)</span> meets all of the conditions to be
+a group, we conclude that the set of all rotation matrices is a group
+under matrix multiplication. This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span></p>
+<p><img alt="image" src="_images/so3prop.png" /></p>
+<p><em>Above: A visualization of some of the properties of <span class="math notranslate nohighlight">\(SO(3)\)</span>.</em></p>
+<p>Amazing! We’ve just shown that despite it representing a fairly
+restrictive physical idea, <span class="math notranslate nohighlight">\(SO(3)\)</span> has a lot of great properties and
+structure that we can make use of! However, it’s easy to make some
+mistakes regarding properties of <span class="math notranslate nohighlight">\(SO(3)\)</span>. Always keep in mind: although
+<span class="math notranslate nohighlight">\(SO(3)\)</span> <em>is</em> a subset of <span class="math notranslate nohighlight">\(\mathbb{R}^{3\times 3}\)</span>, it is <em>not</em> a vector
+space!<br />
+This means the following:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(SO(3)\)</span> is <em>not</em> closed under addition. That is, if
+<span class="math notranslate nohighlight">\(R_1, R_2 \in SO(3)\)</span>, it’s <em>not</em> always true that
+<span class="math notranslate nohighlight">\(R_1 + R_2 \in SO(3)\)</span>. As a counterexample, let <span class="math notranslate nohighlight">\(R_1 = R_2 = I\)</span>.
+Then, <span class="math notranslate nohighlight">\(R_1+R_2 = 2I\)</span>. When we take the determinant, we find:
+<span class="math notranslate nohighlight">\(\mathrm{det}(R_1+R_2) = 2\)</span>, which means the sum is <em>not</em> in
+<span class="math notranslate nohighlight">\(SO(3)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(SO(3)\)</span> is <em>not</em> closed under scalar multiplication. If
+<span class="math notranslate nohighlight">\(R \in SO(3)\)</span> and <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>, it’s <em>not</em> true that
+<span class="math notranslate nohighlight">\(cR \in SO(3)\)</span>. Once again, we can take the identity matrix as an
+example of this. if <span class="math notranslate nohighlight">\(R = I\)</span> and <span class="math notranslate nohighlight">\(c = 2\)</span>, then
+<span class="math notranslate nohighlight">\(\mathrm{det}(R) = \mathrm{det}(2I) =8\)</span>. Thus, the scalar multiple
+is not in <span class="math notranslate nohighlight">\(SO(3)\)</span>.</p></li>
+</ol>
+<p><img alt="image" src="_images/so3r3x3.png" /></p>
+<p><em>Above: Although the set <span class="math notranslate nohighlight">\(\mathbb{R}^{3x3}\)</span> is a vector space of
+matrices, <span class="math notranslate nohighlight">\(SO(3) \subset \mathbb{R}^{3x3}\)</span> is just a subset, not a
+subspace.</em></p>
+<p>Because every rotation of a rigid body has an associated rotation
+matrix, <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, we call <span class="math notranslate nohighlight">\(SO(3)\)</span> the <strong>configuration space</strong> of a
+rigid body which is able to rotate. This simply means that whatever the
+rotational configuration of the body is, we’ll be able to describe it
+with some rotation matrix <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</div>
+<div class="section" id="rotation-matrices-as-coordinate-transformations">
+<h3>Rotation Matrices as Coordinate Transformations<a class="headerlink" href="#rotation-matrices-as-coordinate-transformations" title="Permalink to this headline">#</a></h3>
+<p>As you may recall from your coursework on linear algebra, there’s more
+than one way to interpret a matrix.<br />
+In linear algebra, we use matrices to represent everything ranging from
+systems of linear equations to linear transformations to changes of
+coordinates. In the context of rotations, what are the different ways in
+which we can think about rotation matrices in <span class="math notranslate nohighlight">\(SO(3)\)</span>?<br />
+Thus far, we’ve primarily discussed rotation matrices as a means of
+representing the <em>angular configuration</em> of a rigid body in space. To
+represent configuration, we defined the columns of a rotation matrix as
+the basis vectors of some orthonormal, right handed reference frame.<br />
+Now, let’s consider an alternate meaning of a rotation matrix: as a
+coordinate transformation. Due to the multi-faceted nature of matrix
+transformations, rotation matrices not only give us the configuration of
+a rigid body, but also allow us to transform between two coordinate
+frames!<br />
+Let’s see how we can develop this perspective. Consider the following
+image, where frames A and B are offset by a rotation and a vector
+<span class="math notranslate nohighlight">\(v \in \mathbb{R}^3\)</span> lies in space.</p>
+<p><img alt="image" src="_images/transform.png" /></p>
+<p>Let’s try to write this vector in coordinate frames A and B. First,
+imagine that in frame B, the vector <span class="math notranslate nohighlight">\(v\)</span> has the following
+representation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_b = 
+    \begin{bmatrix}
+    v_{bx}\\
+    v_{by}\\
+    v_{bz}
+    \end{bmatrix}
+     = v_{bx}x_b + v_{by}y_b + v_{bz}z_b
+\end{aligned}\end{split}\]</div>
+<p>Now, let’s rewrite it in terms of frame A. To do this,
+instead of writing the vector using the basis vectors of frame B, as
+viewed in frame B, we’ll use the basis vectors of frame B as viewed in
+frame A. We denote these <span class="math notranslate nohighlight">\(\{x_{ab}, y_{ab}, z_{ab}\}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v_a = v_{bx}x_{ab} + v_{by}y_{ab} + v_{bz}z_{ab}
+\end{aligned}\]</div>
+<p>Let’s now rewrite this as a matrix multiplication, and
+see if anything interesting jumps out at us:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_a = \begin{bmatrix}
+    x_{ab} &amp; y_{ab} &amp; z_{ab}
+    \end{bmatrix}
+    \begin{bmatrix}
+    v_{bx}\\
+    v_{by}\\
+    v_{bz}
+    \end{bmatrix}
+    = \begin{bmatrix}
+    x_{ab} &amp; y_{ab} &amp; z_{ab}
+    \end{bmatrix} v_b
+\end{aligned}\end{split}\]</div>
+<p>As you may recall, we defined the rotation matrix of
+frame B with respect to frame A, <span class="math notranslate nohighlight">\(R_{ab}\)</span>, as
+<span class="math notranslate nohighlight">\(R_{ab} = [x_{ab} \; y_{ab} \; z_{ab}]\)</span>. Thus, rewriting the expression
+above, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v_a = R_{ab}v_b
+\end{aligned}\]</div>
+<p>Therefore, we conclude that in <em>addition</em> to
+representing the configuration of a rigid body with respect to the world
+frame, rotation matrices <em>also</em> transform vectors from the body frame to
+the world frame.<br />
+Let’s do a quick example to see how this works in practice.<br />
+<strong>Example:</strong> In frame B, the vector <span class="math notranslate nohighlight">\(v\)</span> has the representation
+<span class="math notranslate nohighlight">\(v_b = (1, 1, 3)\)</span>. Rewrite this vector in frame A, given the relative
+configurations of the two frames:</p>
+<p><img alt="image" src="_images/transformex.png" /></p>
+<p>Let’s begin by writing out the rotation matrix <span class="math notranslate nohighlight">\(R_{ab}\)</span>. Once we have
+the matrix, all we need to do is multiply it by the vector in frame B to
+find its equivalent representation in frame A.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R_{ab} = \begin{bmatrix}
+    x_{ab} &amp; y_{ab} &amp; z_{ab}
+    \end{bmatrix}
+    = \begin{bmatrix}
+    1/\sqrt{2}&amp; -1/\sqrt{2} &amp; 0\\
+    1/\sqrt{2} &amp; 1/\sqrt{2} &amp; 0\\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, we simply multiply <span class="math notranslate nohighlight">\(R_{ab}\)</span> and <span class="math notranslate nohighlight">\(v_b\)</span> to find
+<span class="math notranslate nohighlight">\(v_a\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_a = R_{ab}v_b = \begin{bmatrix}
+    1/\sqrt{2}&amp; -1/\sqrt{2} &amp; 0\\
+    1/\sqrt{2} &amp; 1/\sqrt{2} &amp; 0\\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    1\\
+    1\\
+    3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Performing the matrix multiplication, we reach our final
+answer:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v_a &amp;= \begin{bmatrix}
+    1/\sqrt{2}\\
+    1/\sqrt{2}\\
+    0
+    \end{bmatrix} +
+    \begin{bmatrix}
+    -1/\sqrt{2}\\
+    1/\sqrt{2}\\
+    0
+    \end{bmatrix} +
+    \begin{bmatrix}
+    0\\
+    0\\
+    3
+    \end{bmatrix}\\
+    v_a &amp;= \begin{bmatrix}
+    0\\
+    2/\sqrt{2}\\
+    3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+</div>
+<div class="section" id="rotations-as-rigid-body-transformations">
+<h3>Rotations as Rigid Body Transformations<a class="headerlink" href="#rotations-as-rigid-body-transformations" title="Permalink to this headline">#</a></h3>
+<p>So far, we’ve looked at a number of properties of rotation matrices and
+the <span class="math notranslate nohighlight">\(SO(3)\)</span> group. However, there’s one thing that we haven’t yet
+formalized: are rotations actually rigid body transformations?<br />
+In this section, we’ll focus on proving this essential fact in terms of
+the mathematical definition of a rigid body transformation we gave
+earlier.<br />
+Before we do this, however, we’ll need to develop a little bit more
+linear algebraic machinery to help us out.<br />
+The first tool we’ll need is the cross product. Let’s think back to how
+we traditionally defined the cross product of two vectors. Recall that
+given two vectors, <span class="math notranslate nohighlight">\(a, b\in \mathbb{R}^3\)</span>, their cross product,
+<span class="math notranslate nohighlight">\(a\times b\)</span>, was defined:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    a\times b = 
+    \begin{bmatrix}
+    a_2b_3 - a_3b_2\\
+    a_3b_1 - a_1b_3\\
+    a_1b_2 - a_2b_1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Geometrically, what does this give us? Using some simple
+algebra, we can show that for any vectors <span class="math notranslate nohighlight">\(a, b\in \mathbb{R}^3\)</span>,
+<span class="math notranslate nohighlight">\(a\times b\)</span> is orthogonal to both <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. Using this fact, and
+applying the right hand rule to find the direction of the vector, this
+gives us the following image:</p>
+<p><img alt="image" src="_images/crossprod.png" /></p>
+<p><em>Above: the cross product of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> produces a vector perpendicular
+to the two</em></p>
+<p>It’s interesting to note that the cross product of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is not
+only perpendicular to <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, but also the <em>entire plane</em> spanned
+by <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.<br />
+Let’s try to think critically about how else we could represent a cross
+product. As you may recall from your math coursework, the cross product
+is <em>linear</em> in each vector. For example, in the equations below, we
+observe that the cross product is linear in <span class="math notranslate nohighlight">\(a\)</span>, where
+<span class="math notranslate nohighlight">\(a, b, c \in \mathbb{R}^3\)</span> and <span class="math notranslate nohighlight">\(d \in \mathbb{R}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    d(a \times b) &amp;= (da)\times b\\
+    a \times (b + c) &amp;= a \times b + a \times c
+\end{aligned}\end{split}\]</div>
+<p>This linearity tells us that we can actually think of
+taking the cross product of any vector in <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> with the vector
+<span class="math notranslate nohighlight">\(a\)</span> as a linear transformation from <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p>
+<p><img alt="image" src="_images/lincross.png" /></p>
+<p><em>Above: The cross product of a vector with another vector is a linear
+transformation from <span class="math notranslate nohighlight">\(\mathbb{R}^3\to \mathbb{R}^3\)</span></em></p>
+<p>Because this cross product “transformation” is a linear transformation
+from <span class="math notranslate nohighlight">\(\mathbb{R}^3\to \mathbb{R}^3\)</span>, we may write it as a <span class="math notranslate nohighlight">\(3\times 3\)</span>
+matrix! Let’s define the matrix of the linear transformation of taking
+the cross product with a vector <span class="math notranslate nohighlight">\(a \in \mathbb{R}^3\)</span>.</p>
+<div class="proof definition admonition" id="hat_map">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>The hat map</strong><br />
+The hat map of a vector,
+<span class="math notranslate nohighlight">\(\wedge:\mathbb{R}^3 \to \mathbb{R}^{3\times 3}\)</span> is defined:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (a)^\wedge = \hat{a} = \begin{bmatrix}
+    0 &amp; -a_3 &amp; a_2\\
+    a_3 &amp; 0 &amp; -a_1\\
+    -a_2 &amp; a_1 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Such that for any vector <span class="math notranslate nohighlight">\(b \in \mathbb{R}^3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    a\times b = \hat{a}b = \begin{bmatrix}
+    0 &amp; -a_3 &amp; a_2\\
+    a_3 &amp; 0 &amp; -a_1\\
+    -a_2 &amp; a_1 &amp; 0
+    \end{bmatrix} \begin{bmatrix}
+    b_1 \\
+    b_2\\
+    b_3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+</div>
+</div><p>Thus, any time we want to take the cross product of two vectors, we can
+equivalently write it as a matrix-vector multiplication. This will help
+us prove some useful properties of the cross product! Note that the
+notations <span class="math notranslate nohighlight">\((a)^\wedge\)</span> and <span class="math notranslate nohighlight">\(\hat{a}\)</span> are both used to represent the hat
+map of <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p><img alt="image" src="_images/hatmap.png" /></p>
+<p><em>Above: multiplication by the hat map of a vector is equivalent to
+taking the cross product with that vector</em></p>
+<p>Let’s now prove some interesting properties of the hat map and see how
+it interfaces with rotation matrices.</p>
+<div class="proof proposition admonition" id="hatmap">
+<p class="admonition-title"><span class="caption-number">Proposition 6 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Hat map properties</strong><br />
+For all <span class="math notranslate nohighlight">\(R \in SO(3)\)</span> and all <span class="math notranslate nohighlight">\(v, w \in \mathbb{R}^3\)</span>, the following
+hold:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R\hat{w}R^T &amp;= (Rw)^\wedge\\
+    R(v\times w) &amp;= (Rv) \times (Rw)
+\end{aligned}\end{split}\]</div>
+</div>
+</div><p><strong>Proof:</strong> Let’s start with the first statement. In this problem, the
+proof is quite computational - we’ll take a direct algebraic approach
+and perform the matrix multiplications.<br />
+To begin, let’s call the rows of <span class="math notranslate nohighlight">\(R\)</span> <span class="math notranslate nohighlight">\(\{r_1, r_2, r_3\}\)</span>, such that
+<span class="math notranslate nohighlight">\(R^T = [r_1\; r_2 \; r_3]\)</span>. To compute the left hand side, we want to
+perform the multiplication:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R\hat{w}R^T &amp;= 
+    \begin{bmatrix}
+    - \;r_1^T \; -\\
+    - \;r_2^T \; -\\
+    - \;r_3^T \; -
+    \end{bmatrix}
+    \hat{w}
+    \begin{bmatrix}
+    r_1 &amp; r_2 &amp; r_3
+    \end{bmatrix}
+    = \begin{bmatrix}
+    r_1^T\\
+    r_2^T\\
+    r_3^T
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat{w}r_1 &amp; \hat{w}r_2 &amp; \hat{w}r_3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, let’s perform the next matrix multiplication and
+see what we get! After this multiplication, we’ll rewrite out the result
+in terms of standard dot and cross products for extra clarity.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+    r_1^T\\
+    r_2^T\\
+    r_3^T
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat{w}r_1 &amp; \hat{w}r_2 &amp; \hat{w}r_3
+    \end{bmatrix}
+    &amp;=\begin{bmatrix}
+    r_1^T\hat{w}r_1 &amp; r_1^T\hat{w}r_2 &amp; r_1^T\hat{w}r_3\\
+    r_2^T\hat{w}r_1 &amp; r_2^T\hat{w}r_2 &amp; r_2^T\hat{w}r_3\\
+    r_3^T\hat{w}r_1 &amp; r_3^T\hat{w}r_2 &amp; r_3^T\hat{w}r_3
+    \end{bmatrix}\\
+    &amp;= 
+    \begin{bmatrix}
+    r_1\cdot w \times r_1 &amp; r_1\cdot w\times r_2 &amp; r_1 \cdot w\times r_3\\
+    r_2\cdot w \times r_1 &amp; r_2\cdot w\times r_2 &amp; r_2 \cdot w\times r_3\\
+    r_3\cdot w \times r_1 &amp; r_3\cdot w\times r_2 &amp; r_3 \cdot w\times r_3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, let’s see if we can recognize any of the terms
+within! First, recall that any vector is orthogonal to the cross product
+of itself with another vector. This means that all of the diagonal terms
+in the matrix above disappear.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R\hat{w}R^T = 
+    \begin{bmatrix}
+    0 &amp; r_1\cdot w\times r_2 &amp; r_1 \cdot w\times r_3\\
+    r_2\cdot w \times r_1 &amp; 0 &amp; r_2 \cdot w\times r_3\\
+    r_3\cdot w \times r_1 &amp; r_3\cdot w\times r_2 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, we can apply a further simplification of the above.
+You may recall from your math classes that for any vectors
+<span class="math notranslate nohighlight">\(a, b, c\in \mathbb{R}^3\)</span>,
+<span class="math notranslate nohighlight">\(a\cdot(b\times c) = c\cdot (a\times b) = b\cdot (c\times a)\)</span>. This is
+known as the scalar triple product. Further, we recall that the
+coordinate frame formed from the rotation matrix, <span class="math notranslate nohighlight">\(\{r_1, r_2, r_3\}\)</span>,
+is right handed.<br />
+Let’s apply these ideas to the off-diagonal terms in the matrix and see
+if we notice any familiar structure.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R\hat{w}R^T &amp;= 
+    \begin{bmatrix}
+    0 &amp; r_1\cdot w\times r_2 &amp; r_1 \cdot w\times r_3\\
+    r_2\cdot w \times r_1 &amp; 0 &amp; r_2 \cdot w\times r_3\\
+    r_3\cdot w \times r_1 &amp; r_3\cdot w\times r_2 &amp; 0
+    \end{bmatrix}\\
+    &amp;= 
+    \begin{bmatrix}
+    0 &amp; w \cdot r_2 \times r_1 &amp; w \cdot r_3\times r_1\\
+    w \cdot r_1 \times r_2 &amp; 0 &amp; w \cdot r_3\times r_2\\
+    w \cdot r_1\times r_3 &amp; w \cdot r_2\times r_3 &amp; 0
+    \end{bmatrix}\\
+    &amp;= 
+    \begin{bmatrix}
+    0 &amp; -w \cdot r_3 &amp; w \cdot r_2\\
+    w \cdot r_3 &amp; 0 &amp; -w \cdot r_1\\
+    -w \cdot r_2 &amp; w \cdot r_1 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, we notice that this looks <em>exactly</em> like the hat
+map of some vector! Let’s work backwards to extract what that vector is.
+Using the definition of the hat map:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+     R\hat{w}R^T &amp;= \begin{bmatrix}
+     w \cdot r_1\\
+     w \cdot r_2\\
+     w \cdot r_3
+     \end{bmatrix}^\wedge
+     = \begin{bmatrix}
+     r_1^T w \\
+     r_2^T w \\
+     r_3^T w 
+     \end{bmatrix}^\wedge
+     = (Rw)^\wedge
+\end{aligned}\end{split}\]</div>
+<p>This completes the proof of the first statement. Phew
+that was a lot of multiplication!<br />
+In just a moment, we’ll show that the second statement is also true.
+<span class="math notranslate nohighlight">\(\square\)</span><br />
+<br />
+We now have all the tools we’ll need to prove that rotations are rigid
+body transformations. Let’s do it!</p>
+<div class="proof proposition admonition" id="rigid_rotation">
+<p class="admonition-title"><span class="caption-number">Proposition 7 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Rotations are rigid body transformations</strong><br />
+Given an arbitrary rotation <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, <span class="math notranslate nohighlight">\(R\)</span> is a rigid body
+transformation. This means for all <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>, all points
+<span class="math notranslate nohighlight">\(p, q\in \mathbb{R}^3\)</span> and all vectors <span class="math notranslate nohighlight">\(v, w\in \mathbb{R}^3\)</span>:</p>
+<ol class="simple">
+<li><p>Multiplication by <span class="math notranslate nohighlight">\(R\)</span> preserves length: <span class="math notranslate nohighlight">\(||R(p-q)|| = ||p - q||\)</span></p></li>
+<li><p>Multiplication by <span class="math notranslate nohighlight">\(R\)</span> preserves orientation:
+<span class="math notranslate nohighlight">\(R(v\times w) = (Rv)\times(Rw)\)</span></p></li>
+</ol>
+</div>
+</div><p><strong>Proof:</strong> Let’s begin by proving the first statement. Our approach in
+this problem will be to prove that <span class="math notranslate nohighlight">\(||R(p-q)||^2 = ||p - q||^2\)</span>. This
+will allow us to convert this from a problem about distance to a problem
+about matrix multiplication, which will be easier to work with.<br />
+First, we recall the fact that for any vector <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(v^Tv = ||v||^2\)</span>.
+Let’s apply this to the left hand side:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    ||R(p-q)||^2 &amp;= (R(p-q))^T(R(p-q))\\
+    &amp;= ((p^T-q^T)R^T)(R(p-q))\\
+    &amp;= (p^T-q^T)R^TR(p-q)
+\end{aligned}\end{split}\]</div>
+<p>Now, recalling that for any <span class="math notranslate nohighlight">\(R\in SO(3)\)</span>,
+<span class="math notranslate nohighlight">\(R^T = R^{-1}\)</span>, we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    ||R(p-q)||^2 &amp;= (p^T-q^T)R^TR(p-q)\\
+    &amp;= (p^T-q^T)(p-q)\\
+    &amp;= ||p-q||^2
+\end{aligned}\end{split}\]</div>
+<p>Thus, if <span class="math notranslate nohighlight">\(||R(p-q)||^2 = ||p-q||^2\)</span>, then
+<span class="math notranslate nohighlight">\(||R(p-q)|| = ||p-q||\)</span>, as the norm of a vector is always greater than
+or equal to 0. This proves the first part! Let’s move on to the second.<br />
+Recall that we’d like to show <span class="math notranslate nohighlight">\(R(v\times w) = (Rv) \times (Rw)\)</span>. We can
+do this by making use of the statement we just proved about the hat
+map.<br />
+Let’s begin by rewriting the right hand side of the statement in terms
+of the hat map.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (Rv) \times (Rw) &amp;= (Rv)^\wedge(Rw)\\
+    &amp;= (R\hat{v}R^T)(Rw)
+\end{aligned}\end{split}\]</div>
+<p>Now, remembering that <span class="math notranslate nohighlight">\(R^{-1} = R^T\)</span>, we simplify:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (Rv) \times (Rw) &amp;= (R\hat{v}R^{-1})(Rw)\\
+    &amp;= R\hat{v}w\\
+    &amp;= R(v\times w)
+\end{aligned}\end{split}\]</div>
+<p>This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span></p>
+<p>Thus, we’ve finally confirmed that a rotation is a rigid body
+transformation.</p>
+</div>
+</div>
+<div class="section" id="exponential-coordinates">
+<h2>Exponential Coordinates<a class="headerlink" href="#exponential-coordinates" title="Permalink to this headline">#</a></h2>
+<p>So far, we’ve taken a look at a selection of the many properties of
+rotation matrices. We’ve talked about rigid body transformations,
+coordinate frames, the hat map, and more!<br />
+In this section, we’ll learn more about the underlying structure that
+generates rotation matrices, and ask ourselves if there’s any other way
+to generate a rotation matrix.<br />
+We’ll have a little bit of mathematical exposition before we get to our
+final exciting result! In this section, we’ll move through the following
+trajectory:</p>
+<p><img alt="image" src="_images/sectraj.png" /></p>
+<p>At each step, we’ll uncover a new piece of the rotation matrix puzzle.
+Let’s get started!</p>
+<div class="section" id="an-important-ode">
+<h3>An Important ODE<a class="headerlink" href="#an-important-ode" title="Permalink to this headline">#</a></h3>
+<p>Before we look further into rotation matrices, we’ll perform a short
+review of an important ordinary differential equation.<br />
+Upon first glance, this might seem only tangentially related to what
+we’ve been talking about, but this equation will soon open up an almost
+miraculous resolution of rotation matrices. Let’s begin!<br />
+The differential equation <span class="math notranslate nohighlight">\(\dot{x}(t) = ax(t)\)</span>, where
+<span class="math notranslate nohighlight">\(a, x, t \in \mathbb{R}\)</span>, is one of the simplest yet most fundamental
+differential equations in math. Let’s review its solution.<br />
+Note that if you haven’t seen “dot” notation before, it simply
+represents a derivative with respect to time. If you see two dots above
+a variable, for example <span class="math notranslate nohighlight">\(\ddot{x}\)</span>, that refers to the second derivative
+of <span class="math notranslate nohighlight">\(x\)</span> with respect to time.<br />
+To begin, we’ll rewrite this equation using Leibniz notation for
+derivatives to get a clearer picture of what’s going on.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \dot{x}(t) = ax(t)\\
+    \frac{dx}{dt} = ax(t)
+\end{aligned}\end{split}\]</div>
+<p>Let’s bring the <span class="math notranslate nohighlight">\(dt\)</span> over to the right side of the equation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    dx = ax(t)dt
+\end{aligned}\]</div>
+<p>To be able to solve for x(t), we must <em>integrate</em> both
+sides of this equation. To perform this integration, we bring all of the
+<span class="math notranslate nohighlight">\(x\)</span> terms to one side of the equation, where the <span class="math notranslate nohighlight">\(dx\)</span> is, and all of the
+<span class="math notranslate nohighlight">\(t\)</span> terms to the other side of the equation, where the <span class="math notranslate nohighlight">\(dt\)</span> is. This is
+known as <em>separation of variables</em>.<br />
+Let’s move <span class="math notranslate nohighlight">\(ax\)</span> to the left side of the equation by dividing by <span class="math notranslate nohighlight">\(ax\)</span> on
+both sides.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \frac{1}{ax}dx = dt
+\end{aligned}\]</div>
+<p>Great! All of the variables have now been separated.
+Now, we’re ready to integrate. Let’s begin our integration at time
+<span class="math notranslate nohighlight">\(t = 0\)</span>, and assume an initial condition of <span class="math notranslate nohighlight">\(x(0) = x_0\)</span>.<br />
+Note that when performing integration, we switch from <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span> to
+“dummy variables” <span class="math notranslate nohighlight">\(\chi\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> to maintain proper mathematical
+notation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \int_{x_0}^{x} \frac{1}{a\chi}d\chi = \int_0^td\tau
+\end{aligned}\]</div>
+<p>Let’s assume for simplicity that <span class="math notranslate nohighlight">\(ax\)</span> is greater than
+<span class="math notranslate nohighlight">\(0\)</span> for all time. This allows us to integrate the equation to become the
+following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{1}{a}[\mathrm{ln}(a\chi)]_{x_0}^x &amp;= t\\
+    \frac{1}{a}[\mathrm{ln}(ax) - \mathrm{ln}(ax_0)] &amp;= t\\
+    \frac{1}{a}\Big[\mathrm{ln}\Big(\frac{ax}{ax_0}\Big)\Big] &amp;= t\\
+    \mathrm{ln}\Big(\frac{x}{x_0}\Big) &amp;= at
+\end{aligned}\end{split}\]</div>
+<p>Let’s simplify and solve for <span class="math notranslate nohighlight">\(x\)</span> to find our solution.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    e^{\mathrm{ln}(\frac{x}{x_0})} &amp;= e^{at}\\
+    \frac{x}{x_0} &amp;= e^{at}\\
+    x(t) &amp;= e^{at}x_0
+\end{aligned}\end{split}\]</div>
+<p>Thus, the solution to <span class="math notranslate nohighlight">\(\dot{x}(t) = ax(t)\)</span> with an
+initial condition <span class="math notranslate nohighlight">\(x(0) = x_0\)</span> is <span class="math notranslate nohighlight">\(x(t) = e^{at}x_0\)</span>.<br />
+As we move through this section, keep this result in the back of your
+mind - the title of this section, <em>exponential coordinates</em>, is a small
+hint towards this solution’s importance!</p>
+</div>
+<div class="section" id="constraints-on-mathbf-so-3">
+<h3>Constraints on <span class="math notranslate nohighlight">\(\mathbf{SO(3)}\)</span><a class="headerlink" href="#constraints-on-mathbf-so-3" title="Permalink to this headline">#</a></h3>
+<p>Let’s take a moment to think about vector spaces. As you may recall from
+your linear algebra coursework, the <em>dimension</em> of a vector space is
+equal to the <em>maximum number of linearly independent vectors</em> within the
+space. This “maximal” set of linearly independent vectors forms a basis
+for the vector space.<br />
+Let’s think about the vector space of real <span class="math notranslate nohighlight">\(2\times 2\)</span> matrices. This is
+a four dimensional vector space, where a potential basis is as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \Bigg\{
+    \begin{bmatrix}
+    1 &amp; 0\\
+    0 &amp; 0
+    \end{bmatrix}, \;
+    \begin{bmatrix}
+    0 &amp; 1\\
+    0 &amp; 0
+    \end{bmatrix}, \;
+    \begin{bmatrix}
+    0 &amp; 0\\
+    1 &amp; 0
+    \end{bmatrix} \;
+    \begin{bmatrix}
+    0 &amp; 0\\
+    0 &amp; 1
+    \end{bmatrix}
+    \Bigg\}
+\end{aligned}\end{split}\]</div>
+<p>Using just these four matrices as a basis, we may
+construct any real-valued <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix.<br />
+Building off of this representation, we can show that the vector space
+of <span class="math notranslate nohighlight">\(n\times n\)</span> dimensional real matrices is <span class="math notranslate nohighlight">\(n^2\)</span>-dimensional.<br />
+This implies that the vector space of all <span class="math notranslate nohighlight">\(3\times 3\)</span> real matrices,
+<span class="math notranslate nohighlight">\(\mathbb{R}^{3\times 3}\)</span> is <span class="math notranslate nohighlight">\(9\)</span>-dimensional.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+    a &amp; b &amp; c\\
+    d &amp; e &amp; f\\
+    g &amp; h &amp; i
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>As can be seen in the matrix above, there are 9 numbers
+we can <em>independently</em> change in this space.<br />
+What implications does this have for <span class="math notranslate nohighlight">\(SO(3)\)</span>? Does this mean that
+<span class="math notranslate nohighlight">\(SO(3)\)</span> is also a 9 dimensional space? For the matrix below, are we
+allowed to <em>independently</em> change all 9 elements, or are there some
+restrictions holding us back?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R =
+    \begin{bmatrix}
+    r_{11} &amp; r_{12} &amp; r_{13} \\
+    r_{21}  &amp; r_{22}  &amp; r_{23} \\
+    r_{31}  &amp; r_{32}  &amp; r_{33} 
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Let’s think back to how we defined <span class="math notranslate nohighlight">\(SO(3)\)</span> to try and
+answer these questions. Recall that one of our conditions for a matrix
+<span class="math notranslate nohighlight">\(R\)</span> being an element of <span class="math notranslate nohighlight">\(SO(3)\)</span> was that <span class="math notranslate nohighlight">\(R^TR = I\)</span>. Written out
+element-wise, this implied that for all <span class="math notranslate nohighlight">\(i, j \in \{1, 2, 3\}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_i^Tr_j = \begin{cases}
+        0 &amp; \text{if } i \neq j\\
+        1 &amp; \text{if } i = j
+    \end{cases}
+\end{aligned}\end{split}\]</div>
+<p>How many restrictions does this condition impose on
+rotation matrices? Firstly, all 3 vectors composing the rotation
+matrices have to be orthogonal. This gives the following three
+conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_{11}r_{12} + r_{21}r_{22} + r_{31}r_{32} &amp;= 0\\
+    r_{11}r_{13} + r_{21}r_{23} + r_{31}r_{33} &amp;= 0\\
+    r_{12}r_{13} + r_{22}r_{23} + r_{32}r_{33} &amp;= 0
+\end{aligned}\end{split}\]</div>
+<p>Secondly, all three vectors have to have unit magnitude.
+This gives three more conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    r_{11}^2 + r_{21}^2 + r_{31}^2 &amp;= 1\\
+    r_{12}^2 + r_{22}^2 + r_{32}^2 &amp;= 1\\
+    r_{13}^2 + r_{23}^2 + r_{33}^2 &amp;= 1
+\end{aligned}\end{split}\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(SO(3)\)</span> has <span class="math notranslate nohighlight">\(6\)</span> conditions imposed on it, meaning
+that there can’t possibly be 9 independent values we can change in any
+rotation matrix.<br />
+As <span class="math notranslate nohighlight">\(SO(3)\)</span> is a subset of a 9 dimensional space, and has 6 restricting
+conditions, we <em>should</em> be able to describe each element of <span class="math notranslate nohighlight">\(SO(3)\)</span>
+using <span class="math notranslate nohighlight">\(9-6 = 3\)</span> independent parameters! What could they be?</p>
+</div>
+<div class="section" id="the-angular-velocity-vector">
+<h3>The Angular Velocity Vector<a class="headerlink" href="#the-angular-velocity-vector" title="Permalink to this headline">#</a></h3>
+<p>The answer to this section’s pressing question comes in the form of the
+<em>angular velocity vector</em>. If you’ve taken any courses in physics
+before, this might be a term you recognize.<br />
+Let’s discuss what angular velocity is, and how it relates to linear
+velocity! We’ll begin with a simple 2-dimensional example: a pendulum
+swinging about a fixed point <span class="math notranslate nohighlight">\(r\)</span> meters away.</p>
+<p><img alt="image" src="_images/pendulum.png" /></p>
+<p>As you can see in the image above, the pendulum traces out a circular
+path about its point of attachment as time goes on. How can we describe
+how quickly it swings?<br />
+One way to do this would be to use its velocity vector, which is
+sketched out in green on the image. If we were to take the norm of the
+velocity vector, we could get a good idea of how quickly the pendulum is
+moving.<br />
+However, a much more natural approach to measuring the pendulum’s
+rotational speed is to use its <em>angular velocity</em>. If we define an angle
+<span class="math notranslate nohighlight">\(\theta\)</span> between the vertical and the pendulum, and track it over time,
+we can gauge how quickly the pendulum rotates.<br />
+The <strong>angular velocity</strong> (<span class="math notranslate nohighlight">\(\omega\)</span>) of the pendulum is the time
+derivative of this angle theta, and has units of radians per second.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \omega = \frac{d\theta}{dt} = \dot\theta \; (\mathrm{rad/s})
+\end{aligned}\]</div>
+<p>For this simple 2D example, we can easily relate the
+angular velocity to the magnitude of the velocity vector with the
+following equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    ||v|| = |r\omega|
+\end{aligned}\]</div>
+<p>Thus, the distance to the point of rotation and the
+angular velocity about the point of rotation enable us to describe the
+linear velocity of the end of the pendulum.<br />
+Let’s move up a dimension into 3D. In three dimensions, we define the
+<strong>angular velocity vector</strong> to be the vector <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span>
+such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \dot{r} = v = \omega\times r
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(v\in \mathbb{R}^3\)</span> is the velocity of a point and
+<span class="math notranslate nohighlight">\(r\in \mathbb{R}^3\)</span> the position vector of a point in 3D space.<br />
+Geometrically, what does this look like? Consider the following example,
+where a particle <span class="math notranslate nohighlight">\(p\)</span> orbits the origin in 3D space, tracing out the
+dotted line as it goes.</p>
+<p><img alt="image" src="_images/3dangvel.png" /></p>
+<p><em>Above: A particle <span class="math notranslate nohighlight">\(p\)</span> orbits the origin in 3D space</em></p>
+<p>As can be seen in the image above, if we use the right hand rule to take
+the cross product between <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(r\)</span>, we find that we get the
+velocity, <span class="math notranslate nohighlight">\(v\)</span>. We also see that the direction of <span class="math notranslate nohighlight">\(\omega\)</span> gives us the
+<strong>axis of rotation</strong>, while the magnitude of <span class="math notranslate nohighlight">\(\omega\)</span> gives us the rate
+of rotation.<br />
+In component form, the angular velocity vector is written:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \omega = \begin{bmatrix}
+    \omega_x\\
+    \omega_y\\
+    \omega_z
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where each component refers to the rotational rate about
+each axis of the reference frame. Note that
+<span class="math notranslate nohighlight">\(\omega_x, \; \omega_y, \; \omega_z\)</span> are all specified in units of
+radians per second.<br />
+Let’s now bring this discussion back to our study of rotation matrices.
+Clearly, the angular velocity vector is intrinsic to the motion of a
+rotating body. Furthermore, it has 3 independent components, which is
+the number we were looking for to parameterize <span class="math notranslate nohighlight">\(SO(3)\)</span>. How can we use
+this vector to help us describe rotations?</p>
+</div>
+<div class="section" id="an-exponential-solution">
+<h3>An Exponential Solution<a class="headerlink" href="#an-exponential-solution" title="Permalink to this headline">#</a></h3>
+<p>After lots of deliberation, we’re now ready to tackle our grand
+challenge: finding a new way of representing rotation matrices. In this
+section, we’ll pull together everything we’ve discussed about ODEs,
+constraints, and angular velocity to come up with an elegant
+representation of rotations: exponential coordinates.</p>
+<p><img alt="image" src="_images/expcoords.png" /></p>
+<p>Consider the following image, in which an arbitrary rigid body
+<span class="math notranslate nohighlight">\(\mathcal{B}\)</span> rotates with a constant angular velocity
+<span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> with respect to a fixed inertial frame A. In
+addition to being constant, suppose <span class="math notranslate nohighlight">\(\omega\)</span> has unit magnitude.\</p>
+<p><img alt="image" src="_images/rotating.png" /></p>
+<p>Let’s describe the velocity of a point <span class="math notranslate nohighlight">\(q\)</span> on the rigid body. Recall
+that velocity is simply the time derivative of position (<span class="math notranslate nohighlight">\(\dot{q} = v\)</span>).
+Now, we’ll relate this velocity to the body’s angular velocity vector.<br />
+Using what we developed in the previous section, we know we can express
+velocity as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    v = \dot{q} &amp;= \omega \times q(t)\\
+    \dot{q} &amp;= \hat{\omega}q(t)
+\end{aligned}\end{split}\]</div>
+<p>Let’s think about what this expression is. We have the
+time derivative of <span class="math notranslate nohighlight">\(q\)</span> on the left hand side, and a constant matrix
+<span class="math notranslate nohighlight">\(\hat\omega\)</span> multiplied by <span class="math notranslate nohighlight">\(q\)</span> on the right hand side. This matrix
+differential equation <em>exactly</em> mirrors the scalar differential equation
+<span class="math notranslate nohighlight">\(\dot{x} = ax(t)\)</span> that we discussed earlier!<br />
+We may prove that the solution to this differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    q(t) = e^{\hat\omega t}q_0
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(q_0\)</span> is the position of <span class="math notranslate nohighlight">\(q\)</span> at time <span class="math notranslate nohighlight">\(t = 0\)</span> and
+<span class="math notranslate nohighlight">\(e^{\hat\omega t}\)</span> is the <strong>matrix exponential</strong> of <span class="math notranslate nohighlight">\(\hat\omega t\)</span>.<br />
+The matrix exponential is defined as follows:</p>
+<div class="proof definition admonition" id="matrix_exp">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>The matrix exponential</strong><br />
+Given any matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span>, the matrix exponential
+of A, denoted <span class="math notranslate nohighlight">\(e^A\)</span>, is computed according to the Taylor series
+expansion of <span class="math notranslate nohighlight">\(e^x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^A = \sum_{n = 0}^{\infty}\frac{A^n}{n!} = I + A + \frac{A^2}{2!} + \frac{A^3}{3!} + ... 
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(n\times n\)</span> identity matrix and
+<span class="math notranslate nohighlight">\(A^0 = I\)</span>.</p>
+</div>
+</div><p>Using the powerful concept of the matrix exponential, we’ve solved the
+differential equation for the rotational motion of the point <span class="math notranslate nohighlight">\(q\)</span>. But,
+we’re not quite done yet! We still need to link this back to rotation
+matrices.</p>
+<p><img alt="image" src="_images/unitmag.png" /></p>
+<p><em>Above: Rotating with a unit magnitude angular velocity. For every time,
+the time equals the angle (assuming zero initial condition).</em></p>
+<p>Recall that earlier, we stated that <span class="math notranslate nohighlight">\(\omega\)</span> has unit magnitude. This
+means that the rigid body rotates with an angular velocity of 1 radian
+per second. If a single second corresponds to a single radian, then we
+can replace time, <span class="math notranslate nohighlight">\(t\)</span>, in the differential equation with an angular
+displacement, <span class="math notranslate nohighlight">\(\theta\)</span>, as the two are equivalent (at time 0,
+displacement will always be 0).<br />
+Thus, replacing <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(\theta\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    q(\theta) = e^{\hat\omega \theta}q_0
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(e^{\hat\omega \theta}\)</span> is calculated:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega \theta} = I + \hat\omega \theta + \frac{(\hat\omega \theta)^2}{2!} + ...
+\end{aligned}\]</div>
+<p>Thus, using the matrix exponential, we can calculate the
+position of q given <em>any</em> angle <span class="math notranslate nohighlight">\(\theta\)</span> and any axis of rotation
+<span class="math notranslate nohighlight">\(\omega\)</span>. Because we are <em>rotating</em> from <span class="math notranslate nohighlight">\(q_0\)</span> to <span class="math notranslate nohighlight">\(q(\theta)\)</span>, the
+transformation <span class="math notranslate nohighlight">\(e^{\hat\omega \theta}\)</span> is a rotation matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    R(\omega, \theta) = e^{\hat\omega \theta} \in SO(3)
+\end{aligned}\]</div>
+<p>This rotation matrix gives us a rotation of angle
+<span class="math notranslate nohighlight">\(\theta\)</span> about an axis of rotation <span class="math notranslate nohighlight">\(\omega\)</span>.<br />
+Thus, we conclude that we can parameterize a rotation matrix
+<span class="math notranslate nohighlight">\(R\in SO(3)\)</span> through an axis of rotation, <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> (an
+angular velocity of unit magnitude), and an angle of rotation <span class="math notranslate nohighlight">\(\theta\)</span>
+as <span class="math notranslate nohighlight">\(R(\omega, \theta) = e^{\hat\omega\theta}\)</span>. What an amazing result!</p>
+</div>
+<div class="section" id="so-3">
+<h3><span class="math notranslate nohighlight">\(so(3)\)</span><a class="headerlink" href="#so-3" title="Permalink to this headline">#</a></h3>
+<p>Although we’ve done much of the work, our development of these
+“exponential coordinates” isn’t finished yet! Before we go any further,
+let’s take a moment to briefly discuss the class of matrices used in
+these exponential solutions.<br />
+Recall from the definition of the hat map that if we have a vector
+<span class="math notranslate nohighlight">\(\omega = (\omega_1, \omega_2, \omega_3)\in \mathbb{R}^3\)</span>, its hat map
+is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega  = \begin{bmatrix}
+    0 &amp; -\omega_3 &amp; \omega_2\\
+    \omega_3 &amp; 0 &amp; -\omega_1\\
+    -\omega_2 &amp; \omega_1 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>If we take the transpose of this matrix, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega^T = 
+    \begin{bmatrix}
+    0 &amp; \omega_3 &amp; -\omega_2\\
+    -\omega_3 &amp; 0 &amp; \omega_1\\
+    \omega_2 &amp; -\omega_1 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Interestingly, this leads us to conclude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \hat{\omega}^T = -\hat\omega
+\end{aligned}\]</div>
+<p>For all <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span>. All matrices with
+this property are called <strong>skew symmetric</strong>.<br />
+Using linear algebra, we can prove the useful fact that the set of skew
+symmetric matrices is a <em>vector space</em>! This means that adding any two
+skew symmetric matrices will produce another skew symmetric matrix
+(closure under addition), and that multiplying any skew symmetric matrix
+by a constant will also produce another skew symmetric matrix (closure
+under scalar multiplication).<br />
+We refer to the vector space of all <span class="math notranslate nohighlight">\(3\times 3\)</span> skew symmetric matrices
+as <span class="math notranslate nohighlight">\(\mathbf{so(3)}\)</span>. Formally, we define <span class="math notranslate nohighlight">\(so(3)\)</span> to be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    so(3) := \{A \in \mathbb{R}^{3x3} \;| \; A^T = -A\} \subset \mathbb{R}^{3\times 3}
+\end{aligned}\]</div>
+<p>Let’s think about the different maps and transformations
+we’ve discussed in terms of <span class="math notranslate nohighlight">\(so(3)\)</span> and <span class="math notranslate nohighlight">\(SO(3)\)</span>.<br />
+First, consider the hat map. Recall that this took us from a vector in
+<span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> to a skew symmetric matrix.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \wedge: \mathbb{R}^3 \to so(3)
+\end{aligned}\]</div>
+<p>Now, consider the exponential map. How did we use the
+matrix exponential? Recall that by taking the matrix exponential of the
+hat map of a vector, we produced a rotation matrix. Thus:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \mathrm{exp}: so(3) \to SO(3)
+\end{aligned}\]</div>
+</div>
+<div class="section" id="closing-the-exponential">
+<h3>Closing the Exponential<a class="headerlink" href="#closing-the-exponential" title="Permalink to this headline">#</a></h3>
+<p>We finally have our new representation of rotation matrices through
+exponential coordinates, we’ve looked at properties of the vectors
+generating these matrices, and have defined a set of maps between
+different groups of vector spaces.<br />
+Before we move on, we have one more thing to finish up! If you recall
+from above, to use exponential coordinates, we made use of the matrix
+exponential, which was defined by the infinite series:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega \theta} = I + \hat\omega \theta + \frac{(\hat\omega \theta)^2}{2!} + ... = \sum_{n=0}^\infty \frac{(\hat{\omega}\theta)^n}{n!}
+\end{aligned}\]</div>
+<p>If we want to actually compute a rotation matrix using
+these exponential coordinates, we certainly can’t do so using a full
+infinite series! In this section, we’ll look for an equivalent closed
+form for the infinite series above.
+This will allow us to write out the rotation matrix about an axis in a
+fully closed form. Let’s begin!
+As the matrix exponential involves computing higher and higher powers of
+the matrix <span class="math notranslate nohighlight">\(\hat{\omega}\)</span>, let’s begin by computing a couple of powers
+of <span class="math notranslate nohighlight">\(\hat{\omega}\)</span>. We’ll then look for any patterns and see if that
+allows us to close the infinite series.
+Recall that <span class="math notranslate nohighlight">\(\hat{\omega}\)</span> is defined:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega  = \begin{bmatrix}
+    0 &amp; -\omega_3 &amp; \omega_2\\
+    \omega_3 &amp; 0 &amp; -\omega_1\\
+    -\omega_2 &amp; \omega_1 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Let’s now take the second power of this matrix, by
+multiplying it by itself.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat{\omega}^2 &amp;= 
+    \begin{bmatrix}
+    0 &amp; -\omega_3 &amp; \omega_2\\
+    \omega_3 &amp; 0 &amp; -\omega_1\\
+    -\omega_2 &amp; \omega_1 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    0 &amp; -\omega_3 &amp; \omega_2\\
+    \omega_3 &amp; 0 &amp; -\omega_1\\
+    -\omega_2 &amp; \omega_1 &amp; 0
+    \end{bmatrix}\\
+    &amp;= 
+    \begin{bmatrix}
+    -(\omega_3^2 + \omega_2^2) &amp; \omega_1\omega_2 &amp; \omega_1\omega_3\\
+    \omega_1\omega_2 &amp;  -(\omega_1^2 + \omega_3^2) &amp; \omega_2\omega_3\\
+    \omega_1\omega_3 &amp; \omega_2\omega_3 &amp;  -(\omega_1^2 + \omega_2^2)
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Let’s see if there’s any way we can write this in terms
+of lower powers of <span class="math notranslate nohighlight">\(\hat\omega\)</span>. First, let’s pull out a multiple of the
+identity matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat{\omega}^2 &amp;= 
+    \begin{bmatrix}
+    -(\omega_3^2 + \omega_2^2) &amp; \omega_1\omega_2 &amp; \omega_1\omega_3\\
+    \omega_1\omega_2 &amp;  -(\omega_1^2 + \omega_3^2) &amp; \omega_2\omega_3\\
+    \omega_1\omega_3 &amp; \omega_2\omega_3 &amp;  -(\omega_1^2 + \omega_2^2)
+    \end{bmatrix}\\
+     &amp;= 
+    \begin{bmatrix}
+    \omega_1^2 &amp; \omega_1\omega_2 &amp; \omega_1\omega_3\\
+    \omega_1\omega_2 &amp;  \omega_2^2 &amp; \omega_2\omega_3\\
+    \omega_1\omega_3 &amp; \omega_2\omega_3 &amp; \omega_3^2
+    \end{bmatrix}
+    - (\omega_1^2 + \omega_2^2 + \omega_3^2)
+    \begin{bmatrix}
+    1 &amp; 0 &amp; 0\\
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, we recognize the fact that the first matrix in the
+expression above is actually <span class="math notranslate nohighlight">\(\omega\omega^T\)</span>! Thus, we can rewrite
+<span class="math notranslate nohighlight">\(\hat{\omega}^2\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+     \hat{\omega}^2 = \omega\omega^T - (\omega_1^2 + \omega_2^2 + \omega_3^2)I
+\end{aligned}\]</div>
+<p>Now, recall that when constructing the rotation matrix
+with exponential coordinates, we assumed that <span class="math notranslate nohighlight">\(\omega\)</span> was a unit
+vector! Therefore, <span class="math notranslate nohighlight">\(\omega_1^2 + \omega_2^2 + \omega_3^2 = 1\)</span>, and we
+can further simplify to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \hat{\omega}^2 = \omega\omega^T - I
+\end{aligned}\]</div>
+<p>Great! Now, let’s calculate one more exponent of
+<span class="math notranslate nohighlight">\(\hat\omega\)</span>. It’s in this step that we’ll find the simplification we
+need to write a closed form expression for the matrix exponential!
+Let’s start by breaking up the cube of <span class="math notranslate nohighlight">\(\hat\omega\)</span> into two parts.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \hat\omega^3 = (\hat{\omega})^2\hat\omega
+\end{aligned}\]</div>
+<p>Now, let’s substitute in the identity we just discovered
+for the square.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega^3 = (\omega\omega^T - I)\hat\omega\\
+     \hat\omega^3 = \omega\omega^T\hat\omega - \hat\omega
+\end{aligned}\end{split}\]</div>
+<p>Let’s now think about how we can simplify this
+expression further. First, remember that the cross product of a vector
+with itself is <em>always</em> the zero vector!
+Let’s rearrange to put the first term in standard hat map/cross product
+form so we can achieve this cancellation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega^3 &amp;= \omega(\hat\omega^T \omega)^T - \hat\omega\\
+    \hat\omega^3 &amp;= \omega(-\hat\omega \omega)^T - \hat\omega\\
+    \hat\omega^3 &amp;= -\omega(\omega \times \omega)^T - \hat\omega\\
+    \hat\omega^3 &amp;= -\hat\omega
+\end{aligned}\end{split}\]</div>
+<p>In summary, we now know for a unit vector <span class="math notranslate nohighlight">\(\omega\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega^2 &amp;= \omega\omega^T - I\\
+    \hat\omega^3 &amp;= -\hat\omega
+\end{aligned}\end{split}\]</div>
+<p>What does this mean for the matrix exponential problem?
+As we can see above, higher exponents of <span class="math notranslate nohighlight">\(\hat\omega\)</span> “map back” to
+lower exponents! This will allow us to <em>recursively</em> compute higher
+powers of <span class="math notranslate nohighlight">\(\hat\omega\)</span>.
+Let’s plug these results into the matrix exponential and see what
+simplifications we get!</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega \theta} = I + \hat\omega \theta + \frac{(\hat\omega \theta)^2}{2!} + \frac{(\hat\omega \theta)^3}{3!} + \frac{(\hat\omega \theta)^4}{4!} + \frac{(\hat\omega \theta)^5}{5!} + ...
+\end{aligned}\]</div>
+<p>Let’s compute a couple of exponents:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat\omega^4 &amp;= (\hat\omega^3)\hat\omega\\
+    &amp;= -\hat\omega^2\\
+    \hat\omega^5 &amp;= (\hat\omega^4)\hat\omega\\
+    &amp;= -\hat\omega^2\hat\omega\\
+    &amp;= \hat\omega
+\end{aligned}\end{split}\]</div>
+<p>Substituting in:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+     e^{\hat\omega \theta} = I + \hat\omega \theta + \frac{(\hat\omega \theta)^2}{2!} - \frac{\hat\omega \theta^3}{3!} - \frac{\hat\omega^2 \theta^4}{4!} + \frac{\hat\omega \theta^5}{5!} + ...
+\end{aligned}\]</div>
+<p>This pattern of even and odd exponents of <span class="math notranslate nohighlight">\(\hat\omega\)</span>
+will continue as we continue to compute higher exponents. Let’s separate
+out the expressions with <span class="math notranslate nohighlight">\(\hat\omega^2\)</span> and <span class="math notranslate nohighlight">\(\hat\omega\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega \theta} = I + \hat\omega(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - ...) + \hat\omega^2(\frac{\theta^2}{2!} - \frac{\theta^4}{4!} + ...)
+\end{aligned}\]</div>
+<p>Now, we notice that that amazingly, the expressions in
+parentheses are the Taylor expansions of <span class="math notranslate nohighlight">\(\sin\theta\)</span> and
+<span class="math notranslate nohighlight">\(1 - \cos\theta\)</span>! Therefore:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+     e^{\hat\omega \theta} = I + \hat\omega\sin\theta + \hat\omega^2(1-\cos\theta)
+\end{aligned}\]</div>
+<p>Thus, we’ve written the matrix exponential for a
+rotation matrix in an entirely closed form. The equation above is
+referred to as <strong>Rodrigues’ Formula</strong>.<br />
+In summary, we can use Rodrigues’ Formula to find the rotation matrix
+about a unit axis <span class="math notranslate nohighlight">\(\omega\)</span> through an angle <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The notation “<span class="math notranslate nohighlight">\(:=\)</span>” means “is defined as.”</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Interested in learning more about the theory of groups? Take Math
+113 (Abstract Algebra) for a great jumping off point!</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to 106A!</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Massimiliano de Sa<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

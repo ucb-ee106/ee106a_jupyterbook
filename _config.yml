@@ -1,9 +1,9 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
-logo: logo.png
+title: Introduction to Robotics
+author: Massimiliano de Sa
+logo: 106A_logo.jpg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -30,3 +30,15 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# Enable the proof syntax in Sphinx
+sphinx:
+  extra_extensions:
+    - sphinx_proof
+
+# Enable ams math from LaTeX here.
+# parse:
+#   myst_enable_extensions:
+#     # don't forget to list any other extensions you want enabled,
+#     # including those that are enabled by default!
+#     - amsmath
