@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to 106A! &#8212; Introduction to Robotics</title>
+    <title>In-line math &#8212; Introduction to Robotics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,9 +50,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Rigid Body Rotations" href="rigid_body_rotations.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,8 +107,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Welcome to 106A!
                 </a>
             </li>
@@ -208,7 +209,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fexample_md_file.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -236,7 +237,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/intro.md"
+        <a href="_sources/example_md_file.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -273,23 +274,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#math-blocks">
+   Math blocks
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to 106A!</h1>
+                <h1>In-line math</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#math-blocks">
+   Math blocks
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -297,20 +335,46 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-106a">
-<h1>Welcome to 106A!<a class="headerlink" href="#welcome-to-106a" title="Permalink to this headline">#</a></h1>
-<p>In this course, you’ll learn about the underlying theory and practice of robotics. In this set of online notes
-we’ll guide you through some of the more challenging theory topics in the course.\</p>
-<p><img alt="image" src="_images/sawyer_robot.jpg" /></p>
-<p>Why are we interested in developing this theory? Outside of pure mathematical interest, in the real world,
-we’re interested in establishing <em>safety</em> and <em>performance</em> guarantees on the robots we design and program.
-Using the language of mathematics, we may develop a framework with which we may formally prove these
-properties for our robots. In this course, we’ll gain a brief introduction to how this is done. Let’s get
-started!</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="rigid_body_rotations.html">Rigid Body Rotations</a></li>
-</ul>
+  <div class="tex2jax_ignore mathjax_ignore section" id="in-line-math">
+<h1>In-line math<a class="headerlink" href="#in-line-math" title="Permalink to this headline">#</a></h1>
+<p>To insert in-line math use the <span class="math notranslate nohighlight">\(\int\)</span> symbol within a Markdown cell. For example, the text <span class="math notranslate nohighlight">\(this_{is}^{inline}\)</span> will produce math.</p>
+<div class="section" id="math-blocks">
+<h2>Math blocks<a class="headerlink" href="#math-blocks" title="Permalink to this headline">#</a></h2>
+<p>You can also include math blocks for separate equations. This allows you to focus attention on more complex or longer equations, as well as link to them in your pages. To use a block equation, wrap the equation in either <span class="math notranslate nohighlight">\(x^2+5\)</span> or begin statements.</p>
+<p>For example,</p>
+<div class="math notranslate nohighlight">
+\[
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+\]</div>
+<p>results in math.</p>
+<p>Here’s another example: <span class="math notranslate nohighlight">\({1, 2, 3, 4}\)</span>.</p>
+<p>If ams math is enabled, the following should work:
+\begin{align}
+a_{11}&amp; =b_{11}&amp;
+a_{12}&amp; =b_{12}\
+a_{21}&amp; =b_{21}&amp;
+a_{22}&amp; =b_{22}+c_{22}
+\end{align}</p>
+<!-- Here is a proposition
+```{prf:proposition}
+:label: my-proposition
+
+This is a dummy proposition directive.
+```
+
+Here is a definition.
+```{prf:definition}
+:label: my-definition
+
+The *economical expansion problem* (EEP) for
+$(A,B)$ is to find a semi-positive $n$-vector $p>0$
+and a number $\beta\in\mathbb{R}$, such that
+
+$$
+&\min_{\beta} \hspace{2mm} \beta \\
+&\text{s.t. }\hspace{2mm}Bp \leq \beta Ap
+$$
+``` -->
 </div>
 </div>
 
@@ -341,13 +405,6 @@ started!</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="rigid_body_rotations.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Rigid Body Rotations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
