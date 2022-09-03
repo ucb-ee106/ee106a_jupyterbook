@@ -368,7 +368,7 @@ Thus, we now solve for $\theta$:
 $$\begin{aligned}
     1 + 2\cos\theta &= \mathrm{trace}(R)\\
     \cos\theta &= \frac{\mathrm{trace}(R) - 1}{2}\\
-    \theta &= \Big( \frac{\mathrm{trace}(R) - 1}{2}\Big)
+    \theta &= \cos^{-1}\Big( \frac{\mathrm{trace}(R) - 1}{2}\Big)
 \end{aligned}$$ 
 
 As we proved above, this equation *always* has a
