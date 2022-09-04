@@ -872,34 +872,19 @@ of these matrices:</p>
 <p>Let’s take a moment to think about what these matrices
 mean. Consider the image below:</p>
 <p><img alt="image" src="_images/cd_euler.png" />\</p>
-<p><em>Above: <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> is a change of basis matrix between two frames
-rotated about the z-axis - it doesn’t rotate vectors by an angle <span class="math notranslate nohighlight">\(\psi\)</span>
-about the z-axis. <span class="math notranslate nohighlight">\(R_z(\psi)^{-1} = -R_z(\psi)\)</span> is what rotates vectors
-about the z-axis by an angle <span class="math notranslate nohighlight">\(\psi.\)</span></em></p>
-<p>To get from frame C to frame D, we must rotate about the z-axis by
-<span class="math notranslate nohighlight">\(\psi\)</span> degrees. But, based on the theory we established for rotation
-matrices, this means that the transformation from C to D is <em>not</em>
-<span class="math notranslate nohighlight">\(R_z(\psi),\)</span> but is rather <span class="math notranslate nohighlight">\((R_z(\psi))^{-1} = R_z(-\psi).\)</span> This is
-because <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> is a rotation matrix that takes us from a frame
-rotated by <span class="math notranslate nohighlight">\(\psi\)</span> degrees about the z-axis (frame D) <em>back</em> into our
-original frame (frame C). This is an important detail to keep in mind as
-we proceed!<br />
-Now, let’s consider the role of all three Euler angles in a
-transformation between two arbitrary frames: <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B.\)</span> Imagine we
-have a vector <span class="math notranslate nohighlight">\(a \in A\)</span> that we want to transform to frame B. First,
-let’s rotate it by angle <span class="math notranslate nohighlight">\(\psi\)</span> about the Z axis.</p>
+<p><em>Above: <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> is a change of basis matrix between two frames rotated about the z-axis - be careful about the direction of transformation!</em></p>
+<p>To get from frame C to frame D, we must rotate our frame about the z-axis by <span class="math notranslate nohighlight">\(\psi\)</span> degrees. But, based on the theory we established for rotation matrices, this means that the transformation from C to D is <em>not</em> <span class="math notranslate nohighlight">\(R_z(\psi)\)</span>, but is rather <span class="math notranslate nohighlight">\((R_z(\psi))^{-1} = R_z(-\psi)\)</span>. This is because <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> is a rotation matrix that takes us from a frame rotated by <span class="math notranslate nohighlight">\(\psi\)</span> degrees about the z-axis (frame D) <em>back</em> into our original frame (frame C). This is an important detail to keep in mind as we proceed!<br />
+Now, let’s consider the role of all three Euler angles in a transformation between two arbitrary frames: <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. Imagine we have a vector <span class="math notranslate nohighlight">\(a \in A\)</span> that we want to transform to frame B. First, let’s transform it to a frame rotated by angle <span class="math notranslate nohighlight">\(\psi\)</span> about the Z axis.</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     a' = R_z(-\psi)a
 \end{aligned}\]</div>
-<p>Now, let’s rotate this new vector, <span class="math notranslate nohighlight">\(a',\)</span> by angle
-<span class="math notranslate nohighlight">\(\theta\)</span> about the new y-axis. This gives us:</p>
+<p>Now, let’s transform this new vector, <span class="math notranslate nohighlight">\(a'\)</span>, to be in a frame rotated by angle <span class="math notranslate nohighlight">\(\theta\)</span> about the new y-axis. This gives us:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     a'' = R_y(-\theta)a' = R_y(-\theta)R_z(-\psi)a
 \end{aligned}\]</div>
-<p>Finally, to complete the rotation to frame B, we
-transform <span class="math notranslate nohighlight">\(a''\)</span> by angle <span class="math notranslate nohighlight">\(\phi\)</span> about the new x-axis.</p>
+<p>Finally, to complete the rotation to frame B, we transform <span class="math notranslate nohighlight">\(a''\)</span> into a frame rotated by angle <span class="math notranslate nohighlight">\(\phi\)</span> about the new x-axis.</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
     b = R_x(-\phi)a'' = R_x(-\phi)R_y(-\theta)R_z(-\psi)a
