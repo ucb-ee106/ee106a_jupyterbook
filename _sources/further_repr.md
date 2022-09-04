@@ -545,38 +545,23 @@ mean. Consider the image below:
 
 ![image](images/cd_euler.png)\
 
-*Above: $R_z(\psi)$ is a change of basis matrix between two frames
-rotated about the z-axis - it doesn't rotate vectors by an angle $\psi$
-about the z-axis. $R_z(\psi)^{-1} = -R_z(\psi)$ is what rotates vectors
-about the z-axis by an angle $\psi.$*
+*Above: $R_z(\psi)$ is a change of basis matrix between two frames rotated about the z-axis - be careful about the direction of transformation!*
 
 
-To get from frame C to frame D, we must rotate about the z-axis by
-$\psi$ degrees. But, based on the theory we established for rotation
-matrices, this means that the transformation from C to D is *not*
-$R_z(\psi),$ but is rather $(R_z(\psi))^{-1} = R_z(-\psi).$ This is
-because $R_z(\psi)$ is a rotation matrix that takes us from a frame
-rotated by $\psi$ degrees about the z-axis (frame D) *back* into our
-original frame (frame C). This is an important detail to keep in mind as
-we proceed!\
-Now, let's consider the role of all three Euler angles in a
-transformation between two arbitrary frames: $A$ and $B.$ Imagine we
-have a vector $a \in A$ that we want to transform to frame B. First,
-let's rotate it by angle $\psi$ about the Z axis. 
+To get from frame C to frame D, we must rotate our frame about the z-axis by $\psi$ degrees. But, based on the theory we established for rotation matrices, this means that the transformation from C to D is *not* $R_z(\psi)$, but is rather $(R_z(\psi))^{-1} = R_z(-\psi)$. This is because $R_z(\psi)$ is a rotation matrix that takes us from a frame rotated by $\psi$ degrees about the z-axis (frame D) *back* into our original frame (frame C). This is an important detail to keep in mind as we proceed!\
+Now, let's consider the role of all three Euler angles in a transformation between two arbitrary frames: $A$ and $B$. Imagine we have a vector $a \in A$ that we want to transform to frame B. First, let's transform it to a frame rotated by angle $\psi$ about the Z axis.
 
 $$\begin{aligned}
     a' = R_z(-\psi)a
 \end{aligned}$$ 
 
-Now, let's rotate this new vector, $a',$ by angle
-$\theta$ about the new y-axis. This gives us: 
+Now, let's transform this new vector, $a'$, to be in a frame rotated by angle $\theta$ about the new y-axis. This gives us:
 
 $$\begin{aligned}
     a'' = R_y(-\theta)a' = R_y(-\theta)R_z(-\psi)a
 \end{aligned}$$ 
 
-Finally, to complete the rotation to frame B, we
-transform $a''$ by angle $\phi$ about the new x-axis.
+Finally, to complete the rotation to frame B, we transform $a''$ into a frame rotated by angle $\phi$ about the new x-axis.
 
 $$\begin{aligned}
     b = R_x(-\phi)a'' = R_x(-\phi)R_y(-\theta)R_z(-\psi)a
