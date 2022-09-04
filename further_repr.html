@@ -318,6 +318,11 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roll-pitch-yaw-angles">
+     Roll Pitch Yaw Angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#euler-angle-singularities">
      Euler Angle Singularities
     </a>
@@ -356,6 +361,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#zyx-euler-angles">
      ZYX Euler Angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roll-pitch-yaw-angles">
+     Roll Pitch Yaw Angles
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -906,19 +916,28 @@ that corresponds to a rotation about x followed by a rotation about y,
 followed by a rotation about z.<br />
 The convention on the order of rotation is something that’s largely
 dependent on the field you’re working in. Generally speaking, ZYX and
-XYZ are two of the more popular sets of Euler angles.<br />
-If you’re working in an aerospace field, you might hear the z Euler
-angle, <span class="math notranslate nohighlight">\(\psi,\)</span> referred to as “yaw,” the y Euler angle, <span class="math notranslate nohighlight">\(\theta,\)</span>
-referred to as “pitch,” and the x Euler angle, <span class="math notranslate nohighlight">\(\phi,\)</span> referred to as
-“roll.” Because of this, Euler angles taken in the direction XYZ are
-nicknamed “roll-pitch-yaw” angles.<br />
-These names interestingly come from the different rotational motions of
-an aircraft!</p>
-<p><img alt="image" src="_images/airplane.png" /><br />
-<em>Above: 106A students on a field trip</em></p>
-<p>As a brief aside, an amusing consequence of this convention is that
-texts in aerospace often take z to be pointing downwards, which makes
-vectors such as gravity appear positive instead of negative!</p>
+XYZ are two of the more popular sets of Euler angles.</p>
+</div>
+<div class="section" id="roll-pitch-yaw-angles">
+<h3>Roll Pitch Yaw Angles<a class="headerlink" href="#roll-pitch-yaw-angles" title="Permalink to this headline">#</a></h3>
+<p>If you’re working in an aerospace field, you might hear the z Euler angle, <span class="math notranslate nohighlight">\(\psi\)</span>, referred to as “yaw,” the y Euler angle, <span class="math notranslate nohighlight">\(\theta\)</span>, referred to as “pitch,” and the x Euler angle, <span class="math notranslate nohighlight">\(\phi\)</span>, referred to as “roll.” Because of this, Euler angles taken in the direction XYZ are nicknamed ``roll-pitch-yaw” angles.<br />
+These names interestingly come from the different rotational motions of an aircraft!</p>
+<p><img alt="image" src="_images/airplane.png" /></p>
+<p><em>Above: 106A students on a field trip</em></p>
+<p>As a brief aside, an amusing consequence of this convention is that texts in aerospace often take z to be pointing downwards, which makes vectors such as gravity appear positive instead of negative!<br />
+As it turns out, the interpretation of Euler angles as the roll, pitch, and yaw of a rigid body about a fixed frame leads us to an alternative interpretation of what Euler angles mean!<br />
+Let’s take another look at our formula for the rotation matrix between frames <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    R_{ab} = R_z(\psi)R_y(\theta)R_x(\phi)
+\end{aligned}\]</div>
+<p>When we derived this formula, we thought of each rotation matrix as a <em>transformation</em> between two coordinate frames. What if, instead of thinking of each rotation matrix as a transformation between frames, we thought of it as a transformation that geometrically <em>rotates vectors?</em><br />
+From our knowledge of rotation matrices, we know that <span class="math notranslate nohighlight">\(R_x(\phi)\)</span> is a matrix that <em>rotates</em> vectors about the x-axis by <span class="math notranslate nohighlight">\(\phi\)</span> degrees, <span class="math notranslate nohighlight">\(R_y(\theta)\)</span> rotates vectors about the y-axis by <span class="math notranslate nohighlight">\(\theta\)</span> degrees, and <span class="math notranslate nohighlight">\(R_z(\psi)\)</span> rotates vectors about the z-axis by <span class="math notranslate nohighlight">\(\psi\)</span> degrees.<br />
+Using this interpretation we may interpret <span class="math notranslate nohighlight">\(R_{ab} = R_z(\psi)R_y(\theta)R_x(\phi)\)</span> as a sequence of rotations about a <em>fixed</em> set of axes.</p>
+<p><img alt="image" src="_images/rpy_angles.png" /></p>
+<p>We may use these rotations to geometrically <em>rotate</em> the three basis vectors of frame A in space to align with the three basis vectors of frame B. First, we rotate frame A about its x-axis by multiplying by <span class="math notranslate nohighlight">\(R_x(\phi)\)</span>. Next, we rotate that frame about the original y-axis through multiplication by <span class="math notranslate nohighlight">\(R_y(\theta)\)</span>. Finally, we rotate that frame about the original z-axis by multiplying by <span class="math notranslate nohighlight">\(R_z(\psi)\)</span>. Together, these three matrices <em>rotate</em> the basis vectors of frame A to be aligned with the basis vectors of frame B.<br />
+This interpretation of Euler angles as rotating the basis vectors of one frame to align with another gives a mathematically identical result to the change of basis interpretation. The only difference is, we think about each rotation matrix not as a change of basis with respect to a changing frame but rather as a geometric rotation with respect to a fixed frame.<br />
+This second interpretation is referred to as the <strong>roll pitch yaw angle</strong> interpretation.</p>
 </div>
 <div class="section" id="euler-angle-singularities">
 <h3>Euler Angle Singularities<a class="headerlink" href="#euler-angle-singularities" title="Permalink to this headline">#</a></h3>

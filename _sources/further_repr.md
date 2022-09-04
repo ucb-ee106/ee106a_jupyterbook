@@ -587,21 +587,34 @@ that corresponds to a rotation about x followed by a rotation about y,
 followed by a rotation about z.\
 The convention on the order of rotation is something that's largely
 dependent on the field you're working in. Generally speaking, ZYX and
-XYZ are two of the more popular sets of Euler angles.\
-If you're working in an aerospace field, you might hear the z Euler
-angle, $\psi,$ referred to as "yaw,\" the y Euler angle, $\theta,$
-referred to as "pitch,\" and the x Euler angle, $\phi,$ referred to as
-"roll.\" Because of this, Euler angles taken in the direction XYZ are
-nicknamed "roll-pitch-yaw\" angles.\
-These names interestingly come from the different rotational motions of
-an aircraft!
+XYZ are two of the more popular sets of Euler angles.
 
-![image](images/airplane.png)\
+### Roll Pitch Yaw Angles
+If you're working in an aerospace field, you might hear the z Euler angle, $\psi$, referred to as "yaw," the y Euler angle, $\theta$, referred to as "pitch," and the x Euler angle, $\phi$, referred to as "roll." Because of this, Euler angles taken in the direction XYZ are nicknamed ``roll-pitch-yaw" angles.\
+These names interestingly come from the different rotational motions of an aircraft!
+
+![image](images/airplane.png)
+
 *Above: 106A students on a field trip*
 
-As a brief aside, an amusing consequence of this convention is that
-texts in aerospace often take z to be pointing downwards, which makes
-vectors such as gravity appear positive instead of negative!
+As a brief aside, an amusing consequence of this convention is that texts in aerospace often take z to be pointing downwards, which makes vectors such as gravity appear positive instead of negative!\
+As it turns out, the interpretation of Euler angles as the roll, pitch, and yaw of a rigid body about a fixed frame leads us to an alternative interpretation of what Euler angles mean!\
+Let's take another look at our formula for the rotation matrix between frames $A$ and $B$.
+    
+$$\begin{aligned}
+    R_{ab} = R_z(\psi)R_y(\theta)R_x(\phi)
+\end{aligned}$$ 
+
+When we derived this formula, we thought of each rotation matrix as a *transformation* between two coordinate frames. What if, instead of thinking of each rotation matrix as a transformation between frames, we thought of it as a transformation that geometrically *rotates vectors?*\
+From our knowledge of rotation matrices, we know that $R_x(\phi)$ is a matrix that *rotates* vectors about the x-axis by $\phi$ degrees, $R_y(\theta)$ rotates vectors about the y-axis by $\theta$ degrees, and $R_z(\psi)$ rotates vectors about the z-axis by $\psi$ degrees.\
+Using this interpretation we may interpret $R_{ab} = R_z(\psi)R_y(\theta)R_x(\phi)$ as a sequence of rotations about a *fixed* set of axes.
+
+![image](images/rpy_angles.png)
+
+We may use these rotations to geometrically *rotate* the three basis vectors of frame A in space to align with the three basis vectors of frame B. First, we rotate frame A about its x-axis by multiplying by $R_x(\phi)$. Next, we rotate that frame about the original y-axis through multiplication by $R_y(\theta)$. Finally, we rotate that frame about the original z-axis by multiplying by $R_z(\psi)$. Together, these three matrices *rotate* the basis vectors of frame A to be aligned with the basis vectors of frame B.\
+This interpretation of Euler angles as rotating the basis vectors of one frame to align with another gives a mathematically identical result to the change of basis interpretation. The only difference is, we think about each rotation matrix not as a change of basis with respect to a changing frame but rather as a geometric rotation with respect to a fixed frame.\
+This second interpretation is referred to as the **roll pitch yaw angle** interpretation.
+
 
 ### Euler Angle Singularities
 
