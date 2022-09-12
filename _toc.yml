@@ -9,4 +9,5 @@ chapters:
 # - file: markdown-notebooks
 - file: rigid_body_rotations
 - file: further_repr
+- file: rigid_motions_R3
 # - file: example_md_file #EXAMPLE FILE FOR SYNTAX
