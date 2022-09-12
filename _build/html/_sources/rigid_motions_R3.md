@@ -2216,9 +2216,13 @@ $$\begin{aligned}
     A_2 &= \omega\omega^T\theta
 \end{aligned}$$ 
 
-Such that: $$\begin{aligned}
+Such that: 
+
+$$\begin{aligned}
     A = (I - e^{\hat\omega\theta})( \hat\omega) + \omega\omega^T\theta = A_1+A_2
-\end{aligned}$$ We may think about invertibility in terms of the *null
+\end{aligned}$$ 
+
+We may think about invertibility in terms of the *null
 space* (kernel) of the overall matrix $A$. Recall that the null space of
 a matrix $A \in \mathbb{R}^{n\times n}$ is the set of all nonzero
 vectors $x \neq 0\in \mathbb{R}^n$ such that: 
