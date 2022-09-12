@@ -129,6 +129,14 @@ const thebe_selector_output = ".output, .cell_output"
    Further Representations of Rotations
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rigid_motions_R3.html">
+   Rigid Motions in
+   <span class="math notranslate nohighlight">
+    \(\mathbf{\mathbb{R}^3}\)
+   </span>
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -267,6 +275,7 @@ title="Open an issue"
 
    <div class="modindex-jumpbox">
    <a href="#cap-ON_rotation"><strong>ON_rotation</strong></a> | 
+   <a href="#cap-SE3_group"><strong>SE3_group</strong></a> | 
    <a href="#cap-bin"><strong>bin</strong></a> | 
    <a href="#cap-eigenval_mag"><strong>eigenval_mag</strong></a> | 
    <a href="#cap-euler_thm"><strong>euler_thm</strong></a> | 
@@ -279,12 +288,17 @@ title="Open an issue"
    <a href="#cap-rigid_rotation"><strong>rigid_rotation</strong></a> | 
    <a href="#cap-rigid_trans"><strong>rigid_trans</strong></a> | 
    <a href="#cap-rotation_det"><strong>rotation_det</strong></a> | 
+   <a href="#cap-se3_defn"><strong>se3_defn</strong></a> | 
+   <a href="#cap-se3_surjective"><strong>se3_surjective</strong></a> | 
+   <a href="#cap-se_3RB"><strong>se_3RB</strong></a> | 
    <a href="#cap-skew_exp"><strong>skew_exp</strong></a> | 
    <a href="#cap-so3"><strong>so3</strong></a> | 
    <a href="#cap-so3_group"><strong>so3_group</strong></a> | 
    <a href="#cap-surjective"><strong>surjective</strong></a> | 
    <a href="#cap-trace_lem"><strong>trace_lem</strong></a> | 
-   <a href="#cap-transf_coord_fr"><strong>transf_coord_fr</strong></a>
+   <a href="#cap-transf_coord_fr"><strong>transf_coord_fr</strong></a> | 
+   <a href="#cap-vee_map"><strong>vee_map</strong></a> | 
+   <a href="#cap-wedge"><strong>wedge</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -295,6 +309,14 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="rigid_body_rotations.html#ON_rotation"><code class="xref">ON_rotation</code></a> <em>(rigid_body_rotations)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-SE3_group"><td></td><td>
+       <strong>SE3_group</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="rigid_motions_R3.html#SE3_group"><code class="xref">SE3_group</code></a> <em>(rigid_motions_R3)</em></td><td>
        <em>proposition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-bin"><td></td><td>
@@ -393,6 +415,30 @@ title="Open an issue"
        <a href="rigid_body_rotations.html#rotation_det"><code class="xref">rotation_det</code></a> <em>(rigid_body_rotations)</em></td><td>
        <em>proposition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-se3_defn"><td></td><td>
+       <strong>se3_defn</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="rigid_motions_R3.html#se3_defn"><code class="xref">se3_defn</code></a> <em>(rigid_motions_R3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-se3_surjective"><td></td><td>
+       <strong>se3_surjective</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="rigid_motions_R3.html#se3_surjective"><code class="xref">se3_surjective</code></a> <em>(rigid_motions_R3)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-se_3RB"><td></td><td>
+       <strong>se_3RB</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="rigid_motions_R3.html#se_3RB"><code class="xref">se_3RB</code></a> <em>(rigid_motions_R3)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-skew_exp"><td></td><td>
        <strong>skew_exp</strong></td><td></td></tr>
      <tr>
@@ -440,6 +486,22 @@ title="Open an issue"
        <td>
        <a href="rigid_body_rotations.html#transf_coord_fr"><code class="xref">transf_coord_fr</code></a> <em>(rigid_body_rotations)</em></td><td>
        <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-vee_map"><td></td><td>
+       <strong>vee_map</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="rigid_motions_R3.html#vee_map"><code class="xref">vee_map</code></a> <em>(rigid_motions_R3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-wedge"><td></td><td>
+       <strong>wedge</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="rigid_motions_R3.html#wedge"><code class="xref">wedge</code></a> <em>(rigid_motions_R3)</em></td><td>
+       <em>definition</em></td></tr>
    </table>
 
 

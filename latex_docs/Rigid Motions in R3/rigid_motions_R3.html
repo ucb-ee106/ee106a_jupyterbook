@@ -1,0 +1,2372 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rigid Motions in \(\mathbf{\mathbb{R}^3}\) &#8212; Introduction to Robotics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/106A_logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Robotics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to 106A!
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rigid_body_rotations.html">
+   Rigid Body Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../further_repr.html">
+   Further Representations of Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rigid_motions_R3.html">
+   Rigid Motions in
+   <span class="math notranslate nohighlight">
+    \(\mathbf{\mathbb{R}^3}\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flatex_docs/Rigid Motions in R3/rigid_motions_R3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/latex_docs/Rigid Motions in R3/rigid_motions_R3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalizing-mathbf-so-3">
+   Generalizing
+   <span class="math notranslate nohighlight">
+    \(\mathbf{SO(3)}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homogeneous-coordinates">
+   Homogeneous Coordinates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-mathbf-se-3">
+   Properties of
+   <span class="math notranslate nohighlight">
+    \(\mathbf{SE(3)}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#composing-transformations">
+     Composing Transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-se-3-a-group">
+     Is SE(3) a Group?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivating-exponential-coordinates">
+     Motivating Exponential Coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-exponential-coordinates">
+     Properties of Exponential Coordinates
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Rigid Motions in \mathbf{\mathbb{R}^3}</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalizing-mathbf-so-3">
+   Generalizing
+   <span class="math notranslate nohighlight">
+    \(\mathbf{SO(3)}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homogeneous-coordinates">
+   Homogeneous Coordinates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-mathbf-se-3">
+   Properties of
+   <span class="math notranslate nohighlight">
+    \(\mathbf{SE(3)}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#composing-transformations">
+     Composing Transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-se-3-a-group">
+     Is SE(3) a Group?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivating-exponential-coordinates">
+     Motivating Exponential Coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-exponential-coordinates">
+     Properties of Exponential Coordinates
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="rigid-motions-in-mathbf-mathbb-r-3">
+<h1>Rigid Motions in <span class="math notranslate nohighlight">\(\mathbf{\mathbb{R}^3}\)</span><a class="headerlink" href="#rigid-motions-in-mathbf-mathbb-r-3" title="Permalink to this headline">#</a></h1>
+<p>Welcome back! Let’s take a brief moment to discuss where we currently
+are in our exploration of robotics.<br />
+Thus far, we’ve been talking primarily about the structure of
+<em>rotations</em>. We’ve defined a specific set of criteria for rotations,
+developed a theory of rotations using the language of linear algebra,
+and constructed an elegant representation of rotations using exponential
+coordinates.<br />
+Where do we go from here? You may remember that, all the way at the
+beginning of our discussion of rigid motions, we made the statement that
+<em>all</em> rigid motions may be broken up into rotations and translations.
+Right after mentioning this, we promised to come back to the study of
+translational motion after thoroughly exploring rotations.<br />
+In this section, we’ll make good on that promise, and extend the theory
+we’ve developed about rotational motions to the the motion of rigid
+bodies that both rotate and translate.</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/rigidmotion.png)\
+*Above: How may we describe the motion of a rotating, translating rigid
+body?*
+</pre></div>
+</div>
+<p>All the while, we’ll be inching closer towards developing a practical,
+powerful theory we’ll be able to use to describe the motion of robots.
+Once we’ve developed some key results in the motion of rotating,
+translating rigid bodies, we’ll have all we need to begin our
+investigation of manipulator arms, vehicles, quadcopters, and more.
+Let’s begin!</p>
+<div class="section" id="generalizing-mathbf-so-3">
+<h2>Generalizing <span class="math notranslate nohighlight">\(\mathbf{SO(3)}\)</span><a class="headerlink" href="#generalizing-mathbf-so-3" title="Permalink to this headline">#</a></h2>
+<p>Let’s begin with a review of how we framed the rotational motion of
+rigid bodies. When describing the configuration of a rigid body
+undergoing <em>pure rotation</em>, we were able to understand its motion using
+a rotation matrix, <span class="math notranslate nohighlight">\(R \in SO(3)\)</span>.</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/rotating_rb.png)\
+*Above: every configuration of a rigid body undergoing rotation may be
+described with a rotation matrix*
+</pre></div>
+</div>
+<p>When we want to describe the motion of rigid bodies that both
+<em>translate</em> and <em>rotate</em>, we only need one more thing in addition to
+this rotation matrix. To fully describe the configuration of a rigid
+body that both translates and rotates, we use the following pair: a
+rotation matrix between the initial and final configurations of the
+body, and the location of a point on the rigid body.<br />
+Let’s visualize this by considering a rigid cube which rotates and
+translates in space. $<span class="math notranslate nohighlight">\(\begin{aligned}
+    \includegraphics[scale=0.3]{images/moving_cube.png}\\
+    \textit{Above: a rigid cube rotates and translates through space.}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( To find the relative orientation between the two
+configurations of the cube, we may use the same rotation matrices we've
+been using thus far. To find how the cube has translated in space, we
+may track the position of a point on the cube.\
+For convenience, we will always choose the *origin* of the coordinate
+frame as the point we track.\
+Thus, we conclude that we may describe a general rigid body motion with
+the pair \)</span>(R_{ab}, p_{ab})<span class="math notranslate nohighlight">\(, where \)</span>R_{ab}\in SO(3)<span class="math notranslate nohighlight">\( is the rotation
+matrix between configurations \)</span>A<span class="math notranslate nohighlight">\( and \)</span>B<span class="math notranslate nohighlight">\(, and \)</span>p_{ab}\in \mathbb{R}^3<span class="math notranslate nohighlight">\(
+is a position vector between the origin of configuration \)</span>A<span class="math notranslate nohighlight">\( and the
+origin of configuration \)</span>B$.</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/rotate_translate.png)\
+*Above: we describe the rigid transformation between two coordinate
+frames with a rotation $R\in SO(3)$ and a translation
+$p_{ab}\in \mathbb{R}^3$.*
+</pre></div>
+</div>
+<p>Just as we gave a name to the set of all rotation matrices <span class="math notranslate nohighlight">\(SO(3)\)</span>, we
+also give a name to the set of all pairs of rotation matrices and
+translations. We define: $<span class="math notranslate nohighlight">\(\begin{aligned}
+    SE(3) := \{(R, p) \; | \; R\in SO(3), \; p\in \mathbb{R}^3\}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where &quot;\)</span>SE<span class="math notranslate nohighlight">\(\&quot; stands for *special Euclidean*, and \)</span>3<span class="math notranslate nohighlight">\(
+refers to the dimension of our space. Note that since this set contains
+*all* possible combinations of rotations and translations, it describes
+the entire set of 3D rigid body transformations.\
+We may easily extend the definition of \)</span>SE(3)<span class="math notranslate nohighlight">\( to higher dimensions as
+follows: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    SE(n) := \{(R, p) \; | \; R\in SO(n), \; p\in \mathbb{R}^n\}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( As with \)</span>SO(3)$, we’ll generally restrict our discussion
+to two and three dimensions.</p>
+</div>
+<div class="section" id="homogeneous-coordinates">
+<h2>Homogeneous Coordinates<a class="headerlink" href="#homogeneous-coordinates" title="Permalink to this headline">#</a></h2>
+<p>Now that we’ve defined some basic terms and concepts in rigid body
+motions, we’d like to step things up a level and begin looking for some
+mathematical footing.<br />
+Imagine that we have a point <span class="math notranslate nohighlight">\(q_a\)</span> represented with respect to
+coordinate frame <span class="math notranslate nohighlight">\(A\)</span>. Suppose that frame <span class="math notranslate nohighlight">\(A\)</span> undergoes a rigid body
+transformation where it rotates with rotation matrix <span class="math notranslate nohighlight">\(R_{ab}\)</span> and
+translates with translation <span class="math notranslate nohighlight">\(p_{ab}\)</span> to a new configuration, frame <span class="math notranslate nohighlight">\(B\)</span>.
+Now, we’d like to find the relationship between <span class="math notranslate nohighlight">\(q_a\)</span> and <span class="math notranslate nohighlight">\(q_b\)</span>, its
+position in the new configuration, in terms of <span class="math notranslate nohighlight">\(R_{ab}\)</span> and <span class="math notranslate nohighlight">\(p_{ab}\)</span>.</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/qab_transform.png)
+</pre></div>
+</div>
+<p>We may do this by breaking the rigid motion down into its two parts.
+First, let’s consider the rotation. Let’s multiply <span class="math notranslate nohighlight">\(q_b\)</span> by <span class="math notranslate nohighlight">\(R_{ab}\)</span> and
+think about what this gives us. $<span class="math notranslate nohighlight">\(\begin{aligned}
+    R_{ab}q_b = q_a\mathrm{\; shifted \; by \;} p_{ab}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( By the definition of rotation matrices, this will give
+us the point \)</span>q_b<span class="math notranslate nohighlight">\( represented in a frame whose axes are *aligned* with
+those of frame \)</span>A<span class="math notranslate nohighlight">\(. However, to represent it in frame \)</span>A<span class="math notranslate nohighlight">\( itself, we
+must not only align the axes with frame \)</span>A<span class="math notranslate nohighlight">\(, but translate the vector so
+that it is represented with respect to the origin of frame \)</span>A<span class="math notranslate nohighlight">\(.\
+Applying this translation, we conclude: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    q_a = R_{ab}q_b + p_{ab}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This is known as an *affine* transformation. Instead of
+the transformation between frames \)</span>A<span class="math notranslate nohighlight">\( and \)</span>B<span class="math notranslate nohighlight">\( being a pure matrix
+multiplication, we must add on another vector to complete the
+transformation.\
+This affine representation isn't very satisfying! When dealing with the
+mathematics of motion, we like to represent things using *just*
+matrices - the extra addition will clutter our description of motion.\
+To represent this transformation with a *pure* matrix multiplication, we
+define the **homogeneous coordinates** of a point. Given a point
+\)</span>p\in \mathbb{R}^3<span class="math notranslate nohighlight">\(, where \)</span>p = (p_1, p_2, p_3)<span class="math notranslate nohighlight">\(, the homogeneous
+coordinates of \)</span>p<span class="math notranslate nohighlight">\( are defined: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{p} = 
+    \begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    p_1\\
+    p_2\\
+    p_3\\
+    1
+    \end{bmatrix} \in \mathbb{R}^4
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Note that finding the homogeneous coordinates of the
+point simply involves appending a 1 to the end of the original point -
+there's no extra work that needs to be done.\
+With these homogeneous coordinates in mind, let's take another look at
+the equation we derived above. Instead of using the normal
+representation of \)</span>q_a<span class="math notranslate nohighlight">\(, let's try using the homogeneous representation,
+\)</span>\overline{q}<em>a<span class="math notranslate nohighlight">\(. \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    q_a &amp;= R_{ab}q_b + p_{ab}\\
+    \begin{bmatrix}
+    q_a\\
+    1
+    \end{bmatrix}
+    &amp;=
+    \begin{bmatrix}
+    R_{ab}q_b\\
+    0
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+    p_{ab}\\
+    1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( We may now rewrite this expression as the matrix
+multiplication: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+     \begin{bmatrix}
+    q_a\\
+    1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+        R_{ab} &amp; p_{ab}\\
+        0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        q_b\\
+        1
+    \end{bmatrix}\\
+    \overline{q}_a &amp;= 
+    \begin{bmatrix}
+        R_{ab} &amp; p_{ab}\\
+        0 &amp; 1
+    \end{bmatrix}
+    \overline{q}_b
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Thus, using the definition of homogeneous coordinates,
+we conclude that we can write *any* rigid body transformation
+\)</span>q_a = R</em>{ab}q_b + p_{ab}<span class="math notranslate nohighlight">\( with a single matrix multiplication using
+homogeneous coordinates!\
+We name the \)</span>4\times 4<span class="math notranslate nohighlight">\( transformation matrix between \)</span>\overline{q}<em>b<span class="math notranslate nohighlight">\(
+and \)</span>\overline{q}<em>a<span class="math notranslate nohighlight">\( &quot;\)</span>g</em>{ab}<span class="math notranslate nohighlight">\(.\&quot; \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_{ab} = 
+    \begin{bmatrix}
+        R_{ab} &amp; p_{ab}\\
+        0 &amp; 1
+    \end{bmatrix}
+    \in \mathbb{R}^{4\times 4}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( The matrix \)</span>g</em>{ab}<span class="math notranslate nohighlight">\( is called the **homogeneous
+representation** of the rigid body transformation between configurations
+\)</span>A<span class="math notranslate nohighlight">\( and \)</span>B<span class="math notranslate nohighlight">\(.\
+As all rigid body transformations may be represented using this format,
+we may use it to write an alternate characterization of \)</span>SE(3)<span class="math notranslate nohighlight">\(:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    SE(3) := 
+    \Big\{
+    \begin{bmatrix}
+        R &amp; p\\
+        0 &amp; 1
+    \end{bmatrix}
+    \in \mathbb{R}^{4\times 4}
+    \; |\;
+    p\in \mathbb{R}^3,\; R\in SO(3) \Big\}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This definition states that \)</span>SE(3)<span class="math notranslate nohighlight">\( may be characterized
+by the set of \)</span>4\times 4<span class="math notranslate nohighlight">\( homogeneous transformation matrices
+constructed from 3D rotation matrices and translation vectors.\
+Before we move on to derive further properties of \)</span>SE(3)<span class="math notranslate nohighlight">\(, it's
+important to clarify some subtleties of the definition of homogeneous
+coordinates. Recall that we defined the homogeneous coordinates of a
+point, \)</span>p\in \mathbb{R}^3<span class="math notranslate nohighlight">\(, to be: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{p}
+    = \begin{bmatrix}
+        p\\
+        1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( You may remember from earlier in the course that we
+define a vector as the difference between two points. How does this
+definition translate into the language of homogeneous coordinates?\
+Imagine we have two points, \)</span>p, q \in \mathbb{R}^3<span class="math notranslate nohighlight">\(, and a vector
+\)</span>v = p - q<span class="math notranslate nohighlight">\(. In homogeneous coordinates: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{v} &amp;= \overline{p} - \overline{q}\\
+    \overline{v} &amp;= \begin{bmatrix}
+        p\\
+        1
+    \end{bmatrix} 
+    - \begin{bmatrix}
+        p\\
+        1
+    \end{bmatrix}\\
+    \overline{v} &amp;= 
+    \begin{bmatrix}
+        p-q\\
+        0
+    \end{bmatrix} \in \mathbb{R}^4
+\end{aligned}\)</span>$ Thus, the homogeneous coordinates of a vector will have
+a zero appended to the end, rather than a 1. In general, we therefore
+consider those with zeros appended to the end to be vectors, and those
+with ones appended to the end to be points.<br />
+Using this concept, we may show that the sum of a point and a vector is
+a point, as it gives a “1” in the final entry, and that the sum of a
+point and a point is a nonsensical operation, as it gives a “2” in the
+final entry instead of a 1 or 0.</p>
+</div>
+<div class="section" id="properties-of-mathbf-se-3">
+<h2>Properties of <span class="math notranslate nohighlight">\(\mathbf{SE(3)}\)</span><a class="headerlink" href="#properties-of-mathbf-se-3" title="Permalink to this headline">#</a></h2>
+<div class="section" id="composing-transformations">
+<h3>Composing Transformations<a class="headerlink" href="#composing-transformations" title="Permalink to this headline">#</a></h3>
+<p>Now that we have a definition of <span class="math notranslate nohighlight">\(SE(3)\)</span> in terms of matrices, we may
+begin to explore some of its properties in greater depth. Let’s take a
+moment to think about how we may <em>compose</em> rigid body transformations in
+<span class="math notranslate nohighlight">\(SE(3)\)</span>.<br />
+If we have three configurations in space, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(C\)</span>, and we know
+the transformation from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(B\)</span> and from <span class="math notranslate nohighlight">\(B\)</span> to <span class="math notranslate nohighlight">\(C\)</span>, how may we
+define the transformation from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(C\)</span>?</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/composition.png)
+</pre></div>
+</div>
+<p>Let’s think about the transformations one at a time. Imagine that we
+have some point in frame <span class="math notranslate nohighlight">\(C\)</span>, and we want to find its representation in
+frame <span class="math notranslate nohighlight">\(A\)</span>. How might we go about doing this?<br />
+Let’s start by bringing it into configuration B! We know that in frame
+<span class="math notranslate nohighlight">\(B\)</span>, the point is represented as follows: $<span class="math notranslate nohighlight">\(\begin{aligned}
+    q_b = R_{bc}q_c + p_{bc}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Now, we have a point \)</span>q_b<span class="math notranslate nohighlight">\( that we'd like to bring into
+frame \)</span>A<span class="math notranslate nohighlight">\(. We apply the transformation from \)</span>B<span class="math notranslate nohighlight">\( to \)</span>A<span class="math notranslate nohighlight">\( as follows:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    q_a = R_{ab}q_b + p_{ab}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Now, we substitute in for \)</span>q_b<span class="math notranslate nohighlight">\( and simplify:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    q_a &amp;= R_{ab}(R_{bc}q_c + p_{bc}) + p_{ab}\\
+    q_a &amp;= R_{ab}R_{bc}q_c + R_{ab}p_{bc} + p_{ab}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Great! We now have an expression that takes us from
+\)</span>q_c<span class="math notranslate nohighlight">\( directly to \)</span>q_a<span class="math notranslate nohighlight">\(. Now, we want to see if there's any way we can
+represent this transformation using homogeneous coordinates. How can we
+find a transformation \)</span>g_{ac}<span class="math notranslate nohighlight">\( such that: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \begin{bmatrix}
+    q_a\\
+    1
+    \end{bmatrix}
+    = g_{ac}
+    \begin{bmatrix}
+    q_c\\
+    1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Looking at the equation we derived above, we find the
+following relationship: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \begin{bmatrix}
+    q_a\\
+    1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    R_{ab}R_{bc} &amp; R_{ab}p_{bc} + p_{ab}\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    q_c\\
+    1
+    \end{bmatrix}\\
+    \overline{q}_a &amp;= g_{ac}\overline{q}_c
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Thus, we have found the homogeneous transformation from
+frame \)</span>C<span class="math notranslate nohighlight">\( to frame \)</span>A<span class="math notranslate nohighlight">\(! If we inspect the homogeneous transformation
+matrix, we find that it does indeed follow the homogeneous
+transformation matrix format we've discussed thus far. In the upper
+left, we have a rotation matrix, in the upper right, a position vector,
+and on the bottom row, a row of zeros and a 1.\
+Let's try to break down this matrix into two smaller pieces and see if
+we recognize anything. \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{q}_a
+    &amp;= 
+    \begin{bmatrix}
+    R_{ab}R_{bc} &amp; R_{ab}p_{bc} + p_{ab}\\
+    0 &amp; 1
+    \end{bmatrix}
+    \overline{q}_c\\
+    \overline{q}_a
+    &amp;= 
+    \begin{bmatrix}
+    R_{ab} &amp; p_{ab}\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    R_{bc} &amp; p_{bc}\\
+    0 &amp; 1
+    \end{bmatrix}
+    \overline{q}_c
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Recognizing these two matrices as \)</span>g_{ab}<span class="math notranslate nohighlight">\( and \)</span>g_{bc}<span class="math notranslate nohighlight">\(,
+we conclude: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_{ac} &amp;= g_{ab}g_{bc}
+\end{aligned}\)</span>$ Thus, we may compose rigid body transformations in
+homogeneous coordinates through matrix multiplication. This is a useful
+result that will make applying rigid body transformations in homogeneous
+coordinates much more intuitive.</p>
+</div>
+<div class="section" id="is-se-3-a-group">
+<h3>Is SE(3) a Group?<a class="headerlink" href="#is-se-3-a-group" title="Permalink to this headline">#</a></h3>
+<p>Recall that when developing the properties of the set of rotation
+matrices, an important step was establishing that <span class="math notranslate nohighlight">\(SO(3)\)</span> was a group
+under matrix multiplication. This allowed us to come to many useful
+conclusions, such as the product of two rotation matrices being another
+rotation, the inverse of a rotation matrix always existing, and more!<br />
+Just as it was important to our study of rotations to show that <span class="math notranslate nohighlight">\(SO(3)\)</span>
+is a group under matrix multiplication, it’s equally as important to
+show the same for <span class="math notranslate nohighlight">\(SE(3)\)</span>.</p>
+<div class="highlight-shaded notranslate"><div class="highlight"><pre><span></span>
+::: proposition
+**Proposition 1**. ***$\mathbf{(SE(3), \cdot)}$ is a group**\
+The set of all rigid body transformations, $SE(3)$, forms a group under
+the binary operation of matrix multiplication.*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+**Proof:** Recall that to prove something is a group, we must show that
+it satisfies all of the *group properties*. Let&#39;s go step by step
+through the group properties and show that $SE(3)$ meets the
+requirements.
+
+1.  **The set is closed under its binary operation:** First we must show
+    that the product of any two elements of $SE(3)$ is an element of
+    $SE(3)$. Let&#39;s begin!\
+    Let $g_1$, $g_2$ be arbitrary homogeneous transformation matrices in
+    $SE(3)$. We calculate the product of these two matrices as follows:
+    $$\begin{aligned}
+            g_1g_2 = 
+            \begin{bmatrix}
+            R_1 &amp; p_1\\
+            0 &amp; 1
+            \end{bmatrix}
+            \begin{bmatrix}
+            R_2 &amp; p_2\\
+            0 &amp; 1
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+            R_1R_2 &amp; R_1p_2 + p_1\\
+            0 &amp; 1
+        \end{bmatrix}
+        
+    \end{aligned}$$ Note how this product is the same product we
+    encountered in our discussion of composition of transformations!\
+    Let&#39;s take a moment to verify once again that it is an element of
+    $SE(3)$.\
+    First, we verify that the matrix in the top left is an element of
+    $SO(3)$. We know that since $R_1, R_2 \in SO(3)$, by the group
+    property of $SO(3)$, their product, $R_1R_2 \in SO(3)$. Great! This
+    means that the upper left element is correct.\
+    Let&#39;s check that the upper right entry is an element of
+    $\mathbb{R}^3$. We know that $R_1p_2 \in \mathbb{R}^3$ by the rules
+    of matrix multiplication. Thus, the sum
+    $R_1p_2 + p_1 \in \mathbb{R}^3$ as well. On the bottom row, we see
+    the necessary $[0\; 1]$.\
+    As all of these characteristics match the definition of $SE(3)$, we
+    conclude that the product $g_1g_2 \in SE(3)$.
+
+2.  **The set has a unique identity element, $\mathbf{g_e}$:** Let&#39;s
+    think about what the identity element would be for a general rigid
+    transformation involving both rotation and translation. We know that
+    the identity for a rotation is $R_e = I_3$.\
+    For a translation, we simply take the case where we don&#39;t move at
+    all! Thus, $p_e = 0$, the zero vector. Thus, in $SE(3)$, we conclude
+    that the following is the identity: $$\begin{aligned}
+            g_e = 
+             \begin{bmatrix}
+            I_3 &amp; 0\\
+            0 &amp; 1
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+            1 &amp; 0 &amp; 0 &amp; 0\\
+            0 &amp; 1 &amp; 0 &amp; 0\\
+            0 &amp; 0 &amp; 1 &amp; 0\\
+            0 &amp; 0 &amp; 0 &amp; 1\\
+            \end{bmatrix}
+            = I_4
+        
+    \end{aligned}$$ Since the identity element for rotation matrices is
+    unique, and there is no single translation other than the zero
+    vector that will take you to the same configuration, we conclude
+    that this identity must be unique.
+
+3.  **Every element $g \in SE(3)$ has a unique inverse
+    $g^{-1} \in SE(3)$ such that $g g^{-1} = g_e$.**\
+    We can prove this statement by constructing an *explicit formula*
+    for the inverse of a homogeneous transformation matrix. Consider an
+    arbitrary homogeneous transformation, $g = (R, p) \in SE(3)$.\
+    We&#39;d link to find a matrix $g^{-1} = (R&#39;, p&#39;) \in SE(3)$ such that:
+    $$\begin{aligned}
+            \begin{bmatrix}
+            R &amp; p\\
+            0 &amp; 1
+            \end{bmatrix}
+            \begin{bmatrix}
+            R&#39; &amp; p&#39;\\
+            0 &amp; 1
+            \end{bmatrix}
+             = I_4
+        
+    \end{aligned}$$ Let&#39;s perform this multiplication and see if we can
+    figure out what $R&#39;$ and $p&#39;$ are!\
+    When we perform this multiplication, keep in mind that we&#39;ll be
+    writing it in terms of *blocks* within the matrix. Note that the
+    rules for multiplying matrices that we&#39;ve blocked into smaller
+    pieces are the same as those for normal matrix multiplication. Let&#39;s
+    begin! $$\begin{aligned}
+            \begin{bmatrix}
+            R &amp; p\\
+            0 &amp; 1
+            \end{bmatrix}
+            \begin{bmatrix}
+            R&#39; &amp; p&#39;\\
+            0 &amp; 1
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+            RR&#39; &amp; Rp&#39; + p\\
+            0 &amp; 1
+            \end{bmatrix} = 
+            \begin{bmatrix}
+            1 &amp; 0 &amp; 0 &amp; 0\\
+            0 &amp; 1 &amp; 0 &amp; 0\\
+            0 &amp; 0 &amp; 1 &amp; 0\\
+            0 &amp; 0 &amp; 0 &amp; 1\\
+            \end{bmatrix}
+        
+    \end{aligned}$$ To determine the conditions we want $R&#39;$ and $p&#39;$ to
+    meet, we match terms in the matrices. Thus, for this product to
+    equal the identity matrix, we have the following conditions:
+    $$\begin{aligned}
+            I_3 &amp;= RR&#39;\\
+            0 &amp;= Rp&#39; + p
+        
+    \end{aligned}$$ Let&#39;s solve these equations for $R&#39;$ and $p&#39;$ one at
+    a time. Starting with the first: $$\begin{aligned}
+            RR&#39; &amp;= I_3\\
+            R&#39; &amp;= R^{-1}\\
+            R&#39; &amp;= R^T
+        
+    \end{aligned}$$ Where in the last step, we apply the property of
+    $SO(3)$ that the inverse of a rotation matrix is equal to its
+    transpose. Since the inverse of a rotation matrix is unique, we
+    conclude that the solution for $R&#39;$ is unique as well.\
+    To solve for $p&#39;$, we look at the second equation. $$\begin{aligned}
+            0 &amp;= Rp&#39; + p\\
+            -p &amp;= Rp&#39;\\
+            -R^Tp &amp;= p&#39;
+        
+    \end{aligned}$$ Where in the last step, we once again used the
+    property of $SO(3)$ that $R^T = R^{-1}$. Note that the solution to
+    this equation is *also* unique! Where does this solution leave us?\
+    We conclude that for any homogeneous transformation
+    $g = (R, p) \in SE(3)$, the inverse of $g$ may be expressed:
+    $$\begin{aligned}
+            g^{-1} = 
+            \begin{bmatrix}
+            R^T &amp; -R^Tp\\
+            0 &amp; 1
+            \end{bmatrix}
+        
+    \end{aligned}$$ Because this matrix is always defined and an element
+    of $SE(3)$ for all choices of $R$ and $p$, we conclude that every
+    $g \in SE(3)$ has a unique inverse $g^{-1} \in SE(3)$.
+
+4.  **The binary operation is associative on the set.** Just as with
+    $SO(3)$, this is the simplest group property to prove. Because
+    matrix multiplication is associative for any matrix, multiplication
+    is automatically associative on $SE(3)$.
+
+As $SE(3)$ satisfies all of the necessary properties, we conclude that
+$SE(3)$ is a group. This completes the proof! $\square$\
+\
+Amazing! We have almost *all* of the properties we&#39;d like $SE(3)$ to
+satisfy. Before we continue, we have one more formality that we need to
+develop.\
+Recall that in our definition of $SE(3)$, we assumed that elements of
+$SE(3)$ were rigid body transformations. Before we move on, it&#39;s
+important that we take the time to verify that this actually is the
+case.\
+Although proving results like this might seem somewhat inconsequential,
+remember that it&#39;s this proof-based footing that will allow us to make
+sure our conclusions about rigid bodies are sound.
+
+::: shaded
+::: proposition
+**Proposition 2**. ***Elements of $\mathbf{SE(3)}$ are Rigid Body
+Transformations**\
+Given a rigid body transformation $g \in SE(3)$ consisting of both a
+rotation $R \in SO(3)$ and a translation $p \in \mathbb{R}^3$, $g$ is a
+rigid body transformation. This implies:*
+
+1.  *$g$ preserves distance between points: $$\begin{aligned}
+            ||g(d-q)|| = ||d-q|| \; \forall \; d, q\in \mathbb{R}^3
+        
+    \end{aligned}$$*
+
+2.  *$g$ preserves orientation between vectors: $$\begin{aligned}
+            (g(v))\times(g(w)) = g(v\times w) \; \forall \; v, w \in \mathbb{R}^3
+        
+    \end{aligned}$$*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+Before we begin the proof, it&#39;s important to take note of the new
+mathematical notation we used in the proposition above. The symbol
+$\forall$ means &quot;for all,\&quot; when read out loud. For example,
+$\forall \; v \in \mathbb{R}^3$ means &quot;for all vectors $v$ in
+$\mathbb{R}^3$.\&quot;\
+With this in mind, let&#39;s begin the proof!\
+**Proof:** We may prove this proposition by proving each statement one
+at a time. Let&#39;s begin with the first statement, that $g$ preserves the
+distance between points.\
+Let $g$ be an arbitrary element of $SE(3)$, with rotation matrix
+$R \in SO(3)$ and translation $p \in \mathbb{R}^3$. Suppose that we have
+two arbitrary points, $d, q\in \mathbb{R}^3$. Instead of working
+*directly* with these points, there&#39;s a shortcut that will help us out!\
+Recall that the difference of two points is a vector. Let&#39;s define the
+vector $v = d - q\in \mathbb{R}^3$, and try working with this instead!\
+Using our vector $v$, our proof simplifies to showing: $$\begin{aligned}
+    ||g(v)|| = ||v|| \; \forall v \in \mathbb{R}^3
+\end{aligned}$$ To prove this statement, let&#39;s try working in
+homogeneous coordinates. We know that for any vector
+$v \in \mathbb{R}^3$, the homogeneous coordinates of the vector are:
+$$\begin{aligned}
+    \overline{v} = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}$$ Recall that to convert a *vector* into homogeneous
+coordinates, we append a zero to the end. Be careful not to append a
+one - we do that for *points*, not vectors!\
+Let&#39;s apply the rigid body transformation $g$ to this vector in
+homogeneous coordinates. $$\begin{aligned}
+    g(v) = g\cdot\overline{v}=
+    \begin{bmatrix}
+    R &amp; p\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    Rv\\
+    0
+    \end{bmatrix}
+\end{aligned}$$ Now, we take the norm of both sides, and apply the
+property that rotations preserve the length of vectors:
+$$\begin{aligned}
+    ||g(v)|| &amp;= \Big|\Big|\begin{bmatrix}
+    Rv\\
+    0
+    \end{bmatrix}\Big|\Big|\\
+    ||g(v)|| &amp;= ||Rv|| = ||v||
+\end{aligned}$$ Substituting in the definition of our vector $v$, we
+observe: $$\begin{aligned}
+    ||g(d - q)|| = ||d - q||
+\end{aligned}$$ Great! This proves the first property. Now let&#39;s take a
+look at the second.\
+We want to show that $g(v) \times g(w) = g(v\times w)$ for arbitrary
+vectors $v, w \in \mathbb{R}^3$. Once again, we&#39;ll work in homogeneous
+coordinates to prove this statement. Let $\overline{v}, \overline{w}$ be
+the homogeneous coordinates of vectors $v$ and $w$.\
+By the definition of our transformation $g$ and the vectors $v$ and $w$,
+we find: $$\begin{aligned}
+    g\overline{v} &amp;= \begin{bmatrix}
+    Rv\\
+    0
+    \end{bmatrix}\\
+    g\overline{w} &amp;= \begin{bmatrix}
+    Rw\\
+    0
+    \end{bmatrix}\\
+\end{aligned}$$ Moving from homogeneous coordinates *back* to the
+original representation of the vector, this tells us that for any rigid
+body transformation $g\in SE(3)$ and any vectors
+$v, w \in \mathbb{R}^3$: $$\begin{aligned}
+    g(v) = Rv\\
+    g(w) = Rw
+\end{aligned}$$ Now, we may prove the statement about the cross product.
+Using our results from above, this statement is equivalent to showing:
+$$\begin{aligned}
+    (Rv)\times(Rw) = R(v\times w)
+\end{aligned}$$ But, we notice that this statement is equivalent to the
+statement we proved when showing rotations are rigid body transforms!
+Thus, we already know that the second statement also must be true.\
+As transformations in $SE(3)$ satisfy both properties of rigid body
+transformations, we conclude that all transformations in $SE(3)$ are
+rigid body transformations. This completes the proof. $\square$
+
+## Exponential Coordinates on $\mathbf{SE(3)}$
+
+Where do we go from here? We&#39;ve developed a convenient framework for
+representing general rigid body transformations, we&#39;ve shown that the
+set of these transformations is a group under multiplication, and we&#39;ve
+verified that our representation of these transformations is actually
+rigid!\
+Our next step in the development of general rigid motion will closely
+mirror our development of rotation matrices. Recall that when taking a
+closer look at the structure of rotation matrices, we found a set of
+*constraints* on $SO(3)$ that reduced its dimension. Instead of $SO(3)$
+being a 9-dimensional space, as one might expect for a set of
+$3\times 3$ matrices, we found that there were 6 fundamental constraints
+on the entries of all rotation matrices. This led to our eventual
+development of *exponential coordinates*, which gave us a way to
+efficiently represent rotations with only 3 parameters!\
+If we were able to represent the group of rotation matrices, $SO(3)$,
+with only 3 parameters, it&#39;s not unreasonable to think we might be able
+to do something similar for $SE(3)$! In this section, we&#39;ll develop a
+similarly efficient representation for $SE(3)$.
+
+### Restrictions on SE(3)
+
+Let&#39;s begin by analyzing the restrictions on the set of all homogeneous
+rigid body transformations. Suppose we have an arbitrary rigid body
+transformation $g \in SE(3)$ with an associated rotation matrix
+$R \in SO(3)$ and translation $p \in \mathbb{R}^3$.\
+Using our now familiar definition of homogeneous transformation
+matrices, we know we can represent $g$ in homogeneous coordinates as:
+$$\begin{aligned}
+    g = 
+    \begin{bmatrix}
+    R &amp; p\\
+    0 &amp; 1
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    r_{11} &amp; r_{12} &amp; r_{13} &amp; p_1\\
+    r_{21}  &amp; r_{22}  &amp; r_{23} &amp; p_2\\
+    r_{31}  &amp; r_{32}  &amp; r_{33} &amp; p_3\\
+    0 &amp; 0 &amp; 0 &amp; 1
+    \end{bmatrix}
+    \in \mathbb{R}^{4\times 4}
+\end{aligned}$$ Are we able to independently change all 16 entries of
+this matrix while having it remain in $SE(3)$? Let&#39;s find the total
+number of restrictions on this matrix, and see if we can find out how
+many terms we can *truly* independently control!\
+First, let&#39;s take a look at the rotation matrix, $R$. From our previous
+development of rotation matrices, we already know that there are 6
+restrictions on the entries of rotation matrices. Recall that these come
+from the following conditions on the columns of rotation matrices:
+$$\begin{aligned}
+    r_i^Tr_j &amp;= \begin{cases}
+        0 &amp; \text{if } i \neq j\\
+        1 &amp; \text{if } i = j
+    \end{cases}\\
+    ||r_i|| &amp;= 1
+\end{aligned}$$ Thus, $g$ already has $6$ restrictions. What other
+restrictions are there on our matrix in $SE(3)$? We know that by
+definition, the bottom row of the matrix must *always* be:
+$$\begin{aligned}
+    \begin{bmatrix}
+    0 &amp; 0 &amp; 0 &amp; 1
+    \end{bmatrix}
+\end{aligned}$$ This gives us four more restrictions on the entries of
+$g$.\
+Finally, let&#39;s take a look at the point, $p \in \mathbb{R}^3$. Are there
+any restrictions on the point? Since all we require is that the point is
+a 3D vector filled with real entries, $p \in \mathbb{R}^3$ applies no
+further restrictions to the matrix! The translation for a rigid motion
+can be *anything*.\
+This leaves us with a total of $6 + 4 = 10$ restrictions on the matrix.
+Since $g$ has 16 entries total, and 10 restrictions on those entries, we
+hypothesize that we *should* be able to represent every rigid body
+transformation $g$ using only $16 - 10 = 6$ parameters! What could they
+be?
+
+### A Twist in the Plot
+
+We may begin answering this question by splitting up rigid body
+transformations into their two parts: rotations and translations. We&#39;ll
+find it easier deal with each part separately, and come back and unite
+them at the end!\
+**Case 1: Pure rotational motion**\
+Let&#39;s start by examining purely *rotational* motion in $SE(3)$. Imagine
+we have a rigid body that rotates with angular velocity
+$\omega \in \mathbb{R}^3$:
+
+::: center
+![image](images/rotating_body.png)\
+*Remember, this body is only rotating, not translating!*
+</pre></div>
+</div>
+<p>This rigid body has a point <span class="math notranslate nohighlight">\(p\in \mathbb{R}^3\)</span> somewhere on the body
+and a point <span class="math notranslate nohighlight">\(q\in \mathbb{R}^3\)</span> somewhere on its axis of rotation. Note
+that we take both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> to be represented in the world frame.<br />
+We recall that we may express the velocity of a point <span class="math notranslate nohighlight">\(p\)</span> on a rotating
+body using the following relationship: $<span class="math notranslate nohighlight">\(\begin{aligned}
+    \dot p &amp;= \omega \times (p - q)\\
+    \dot p &amp;= \hat\omega (p-q)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>p - q<span class="math notranslate nohighlight">\( is the position vector from the axis of
+rotation to the point of interest. Instead of jumping straight to
+solving this equation, like we did for \)</span>SO(3)<span class="math notranslate nohighlight">\(, we'll first *rewrite* it
+in homogeneous coordinates as follows: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \begin{bmatrix}
+    \dot p\\
+    0
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    \hat\omega (p-q)\\
+    0
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    \hat\omega p- \hat\omega q\\
+    0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Note that the homogeneous coordinates constant \)</span>1<span class="math notranslate nohighlight">\(
+becomes 0 because the time derivative of a constant is always 0.\
+Let's now see if we can factor out the point \)</span>p<span class="math notranslate nohighlight">\( in homogeneous
+coordinates. If we're able to achieve this, we'll have found a
+transformation from \)</span>p<span class="math notranslate nohighlight">\( to \)</span>\dot p<span class="math notranslate nohighlight">\( in homogeneous coordinates. We find:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \begin{bmatrix}
+    \dot p\\
+    0
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    \hat\omega &amp; - \hat\omega q\\
+    0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}\\
+    \dot{\overline{p}} &amp;= 
+    \begin{bmatrix}
+    \hat\omega &amp; - \hat\omega q\\
+    0 &amp; 0
+    \end{bmatrix}
+    \overline{p}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Amazing! We now have a transformation between a point in
+homogeneous coordinates and its derivative in homogeneous coordinates.\
+Let's take a closer look at the matrix that performs this
+transformation. In one entry, we have \)</span>\hat\omega<span class="math notranslate nohighlight">\(, and in another
+entry, we have \)</span>-\hat\omega q = -\omega \times q<span class="math notranslate nohighlight">\(. By our definition of
+angular velocity, this second entry, \)</span>-\omega \times q<span class="math notranslate nohighlight">\(, *must* be a
+type of linear velocity! Let's call this velocity \)</span>v<span class="math notranslate nohighlight">\( for convenience.
+Note that this is *not* the linear velocity of point \)</span>p<span class="math notranslate nohighlight">\( in the world
+frame, but rather a component of that velocity. This gives us the
+expression: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \dot{\overline{p}} &amp;= 
+    \begin{bmatrix}
+    \hat\omega &amp; v\\
+    0 &amp; 0
+    \end{bmatrix}
+    \overline{p}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( We give the \)</span>4\times 4<span class="math notranslate nohighlight">\( matrix in this equation a
+special name, \)</span>\hat\xi<span class="math notranslate nohighlight">\(. Using our new names for all of the terms in the
+equation, we have: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \dot{\overline{p}} &amp;= \hat\xi \overline{p}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Recognizing this as a linear matrix differential
+equation, we may apply the matrix exponential to solve for
+\)</span>\overline{p}(t)<span class="math notranslate nohighlight">\(: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{p}(t) = e^{\hat\xi t}\overline{p}(0)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Recall that earlier, we assumed that \)</span>||\omega|| = 1<span class="math notranslate nohighlight">\(.
+This means that for every 1 second that passes, the rigid body rotates
+by 1 radian about the axis of rotation. This implies that the time, \)</span>t<span class="math notranslate nohighlight">\(,
+equals the angular displacement of the body, \)</span>\theta<span class="math notranslate nohighlight">\(. Thus, we may
+write the final relation in terms of angular displacement as:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{p}(\theta) = e^{\hat\xi \theta}\overline{p}(0)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Thus, we conclude that for a rotating rigid body, we may
+use the matrix exponential of the matrix \)</span>\hat\xi<span class="math notranslate nohighlight">\( to map between the
+initial configuration and the configuration of the body after being
+rotated by \)</span>\theta<span class="math notranslate nohighlight">\( about an axis of rotation \)</span>\omega<span class="math notranslate nohighlight">\(.\
+Before we discuss what this \)</span>\hat\xi$ actually represents, let’s gain
+some more perspective by treating the case of pure translational
+motion.<br />
+<strong>Case 2: Pure translational motion</strong></p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/translating_rb.png)
+</pre></div>
+</div>
+<p>Imagine that an arbitrary rigid body is moving through space under
+<em>pure</em> translational motion. Suppose that this rigid body movies with
+velocity <span class="math notranslate nohighlight">\(v \in \mathbb{R}^3\)</span>, and that <span class="math notranslate nohighlight">\(||v|| = 1\)</span>. Since the body is
+rigid and isn’t rotating, this means that <em>every</em> point on the body
+moves with this velocity <span class="math notranslate nohighlight">\(v\)</span>.<br />
+Thus, picking an arbitrary point <span class="math notranslate nohighlight">\(p\)</span> on the rigid body, we may write the
+following differential equation describing the motion of <span class="math notranslate nohighlight">\(p\)</span>:
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+    \dot{p}(t) = v
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This differential equation simply comes from the
+definition of velocity as the time derivative of position. As we did
+with the rotating case, let's rewrite this in homogeneous coordinates.
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \begin{bmatrix}
+    \dot{p}\\
+    0
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Previously, we aimed to write the differential equation
+for the motion of the point as a *mapping* from its homogeneous
+coordinates to its derivative in homogeneous coordinates. Let's do the
+same here!\
+We may write this mapping as follows: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \begin{bmatrix}
+    \dot{p}\\
+    0
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    0 &amp; v\\
+    0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}\\
+    \dot{\overline{{p}}} &amp;= 
+     \begin{bmatrix}
+    0 &amp; v\\
+    0 &amp; 0
+    \end{bmatrix}
+    \overline{p}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Once again, we find a \)</span>4\times 4<span class="math notranslate nohighlight">\( matrix that maps the
+point in homogeneous coordinates to its derivative. Curiously, this
+mapping also has a velocity term appearing in its upper right entry!\
+Although at the moment, this might seem like a roundabout way of
+approaching this problem, the pattern of the \)</span>4\times 4<span class="math notranslate nohighlight">\( matrix
+appearing is no coincidence, and is something we'll be able to make
+great use of! We'll soon formalize the reason for its appearance.\
+Once again, we name this \)</span>4\times 4<span class="math notranslate nohighlight">\( matrix \)</span>\hat\xi<span class="math notranslate nohighlight">\(. Writing out our
+equation in full: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \dot{\overline{p}} &amp;= 
+    \hat\xi
+    \overline{p}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Recognizing this as a linear matrix differential
+equation, we solve for \)</span>\overline{p}(t)<span class="math notranslate nohighlight">\( using the matrix exponential:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{p}(t) = e^{\hat\xi t} \overline{p}(0)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Remember that when setting up this problem, we mentioned
+that \)</span>||v|| = 1<span class="math notranslate nohighlight">\(. What effect does this have on our solution? If
+\)</span>||v|| = 1<span class="math notranslate nohighlight">\(, for every second that passes, we will travel 1 unit of
+distance in the direction of the velocity vector. Using this fact, if we
+define the linear displacement of the rigid body to be \)</span>\theta<span class="math notranslate nohighlight">\(, we
+conclude that for \)</span>||v|| = 1<span class="math notranslate nohighlight">\(, \)</span>\theta = t<span class="math notranslate nohighlight">\(.\
+Substituting, we end up with the equation: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \overline{p}(\theta) = e^{\hat\xi \theta} \overline{p}(0)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Miraculously, the matrix exponential *also* gives us a
+map between the initial configuration of a rigid body and its
+configuration after translating by \)</span>\theta<span class="math notranslate nohighlight">\( units of distance!\
+Furthermore, this exponential has the *exact* same form as for pure
+rotational motion, only subject to the choice of \)</span>\hat\xi<span class="math notranslate nohighlight">\(! What's
+really going on here? What does \)</span>\hat\xi<span class="math notranslate nohighlight">\( really represent?\
+Let's take a closer look. In general, we define \)</span>\hat\xi<span class="math notranslate nohighlight">\( using two
+vectors: an angular velocity \)</span>\omega \in \mathbb{R}^3<span class="math notranslate nohighlight">\( and a linear
+velocity \)</span>v \in \mathbb{R}^3<span class="math notranslate nohighlight">\(, where \)</span>\omega<span class="math notranslate nohighlight">\( may be the zero vector. We
+express \)</span>\hat\xi<span class="math notranslate nohighlight">\( as: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat \xi
+    = 
+    \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}
+\end{aligned}\)</span>$ This definition is one that’s <em>extremely</em> important to
+the study of rigid body transformations! As we saw above, this is a very
+powerful matrix - we were able to use matrices of this form to compute
+both rotational and translational rigid body transformations.<br />
+The set of matrices of this form is so important that it has a special
+name!</p>
+<div class="highlight-shaded notranslate"><div class="highlight"><pre><span></span>
+::: definition
+**Definition 1**. *$\mathbf{se(3)}$\
+The set of all matrices of the form: $$\begin{aligned}
+    \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}
+\end{aligned}$$ Where $\omega, v \in \mathbb{R}^3$ is called $se(3)$.
+Formally, we may express this as: $$\begin{aligned}
+    se(3) := \Big\{ \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix} \in \mathbb{R}^{4\times 4} \; \Big | \; \omega, v \in \mathbb{R}^3 \Big\}
+\end{aligned}$$ $se(3)$ is also known as the twist space.*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+You may recall how, when dealing with rotation matrices, we defined a
+set $so(3)$, which helped us solve for rotation matrices using the
+matrix exponential. $se(3)$ is a *generalization* of $so(3)$ to the set
+of all rigid body transformations!\
+Using elements of $se(3)$, we may generate different rigid body
+transformations in $SE(3)$ using the matrix exponential.
+
+::: center
+![image](images/twist_map.png)\
+*Above: just like $so(3) \to SO(3)$ using the matrix exponential,
+$se(3) \to SE(3)$ using the matrix exponential!*
+</pre></div>
+</div>
+<p>Something that you might have been wondering is - why use the hat
+symbol? A clue to why this is lies in the definition of <span class="math notranslate nohighlight">\(so(3)\)</span>. Using
+the definition of the hat map, we know that every matrix
+<span class="math notranslate nohighlight">\(\hat\omega \in so(3)\)</span> actually came from a vector
+<span class="math notranslate nohighlight">\(\omega \in\mathbb{R}^3\)</span>. Is there a vector corresponding to <span class="math notranslate nohighlight">\(\hat\xi\)</span>?
+What might it be? Let’s take one more look at the definition of
+<span class="math notranslate nohighlight">\(\hat\xi \in se(3)\)</span>. $<span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat\xi = 
+     \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix} \in se(3)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( We notice that we may generate the entire matrix
+\)</span>\hat\xi \in \mathbb{R}^{4\times 4}<span class="math notranslate nohighlight">\( using just two vectors,
+\)</span>\omega, v \in \mathbb{R}^3<span class="math notranslate nohighlight">\(. Thus, just as there was a vector
+\)</span>\omega \in \mathbb{R}^3<span class="math notranslate nohighlight">\( corresponding to every \)</span>\hat{\omega}<span class="math notranslate nohighlight">\(, there
+is a vector \)</span>\xi<span class="math notranslate nohighlight">\( corresponding to every \)</span>\hat\xi<span class="math notranslate nohighlight">\(. We define this
+vector by extracting the \)</span>v<span class="math notranslate nohighlight">\( and \)</span>\omega<span class="math notranslate nohighlight">\( from \)</span>\hat\xi<span class="math notranslate nohighlight">\( and stacking
+them on top of each other: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix} \in \mathbb{R}^6
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This six-dimensional vector is known as a **twist**! A
+twist \)</span>\xi<span class="math notranslate nohighlight">\( is a generalization of an axis of rotation \)</span>\omega<span class="math notranslate nohighlight">\( to the
+case of general rigid body motion.\
+Just as we defined a hat map on \)</span>\mathbb{R}^3<span class="math notranslate nohighlight">\( that took us between
+\)</span>\omega \in \mathbb{R}^3<span class="math notranslate nohighlight">\( and \)</span>\hat\omega \in so(3)<span class="math notranslate nohighlight">\(, we may define a
+second hat map that takes us from \)</span>\xi = (v, \omega) \in \mathbb{R}^6<span class="math notranslate nohighlight">\(
+to \)</span>\hat\xi \in se(3)$.</p>
+<div class="highlight-shaded notranslate"><div class="highlight"><pre><span></span>
+::: definition
+**Definition 2**. ***The hat map on $\mathbf{\mathbb{R}^6}$**\
+Given a vector $\xi \in \mathbb{R}^6$, defined: $$\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix} \in \mathbb{R}^6
+\end{aligned}$$ The hat map of $\xi$ is defined
+$\wedge: \mathbb{R}^6 \to se(3)$ such that: $$\begin{aligned}
+    \hat\xi = 
+    \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix} \in se(3)
+\end{aligned}$$ This is also referred to as the &quot;wedge map.\&quot;*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+As it&#39;s also important to extract $(v, \omega)$ from a matrix in
+$se(3)$, we define the inverse operation, the vee map.
+
+::: shaded
+::: definition
+**Definition 3**. ***The vee map**\
+Given a matrix $\hat\xi \in se(3)$, the vee map of $\hat\xi$ is defined
+$\vee:se(3) \to \mathbb{R}^6$ such that: $$\begin{aligned}
+    (\hat\xi)^\vee
+    =
+    \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}^\vee
+    = 
+    \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix} = \xi
+\end{aligned}$$*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+In summary, the hat map on $\mathbb{R}^6$ will take us from a twist
+vector $\xi = (v, \omega) \in \mathbb{R}^6$ to a matrix
+$\hat\xi \in se(3)$, whereas the vee map will take us from a matrix
+$\hat\xi \in se(3)$ back to a twist vector
+$\xi = (v, \omega) \in \mathbb{R}^6$.\
+We&#39;ve just covered an enormous amount of material! Let&#39;s take a moment
+to summarize what we&#39;ve discovered about representing general rigid body
+motions using exponential coordinates.
+
+1.  **Representing pure rotational motions:**\
+    Let&#39;s review the steps for representing pure rotational motion in
+    $SE(3)$ using exponential coordinates. For every pure rotation, we
+    may define a unit axis of rotation, $\omega \in \mathbb{R}^3$, such
+    that $||\omega|| = 1$.\
+    Using this axis, we define a twist corresponding to the rotational
+    motion: $$\begin{aligned}
+            \xi = 
+            \begin{bmatrix}
+                v\\
+                \omega
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+                -\omega \times q\\
+                \omega
+            \end{bmatrix}
+        
+    \end{aligned}$$ Where $q\in \mathbb{R}^3$ is any point on the axis
+    of rotation.\
+    Using exponential coordinates, we may compute the transformation
+    from an initial point on the rigid body $\overline{p}(0)$ to
+    $\overline{p}(\theta)$, its position after a rotation about $\omega$
+    by an angle $\theta$. This transformation is defined:
+    $$\begin{aligned}
+            g = e^{\hat\xi \theta}
+        
+    \end{aligned}$$ And may be used as follows: $$\begin{aligned}
+            \overline{p}(\theta) =  e^{\hat\xi \theta} \overline{p}(0) = g \overline{p}(0)
+        
+    \end{aligned}$$
+
+2.  **Representing pure translational motions:**\
+    How can we compute the transformation associated with a pure
+    translation in exponential coordinates? For every pure translation,
+    we may define a unit velocity vector, $v \in \mathbb{R}^3$, that
+    points in the direction of translation. Remember, $||v|| = 1$.
+    Because this is a pure translation, the angular velocity vector of
+    the body, $\omega \in \mathbb{R}^3$, must equal 0.\
+    Thus, for a pure translation, we define the twist: $$\begin{aligned}
+            \xi = 
+            \begin{bmatrix}
+                v\\
+                0
+            \end{bmatrix}
+        
+    \end{aligned}$$ Using this twist, we can compute the transformation
+    of translating by $\theta$ units of distance in the direction of
+    $v$. We compute this translation as: $$\begin{aligned}
+            g = e^{\hat\xi \theta}
+        
+    \end{aligned}$$ We may apply this transformation to translate from a
+    point $\overline{p}(0)$ to $\overline{p}(\theta)$, a point shifted
+    by $\theta$ units of distance in the direction of $v$.
+    $$\begin{aligned}
+            \overline{p}(\theta) = e^{\hat\xi \theta} \overline{p}(0) = g \overline{p}(0)
+        
+    \end{aligned}$$
+
+Note that motions which are purely rotational are known as **revolute**,
+while motions that are purely translational are known as **prismatic**.
+
+### Composing Exponential Coordinates
+
+We now have all we need to perform an initial analysis of the case where
+we have *both* rotational and translational motion! How can we think
+about modeling this more complex case?
+
+::: center
+![image](images/general_rb_transf.png)\
+*Above: a rigid body transformation involving both rotation and
+translation*
+</pre></div>
+</div>
+<p>One way to think about the rigid body transformation between two
+rotated, translated frames is as a <em>composition</em> of two simpler
+transformations: a pure rotation and a pure translation.<br />
+Let’s work out some of the simple details of this approach, and think
+about its advantages and limitations.<br />
+Our first step in modeling this approach is to come up with the two
+required twists: one for a pure rotation and one for a pure
+translation.<br />
+Let <span class="math notranslate nohighlight">\(\xi_1 \in \mathbb{R}^6\)</span> be the twist corresponding to the pure
+rotation. Recall from the previous section that we may define <span class="math notranslate nohighlight">\(\xi_1\)</span>
+as: $<span class="math notranslate nohighlight">\(\begin{aligned}
+    \xi_1 
+    = 
+    \begin{bmatrix}
+        -\omega \times q\\
+        \omega
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>\omega<span class="math notranslate nohighlight">\( is the unit vector axis of rotation in
+\)</span>\mathbb{R}^3<span class="math notranslate nohighlight">\( and \)</span>q \in \mathbb{R}^3<span class="math notranslate nohighlight">\( is a point on the axis of
+rotation.\
+Now, let \)</span>\xi_2 \in \mathbb{R}^6<span class="math notranslate nohighlight">\( be the twist corresponding to a pure
+translational motion. Recall from the previous section that we may
+define \)</span>\xi_2<span class="math notranslate nohighlight">\( as follows: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \xi_2 = 
+    \begin{bmatrix}
+        v\\
+        0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>v<span class="math notranslate nohighlight">\( is a unit vector pointing in the direction of
+translation.\
+To find the overall transformation, we may compose the exponentials of
+these two twists via multiplication. First, we define the transformation
+that purely changes the orientation: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_1 = e^{\hat\xi_1 \theta_1}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>\theta_1 \in \mathbb{R}<span class="math notranslate nohighlight">\( is the necessary amount
+of rotation. Second, we define the transformation that purely changes
+the position in space: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_2 = e^{\hat\xi_2 \theta_2}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>\theta_2 \in \mathbb{R}<span class="math notranslate nohighlight">\( is the necessary amount
+of translation.\
+We may compose these two transformations via multiplication to find the
+overall transformation between the two rotated, translated frames:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_{ab} = e^{\hat\xi_1 \theta_1}e^{\hat\xi_2 \theta_2}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This is one valid way to represent a transformation
+involving *both* rotation and translation! However, note that this
+approach to the problem involves the use of two twists,
+\)</span>\xi_1, ; \xi_2<span class="math notranslate nohighlight">\(, and two displacements, \)</span>\theta_1,; \theta_2<span class="math notranslate nohighlight">\(. Is
+there a single twist and displacement we can use to represent the
+*entire* transformation?\
+As it happens, the answer to this question is yes! We'll soon explore
+this answer in full detail using an approach known as *screw
+coordinates*.\
+This approach involves representing *any* arbitrary transformation,
+whether it involves rotation, translation, or a combination thereof,
+through a single twist \)</span>\xi<span class="math notranslate nohighlight">\( and a single displacement \)</span>\theta<span class="math notranslate nohighlight">\(. This
+approach will allow us to represent an arbitrary transformation \)</span>g<span class="math notranslate nohighlight">\( as:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g = e^{\hat\xi\theta}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( For this general case of screw coordinates, what does
+the twist \)</span>\xi<span class="math notranslate nohighlight">\( look like? This twist will be of the form:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix} \in \mathbb{R}^6
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>v<span class="math notranslate nohighlight">\( is a linear velocity and \)</span>\omega<span class="math notranslate nohighlight">\( is a unit
+angular velocity vector.\
+Although we won't discuss how \)</span>v<span class="math notranslate nohighlight">\( and \)</span>\omega$ are computed in this
+section, keep this form in mind as we derive some deeper properties of
+exponential coordinates!</p>
+</div>
+<div class="section" id="motivating-exponential-coordinates">
+<h3>Motivating Exponential Coordinates<a class="headerlink" href="#motivating-exponential-coordinates" title="Permalink to this headline">#</a></h3>
+<p>Before we proceed further with our development of exponential
+coordinates using twists, let’s check in and make sure we understand
+<em>why</em> this is something we even want to do!<br />
+At this stage in the process, it might seem unclear as to why we want to
+go to the trouble of using the matrix exponential and twists. Why not
+just deal directly with the rigid body equations of motion?<br />
+One of the main reasons we like dealing with twists and exponential
+coordinates is that they help us <em>manage complexity</em> when dealing with
+the motion of robots and other rigid bodies.<br />
+Consider the robot arm below, for example, which has several rigid body
+links.<br />
+Instead of having to think about each individual rotation and
+translation, we manage the complexity of the system by hiding every
+movement of the arm behind a clean-looking exponential.</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/manipulator_arm.png)
+</pre></div>
+</div>
+<p>Imagine we wanted to find the transform from the base of the robot all
+the way to the hand at the end of the robot. This transform would be a
+function of the three joint angles, <span class="math notranslate nohighlight">\(\theta_1, \theta_2, \theta_3\)</span> as
+well as the lengths of each rigid link.<br />
+If we were to try computing this transform from scratch, we would end up
+with a nightmarishly complex jumble of matrix multiplications and vector
+additions.<br />
+But, if we use twist coordinates for each rotational joint in the arm,
+we’ll soon see that we can elegantly represent the transformation from
+the base to the hand of the robot as a simple product of exponentials.
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+    g_{bh} = e^{\hat\xi_1 \theta_1}e^{\hat\xi_2 \theta_2}e^{\hat\xi_3 \theta_3}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( As we can see in the formula above, the matrix
+exponential *abstracts away* all of the complex mathematics of motion
+into a simple, easy to read formula.\
+In the formula above, we see that we have a robot with three joints,
+each of which may be described by a twist \)</span>\xi<span class="math notranslate nohighlight">\( and a position
+\)</span>\theta$.<br />
+Furthermore, if one of the links on our robot was prismatic
+(translational), accounting for this would be as simple as adding
+another exponential to our transform formula.<br />
+As we’ll soon see, twists and the matrix exponential take a complex
+geometric problem and simplify it to the point where finding transforms
+for complex systems becomes a formulaic process.</p>
+</div>
+<div class="section" id="properties-of-exponential-coordinates">
+<h3>Properties of Exponential Coordinates<a class="headerlink" href="#properties-of-exponential-coordinates" title="Permalink to this headline">#</a></h3>
+<p>Now that we’ve established the basic definitions of exponential
+coordinates for general rigid body transformations, we must verify that
+they hold certain important properties. Once we build up a small set of
+core properties for exponential coordinates, we’ll be ready to apply
+them to real robotic systems. Let’s begin!</p>
+<div class="highlight-shaded notranslate"><div class="highlight"><pre><span></span>
+::: proposition
+**Proposition 3**. ***The matrix exponential maps from $\mathbf{se(3)}$
+to $\mathbf{SE(3)}$**\
+For all valid twists $\xi = (v, \omega) \in \mathbb{R}^6$,
+$exp(\hat\xi\theta) \in SE(3)$.*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+**Proof:** This proposition asks us to prove that the matrix exponential
+of a twist is a valid rigid body transformation in $SE(3)$. The approach
+we&#39;ll take to proving this is to show that for every twist
+$\xi \in \mathbb{R}^6$ and scalar $\theta \in \mathbb{R}$, there exists
+a rotation matrix $R \in SO(3)$ and a translation $p \in \mathbb{R}^3$
+such that: $$\begin{aligned}
+    e^{\hat\xi \theta} = 
+    \begin{bmatrix}
+        R &amp; p\\
+        0 &amp; 1
+    \end{bmatrix}
+\end{aligned}$$ If we can show that every exponential of a twist
+corresponds to a matrix of this form, we&#39;ll have shown that every
+exponential is in $SE(3)$. Let&#39;s get started!\
+Remember that we defined several types of twists. In this proof, we&#39;ll
+treat the types of twist one at a time for convenience, and show that
+they all correspond to transformations in $SE(3)$. We&#39;ll begin with the
+case of combined rotational and translational motion, and then analyze
+the simpler case of pure translational motion.\
+**Case 1: Nonzero rotational motion**\
+Let&#39;s begin by analyzing the twists corresponding to transformations
+with nonzero rotation. In this case, the translational motion can either
+be zero or nonzero. Our only condition is that there is some change in
+rotational orientation.\
+
+::: center
+![image](images/nonzero_rotation.png)\
+*Above: two cases with nonzero rotation*
+</pre></div>
+</div>
+<p>Let’s think about the ingredients that go into forming a twist for a
+motion with nonzero rotation. Let <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> be an
+angular velocity vector representing the axis of rotation, such that
+<span class="math notranslate nohighlight">\(||\omega|| = 1\)</span>. Let <span class="math notranslate nohighlight">\(v \in \mathbb{R}^3\)</span>.<br />
+Recall that in general, we may express the twist corresponding to a
+nonzero rotational motion as: $<span class="math notranslate nohighlight">\(\begin{aligned}
+    \xi = \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Recall that for the case of pure rotational motion, \)</span>v<span class="math notranslate nohighlight">\(
+simplifies to \)</span>v = -\hat\omega q<span class="math notranslate nohighlight">\(, where \)</span>q<span class="math notranslate nohighlight">\( is a point on the axis of
+rotation.\
+Let's write out the hat map of \)</span>\xi<span class="math notranslate nohighlight">\(. To ensure we understand the matrix
+we're working with, we'll write it out in full. \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat\xi = 
+    \begin{bmatrix}
+        \hat\omega &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    0 &amp; -\omega_3 &amp; \omega_2 &amp; v_1\\
+    \omega_3 &amp; 0 &amp; -\omega_1 &amp; v_2\\
+    -\omega_2 &amp; \omega_1 &amp; 0 &amp; v_2\\
+    0 &amp; 0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \in \mathbb{R}^{4\times 4}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Our goal is to take the matrix exponential of
+\)</span>\hat\xi \theta<span class="math notranslate nohighlight">\(, where \)</span>\theta \in \mathbb{R}<span class="math notranslate nohighlight">\( is an arbitrary angle of
+rotation, and show that the result is an element of \)</span>SE(3)<span class="math notranslate nohighlight">\(.\
+This is a challenging, multi-step proof! Before we begin, let's make a
+roadmap we can use to plan out our proof process.\
+First, we'll aim to transform the matrix exponential of this twist into
+a simpler, easier to work with form. Then, we'll try to find a closed
+form expression for that simpler form - an expression without any
+infinite sums. Finally, we'll transform it *back* to its original form
+and see if the resulting matrix is an element of \)</span>SE(3)<span class="math notranslate nohighlight">\(.\
+Let's begin! First, let's think of a way to transform the exponential
+\)</span>e^{\hat\xi \theta}<span class="math notranslate nohighlight">\( into a more workable form. We'll do this with a
+clever choice of rigid body transformation.\
+Suppose we have another rigid body transformation, \)</span>g_o \in SE(3)<span class="math notranslate nohighlight">\(. We
+define this transformation as follows: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_o = 
+    \begin{bmatrix}
+    I &amp; \omega\times v\\
+    0 &amp; 1
+    \end{bmatrix} \in SE(3)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>\omega<span class="math notranslate nohighlight">\( and \)</span>v<span class="math notranslate nohighlight">\( are the same as the \)</span>\omega<span class="math notranslate nohighlight">\( and
+\)</span>v<span class="math notranslate nohighlight">\( in the definition of \)</span>\hat\xi<span class="math notranslate nohighlight">\(.\
+Using the properties of \)</span>SE(3)<span class="math notranslate nohighlight">\(, we know that this matrix has an inverse
+\)</span>g_o^{-1}<span class="math notranslate nohighlight">\(, which is computed: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    g_o^{-1} = 
+    \begin{bmatrix}
+    I &amp; -\omega\times v\\
+    0 &amp; 1
+    \end{bmatrix} \in SE(3)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Instead of working directly with \)</span>exp(\hat\xi\theta)<span class="math notranslate nohighlight">\(,
+we're going to use this additional matrix to gain some insight into the
+exponential.\
+Because \)</span>g_o g_o^{-1} = g_o^{-1}g_o = I_4<span class="math notranslate nohighlight">\(, by the definition of a
+matrix inverse, we may make the following equality: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} &amp;= e^{(I_4) \hat\xi\theta (I_4)} = e^{(g_o g_o^{-1}) \hat\xi\theta (g_o g_o^{-1})}\\
+    e^{\hat\xi\theta} &amp;= e^{g_o (g_o^{-1} \hat\xi\theta g_o) g_o^{-1}}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Now, we may apply a property of the matrix exponential
+to extract two of the matrices from the exponent. We know that for any
+square, invertible matrix \)</span>P \in \mathbb{R}^{n\times n}<span class="math notranslate nohighlight">\(,
+\)</span>\exp(PAP^{-1}) = P\exp(A)P^{-1}<span class="math notranslate nohighlight">\(.\
+Let's apply these properties to the two outermost matrices in the
+expression we derived above: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} &amp;= e^{g_o (g_o^{-1} \hat\xi\theta g_o) g_o^{-1}}\\
+    e^{\hat\xi\theta} &amp;= g_o e^{g_o^{-1} \hat\xi g_o\theta}g_o^{-1}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Although it might initially seem like this is
+complicating our expression, this equivalent representation of
+\)</span>\exp(\hat\xi\theta)<span class="math notranslate nohighlight">\( will help us calculate a closed form value for the
+exponential. Let's get started on this calculation by focusing on the
+matrix inside the exponential, \)</span>g_o^{-1} \hat\xi g_o<span class="math notranslate nohighlight">\(. For convenience,
+we'll refer to this term as \)</span>\hat\xi’<span class="math notranslate nohighlight">\(.\
+Let's try and calculate the value of this expression. First, we'll
+expand out the matrix multiplication. \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat\xi' &amp;= g_o^{-1} \hat\xi g_o\\
+    &amp;= 
+    \begin{bmatrix}
+    I &amp; -\omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega &amp; v\\
+    0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    I &amp; \omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    &amp;= 
+    \begin{bmatrix}
+    I &amp; -\omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega &amp; \hat\omega^2v + v\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( To simplify this expression further, we'll use an
+identity we derived when solving for Rodrigues' formula. Recall from our
+Rodrigues' formula derivation that \)</span>\hat\omega^2 = \omega\omega^T - I<span class="math notranslate nohighlight">\(.
+Applying this formula to the expression above: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat\xi'
+    &amp;= 
+    \begin{bmatrix}
+    I &amp; -\omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega &amp; (\omega\omega^T - I)v + v\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    \hat\xi'&amp;=
+    \begin{bmatrix}
+    I &amp; -\omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv - v + v\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    \hat\xi'&amp;=
+    \begin{bmatrix}
+    I &amp; -\omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    \hat\xi'&amp;=
+    \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Now, we notice that this final expression for \)</span>\hat\xi’<span class="math notranslate nohighlight">\(
+matches the expression for the hat map of a twist! Thus,
+\)</span>\hat\xi’ \in se(3)<span class="math notranslate nohighlight">\(.\
+Let's go back to where we were in the overall problem. We were trying to
+calculate a value for: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} = g_o e^{g_o^{-1} \hat\xi g_o\theta}g_o^{-1} =  g_o e^{\hat\xi'\theta}g_o^{-1}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( So far, we've found a value for \)</span>\hat\xi ‘<span class="math notranslate nohighlight">\(. A good next
+step in this problem is to calculate \)</span>exp(\hat\xi’ \theta)<span class="math notranslate nohighlight">\(. Let's give
+this a try!\
+Using the definition of the matrix exponential: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi'\theta} = I + \hat\xi'\theta + \frac{(\hat\xi'\theta)^2}{2!} + \frac{(\hat\xi'\theta)^3}{3!} + ...
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( We'd now like to come up with a closed form matrix
+expression for this exponential. Recall that when deriving Rodrigues'
+formula, a process that had a similar goal of finding a closed form
+expression for an exponential, we found it helpful to compute a few
+powers of \)</span>\hat\omega<span class="math notranslate nohighlight">\(. Let's do the same for \)</span>\hat\xi’<span class="math notranslate nohighlight">\(, and see if we
+notice any recurring patterns. \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat\xi' &amp;= \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}\\
+    (\hat\xi')^2 &amp;= 
+    \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}\\
+   (\hat\xi')^2 &amp;= 
+    \begin{bmatrix}
+    \hat\omega^2 &amp; \hat\omega\omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Now, we notice that we have
+\)</span>\hat\omega \omega = \omega \times \omega<span class="math notranslate nohighlight">\( as a part of the upper right
+entry of the matrix. Since the cross product of any vector with itself
+is the zero vector, this entry drops out to product the following:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    (\hat\xi')^2 &amp;= 
+    \begin{bmatrix}
+    \hat\omega^2 &amp; 0\\
+    0 &amp; 0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Let's use this result to compute one more exponent.
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    (\hat\xi')^3 
+    &amp;= (\hat\xi')(\hat\xi')^2 \\
+    &amp;= \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    \hat\omega^2 &amp; 0\\
+    0 &amp; 0
+    \end{bmatrix}\\
+    &amp;= 
+    \begin{bmatrix}
+    \hat\omega^3 &amp; 0\\
+    0 &amp; 0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( We notice that here, the only change we have is one
+higher power of \)</span>\hat\omega<span class="math notranslate nohighlight">\(! We can use these expressions for
+\)</span>(\hat\xi’)^2<span class="math notranslate nohighlight">\( and \)</span>(\hat\xi’)^3<span class="math notranslate nohighlight">\( to compute higher powers of
+\)</span>\hat\xi’<span class="math notranslate nohighlight">\(, and show that this pattern of an increasing exponent
+continues for higher powers.\
+Let's apply this pattern to compute the matrix exponential:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi'\theta} &amp;= I_4 + \hat\xi'\theta + \frac{(\hat\xi'\theta)^2}{2!} + \frac{(\hat\xi'\theta)^3}{3!} + ...\\
+    &amp;= 
+    I_4 + \begin{bmatrix}
+    \hat\omega &amp; \omega\omega^Tv\\
+    0 &amp; 0
+    \end{bmatrix}\theta
+    +
+    \begin{bmatrix}
+    \hat\omega^2 &amp; 0\\
+    0 &amp; 0
+    \end{bmatrix}\frac{\theta^2}{2!}
+    +
+    \begin{bmatrix}
+    \hat\omega^2 &amp; 0\\
+    0 &amp; 0
+    \end{bmatrix}\frac{\theta^3}{3!} + ...
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Adding up these matrices, we get the following:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi'\theta}
+    &amp;= 
+    \begin{bmatrix}
+    I_3 + \hat\omega + \frac{(\hat\omega\theta)^2}{2!} + \frac{(\hat\omega\theta)^2}{2!} + ... &amp; \omega\omega^Tv\theta\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Now, we recognize the sum in the upper left corner as
+the matrix exponential \)</span>\exp(\hat\omega \theta) \in SO(3)<span class="math notranslate nohighlight">\(. Thus, we
+have: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi'\theta}
+    &amp;= 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; \omega\omega^Tv\theta \\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Perfect! We have now calculated a closed-form value for
+the matrix exponential of \)</span>\hat\xi’<span class="math notranslate nohighlight">\(. All we have to do now is to relate
+this back to our original twist, \)</span>\hat\xi<span class="math notranslate nohighlight">\(. Recall: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} &amp;= g_o e^{\hat\xi'\theta}g_0^{-1}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( All that remains is to substitute in the value for each
+matrix and compute the result! \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} &amp;= g_o e^{\hat\xi'\theta}g_0^{-1}\\
+    e^{\hat\xi\theta}&amp;= \begin{bmatrix}
+    I &amp; \omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; \omega\omega^Tv\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    I &amp; -\omega\times v\theta\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    e^{\hat\xi\theta}&amp;=  
+    \begin{bmatrix}
+    I &amp; \omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; e^{\hat\omega\theta}( -\omega\times v) + \omega\omega^Tv\theta\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    e^{\hat\xi\theta}&amp;= 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; e^{\hat\omega\theta}( -\omega\times v) + \omega\omega^Tv\theta + \omega\times v\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    e^{\hat\xi\theta}&amp;= 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I - e^{\hat\omega\theta})( \omega\times v) + \omega\omega^Tv\theta\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Thus, we have found a *fully* closed-form expression for
+a nonzero rotational transform with twist \)</span>\xi<span class="math notranslate nohighlight">\(. Let' now verify that
+this matrix is actually in \)</span>SE(3)<span class="math notranslate nohighlight">\(.\
+Looking at the terms one by one, we know
+\)</span>exp(\hat\omega\theta) \in SO(3)<span class="math notranslate nohighlight">\(,
+\)</span>(I - e^{\hat\omega\theta})( \omega\times v) + \omega\omega^Tv\theta \in \mathbb{R}^3<span class="math notranslate nohighlight">\(,
+and the bottom row is a row of zeros and a 1. Thus, the matrix
+exponential \)</span>exp(\hat\xi\theta)<span class="math notranslate nohighlight">\( has the form: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} &amp;= 
+    \begin{bmatrix}
+        R &amp; p\\
+        0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This matches the required form of \)</span>SE(3)<span class="math notranslate nohighlight">\(! Therefore, we
+conclude that when \)</span>\xi<span class="math notranslate nohighlight">\( is any twist corresponding to a nonzero
+rotational motion: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} \in SE(3)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( This completes the proof of the rotational case!\
+**Case 2: Pure translational motion**\
+Let's now carry out a similar analysis for the case where only
+translation occurs. Recall that for the pure translational case, we may
+express translational motion using the twist: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        v\\
+        0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Where \)</span>v \in \mathbb{R}^3$ is a unit vector pointing in
+the direction of translation.</p>
+<div class="highlight-center notranslate"><div class="highlight"><pre><span></span>![image](images/pure_translation.png)\
+*Above: a purely translational motion in direction $v \in \mathbb{R}^3$*
+</pre></div>
+</div>
+<p>Let’s attempt to show that the exponential <span class="math notranslate nohighlight">\(\exp(\hat\xi\theta)\)</span>, where
+<span class="math notranslate nohighlight">\(\theta \in\mathbb{R}\)</span> is the magnitude of the translation, is an
+element of <span class="math notranslate nohighlight">\(SE(3)\)</span>. Thankfully, this proof will be <em>significantly</em> less
+involved than the rotational case.<br />
+Let’s lay out a plan for the proof for this case. We want to find a
+closed form expression for the exponential: $<span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} = I + \hat\xi\theta + \frac{(\hat\xi\theta)^2}{2!} + \frac{(\hat\xi\theta)^3}{3!} + ...
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( And use that closed form expression to show that the
+exponential is an element of \)</span>SE(3)<span class="math notranslate nohighlight">\(.\
+Once again, we'll begin this process by computing some powers of the
+matrix \)</span>\hat\xi<span class="math notranslate nohighlight">\( and seeing what patterns we notice in the results.
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    \hat\xi &amp;= 
+    \begin{bmatrix}
+        0 &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}\\
+    (\hat\xi)^2 &amp;= 
+    \begin{bmatrix}
+        0 &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}
+    = \begin{bmatrix}
+        0 &amp; 0\\
+        0 &amp; 0
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( If the second power of \)</span>\hat\xi<span class="math notranslate nohighlight">\( is the zero matrix,
+then all higher powers of \)</span>\hat\xi<span class="math notranslate nohighlight">\( will be the zero matrix! For
+instance, if we were to compute \)</span>(\hat\xi)^3<span class="math notranslate nohighlight">\(, we would find:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    (\hat\xi)^3 = (\hat\xi)(\hat\xi)^2 = (\hat\xi)\cdot0 = 0
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Thus, since all powers beyond \)</span>1<span class="math notranslate nohighlight">\( will give us the zero
+matrix, we compute the matrix exponential of \)</span>\hat\xi\theta<span class="math notranslate nohighlight">\( as follows:
+\)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} &amp;= I_4 + \begin{bmatrix}
+        0 &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}\theta
+    + 0\cdot\frac{\theta^2}{2!} + 0\cdot\frac{\theta^3}{3!} + ...\\
+    e^{\hat\xi\theta} &amp;= I_4 + \begin{bmatrix}
+        0 &amp; v\\
+        0 &amp; 0
+    \end{bmatrix}\theta\\
+    e^{\hat\xi\theta} &amp;=
+    \begin{bmatrix}
+        I_3 &amp; v\theta\\
+        0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Let's verify that this result is in \)</span>SE(3)<span class="math notranslate nohighlight">\(. In the
+upper left, we have the \)</span>3\times 3<span class="math notranslate nohighlight">\( identity matrix, which we know is an
+element of \)</span>SO(3)<span class="math notranslate nohighlight">\(. In the upper right, we have an element of
+\)</span>\mathbb{R}^3<span class="math notranslate nohighlight">\(. On the bottom row, we have a row of zeros and a 1. This
+means that that the matrix matches the form: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+    e^{\hat\xi\theta} 
+    &amp;= 
+    \begin{bmatrix}
+        R &amp; p\\
+        0 &amp; 1
+    \end{bmatrix} \in SE(3)
+\end{aligned}\)</span><span class="math notranslate nohighlight">\( Thus, we conclude that for the purely translational
+case, the exponential \)</span>exp(\hat\xi\theta) \in SE(3)<span class="math notranslate nohighlight">\(. This completes the
+second part of our proof.\
+Let's summarize our overall result. We showed that when \)</span>\xi<span class="math notranslate nohighlight">\(
+corresponds to a nonzero rotational twist,
+\)</span>e^{\hat\xi\theta} \in SE(3)<span class="math notranslate nohighlight">\(. Following this, we showed that when \)</span>\xi<span class="math notranslate nohighlight">\(
+corresponds to a purely translational (zero rotation) twist,
+\)</span>e^{\hat\xi\theta} \in SE(3)<span class="math notranslate nohighlight">\(. Thus, for all possible cases,
+\)</span>e^{\hat\xi\theta} \in SE(3)<span class="math notranslate nohighlight">\(. This completes the proof! \)</span>\square$<br />
+<br />
+Let’s take a moment to think about what we learned from this proof.
+Overall, we found a way to calculate the matrix exponential for both
+possible cases: nonzero rotation and zero rotation. We summarize our
+solutions as follows:</p>
+<ol>
+<li><p><strong>Pure translational motion:</strong> For zero rotation, where <span class="math notranslate nohighlight">\(R = I\)</span> and
+<span class="math notranslate nohighlight">\(\omega = 0\)</span>, we may define a twist corresponding to a pure
+translational motion as follows: $$\begin{aligned}
+\xi =
+\begin{bmatrix}
+v\
+0
+\end{bmatrix} \in \mathbb{R}^6</p>
+<p>\end{aligned}$<span class="math notranslate nohighlight">\( Where \)</span>v \in \mathbb{R}^3<span class="math notranslate nohighlight">\( is a unit vector pointing
+in the direction of translation. The transformation of translating
+in direction \)</span>v<span class="math notranslate nohighlight">\( by \)</span>\theta<span class="math notranslate nohighlight">\( units is given by: \)</span>$\begin{aligned}
+g = e^{\hat\xi\theta} =
+\begin{bmatrix}
+I_3 &amp; v\theta\
+0 &amp; 1
+\end{bmatrix}
+\in SE(3)</p>
+<p>\end{aligned}$$</p>
+</li>
+<li><p><strong>Nonzero rotational motion:</strong> To describe a transformation with
+nonzero rotation, we define the twist corresponding to the
+transformation as: $$\begin{aligned}
+\xi =
+\begin{bmatrix}
+v\
+\omega
+\end{bmatrix} \in \mathbb{R}^6</p>
+<p>\end{aligned}$<span class="math notranslate nohighlight">\( Where \)</span>\omega \in \mathbb{R}^3<span class="math notranslate nohighlight">\( is the unit axis of
+rotation. Note that for the case of pure rotation,
+\)</span>v = -\omega \times q<span class="math notranslate nohighlight">\(, where \)</span>q\in \mathbb{R}^3<span class="math notranslate nohighlight">\( is a point on the
+axis of rotation.\
+To find the transformation associated with this twist, we calculate:
+\)</span>$\begin{aligned}
+g = e^{\hat\xi\theta} = \begin{bmatrix}
+e^{\hat\omega\theta} &amp; (I - e^{\hat\omega\theta})( \omega\times v) + \omega\omega^Tv\theta\
+0 &amp; 1
+\end{bmatrix}</p>
+<p>\end{aligned}$<span class="math notranslate nohighlight">\( Where \)</span>\theta<span class="math notranslate nohighlight">\( is the angle of rotation about the
+axis \)</span>\omega$.</p>
+</li>
+</ol>
+<p>At this point in our study of exponential coordinates for general rigid
+body motions, we only have one more key property left to prove!<br />
+Not only do we want to know that <span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\in SE(3)\)</span> for all
+twists <span class="math notranslate nohighlight">\(\xi\)</span> and scalars <span class="math notranslate nohighlight">\(\theta\)</span> - we also want to be sure that for
+<em>every</em> rigid body transformation <span class="math notranslate nohighlight">\(g \in SE(3)\)</span>, we can find a twist
+<span class="math notranslate nohighlight">\(\xi \in \mathbb{R}^6\)</span> and a scalar <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span> such that
+<span class="math notranslate nohighlight">\(e^{\hat\xi\theta} = g\)</span>. If we’re able to prove that such a twist and
+scalar always exist, we may conclude that exponential coordinates
+<em>completely</em> cover the space of rigid body transformations in <span class="math notranslate nohighlight">\(SE(3)\)</span>.</p>
+<div class="highlight-shaded notranslate"><div class="highlight"><pre><span></span>
+::: proposition
+**Proposition 4**. ***The map $\mathbf{exp: se(3) \to SE(3)}$ is
+surjective onto $\mathbf{SE(3)}$**\
+Given any homogeneous rigid body transformation $g \in SE(3)$ consisting
+of a rotation matrix $R \in SO(3)$ and a translation
+$p \in \mathbb{R}^3$, there exists a twist $\xi \in \mathbb{R}^6$ and a
+scalar $\theta \in \mathbb{R}$ such that: $$\begin{aligned}
+    e^{\hat\xi\theta} = g(R, p)
+\end{aligned}$$*
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+**Proof:** We&#39;ll take a constructive approach to this proof. This means
+that we&#39;ll prove the statement by *explicitly* finding a formula for
+$\xi$ and $\theta$ given a rigid body transformation $g = (R, p)$. If we
+find this formula and show that it always has a solution, we&#39;ll have
+proven the statement.\
+As with before, we&#39;ll break this proof into two cases: one with no
+rotation and one with rotation.\
+**Case 1: Pure translation**\
+First, we&#39;ll consider the case of a purely translational rigid body
+transformation. Suppose we have a rigid body transformation
+$g(R, p)\in SE(3)$ corresponding to a pure translation. Since no
+rotation and any translation occurs, $g$ is a transform with a rotation
+matrix $R = I$ and an arbitrary translation $p \in \mathbb{R}^3$.\
+How may we find a twist $\xi$ and distance $\theta$ such that
+$e^{\hat\xi\theta} = g$?\
+We know that we may represent a purely translational transformation in
+exponential coordiantes with the twist: $$\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}$$ Where $v$ is a unit vector pointing in the direction of
+translation. We know that we may convert the arbitrary translation, $p$,
+of the rigid body into a unit vector in the direction of translation by
+*normalizing* it by its magnitude!\
+Thus, we may use the following twist to represent any purely
+translational transformation $g = (I, p)$: $$\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        \frac{p}{||p||}\\
+        0
+    \end{bmatrix}
+\end{aligned}$$ Now that we have the twist, all that remains is to solve
+for $\theta$. For translational motion, we know that $\theta$ is the
+amount we want to translate in the direction of $v$. Thus, we conclude
+that $\theta = ||p||$.\
+Therefore, for any arbitrary rigid body *translation*, we may find a
+twist $\xi$ and a displacement $\theta$ such that: $$\begin{aligned}
+    g(I, p) = e^{\hat\xi\theta}
+\end{aligned}$$ Where $\xi = [\frac{p}{||p||}, \; 0]^T \in \mathbb{R}^6$
+and $\theta = ||p|| \in \mathbb{R}$. This completes the proof for the
+first case!\
+**Case 2: Nonzero rotation**\
+Now, we want to evaluate the case where $R$ is *not* the identity
+matrix. Here, we have a rigid body transformation $g(R, p) \in SE(3)$
+with an arbitrary rotation matrix $R\neq I \in SO(3)$ and an arbitrary
+translation $p \in \mathbb{R}^3$.\
+As with the first case, we&#39;d like to find a twist $\xi$ and an angle
+$\theta$ such that: $$\begin{aligned}
+    g(R, p) = e^{\hat\xi\theta}
+\end{aligned}$$ This case is more complex than the case of zero
+rotation, so we&#39;ll take a somewhat different approach! First, we know
+that for an arbitrary transformation $g$ with nonzero rotation, the
+twist will be of the form: $$\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix}
+\end{aligned}$$ Furthermore, we know how to calculate the matrix
+exponential of the hat map of this twist in closed form. To solve for
+$\xi$ and $\theta$ in terms of $R$ and $p$, we&#39;ll take the approach of
+matching the terms of the exponential of $\hat\xi\theta$ with the terms
+of $g(R, p)$.\
+Thus, we calculate $exp(\hat\xi\theta)$ for a nonzero rotation and
+equate it with $g(R, p)$: $$\begin{aligned}
+    e^{\hat\xi\theta} = 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I - e^{\hat\omega\theta})( \omega\times v) + \omega\omega^Tv\theta\\
+    0 &amp; 1
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    R &amp; p\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}$$ Using this approach, we&#39;ll find our angle $\theta$ and
+the two vectors $v$ and $\omega$, which define our twist $\xi$. Let&#39;s
+start by equating the rotation matrix terms: $$\begin{aligned}
+    e^{\hat\omega\theta} = R
+\end{aligned}$$ For any rotation matrix $R\neq I \in SO(3)$, are there
+$\omega$ and $\theta$ which make this equation true? You may recall that
+previously, we proved that the exponential map of $so(3)$ is surjective
+onto $SO(3)$. Thus, for any $R \in SO(3)$, an $\omega$ and $\theta$ such
+that $e^{\hat\omega\theta} = R$ *must* exist!\
+This guarantees the existence of $\omega$ and $\theta$ for an arbitrary
+transformation $g$ with nonzero rotation. Now, all that remains is to
+show that $v$ exists, and we&#39;ll have our entire twist, $\xi$.\
+To solve for $v$ in terms of $R$ and $p$, we equate the terms in the
+upper right entry of the matrix, and factor out $v$. $$\begin{aligned}
+    (I - e^{\hat\omega\theta})( \omega\times v) + \omega\omega^Tv\theta &amp;= p\\
+    (I - e^{\hat\omega\theta})( \hat\omega v) + \omega\omega^Tv\theta &amp;= p\\
+    [(I - e^{\hat\omega\theta})( \hat\omega) + \omega\omega^T\theta]v &amp;= p
+\end{aligned}$$ We notice that the term in brackets is a matrix! If we
+can invert this matrix, and multiply both sides by this inverse, we&#39;ll
+have found a solution for $v$. $$\begin{aligned}
+    v \stackrel{?}{=} [(I - e^{\hat\omega\theta})( \hat\omega) + \omega\omega^T\theta]^{-1}p
+\end{aligned}$$ But, to guarantee that we can always do this, we must
+show that this matrix is invertible for every nonzero rotation, where
+$\omega \neq 0 \in \mathbb{R}^3$ and $\theta \in (0, 2\pi)$. How can we
+show that this matrix is invertible? First, let&#39;s split it up into two
+terms. We define these terms: $$\begin{aligned}
+    A_1 &amp;= (I - e^{\hat\omega\theta})( \hat\omega)\\
+    A_2 &amp;= \omega\omega^T\theta
+\end{aligned}$$ Such that: $$\begin{aligned}
+    A = (I - e^{\hat\omega\theta})( \hat\omega) + \omega\omega^T\theta = A_1+A_2
+\end{aligned}$$ We may think about invertibility in terms of the *null
+space* (kernel) of the overall matrix $A$. Recall that the null space of
+a matrix $A \in \mathbb{R}^{n\times n}$ is the set of all nonzero
+vectors $x \neq 0\in \mathbb{R}^n$ such that: $$\begin{aligned}
+    Ax = 0
+\end{aligned}$$ If the only vector satisfying this equation is the zero
+vector, we say that the null space of $A$ is *trivial*. Using our
+knowledge of linear algebra, we know that if the null space of $A$ is
+trivial, then $A$ is invertible! Let&#39;s apply this useful fact to our
+problem.\
+First, we&#39;ll solve for the null spaces of the matrices $A_1$ and $A_2$.
+We may show that the null space of $A_1$ is spanned by the vector:
+$$\begin{aligned}
+    v_1 = 
+    \begin{bmatrix}
+    \omega_1\\
+    \omega_2\\
+    \omega_3
+    \end{bmatrix}
+\end{aligned}$$ While the null space of $A_2$ is spanned by the vectors:
+$$\begin{aligned}
+    v_2 = 
+    \begin{bmatrix}
+    -\frac{\omega_2}{\omega_1}\\
+    1\\
+    0
+    \end{bmatrix}, \;
+    v_3 =
+    \begin{bmatrix}
+    -\frac{\omega_3}{\omega_1}\\
+    0\\
+    1
+    \end{bmatrix}
+\end{aligned}$$ Imagine that a nonzero vector $v$ is in the null space
+of both $A_1$ and $A_2$. If this is the case, then: $$\begin{aligned}
+    Av = (A_1 + A_2)v = A_1v + A_2v = 0
+\end{aligned}$$ Thus, if there any vector is in the null space of $A_1$
+and the null space of $A_2$, we know that it will be in the null space
+of the entire matrix, $A$. Therefore, if the null spaces of $A_1$ and
+$A_2$ have *any* overlap, $A$ will have a nontrivial null space, and
+will be noninvertible.\
+On the other hand, if we can show that the null space of $A_1$ has no
+overlap with the null space of $A_2$, we may conclude that $A$ has a
+trivial null space, and must be invertible!\
+To show that there is no overlap between $\{v_1, v_2, v_3\}$, the null
+space vectors of $A_1$ and $A_2$, we must show that for *any* nonzero
+unit vector $\omega \in \mathbb{R}^3$, $\{v_1, v_2, v_3\}$ are linearly
+independent.\
+As it happens, this set of vectors *is* actually linearly independent
+for any choice of $\omega$! Although we won&#39;t prove this here for the
+sake of brevity, this is a useful exercise to test your understanding.\
+Since this set is always linearly independent, we conclude that there is
+never any overlap between the null spaces of $A_1$ and $A_2$, which
+leads us to conclude that for any nonzero $\omega \in \mathbb{R}^3$ and
+$\theta \in (0, 2\pi)$, $A$ is *always* invertible.\
+Thus, we may compute the $v$ term in our twist as: $$\begin{aligned}
+    v &amp;= A^{-1}p\\
+    v &amp;= [(I - e^{\hat\omega\theta})( \hat\omega) + \omega\omega^T\theta]^{-1}p
+\end{aligned}$$ Now, we&#39;ve solved for an axis of rotation $\omega$, an
+angle $\theta$, and a velocity $v$ given an arbitrary rigid body
+transformation $g(R, p) \in SE(3)$ with nonzero rotation. Thus, we know
+that for this case, we can always find a twist $\xi = [v, \omega]^T$ and
+angle $\theta$ such that $exp(\hat\xi\theta) = g(R, p)$.\
+As we&#39;ve shown that a twist $\xi$ and a displacement $\theta$ will exist
+for all choices of $g \in SE(3)$, we conclude that the exponential map
+is surjective from $se(3)$ to $SE(3)$. This completes the proof!
+$\square$\
+\
+Because we can completely characterize *any* rigid body transformation
+by the exponential of the hat map of $\xi\theta$ for some twist
+$\xi\in \mathbb{R}^6$ and displacement $\theta\in \mathbb{R}$, we call
+the product $\xi\theta$ the **exponential coordinates** of a rigid body
+transformation.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./latex_docs/Rigid Motions in R3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Massimiliano de Sa<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
