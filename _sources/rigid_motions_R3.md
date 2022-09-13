@@ -498,7 +498,7 @@ requirements.
     We can prove this statement by constructing an *explicit formula*
     for the inverse of a homogeneous transformation matrix. Consider an
     arbitrary homogeneous transformation, $g = (R, p) \in SE(3)$.\
-    We'd link to find a matrix $g^{-1} = (R', p') \in SE(3)$ such that:
+    We'd like to find a matrix $g^{-1} = (R', p') \in SE(3)$ such that:
 
     $$\begin{aligned}
             \begin{bmatrix}
@@ -1778,7 +1778,7 @@ $$\begin{aligned}
     \end{bmatrix}\frac{\theta^2}{2!}
     +
     \begin{bmatrix}
-    \hat\omega^2 & 0\\
+    \hat\omega^3 & 0\\
     0 & 0
     \end{bmatrix}\frac{\theta^3}{3!} + ...
 \end{aligned}$$ 
@@ -1789,7 +1789,7 @@ $$\begin{aligned}
     e^{\hat\xi'\theta}
     &= 
     \begin{bmatrix}
-    I_3 + \hat\omega + \frac{(\hat\omega\theta)^2}{2!} + \frac{(\hat\omega\theta)^2}{2!} + ... & \omega\omega^Tv\theta\\
+    I_3 + \hat\omega + \frac{(\hat\omega\theta)^2}{2!} + \frac{(\hat\omega\theta)^3}{3!} + ... & \omega\omega^Tv\theta\\
     0 & 1
     \end{bmatrix}
 \end{aligned}$$ 
