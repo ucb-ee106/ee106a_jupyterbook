@@ -954,7 +954,7 @@ that this identity must be unique.</p>
 We can prove this statement by constructing an <em>explicit formula</em>
 for the inverse of a homogeneous transformation matrix. Consider an
 arbitrary homogeneous transformation, <span class="math notranslate nohighlight">\(g = (R, p) \in SE(3)\)</span>.<br />
-We’d link to find a matrix <span class="math notranslate nohighlight">\(g^{-1} = (R', p') \in SE(3)\)</span> such that:</p>
+We’d like to find a matrix <span class="math notranslate nohighlight">\(g^{-1} = (R', p') \in SE(3)\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
             \begin{bmatrix}
@@ -2150,7 +2150,7 @@ Let’s apply this pattern to compute the matrix exponential:</p>
     \end{bmatrix}\frac{\theta^2}{2!}
     +
     \begin{bmatrix}
-    \hat\omega^2 &amp; 0\\
+    \hat\omega^3 &amp; 0\\
     0 &amp; 0
     \end{bmatrix}\frac{\theta^3}{3!} + ...
 \end{aligned}\end{split}\]</div>
@@ -2160,7 +2160,7 @@ Let’s apply this pattern to compute the matrix exponential:</p>
     e^{\hat\xi'\theta}
     &amp;= 
     \begin{bmatrix}
-    I_3 + \hat\omega + \frac{(\hat\omega\theta)^2}{2!} + \frac{(\hat\omega\theta)^2}{2!} + ... &amp; \omega\omega^Tv\theta\\
+    I_3 + \hat\omega + \frac{(\hat\omega\theta)^2}{2!} + \frac{(\hat\omega\theta)^3}{3!} + ... &amp; \omega\omega^Tv\theta\\
     0 &amp; 1
     \end{bmatrix}
 \end{aligned}\end{split}\]</div>
