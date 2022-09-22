@@ -1,0 +1,1702 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screw Motion &#8212; Introduction to Robotics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Rigid Motions in \(\mathbf{\mathbb{R}^3}\)" href="rigid_motions_R3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/106A_logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Robotics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to 106A!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="rigid_body_rotations.html">
+   Rigid Body Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="further_repr.html">
+   Further Representations of Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rigid_motions_R3.html">
+   Rigid Motions in
+   <span class="math notranslate nohighlight">
+    \(\mathbf{\mathbb{R}^3}\)
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Screw Motion
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fscrew_motion.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/screw_motion.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-screw-motion">
+   Defining Screw Motion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotational-screw-motion">
+     Rotational Screw Motion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#translational-screw-motion">
+     Translational Screw Motion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#describing-screw-motion">
+   Describing Screw Motion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-screws-to-twists">
+     From Screws to Twists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-twists-to-screws">
+     From Twists to Screws
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chasles-theorem">
+   Chasles’ Theorem
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Screw Motion</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-screw-motion">
+   Defining Screw Motion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotational-screw-motion">
+     Rotational Screw Motion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#translational-screw-motion">
+     Translational Screw Motion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#describing-screw-motion">
+   Describing Screw Motion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-screws-to-twists">
+     From Screws to Twists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-twists-to-screws">
+     From Twists to Screws
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chasles-theorem">
+   Chasles’ Theorem
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="screw-motion">
+<h1>Screw Motion<a class="headerlink" href="#screw-motion" title="Permalink to this headline">#</a></h1>
+<p>Welcome back! Before we jump into this section’s content, let’s take a
+moment to think about the material we’ve developed thus far. In the
+previous section, you may recall that we extended our results from pure
+rotations to general rigid body motions - where rigid bodies may both
+translate and rotate.<br />
+We identified a special set, <span class="math notranslate nohighlight">\(SE(3)\)</span>, that allowed us to completely
+characterize the space of general rigid body motions, and then proceeded
+to develop a convenient and compact set of coordinates, known as
+exponential twist coordinates, for this set.<br />
+In the midst of our discussion of these exponential coordinates for
+<span class="math notranslate nohighlight">\(SE(3)\)</span>, we mentioned that something we’d like to find is a <em>single</em>
+twist, <span class="math notranslate nohighlight">\(\xi \in \mathbb{R}^6\)</span>, that is able to represent a combined
+rotational and translational transformation with a single exponential,
+<span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\)</span>. In this section, we’ll solve for this single
+twist, and see how it helps us build our intuition for what a rigid body
+transformation is.</p>
+<div class="section" id="defining-screw-motion">
+<h2>Defining Screw Motion<a class="headerlink" href="#defining-screw-motion" title="Permalink to this headline">#</a></h2>
+<p>Let’s begin by framing our goal for this section and reminding ourselves
+of some mathematics. Recall that previously, we developed formulas for
+<em>twists</em>, vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^6\)</span> that helped us generate rigid body
+transformations. We found that for pure rotations, twists were of the
+form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_{rotation} = 
+    \begin{bmatrix}
+    -\omega \times q\\
+    \omega
+    \end{bmatrix} \in \mathbb{R}^6
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> is a unit vector
+representing an axis of rotation and <span class="math notranslate nohighlight">\(q\in \mathbb{R}^3\)</span> is any point on
+the axis of rotation.</p>
+<p><img alt="image" src="_images/rotationalTwist.png" /><br />
+<em>Above: a rigid body undergoes pure rotation about an axis <span class="math notranslate nohighlight">\(\omega\)</span>.</em></p>
+<p>The transformation representing a rotation of angle <span class="math notranslate nohighlight">\(\theta_r\)</span> about the
+axis <span class="math notranslate nohighlight">\(\omega\)</span> was computed:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{r} = e^{\hat\xi_{r}\theta_r}
+\end{aligned}\]</div>
+<p>For pure translational motion, we found that twists
+followed the general format:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_{translation} = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix} \in \mathbb{R}^6
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(v\in \mathbb{R}^3\)</span> is a unit vector pointing in
+the direction of translation.</p>
+<p><img alt="image" src="_images/translationTwist.png" /><br />
+<em>Above: a rigid body undergoes pure translation in direction <span class="math notranslate nohighlight">\(v\)</span>.</em></p>
+<p>Similar to the case of rotational motion, we could compute the
+transformation of translating by distance <span class="math notranslate nohighlight">\(\theta_t\)</span> along axis <span class="math notranslate nohighlight">\(v\)</span> by
+the exponential:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{t} = e^{\hat\xi_{t}\theta_t}
+\end{aligned}\]</div>
+<p>After finding these two twists, we realized that we
+could find the transformations associated with combined rotational and
+translational motion through composing rotational and translational
+transformations. We achieved this by matrix multiplication:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{combined} = e^{\hat\xi_r\theta_r}e^{\hat\xi_t\theta_t}
+\end{aligned}\]</div>
+<p>This meant that with our current level of understanding
+of twists, we needed <em>two</em> twists and <em>two</em> scalars to represent a
+combined rotational, translational motion.<br />
+Instead of using two twists to represent this single rigid body motion
+of combined rotation and translation, wouldn’t it be more conventient if
+we could just use one? We now want to find a <em>single</em> twist <span class="math notranslate nohighlight">\(\xi\)</span> and
+angle <span class="math notranslate nohighlight">\(\theta\)</span> for any general rotational, translational transformation
+<span class="math notranslate nohighlight">\(g\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g = e^{\hat\xi\theta}
+\end{aligned}\]</div>
+<p>What could this single twist <span class="math notranslate nohighlight">\(\xi\)</span> be? Let’s begin by
+thinking about combined rotational and translational motions in the real
+world. One common practical example of a such a real rigid body motion
+is a nut turning on a bolt.</p>
+<p><img alt="image" src="_images/screwMotion.png" /><br />
+<em>Above: a nut placed on a bolt translates along the bolt as it spins</em></p>
+<p>As we turn the nut on the bolt, we notice that <em>not only</em> does it spin
+around the axis of the bolt, but it also <em>translates</em> along the axis of
+the bolt!<br />
+As we’ll soon discover, we may represent <em>any</em> rigid body motion using a
+class of transformations similar to the motion of a nut on a bolt.
+Inspired by the example of the nut and bolt, we define a type of motion
+called a <strong>screw motion</strong>.</p>
+<div class="proof definition admonition" id="screw_motion_defn">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Screw Motion</strong><br />
+A screw motion is composed of the following sequence of rigid motions:</p>
+<ol class="simple">
+<li><p>Rotate about an axis <span class="math notranslate nohighlight">\(\omega \in \mathbb{R}^3\)</span> by an angle
+<span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>.</p></li>
+<li><p>Translate parallel to the same axis <span class="math notranslate nohighlight">\(\omega\)</span> by a distance
+<span class="math notranslate nohighlight">\(d \in \mathbb{R}\)</span>.</p></li>
+</ol>
+</div>
+</div><p>We may visualize this as follows. First, we rotate some point <span class="math notranslate nohighlight">\(p\)</span> about
+the axis <span class="math notranslate nohighlight">\(\omega\)</span> by some angle <span class="math notranslate nohighlight">\(\theta\)</span>, sweeping out a cone around the
+axis as we go. Following this, we translate this point upwards by
+distance <span class="math notranslate nohighlight">\(d\)</span> along the axis <span class="math notranslate nohighlight">\(\omega\)</span>. After it’s completed this rotation
+and translation sequence, we say that the point <span class="math notranslate nohighlight">\(p\)</span> has undergone a
+screw motion.</p>
+<p><img alt="image" src="_images/screwComponents.png" /><br />
+<em>Above: a screw motion consists of a rotation about an axis followed by
+a translation along that axis</em></p>
+<p>Take a moment to observe how the motion of the point <span class="math notranslate nohighlight">\(p\)</span> rotating about
+and translating along the axis <span class="math notranslate nohighlight">\(\omega\)</span> mirrors the motion of a nut on a
+bolt!</p>
+<div class="section" id="rotational-screw-motion">
+<h3>Rotational Screw Motion<a class="headerlink" href="#rotational-screw-motion" title="Permalink to this headline">#</a></h3>
+<p>How may we describe these screw motions mathematically? For convenience,
+we’ll break up our analysis into two cases. Let’s begin by considering
+the case where some nonzero rotation about the axis occurs. We’ll later
+return to the case of pure translation.<br />
+The first object we’ll need to describe a rotational screw motion is a
+<strong>screw axis</strong> - this is the axis we rotate about and translate along in
+a screw motion.<br />
+Whereas in exponential coordinates, it was enough to know the direction
+of the axis of rotation, when describing screw motions, we know that we
+need the screw axis for not only for rotation, but for <em>translation</em> as
+well.<br />
+This means that in addition to needing the direction of the axis,
+<span class="math notranslate nohighlight">\(\omega\)</span>, we also need the position of the axis in space. With these
+needs in mind, we define the axis of a screw, <span class="math notranslate nohighlight">\(l\)</span>, as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    l = \{q + \lambda \omega: \; \lambda \in \mathbb{R}\}
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(q\)</span> is a point on the axis and <span class="math notranslate nohighlight">\(\omega\)</span> is the
+unit direction vector of the axis.<br />
+What does the scalar <span class="math notranslate nohighlight">\(\lambda\)</span> contribute to the definition? Since we
+define <span class="math notranslate nohighlight">\(\lambda\)</span> to be any real number, it tells us that a screw axis is
+defined by the set of <em>all</em> points along direction <span class="math notranslate nohighlight">\(\omega\)</span> that pass
+through point <span class="math notranslate nohighlight">\(q\)</span>.<br />
+We may visualize this as follows:</p>
+<p><img alt="image" src="_images/rays.png" /><br />
+<em>Above: a screw axis is defined by all of the points along direction
+<span class="math notranslate nohighlight">\(\omega\)</span> passing through point <span class="math notranslate nohighlight">\(q\)</span></em></p>
+<p>What else do we need to represent our screw? In addition to having a
+screw axis, we need to know <em>how much</em> movement has occurred. We may
+quantify the amount of movement in a screw motion by the <strong>magnitude</strong>
+of the screw, <span class="math notranslate nohighlight">\(M\)</span>.<br />
+For the case of a nonzero rotational screw, the magnitude is defined
+<span class="math notranslate nohighlight">\(M = \theta\)</span>, the amount of rotation that occurs about the screw axis.<br />
+So far, we’ve dealt with the axis and the amount of rotation that
+occurs - there’s only one parameter that we haven’t discussed thus far -
+distance! When we think about representing the distance traveled in our
+screw motion, we run into an interesting problem!<br />
+We’ve already assigned the magnitude of the screw, a quantity which
+represents the amount of distance traveled, to the amount of rotation
+about the axis! How, then, do we account for the amount of translation
+along the axis if we’ve already defined the magnitude of the screw to be
+the angle?<br />
+To take care of this conflict, we define our final screw term:
+<strong>pitch</strong>. Pitch, <span class="math notranslate nohighlight">\(h\)</span>, is the ratio between the amount of rotation about
+the screw axis and the amount of translation along the screw axis.<br />
+We define pitch mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    h = \frac{d}{\theta}
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(d\)</span> is the distance we translate along the axis
+and <span class="math notranslate nohighlight">\(\theta\)</span> is the distance we rotate about the axis. Using this term,
+we can avoid specifying two separate measures of distance traveled for
+our screw.<br />
+Why else do we take this approach? We know that in the future, we’ll
+want to represent screw motions with a single scalar parameter - after
+all, our investigation of screw motions was inspired by our search for a
+single twist <span class="math notranslate nohighlight">\(\xi\)</span> and single scalar <span class="math notranslate nohighlight">\(\theta\)</span> for combined rotational
+and translational motions.<br />
+If we define that single scalar parameter to be the angle we rotate
+about the axis, <span class="math notranslate nohighlight">\(\theta\)</span>, we know that we can find the distance we
+translate along the axis simply by multiplying the pitch of the screw by
+the angle we rotate.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    d = h\theta
+\end{aligned}\]</div>
+<p>Pitch simply gives us a convenient way to “knock out”
+one parameter of distance in our description of motion, and allows us to
+use our angle of rotation <span class="math notranslate nohighlight">\(\theta\)</span> as a single measure of distance to
+represent both rotational and translational displacement.</p>
+<p><img alt="image" src="_images/pitch.png" /><br />
+<em>Above: using pitch, we may find the linear displacement <span class="math notranslate nohighlight">\(d\)</span> of a rigid
+body given the angular displacement <span class="math notranslate nohighlight">\(\theta\)</span>.</em></p>
+<p>In summary, a screw motion with nonzero rotation involves a rotation
+about a screw axis <span class="math notranslate nohighlight">\(l = \{q + \lambda \omega: \lambda \in \mathbb{R}\}\)</span>
+by an angle <span class="math notranslate nohighlight">\(\theta\)</span> and translation parallel to the screw axis by a
+distance <span class="math notranslate nohighlight">\(d = h\theta\)</span>.</p>
+</div>
+<div class="section" id="translational-screw-motion">
+<h3>Translational Screw Motion<a class="headerlink" href="#translational-screw-motion" title="Permalink to this headline">#</a></h3>
+<p>How do these concepts of screw motion translate into the case of <em>pure</em>
+translational motions? Let’s try to define the same three terms - axis,
+magnitude, and pitch - for a translational motion.<br />
+First, let’s look at the screw axis, <span class="math notranslate nohighlight">\(l\)</span>. We may define <span class="math notranslate nohighlight">\(l\)</span> using a unit
+vector <span class="math notranslate nohighlight">\(v\)</span>, which points in the direction of translation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    l = \{\lambda v: \; \lambda \in \mathbb{R} \}
+\end{aligned}\]</div>
+<p>Using this definition, we may visualize this screw axis
+as the following line which passes through the origin and points along
+direction <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<p><img alt="image" src="_images/translationalCase.png" /><br />
+<em>Above: The screw axis for a pure translation passes through the origin
+and points along direction <span class="math notranslate nohighlight">\(v\)</span>.</em></p>
+<p>As no rotation occurs, we may describe the magnitude of a purely
+translational screw motion by the amount of linear displacement, <span class="math notranslate nohighlight">\(d\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    M_{translational} = d
+\end{aligned}\]</div>
+<p>Finally, let’s consider the behavior of the pitch of the
+screw, <span class="math notranslate nohighlight">\(h\)</span>, in the case of pure translation. Let’s think back to our
+definition of pitch:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    h = \frac{d}{\theta}
+\end{aligned}\]</div>
+<p>We know that in the purely translational case, angular
+displacement, <span class="math notranslate nohighlight">\(\theta\)</span>, is zero! Taking the limit of the definition
+above as <span class="math notranslate nohighlight">\(\theta\)</span> approaches <span class="math notranslate nohighlight">\(0\)</span>, we conclude that in the case of pure
+translational motion:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    h_{translational} = \lim_{\theta \to 0} \; \frac{d}{\theta} = \infty
+\end{aligned}\]</div>
+<p>What does this mean practically? All that the above
+expresses is that for a translational screw motion, we don’t need any
+rotation to have a translation occur.<br />
+Let’s take a moment to collect our thoughts and summarize what we’ve
+learned about the two types of screw motions.</p>
+<ol>
+<li><p><strong>Nonzero rotational motion:</strong> In the case of a screw motion with
+nonzero rotation, where we rotate by <span class="math notranslate nohighlight">\(\theta\)</span> and translate by <span class="math notranslate nohighlight">\(d\)</span>
+along an axis <span class="math notranslate nohighlight">\(\omega\)</span>, we describe the screw using the following
+axis, magnitude, and pitch:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            l &amp;=  \{q + \lambda \omega: \; \lambda \in \mathbb{R}\}\\
+            M &amp;= \theta\\
+            h &amp;= \frac{d}{\theta}
+    \end{aligned}\end{split}\]</div>
+<p>Where pitch is a term that allows us to describe
+rotational and translational motion using only a single angular
+displacement, <span class="math notranslate nohighlight">\(\theta\)</span>.<br />
+Note that for the case of pure rotation, <span class="math notranslate nohighlight">\(h = 0\)</span>.</p>
+</li>
+<li><p><strong>Translational motion:</strong> In the case of purely translational screw
+motion, where we translate along an axis <span class="math notranslate nohighlight">\(v\)</span> by distance <span class="math notranslate nohighlight">\(d\)</span>, we
+describe the screw using the following axis, magnitude, and pitch:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            l &amp;=  \{\lambda v: \; \lambda \in \mathbb{R}\}\\
+            M &amp;= d\\
+            h &amp;= \infty
+    \end{aligned}\end{split}\]</div>
+<p>Where the pitch <span class="math notranslate nohighlight">\(h = \infty\)</span> is derived from the
+definition of pitch as the ratio of linear to angular displacement.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="describing-screw-motion">
+<h2>Describing Screw Motion<a class="headerlink" href="#describing-screw-motion" title="Permalink to this headline">#</a></h2>
+<div class="section" id="from-screws-to-twists">
+<h3>From Screws to Twists<a class="headerlink" href="#from-screws-to-twists" title="Permalink to this headline">#</a></h3>
+<p>Now that we’ve come up with a definition for a screw motion, let’s see
+how we may describe screw motion using the language of rigid body
+transformations. Previously, we found that twists are a convenient way
+of representing rigid body transformations - is there some link between
+twists and screws that we can take advantage of?</p>
+<div class="proof proposition admonition" id="ScrewIsTwist">
+<p class="admonition-title"><span class="caption-number">Proposition 14 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Every screw motion is associated with a twist</strong><br />
+Given any screw with axis <span class="math notranslate nohighlight">\(l\)</span>, magnitude <span class="math notranslate nohighlight">\(M\)</span>, and pitch <span class="math notranslate nohighlight">\(h\)</span>, there
+exists a twist <span class="math notranslate nohighlight">\(\xi \in \mathbb{R}^6\)</span> and a scalar
+<span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span> such that the transformation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g = e^{\hat\xi\theta}
+\end{aligned}\]</div>
+<p>Is equivalent to the screw motion about axis <span class="math notranslate nohighlight">\(l\)</span> with
+magnitude <span class="math notranslate nohighlight">\(M\)</span> and pitch <span class="math notranslate nohighlight">\(h\)</span>.</p>
+</div>
+</div><p>What is this proposition saying? This proposition states that for every
+screw motion out there, we may find a twist such that the exponential of
+the twist with some angle produces a transformation in <span class="math notranslate nohighlight">\(SE(3)\)</span>
+equivalent to the screw.</p>
+<p><img alt="image" src="_images/screwTwist.png" /><br />
+<em>Above: there is some twist <span class="math notranslate nohighlight">\(\xi\)</span> and scalar <span class="math notranslate nohighlight">\(\theta\)</span> corresponding to
+every screw motion.</em></p>
+<p><strong>Proof:</strong> We’ll prove this proposition by breaking it up into two
+cases: that of a nonzero rotational screw and a purely translational
+screw. Note that these two cases correspond to the two types of screws
+we defined above.<br />
+<strong>Rotational Case</strong><br />
+Let’s begin with the case of a nonzero rotational screw. To show that
+the proposition holds for this case, we’ll find an explicit formula for
+the twist <span class="math notranslate nohighlight">\(\xi\)</span> corresponding to the screw motion.<br />
+Consider the following screw motion with nonzero rotation. Suppose we
+have a screw axis pointing in direction <span class="math notranslate nohighlight">\(\omega\)</span> and passing through
+point <span class="math notranslate nohighlight">\(q\)</span>, a screw magnitude of <span class="math notranslate nohighlight">\(M = \theta\)</span>, and a pitch of
+<span class="math notranslate nohighlight">\(h = d/\theta\)</span>.<br />
+Let’s think about how we may we describe the motion of an arbitrary
+point <span class="math notranslate nohighlight">\(p\)</span> under this screw motion. Once we begin developing the
+equations of motion, the formula for the twist of this screw motion will
+naturally fall out.</p>
+<p><img alt="image" src="_images/screwMotionMath.png" /><br />
+<em>Above: an arbitrary screw motion with an axis pointing in direction
+<span class="math notranslate nohighlight">\(\omega\)</span>, a magnitude <span class="math notranslate nohighlight">\(\theta\)</span>, and a pitch <span class="math notranslate nohighlight">\(h\)</span></em></p>
+<p>Let <span class="math notranslate nohighlight">\(g\)</span> be the rigid body transformation associated with this screw
+motion. Let’s see if we can find an expression for <span class="math notranslate nohighlight">\(g(p)\)</span>, the
+transformation of point <span class="math notranslate nohighlight">\(p\)</span> due to the screw motion.<br />
+We can think about the transformation of this point by examining the two
+parts of screw motions - rotation by <span class="math notranslate nohighlight">\(\theta\)</span> about the screw axis and
+translation by <span class="math notranslate nohighlight">\(d = h\theta\)</span> along the screw axis.<br />
+First, let’s think about the transformation of <span class="math notranslate nohighlight">\(p\)</span> due to rotation.
+Where does the point <span class="math notranslate nohighlight">\(p\)</span> end up after a rotation by angle <span class="math notranslate nohighlight">\(\theta\)</span>
+around the axis <span class="math notranslate nohighlight">\(\omega\)</span>? Let’s redraw the figure from above in greater
+detail and see if we can gain any further insight.</p>
+<p><img alt="image" src="_images/rot_screw.png" /></p>
+<p>First, from our knowledge of exponential coordinates for rotations, we
+know that the rotation matrix associated with rotating by angle <span class="math notranslate nohighlight">\(\theta\)</span>
+about a unit axis <span class="math notranslate nohighlight">\(\omega\)</span> is given by <span class="math notranslate nohighlight">\(R = exp(\hat\omega\theta)\)</span>.<br />
+From the image above, we observe that the rotation of point <span class="math notranslate nohighlight">\(p\)</span> about
+the axis <span class="math notranslate nohighlight">\(\omega\)</span> may be described by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g_{rot}(p) &amp;= q + R(p-q)\\
+    g_{rot}(p) &amp;= q + e^{\hat\omega\theta}(p-q)
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(q\)</span> takes us to the axis of rotation and
+<span class="math notranslate nohighlight">\(exp(\hat\omega\theta)(p-q)\)</span> computes the rotation of the point around
+the axis.<br />
+Following this rotation, we want to complete the second part of the
+screw motion: translating in <span class="math notranslate nohighlight">\(\omega\)</span> by distance <span class="math notranslate nohighlight">\(d\)</span>. How do we express
+this translation in terms of the screw parameters? Using the pitch of
+the screw, we may compute the translational motion of point <span class="math notranslate nohighlight">\(p\)</span> by
+distance <span class="math notranslate nohighlight">\(d\)</span> in direction <span class="math notranslate nohighlight">\(\omega\)</span> by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g_{transl}(p) &amp;= p + d\omega\\
+    g_{transl}(p) &amp;= p + \frac{d}{\theta}\theta\omega\\
+    g_{transl}(p) &amp;= p + h\theta\omega
+\end{aligned}\end{split}\]</div>
+<p>Now that we have both the rotational and translational
+parts of the screw motion, we simply add the rotational and
+translational components together to find the total transformation from
+the screw motion:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g(p) &amp;= q + e^{\hat\omega\theta}(p-q) + h\theta\omega
+\end{aligned}\]</div>
+<p>Let’s now express this in homogeneous coordinates, and
+see if we can write the transformation associated with the screw motion
+as a matrix in <span class="math notranslate nohighlight">\(SE(3)\)</span>.<br />
+To convert the expression into homogeneous coordinates, we append a 1 to
+the bottom of the expression above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g\begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    q + e^{\hat\omega\theta}(p-q) + h\theta\omega\\
+    1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Let’s see if we can extract <span class="math notranslate nohighlight">\(p\)</span> in homogeneous
+coordinates on the right hand side to match the left hand side of the
+equation. If we’re able to do this, we’ll have figured out a value for
+the transformation matrix <span class="math notranslate nohighlight">\(g\)</span>!</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g\begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    q + e^{\hat\omega\theta}p-e^{\hat\omega\theta}q + h\theta\omega\\
+    1
+    \end{bmatrix}\\
+     g\begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    e^{\hat\omega\theta}p + (I_3 -e^{\hat\omega\theta})q + h\theta\omega \\
+    1
+    \end{bmatrix}\\
+     g\begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 -e^{\hat\omega\theta})q + h\theta\omega \\
+    0 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    p\\
+    1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>As we have a <span class="math notranslate nohighlight">\([p, \; 1]\)</span> on the left and right of the
+equation, we conclude that the matrix <span class="math notranslate nohighlight">\(g\)</span> of the rotational screw motion
+must be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g = 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 -e^{\hat\omega\theta})q + h\theta\omega \\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>As it must be equal to the <span class="math notranslate nohighlight">\(g\)</span> on the left side of the
+equation.<br />
+Let’s look at the different terms in this matrix. We know from our
+knowledge of exponential coordinates that the term in the top left,
+<span class="math notranslate nohighlight">\(exp(\hat\omega\theta) \in SO(3)\)</span>, and from matrix multiplication that
+the term in the top right is a point in <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.<br />
+Because of this, we conclude that the transformation matrix for a
+rotational motion is of the correct form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g = \begin{bmatrix}
+    R &amp; p \\
+    0 &amp; 1
+    \end{bmatrix} \in SE(3)
+\end{aligned}\end{split}\]</div>
+<p>This interesting development opens up many new
+opportunities for screw coordinates. From our knowledge of twists, we
+know that we may find a twist for every transformation <span class="math notranslate nohighlight">\(g \in SE(3)\)</span>.
+Since we just proved that every rotational screw motion is a rigid body
+transformation in <span class="math notranslate nohighlight">\(SE(3)\)</span>, we conclude that we <em>must</em> be able to find a
+twist <span class="math notranslate nohighlight">\(\xi \in \mathbb{R}^6\)</span> for every rotational screw transformation!<br />
+Let’s solve for the twist associated with a nonzero screw motion. Recall
+that in general, a twist for nonzero rotation has the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+    v\\
+    \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>And that we may compute <span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\)</span> for this
+nonzero rotational twist as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    exp(\hat\xi\theta) = 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 - e^{\hat\omega\theta})\hat\omega v + \omega \omega ^T v\theta\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Let’s match the entries of this matrix with the entries
+of the screw transformation matrix, <span class="math notranslate nohighlight">\(g\)</span>, from above! We’ll then proceed
+to solve for <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, the vectors needed to define the twist.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g &amp;= e^{\hat\xi\theta}\\
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 -e^{\hat\omega\theta})q + h\theta\omega \\
+    0 &amp; 1
+    \end{bmatrix} &amp;= \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 - e^{\hat\omega\theta})\hat\omega v + \omega \omega ^T v\theta\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Right away, we may match the upper left terms of these
+matrices to find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\omega\theta} = e^{\hat\omega\theta}
+\end{aligned}\]</div>
+<p>If these two terms are to be equal, the <span class="math notranslate nohighlight">\(\omega\)</span> vector
+for a twist of a screw must be the same <span class="math notranslate nohighlight">\(\omega\)</span> vector from the screw
+axis!<br />
+Now that we have the <span class="math notranslate nohighlight">\(\omega\)</span> of the twist, we may move on to solve for
+the velocity of the twist in terms of the screw components. Instead of
+solving for the velocity directly, let’s see if we can make an educated
+guess as to the form of velocity. Then, we’ll formally verify that this
+guess is correct.<br />
+We know that for a purely rotational motion, the velocity of a twist
+<span class="math notranslate nohighlight">\((v, \omega)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v_{rotation} = -\omega \times q
+\end{aligned}\]</div>
+<p>What about for pure translation? For pure translation,
+the velocity of the twist <span class="math notranslate nohighlight">\((v, 0)\)</span> is the vector pointing in the
+direction of translation, <span class="math notranslate nohighlight">\(v\)</span>. For a screw motion, we know that this
+direction of translation is the same as the axis of rotation, <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v_{transl} = \omega
+\end{aligned}\]</div>
+<p>Is there some way we can bring these rotational and
+translational velocities together into a single twist? Remember, we want
+to find a <em>single</em> twist <span class="math notranslate nohighlight">\(\xi\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{\hat\xi\theta} = g
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(g\)</span> is a transformation involving both rotation
+and translation and <span class="math notranslate nohighlight">\(\theta\)</span> is the angle of rotation.<br />
+Our first instinct might be to add the rotational and translational
+twist velocities directly. Does this give us what we want?<br />
+Since we use a single angle <span class="math notranslate nohighlight">\(\theta\)</span> to describe both the rotational and
+translational motion, to find the total velocity term of a screw, we
+<em>can’t</em> simply add the twist velocities for rotation and translation -
+the amount of rotation and translation might be different, and simply
+adding them will give the same weight to rotation and translation!<br />
+Thus, we <em>first</em> must scale the translational portion of the screw by
+<span class="math notranslate nohighlight">\(h\)</span>, the pitch. This way, we’ll get the correct amount of translation,
+<span class="math notranslate nohighlight">\(d = h\theta\)</span>, for an arbitrary rotation by angle <span class="math notranslate nohighlight">\(\theta\)</span>.<br />
+Adding the twist velocity for a purely rotational twist to the scaled
+twist velocity of a translational twist, we arrive at the formula for
+the twist velocity of a screw:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v = -\omega \times q + h\omega = -\hat\omega q + h\omega
+\end{aligned}\]</div>
+<p>Where we use <span class="math notranslate nohighlight">\(h\omega\)</span> to scale the amount of rotation,
+<span class="math notranslate nohighlight">\(\theta\)</span>, to the correct amount of translation, <span class="math notranslate nohighlight">\(d = h\theta\)</span> along the
+axis <span class="math notranslate nohighlight">\(\omega\)</span>.<br />
+Let’s verify that this twist velocity gives us the transformation we
+want! To do this, we will compare the upper right terms of the matrices
+<span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\)</span>, as these are the only terms involving this
+velocity.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 -e^{\hat\omega\theta})q + h\theta\omega \\
+    0 &amp; 1
+    \end{bmatrix} &amp;= \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 - e^{\hat\omega\theta})\hat\omega v + \omega \omega ^T v\theta\\
+    0 &amp; 1
+    \end{bmatrix}\\
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega
+    &amp;\stackrel{?}{=} 
+    (I_3 - e^{\hat\omega\theta})\hat\omega v + \omega \omega ^T v \theta
+\end{aligned}\end{split}\]</div>
+<p>If these terms are equal after plugging in the formula
+for <span class="math notranslate nohighlight">\(v\)</span>, we know that the two matrices are equal and that this velocity
+is correct. Let’s try it out! Substituting <span class="math notranslate nohighlight">\(v\)</span> into its first appearance
+on the right hand side, we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+     (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})\hat\omega(-\hat\omega q + h\omega) + \omega \omega ^T v\theta
+\end{aligned}\]</div>
+<p>Let’s begin breaking this equality down. First, we
+notice that in both equations, we have a term involving
+<span class="math notranslate nohighlight">\((I_3 - e^{\hat\omega\theta})\)</span> multiplied by some point, and a term
+involving <span class="math notranslate nohighlight">\(\theta\)</span> multiplied by some vector. If the two sides of the
+equation are to be equal, then we can show that these two terms must be
+equal!<br />
+Let’s focus on the second term, the vector multiplied by <span class="math notranslate nohighlight">\(\theta\)</span>. If
+the second terms on both sides of the equation are equal, we require:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    h\theta\omega &amp;= \omega\omega^Tv\theta\\
+    \omega h \theta &amp;= \omega\omega^Tv\theta
+\end{aligned}\end{split}\]</div>
+<p>We notice that on both sides, we have a vector <span class="math notranslate nohighlight">\(\omega\)</span>
+multiplied by a scalar (<span class="math notranslate nohighlight">\(h\)</span> on the left and <span class="math notranslate nohighlight">\(\omega^Tv\)</span> on the right)
+and the angle <span class="math notranslate nohighlight">\(\theta\)</span>. Thus, for these two sides to be equal, the value
+of <span class="math notranslate nohighlight">\(h\)</span> <em>must</em> be <span class="math notranslate nohighlight">\(h = \omega^Tv\)</span>! Let’s apply this formula for <span class="math notranslate nohighlight">\(h\)</span> to
+bring our overall equation one step closer to an equality.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})\hat\omega(-\hat\omega q + h\omega) + \omega \omega ^T v\theta\\
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})\hat\omega(-\hat\omega q + h\omega) + h\theta \omega\\
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})(\hat\omega(-\hat\omega q)  + h \hat\omega \omega) + h\theta \omega
+\end{aligned}\end{split}\]</div>
+<p>Since the cross product of any vector with itself equals
+zero, the <span class="math notranslate nohighlight">\(\hat\omega\omega = \omega \times \omega\)</span> term becomes zero,
+which leaves us with:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})(-\hat\omega^2 q) + h\theta \omega
+\end{aligned}\]</div>
+<p>We’re almost there! We now have one <span class="math notranslate nohighlight">\(\hat\omega^2\)</span> term
+remaining - how can we replace it with something easier to work with? We
+recall the following identity, which we developed when discussing skew
+symmetric matrices:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    \hat\omega^2 = \omega\omega^T - I_3
+\end{aligned}\]</div>
+<p>Let’s plug this in, and see if it helps us get any
+closer to our goal equation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})(I_3 - \omega\omega^T)q + h\theta \omega\\
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})(q - \omega\omega^Tq) + h\theta \omega\\
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})q - (I_3 - e^{\hat\omega\theta})(\omega\omega^Tq) + h\theta \omega
+\end{aligned}\end{split}\]</div>
+<p>When we check the formula for the upper right hand term
+of a twist, we find that this is <em>almost</em> it! We only have one extra
+term:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (I_3 - e^{\hat\omega\theta})(\omega\omega^Tq)
+\end{aligned}\]</div>
+<p>Thus, to show that the two sides of the equation are
+equal using our velocity formula, all that we need to do is prove that
+this one leftover term is equal to zero. If this term drops out, we’ll
+end up with the same equation on both sides!<br />
+Let’s try proving this term is equal to zero by substituting in the
+definition of the matrix exponential!</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (I_3 - e^{\hat\omega\theta})(\omega\omega^Tq) &amp;= (I_3 - (I_3 + \hat\omega\theta + \frac{\hat\omega^2\theta^2}{2!} + ...))(\omega\omega^Tq)\\
+    &amp;= (I_3 - I_3 - \hat\omega\theta - \frac{\hat\omega^2\theta^2}{2!} - ...)(\omega\omega^Tq)\\
+    &amp;= (-\hat\omega\theta - \frac{\hat\omega^2\theta^2}{2!} - ...)(\omega\omega^Tq)\\
+    &amp;= -\hat\omega\theta(\omega\omega^Tq) - \frac{\hat\omega^2\theta^2}{2!}(\omega\omega^Tq) - ...\\
+    &amp;= -\hat\omega\omega\omega^Tq\theta - \frac{\hat\omega^2\omega\omega^Tq}{2!} \theta^2- ...
+\end{aligned}\end{split}\]</div>
+<p>Since the cross product of any vector with itself is
+equal to the zero vector, and
+<span class="math notranslate nohighlight">\(\hat\omega \omega = \omega \times \omega\)</span>, we see that <em>every</em> term in
+this series will become zero! Thus, we conclude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (I_3 - e^{\hat\omega\theta})(\omega\omega^Tq) = 0 + 0 + 0 + ... = 0
+\end{aligned}\]</div>
+<p>Substituting this result back into our formula for the
+upper right term of the transformation matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    (I_3 - e^{\hat\omega\theta})q + h\theta \omega &amp;= (I_3 - e^{\hat\omega\theta})q + 0 + h\theta \omega\\
+    (I_3 - e^{\hat\omega\theta})q + h\theta \omega &amp;= (I_3 - e^{\hat\omega\theta})q + h\theta \omega
+\end{aligned}\end{split}\]</div>
+<p>Thus, we conclude that the upper right terms of the two
+matrices are equal for our choice of twist velocity, <span class="math notranslate nohighlight">\(v\)</span>. We have
+therefore proven that the twist velocity associated with a rotational
+screw motion is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    v = -\omega \times q + h\omega
+\end{aligned}\]</div>
+<p>We’ve now found a closed form formula for <em>both</em> the
+angular velocity <span class="math notranslate nohighlight">\(\omega\)</span> and velocity <span class="math notranslate nohighlight">\(v\)</span> of a twist corresponding to
+an arbitrary screw motion! In conclusion, for a twist with nonzero
+rotation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+    v\\
+    \omega
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    -\omega \times q + h\omega\\
+    \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Notice that this twist is the <em>sum</em> of the twist for a
+purely rotational motion and the twist for a purely translational
+motion.<br />
+Let’s take a brief moment to discuss the significance of this process.
+By finding a <span class="math notranslate nohighlight">\(\xi = (v, \omega)\)</span> makes <span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\)</span> equal to the
+screw transformation matrix, we’ve shown that <em>every</em> rotational screw
+motion may be represented by a twist!<br />
+This gives us the power to find the rigid body transformation associated
+with any nonzero rotational screw motion. For example, for a twist <span class="math notranslate nohighlight">\(\xi\)</span>
+of the form above, we now know that the transformation associated with
+the screw is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{screw} = e^{\hat\xi\theta}
+\end{aligned}\]</div>
+<p><img alt="image" src="_images/screwG.png" /><br />
+<em>Above: We may represent a screw motion of nonzero rotation using a
+transformation <span class="math notranslate nohighlight">\(g = e^{\hat\xi\theta}\)</span>, where <span class="math notranslate nohighlight">\(\xi\)</span> is the twist
+corresponding to the screw.</em></p>
+<p><strong>Translational Case</strong><br />
+So far, we’ve made a point out of this particular formula for <span class="math notranslate nohighlight">\(\xi\)</span>
+<em>only</em> applying to the case of nonzero rotational screw motion. What if
+the rotation <span class="math notranslate nohighlight">\(is\)</span> zero, and we experience a purely translational screw
+motion? Can we still find a twist associated with a purely translational
+screw?<br />
+Thankfully, as with our purely translational developments in the past,
+this case is <em>much</em> simpler to analyze than the case of combined
+rotation and translation.<br />
+Recall that earlier, we stated that the axis of a translational screw
+was a line pointing in the direction of translation, <span class="math notranslate nohighlight">\(v\)</span>, that passes
+through the origin:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    l = \{ \lambda v: \; \lambda \in \mathbb{R}\}
+\end{aligned}\]</div>
+<p>Recall that the twist <span class="math notranslate nohighlight">\(\xi\)</span> associated with a purely
+translational motion is of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(v\)</span> is a unit vector pointing in the direction of
+translation.<br />
+For a translational screw motion, we already know what this vector <span class="math notranslate nohighlight">\(v\)</span>
+is! The direction of the screw axis, <span class="math notranslate nohighlight">\(v\)</span>, is exactly this unit vector
+which points in the direction of translation.<br />
+Thus, for any purely translational screw, we may define the twist
+associated with the screw as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+        v\\
+        0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Thus, in addition to having shown that any <em>rotational</em>
+screw motion may be represented by a twist, we now know that any
+<em>translational</em> screw motion may be represented by a twist. This
+completes the proof! <span class="math notranslate nohighlight">\(\square\)</span><br />
+<br />
+Before we summarize our results from this section, let’s pause for a
+moment and discuss why we needed to treat the purely translational case
+separately from the rotational case. Why couldn’t we just use the same
+formula?<br />
+Let’s take a second look at the twist of a nonzero rotational screw:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+    -\omega\times q + h\omega\\
+    \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Does this formula still apply in the translational case?
+For a translational motion, we know that <span class="math notranslate nohighlight">\(\omega = 0\)</span>, as no rotation
+occurs. Let’s plug this into the twist formula above and see what we
+get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+    0 + 0\\
+    0
+    \end{bmatrix} = 0 \in \mathbb{R}^6
+\end{aligned}\end{split}\]</div>
+<p>When we plug in <span class="math notranslate nohighlight">\(\omega = 0\)</span>, the condition for
+translational motion, we end up with the zero vector! Since formula
+gives the zero vector for <em>any</em> translational motion in <em>any</em> direction,
+there’s no way that we can use this formula for the translational case.
+This is what motivates the need for a separate twist formula for
+translational screws.<br />
+Let’s summarize everything we’ve learned in this section. As we may find
+a twist for both the rotational and translational cases of screw motion,
+we conclude that we may find a twist corresponding to <em>any</em> screw
+motion! These twists are defined differently for the two cases of screw
+motion.</p>
+<ol>
+<li><p><strong>Nonzero rotational screw:</strong> A rotational screw with an axis of
+rotation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            l = \{ q + \lambda \omega: \; \lambda \in \mathbb{R} \}
+    \end{aligned}\]</div>
+<p>(where <span class="math notranslate nohighlight">\(q\)</span> is a point on the axis and <span class="math notranslate nohighlight">\(\omega\)</span> is a
+unit vector), a magnitude <span class="math notranslate nohighlight">\(M = \theta\)</span> (the angle of rotation), and
+a pitch <span class="math notranslate nohighlight">\(h = d/\theta\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the total translational
+distance, is associated with the screw:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            \xi = 
+            \begin{bmatrix}
+                -\omega \times q + h\omega\\
+                \omega
+            \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(-\omega\times q\)</span> is the component of the
+twist velocity <span class="math notranslate nohighlight">\(v\)</span> that comes from rotating about the screw axis,
+and <span class="math notranslate nohighlight">\(h\omega\)</span> is the component of <span class="math notranslate nohighlight">\(v\)</span> that comes from translating
+along the screw axis.</p>
+</li>
+<li><p><strong>Translational screw:</strong> A translational screw with a screw axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+            l = \{ \lambda v: \; \lambda \in \mathbb{R} \}
+    \end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(v\)</span> is a unit vector pointing in the direction
+of translation, a magnitude <span class="math notranslate nohighlight">\(M = d\)</span> (the distance translated), and a
+pitch <span class="math notranslate nohighlight">\(h = \infty\)</span> (since no rotation occurs) may be represented by
+the twist:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            \xi = 
+            \begin{bmatrix}
+                v\\
+                0
+            \end{bmatrix}
+    \end{aligned}\end{split}\]</div>
+</li>
+</ol>
+</div>
+<div class="section" id="from-twists-to-screws">
+<h3>From Twists to Screws<a class="headerlink" href="#from-twists-to-screws" title="Permalink to this headline">#</a></h3>
+<p>So far, we’ve only examined the relationship between screws and twists
+in a single direction of relation. We showed that given an arbitrary
+screw motion, which may be rotational or purely translational, we can
+<em>always</em> find a twist associated with the screw. Can we do this in the
+opposite direction as well?<br />
+Given an arbitrary twist <span class="math notranslate nohighlight">\(\xi\)</span>, can we always find a screw axis, pitch,
+and magnitude corresponding to that twist, or are there certain cases
+where we can’t? In this section, we’ll show that <em>every</em> twist is
+associated with a screw!</p>
+<div class="proof proposition admonition" id="twistIsScrew">
+<p class="admonition-title"><span class="caption-number">Proposition 15 </span></p>
+<div class="proposition-content section" id="proof-content">
+<p><strong>Every twist is associated with a screw</strong><br />
+Given an arbitrary twist <span class="math notranslate nohighlight">\(\xi = (v, \omega) \in \mathbb{R}^6\)</span> and scalar
+<span class="math notranslate nohighlight">\(\theta\)</span>, there exists a screw axis <span class="math notranslate nohighlight">\(l\)</span>, a screw magnitude <span class="math notranslate nohighlight">\(M\)</span>, and a
+screw pitch <span class="math notranslate nohighlight">\(h\)</span> such that the transformation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g = e^{\hat\xi\theta}
+\end{aligned}\]</div>
+<p>Is equivalent to the screw motion about axis <span class="math notranslate nohighlight">\(l\)</span> with
+magnitude <span class="math notranslate nohighlight">\(M\)</span> and pitch <span class="math notranslate nohighlight">\(h\)</span>.</p>
+</div>
+</div><p><strong>Proof:</strong> Whereas in the previous section, we showed that we may find a
+twist <span class="math notranslate nohighlight">\(\xi = (v, \omega)\)</span> for every screw motion, here, we’d like to go
+the opposite direction! We now want to prove that there is a screw
+motion corresponding to every twist transformation
+<span class="math notranslate nohighlight">\(g = exp(\hat\xi\theta)\)</span>.<br />
+This proof will be very similar in structure and in mathematics to the
+previous section, as we’re simply attempting to prove the previous
+proposition in reverse.<br />
+<strong>Rotational Case</strong><br />
+Let’s begin with the case of nonzero rotation. We know that the twist
+associated with a nonzero rotation will be of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        v\\
+        \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>And that the scalar associated with this twist is
+<span class="math notranslate nohighlight">\(\theta\)</span>, the angle of rotation about a unit axis <span class="math notranslate nohighlight">\(\omega\)</span>. We now want
+to solve for the screw axis, magnitude, and pitch.<br />
+Recall that the axis of a rotational screw is defined:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    l = \{ q + \lambda \omega: \; \lambda \in \mathbb{R} \}
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\omega\)</span> is the axis of rotation of the screw.
+Since we already have the direction of the axis, <span class="math notranslate nohighlight">\(\omega\)</span>, from our
+twist, <span class="math notranslate nohighlight">\(\xi\)</span>, all that remains to complete our definition of the screw
+axis is to find a point <span class="math notranslate nohighlight">\(q\)</span> on the axis in terms of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span>.<br />
+How might we accomplish this? Let’s compare the terms in the
+transformation matrix for a screw with the matrix <span class="math notranslate nohighlight">\(e^{\hat\xi\theta}\)</span>.
+Using the mathematics that we developed above, if the screw and twist
+are to represent the same motion, their transformation matrices must be
+the same:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g_{screw} &amp;= g_{twist} = e^{\hat\xi\theta}\\
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 -e^{\hat\omega\theta})q + h\theta\omega \\
+    0 &amp; 1
+    \end{bmatrix}
+    &amp;= 
+    \begin{bmatrix}
+    e^{\hat\omega\theta} &amp; (I_3 - e^{\hat\omega\theta})\hat\omega v + \omega \omega ^T v\theta\\
+    0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Right away, we notice that the upper right entry of the
+matrix is the only one containing the point <span class="math notranslate nohighlight">\(q\)</span>. Thus, we focus in on
+the terms in the upper right, and equate them:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (I_3 -e^{\hat\omega\theta})q + h\theta\omega &amp;= (I_3 - e^{\hat\omega\theta})\hat\omega v + \omega \omega ^T v\theta
+\end{aligned}\]</div>
+<p>We observe that both of these expressions may be split
+into two parts, just as with our proof in the previous section! The
+first part consists of <span class="math notranslate nohighlight">\((I_3 - e^{\hat\omega\theta})\)</span> multiplied by some
+vector, while the second part consists of <span class="math notranslate nohighlight">\(\theta\)</span> multiplied by some
+vector. If we’re able to find a way to make both of these parts equal to
+their counterparts on the other side of the equation, we’ll have solved
+the equality.<br />
+Let’s solve for <span class="math notranslate nohighlight">\(q\)</span> by equating the first terms!</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    (I - e^{\hat\omega\theta})q &amp;= (I_3 - e^{\hat\omega\theta})\hat\omega v
+\end{aligned}\]</div>
+<p>From the above, it’s clear that the value of <span class="math notranslate nohighlight">\(q\)</span> which
+makes these terms equal is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    q = \hat\omega v = \omega \times v
+\end{aligned}\]</div>
+<p>Thus, we may compute a point on the axis of rotation in
+terms of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> by <span class="math notranslate nohighlight">\(q = \omega \times v\)</span>. This allows us to
+represent the axis of a screw corresponding to a twist as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    l = \{q + \lambda \omega:\; \lambda \in \mathbb{R}\}
+    = \{\omega \times v + \lambda \omega:\; \lambda \in \mathbb{R}\}
+\end{aligned}\]</div>
+<p>Now, we’re ready to solve for the pitch of the screw,
+<span class="math notranslate nohighlight">\(h\)</span>. We notice that just like <span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(h\)</span> is found in the upper right term
+of one of the transformation matrices. We already know that we’ve found
+a point <span class="math notranslate nohighlight">\(q\)</span> to make the first part of these upper right terms equal.
+Now, to finish the job, we must solve for a pitch <span class="math notranslate nohighlight">\(h\)</span> to make the second
+part of these upper right terms equal.<br />
+Equating the second parts of the upper right terms, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    h\theta\omega &amp;= \omega\omega^Tv\theta\\
+    h\theta\omega &amp;= \omega^Tv\theta \omega
+\end{aligned}\end{split}\]</div>
+<p>Where in the last step, we use the fact that
+<span class="math notranslate nohighlight">\(\omega^T v\)</span> is a scalar to rearrange the expression. Now, we observe
+that on both sides of the equation, we have a scalar multiplied by
+<span class="math notranslate nohighlight">\(\theta\omega\)</span>. Thus, to make both sides of the equation equal, we
+choose:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    h = \omega^Tv
+\end{aligned}\]</div>
+<p>The pitch of a twist in terms of <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(v\)</span> is
+therefore calculated <span class="math notranslate nohighlight">\(h = \omega^T v\)</span>.<br />
+Now that we have the axis and the pitch, the one remaining term we have
+to compute is the magnitude of the screw, <span class="math notranslate nohighlight">\(M\)</span>. We know that by
+definition, the magnitude of a rotational screw is the angle of
+rotation, <span class="math notranslate nohighlight">\(\theta\)</span>. Thus, for a screw with nonzero rotation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    M = \theta
+\end{aligned}\]</div>
+<p>We’ve now found a screw axis, magnitude, and pitch
+corresponding to a twist <span class="math notranslate nohighlight">\(\xi \in \mathbb{R}^6\)</span> and a scalar
+<span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>. This completes the proof of the rotational
+case.<br />
+Let’s summarize what we just proved, and how it ties in with the overall
+goal of this proof. In this proof, we’re aiming to show that there is a
+screw corresponding to every twist. We’re accomplishing this by showing
+that we can find formulas for the parameters of a screw (axis, pitch,
+and magnitude) in terms of the parameters of a twist <span class="math notranslate nohighlight">\((v, \omega)\)</span>. To
+solve for these quantities in terms of each other, we chose to equate
+the transformation matrix of a screw with the transformation matrix of a
+twist.<br />
+<strong>Translational Case</strong><br />
+We may complete the proof by analyzing the case of pure translational
+motion. Given a twist <span class="math notranslate nohighlight">\(\xi = (v, 0) \in \mathbb{R}^6\)</span> and a distance
+<span class="math notranslate nohighlight">\(\theta\)</span> corresponding to a pure translational motion, we want to find a
+screw motion corresponding to this twist.<br />
+First, we’ll solve for the screw axis. We know that for the
+translational case, the screw axis is the line passing through the
+origin along the direction of translation. Since for a translational
+twist, <span class="math notranslate nohighlight">\(\xi = (v, 0)\)</span>, the vector <span class="math notranslate nohighlight">\(v\)</span> is a unit vector pointing in the
+direction of translation, we already have all we need to express the
+screw axis!</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    l = \{ \lambda v:\; \lambda \in \mathbb{R} \}
+\end{aligned}\]</div>
+<p>Now, we must find the magnitude and pitch. Recall that
+for a purely translational screw, we define the screw magnitude to be
+the distance traveled along the screw axis. Thus, for a purely
+translational screw:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    M = \theta
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\theta\)</span> is the amount of translation that
+occurs.<br />
+Finally, we must solve for the pitch of the screw corresponding to the
+pure translational motion. Recall that when defining pitch, we stated
+that whenever we have a nonzero translation but zero rotation, the pitch
+of a screw will be infinite! Thus, the pitch <span class="math notranslate nohighlight">\(h\)</span> corresponding to
+<span class="math notranslate nohighlight">\(\xi = (v, 0)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    h = \infty
+\end{aligned}\]</div>
+<p>Recall that this fact comes from the definition of pitch
+as the ratio of translation to rotation, and the amount of rotation
+being zero in this case.<br />
+Now that we’ve identified the three screw parameters, we’ve found a
+screw corresponding to an arbitrary translational twist
+<span class="math notranslate nohighlight">\(\xi = (v, 0) \in \mathbb{R}^6\)</span>.<br />
+Since we were able to find a formula for all of the screw motion
+parameters in the case of rotational and non-rotational motion, we
+conclude that we may always find a screw motion corresponding to a
+twist. This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span><br />
+<br />
+We’ll conclude our discussion of screws with a summary of the
+relationship between screws and twists. As always, we’ll split it into
+the two possible cases: nonzero rotational motion and translational
+motion.</p>
+<ol>
+<li><p><strong>Nonzero rotational motion:</strong> Given a twist <span class="math notranslate nohighlight">\(\xi = (v, \omega)\)</span>
+corresponding to a nonzero rotation, where <span class="math notranslate nohighlight">\(\omega\)</span> is a unit vector
+along the axis of rotation, the transformation <span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\)</span>
+is equivalently expressed by the screw motion:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            l &amp;= \{\omega \times v + \lambda \omega:\; \lambda \in \mathbb{R}\}\\
+            M &amp;= \theta\\
+            h &amp;= \omega^T v
+    \end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(l\)</span> is the screw axis, <span class="math notranslate nohighlight">\(M\)</span> is the magnitude,
+and <span class="math notranslate nohighlight">\(h\)</span> is the pitch.</p>
+</li>
+<li><p><strong>Translational motion:</strong> Given a twist <span class="math notranslate nohighlight">\(\xi = (v, 0)\)</span> corresponding
+to a purely translational motion, where <span class="math notranslate nohighlight">\(v\)</span> is a unit vector
+pointing in the direction of translation, the transformation
+<span class="math notranslate nohighlight">\(exp(\hat\xi\theta)\)</span> is equivalently expressed by the screw:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+            l &amp;= \{ \lambda v:\; \lambda \in \mathbb{R} \}\\
+            M &amp;= \theta\\
+            h &amp;= \infty
+    \end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(l\)</span> is the screw axis, <span class="math notranslate nohighlight">\(M\)</span> is the magnitude,
+and <span class="math notranslate nohighlight">\(h\)</span> is the pitch.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="chasles-theorem">
+<h2>Chasles’ Theorem<a class="headerlink" href="#chasles-theorem" title="Permalink to this headline">#</a></h2>
+<p>What does all of this theory about screw motion <em>really</em> add up to when
+we think about its importance in describing rigid body motion? In this
+section, we’ll discuss an important theorem that gives context to the
+value of screw motion.<br />
+Before we dive into this theorem, however, we’ll need to be equipped
+with the following fact about the matrix exponential.</p>
+<div class="proof lemma admonition" id="commutative_exp">
+<p class="admonition-title"><span class="caption-number">Lemma 3 </span></p>
+<div class="lemma-content section" id="proof-content">
+<p>Given two matrices <span class="math notranslate nohighlight">\(A, B \in \mathbb{R}^{n\times n}\)</span>, if
+<span class="math notranslate nohighlight">\(AB = BA\)</span> then:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    e^{A+B} = e^Ae^B
+\end{aligned}\]</div>
+<p>Note that the condition <span class="math notranslate nohighlight">\(AB = BA\)</span> may also be written as
+<span class="math notranslate nohighlight">\([A, B] = 0\)</span>, where <span class="math notranslate nohighlight">\([\cdot, \cdot]\)</span> is called the commutator of two
+matrices, defined <span class="math notranslate nohighlight">\([X, Y] = XY - YX\)</span>.</p>
+</div>
+</div><p>Keep this important fact in mind as we discuss our main result of this
+section. Based on our treatment of the screw motion thus far, we arrive
+at the following surprising theorem.</p>
+<div class="proof theorem admonition" id="chasles_thm">
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p><strong>Chasles’ Theorem</strong><br />
+Every rigid body motion may be represented by a screw motion - a
+rotation about an axis followed by a translation parallel to that axis.</p>
+</div>
+</div><p><strong>Proof:</strong> Let’s begin our proof of Chasles’ Theorem by translating the
+theorem from English into the language of mathematics. This theorem
+states that for all rigid body transformations <span class="math notranslate nohighlight">\(g \in SE(3)\)</span>, we can
+break <span class="math notranslate nohighlight">\(g\)</span> up into a rotational motion about an axis <span class="math notranslate nohighlight">\(\omega\)</span> by an angle
+<span class="math notranslate nohighlight">\(\theta\)</span> and a translation along the axis <span class="math notranslate nohighlight">\(\omega\)</span> by a distance
+<span class="math notranslate nohighlight">\(\theta'\)</span>.<br />
+This means that <em>every</em> rigid body transformation of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g = 
+    \begin{bmatrix}
+    R &amp; p\\
+    0 &amp; 1
+    \end{bmatrix}
+    \in SE(3)
+\end{aligned}\end{split}\]</div>
+<p>May be represented entirely by some screw motion! Take a
+moment to appreciate how far we’ve come from our original idea of screw
+motion - starting from something as simple as a nut turning on a bolt,
+we’ve come to the point where we have a way of generating <em>any</em> rigid
+body transformation.<br />
+Let’s carry on with the proof of this amazing statement! As with our
+other proofs, we’ll split the proof up into two cases based on the type
+of transformation.<br />
+<strong>Rotational Case</strong><br />
+We’ll begin by proving Chasles’ Theorem for the case of nonzero
+rotational motion. We know that for any nonzero rotational
+transformation <span class="math notranslate nohighlight">\(g\)</span>, we may find a twist <span class="math notranslate nohighlight">\(\xi\)</span> and an angle <span class="math notranslate nohighlight">\(\theta\)</span> such
+that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g = e^{\hat\xi\theta}
+\end{aligned}\]</div>
+<p>Where the twist <span class="math notranslate nohighlight">\(\xi\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+    v\\
+    \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>In the previous section, we proved that all nonzero
+rotational twists can be expressed as screw motions! Thus, for all
+twists corresponding to a nonzero rotation, there is a point on the axis
+of rotation, <span class="math notranslate nohighlight">\(p\)</span> and a pitch <span class="math notranslate nohighlight">\(h\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = \begin{bmatrix}
+    v\\
+    \omega
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    -\omega \times q + h\omega\\
+    \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>We may write this twist as the sum of two components:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+    -\omega \times q\\
+    \omega
+    \end{bmatrix}
+    + \begin{bmatrix}
+    h\omega\\
+    0
+    \end{bmatrix}
+    = \xi_1 + \xi_2
+\end{aligned}\end{split}\]</div>
+<p>This first twist, <span class="math notranslate nohighlight">\(\xi_1\)</span>, is the twist corresponding to
+a <em>pure</em> rotational motion about an axis <span class="math notranslate nohighlight">\(\omega\)</span>, while the second
+twist is the twist corresponding to a translational motion along an axis
+<span class="math notranslate nohighlight">\(\omega\)</span>.<br />
+Using these two twists, the matrix <span class="math notranslate nohighlight">\(g = exp(\hat\xi\theta)\)</span> may be
+expressed:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g &amp;= e^{\hat\xi\theta}\\
+    g &amp;= e^{(\hat\xi_1 + \hat\xi_2)\theta}
+\end{aligned}\end{split}\]</div>
+<p>In this case, we may prove that
+<span class="math notranslate nohighlight">\(\hat\xi_1\hat\xi_2 = \hat\xi_2\hat\xi_1\)</span>, and therefore apply the lemma
+from above to split this exponential up into the product of two
+exponentials:<a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g &amp;= e^{\hat\xi_1\theta}e^{\hat\xi_2\theta}
+\end{aligned}\]</div>
+<p>When we look at this transformation, we find that the
+first transformation is a rotation about an axis <span class="math notranslate nohighlight">\(\omega\)</span> by an angle
+<span class="math notranslate nohighlight">\(\theta\)</span>, while the second transformation is a translation along the
+axis <span class="math notranslate nohighlight">\(\omega\)</span> by a distance <span class="math notranslate nohighlight">\(d = h\theta\)</span>.<br />
+Thus, we may represent <em>any</em> nonzero rotational rigid body motion <span class="math notranslate nohighlight">\(g\)</span> by
+a rotation about an axis followed by a translation along that axis. This
+completes the proof of the rotational case of Chasles’ theorem.<br />
+<strong>Translational Case</strong><br />
+We know that for any translational transformation <span class="math notranslate nohighlight">\(g \in SE(3)\)</span>, we may
+find a twist of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Such that <span class="math notranslate nohighlight">\(g = exp(\hat\xi\theta)\)</span>, where <span class="math notranslate nohighlight">\(\theta\)</span> is
+the amount of translation in direction <span class="math notranslate nohighlight">\(v\)</span>.<br />
+We know that the transformation matrix of rotating about direction <span class="math notranslate nohighlight">\(v\)</span>
+by zero degrees and translating by zero will be the <span class="math notranslate nohighlight">\(4\times 4\)</span> identity
+matrix, <span class="math notranslate nohighlight">\(I_4\)</span>. We also know that the identity matrix represents the
+rigid body transformation of staying still in space. Thus, we may write:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g = e^{\hat\xi\theta} = I_4 e^{\hat\xi\theta}
+\end{aligned}\]</div>
+<p>Thus, we conclude that any translational motion is
+equivalent to a rotation of zero radians about an axis <span class="math notranslate nohighlight">\(v\)</span> combined with
+a translation of <span class="math notranslate nohighlight">\(\theta\)</span> along axis <span class="math notranslate nohighlight">\(v\)</span>. Therefore, the translational
+case may also be broken down into a rotation and a translation along the
+same axis!<br />
+Since we have proven that both nonzero rotational and translational
+motions may be represented by a (potentially zero) rotation about some
+axis followed by a (potentially zero) translation along that axis, we
+conclude that all rigid body motions may be represented by screw
+motions. This completes the proof! <span class="math notranslate nohighlight">\(\square\)</span></p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Remember that this is <em>not</em> something that we’re able to do in
+general!</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="rigid_motions_R3.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Rigid Motions in <span class="math notranslate nohighlight">\(\mathbf{\mathbb{R}^3}\)</span></p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Massimiliano de Sa<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

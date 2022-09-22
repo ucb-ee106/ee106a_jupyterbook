@@ -137,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
    </span>
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screw_motion.html">
+   Screw Motion
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -276,7 +281,10 @@ title="Open an issue"
    <div class="modindex-jumpbox">
    <a href="#cap-ON_rotation"><strong>ON_rotation</strong></a> | 
    <a href="#cap-SE3_group"><strong>SE3_group</strong></a> | 
+   <a href="#cap-ScrewIsTwist"><strong>ScrewIsTwist</strong></a> | 
    <a href="#cap-bin"><strong>bin</strong></a> | 
+   <a href="#cap-chasles_thm"><strong>chasles_thm</strong></a> | 
+   <a href="#cap-commutative_exp"><strong>commutative_exp</strong></a> | 
    <a href="#cap-eigenval_mag"><strong>eigenval_mag</strong></a> | 
    <a href="#cap-euler_thm"><strong>euler_thm</strong></a> | 
    <a href="#cap-exp_coord_def"><strong>exp_coord_def</strong></a> | 
@@ -288,6 +296,7 @@ title="Open an issue"
    <a href="#cap-rigid_rotation"><strong>rigid_rotation</strong></a> | 
    <a href="#cap-rigid_trans"><strong>rigid_trans</strong></a> | 
    <a href="#cap-rotation_det"><strong>rotation_det</strong></a> | 
+   <a href="#cap-screw_motion_defn"><strong>screw_motion_defn</strong></a> | 
    <a href="#cap-se3_defn"><strong>se3_defn</strong></a> | 
    <a href="#cap-se3_surjective"><strong>se3_surjective</strong></a> | 
    <a href="#cap-se_3RB"><strong>se_3RB</strong></a> | 
@@ -297,6 +306,7 @@ title="Open an issue"
    <a href="#cap-surjective"><strong>surjective</strong></a> | 
    <a href="#cap-trace_lem"><strong>trace_lem</strong></a> | 
    <a href="#cap-transf_coord_fr"><strong>transf_coord_fr</strong></a> | 
+   <a href="#cap-twistIsScrew"><strong>twistIsScrew</strong></a> | 
    <a href="#cap-vee_map"><strong>vee_map</strong></a> | 
    <a href="#cap-wedge"><strong>wedge</strong></a>
    </div>
@@ -319,6 +329,14 @@ title="Open an issue"
        <a href="rigid_motions_R3.html#SE3_group"><code class="xref">SE3_group</code></a> <em>(rigid_motions_R3)</em></td><td>
        <em>proposition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ScrewIsTwist"><td></td><td>
+       <strong>ScrewIsTwist</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="screw_motion.html#ScrewIsTwist"><code class="xref">ScrewIsTwist</code></a> <em>(screw_motion)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-bin"><td></td><td>
        <strong>bin</strong></td><td></td></tr>
      <tr>
@@ -326,6 +344,22 @@ title="Open an issue"
        <td>
        <a href="rigid_body_rotations.html#bin"><code class="xref">bin</code></a> <em>(rigid_body_rotations)</em></td><td>
        <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-chasles_thm"><td></td><td>
+       <strong>chasles_thm</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="screw_motion.html#chasles_thm"><code class="xref">chasles_thm</code></a> <em>(screw_motion)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-commutative_exp"><td></td><td>
+       <strong>commutative_exp</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="screw_motion.html#commutative_exp"><code class="xref">commutative_exp</code></a> <em>(screw_motion)</em></td><td>
+       <em>lemma</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-eigenval_mag"><td></td><td>
        <strong>eigenval_mag</strong></td><td></td></tr>
@@ -415,6 +449,14 @@ title="Open an issue"
        <a href="rigid_body_rotations.html#rotation_det"><code class="xref">rotation_det</code></a> <em>(rigid_body_rotations)</em></td><td>
        <em>proposition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-screw_motion_defn"><td></td><td>
+       <strong>screw_motion_defn</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="screw_motion.html#screw_motion_defn"><code class="xref">screw_motion_defn</code></a> <em>(screw_motion)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-se3_defn"><td></td><td>
        <strong>se3_defn</strong></td><td></td></tr>
      <tr>
@@ -485,6 +527,14 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="rigid_body_rotations.html#transf_coord_fr"><code class="xref">transf_coord_fr</code></a> <em>(rigid_body_rotations)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-twistIsScrew"><td></td><td>
+       <strong>twistIsScrew</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="screw_motion.html#twistIsScrew"><code class="xref">twistIsScrew</code></a> <em>(screw_motion)</em></td><td>
        <em>proposition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-vee_map"><td></td><td>
