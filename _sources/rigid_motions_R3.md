@@ -1,4 +1,4 @@
-# Rigid Motions in $\mathbf{\mathbb{R}^3}$
+# Rigid Motions in Three Dimensions
 
 Welcome back! Let's take a brief moment to discuss where we currently
 are in our exploration of robotics.\
