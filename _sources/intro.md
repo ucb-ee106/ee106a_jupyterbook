@@ -10,10 +10,6 @@ Using the language of mathematics, we may develop a framework with which we may 
 properties for our robots. In this course, we'll gain a brief introduction to how this is done. Let's get 
 started!
 
-$$\begin{align*}
-    \mathbb{R}\Theta\beta\varnothing\Gamma\Phi\mathcal{C}\mathbb{S}
-\end{align*}$$
-
 ### Table of Contents
 ```{tableofcontents}
 ```
