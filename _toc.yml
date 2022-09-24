@@ -11,4 +11,5 @@ chapters:
 - file: further_repr
 - file: rigid_motions_R3
 - file: screw_motion
+- file: ForwardKinematics
 # - file: example_md_file #EXAMPLE FILE FOR SYNTAX

@@ -1,0 +1,1347 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forward Kinematics &#8212; Introduction to Robotics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Screw Motion" href="screw_motion.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/106A_logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Robotics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to 106A!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="rigid_body_rotations.html">
+   Rigid Body Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="further_repr.html">
+   Further Representations of Rotations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rigid_motions_R3.html">
+   Rigid Motions in Three Dimensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screw_motion.html">
+   Screw Motion
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Forward Kinematics
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FForwardKinematics.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/ForwardKinematics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#robot-joints">
+   Robot Joints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#describing-robot-configurations">
+   Describing Robot Configurations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-product-of-exponentials">
+   The Product of Exponentials
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Forward Kinematics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#robot-joints">
+   Robot Joints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#describing-robot-configurations">
+   Describing Robot Configurations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-product-of-exponentials">
+   The Product of Exponentials
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="forward-kinematics">
+<h1>Forward Kinematics<a class="headerlink" href="#forward-kinematics" title="Permalink to this headline">#</a></h1>
+<p>Welcome back! So far, we’ve developed a <em>monumental</em> amount of theory
+regarding the motion of rigid bodies. We’ve developed strong
+representations of rotations and general rigid body transformations, and
+have devised numerous convenient parameterizations for both.<br />
+In this section, we’ll <em>finally</em> be able to begin to appreciate the
+significance of our developments, and will apply them to finding the
+rigid body transformations associated with real-world robots.<br />
+In studying something called the <em>forward kinematics</em> of robots, we’ll
+truly be able to enjoy the power of twists, screws, and exponential
+coordinates, and see that our struggle has allowed us to come up with a
+truly elegant representation of complex robot motions. Let’s get
+started!</p>
+<div class="section" id="robot-joints">
+<h2>Robot Joints<a class="headerlink" href="#robot-joints" title="Permalink to this headline">#</a></h2>
+<p>As real world robots are composed of many complex joints, having an
+understanding of the motion of each individual joint of a robot arm is a
+good first step in developing models of complex robot motion. In this
+section, we’ll define three fundamental robot joints, and see how we may
+apply twists and screws to describe their motion.<br />
+The first fundamental robot joint is the <strong>prismatic joint</strong>. This is a
+joint that corresponds to a pure translational motion. Consider the
+robot arm below, for example:</p>
+<p><img alt="image" src="_images/prismaticJoint.png" /><br />
+<em>Above: a prismatic robot joint is a joint that undergoes pure
+translation</em></p>
+<p>We see that this arm is <em>only</em> able to move along a single axis in
+space - in this case the y-axis of the frame. Since this is a pure
+translational motion, we know that this robot arm has a prismatic
+joint.<br />
+How can we find the twist associated with this joint? We recall that for
+every purely translational motion, we may find a twist of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_{prismatic} = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(v \in \mathbb{R}^3\)</span> is a unit vector pointing in
+the direction of translation. To describe the transformation of
+translating in direction <span class="math notranslate nohighlight">\(v\)</span> by <span class="math notranslate nohighlight">\(\theta\)</span> units of distance, we recall
+that we may use the matrix exponential of the hat map of this twist:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{translational} = e^{\hat\xi_{prismatic}\theta} \in SE(3)
+\end{aligned}\]</div>
+<p>The next, and perhaps most common, type of robot joint
+is the <strong>revolute joint</strong>. This is a joint that purely rotates about
+some axis in space. Consider the following example of a revolute joint,
+pictured in red:</p>
+<p><img alt="image" src="_images/revoluteJoint.png" /><br />
+<em>Above: a revolute joint undergoes pure rotation</em></p>
+<p>In the image above, the red joint of the robot arm only undergoes a pure
+rotation about an axis in space, which is drawn here as a dotted green
+line. Because this joint undergoes a pure rotation about an axis, we say
+that it is a <em>revolute joint</em>.<br />
+Since revolute joints undergo pure rotations, we may describe the motion
+of a revolute joint with a twist corresponding to a pure rotational
+motion. Recall that we may express the twist of a purely rotational
+motion as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_{revolute} = 
+    \begin{bmatrix}
+        -\omega \times q\\
+        \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\omega\)</span> is the unit vector axis of rotation and
+<span class="math notranslate nohighlight">\(q\)</span> is any point on the axis of rotation, expressed in the spatial
+frame.<br />
+To find the rigid body transformation associated with rotating a
+revolute joint by <span class="math notranslate nohighlight">\(\theta\)</span> radians about its axis, we may take the
+matrix exponential of its twist:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{revolute} = e^{\hat\xi_{revolute}\theta} \in SE(3)
+\end{aligned}\]</div>
+<p>As a brief aside, note that a convention when drawing
+robot arms is to draw a set of slanted dashed lines wherever the robot
+is securely attached to its environment. In the picture above, for
+example, the slanted dashed lines drawn on the joint in blue indicate
+that the robot is fixed in space, perhaps to the ground or a wall, at
+that point.<br />
+The final important class of joint we’ll discuss is the <strong>screw joint</strong>.
+Recall that previously, we defined screw <em>motion</em> to be a motion
+involving a rotation about an axis and a translation parallel to that
+axis.<br />
+The definition of screw motion leads naturally to the definition of a
+screw joint! A screw joint is a joint of a robot arm that involves a
+rotation and translation about the same axis. Consider the following
+example of a screw joint:</p>
+<p><img alt="image" src="_images/screwJoint.png" /><br />
+<em>Above: a screw joint corresponds to a rotation and a translation of a
+robot link about the same axis</em></p>
+<p>In the example above, when the robot joint rotates about its axis, it
+also translates along the axis. As with screw motion, we may compare the
+motion of these joints to the motion of nuts and bolts! When we turn a
+nut on a bolt, it both spins on and translates along the axis of the
+bolt.<br />
+Because the motion of a screw joint involves a rotation about an axis
+and a translation along that axis - the same set of motions as a screw
+motion - we may use the twist of a rotational screw motion to represent
+the motion of a screw joint.<br />
+We therefore write the twist of a screw joint as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_{screw} = 
+    \begin{bmatrix}
+        -\omega \times q + h\omega\\
+        \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\omega\)</span> is the unit vector pointing along the
+axis of rotation, <span class="math notranslate nohighlight">\(q\)</span> is any point on the axis of rotation, and <span class="math notranslate nohighlight">\(h\)</span> is
+the pitch, the ratio of translational to rotational motion. Recall that
+<span class="math notranslate nohighlight">\(-\omega \times q\)</span> comes from the rotational part of the screw motion,
+while <span class="math notranslate nohighlight">\(h\omega\)</span> comes from the translational part of the screw motion.<br />
+To represent the rotational, translational motion of a screw joint, we
+may once again apply the matrix exponential to the twist:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{screw} = e^{\hat\xi_{screw} \theta} \in SE(3)
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\theta\)</span> is the amount of rotation about the screw
+axis.<br />
+Now that we have these three fundamental robot joints and their
+associated rigid body transformations, we can construct larger and more
+complex robot arms by attaching these joints to each other! Consider the
+complex robot arm below, for example:</p>
+<p><img alt="image" src="_images/complexJoints.png" /><br />
+<em>Above: a complex robot arm composed of the three fundamental joints</em></p>
+<p>Which joints can we identify in the robot arm above? We see that the
+first joint is a screw joint, as it involves both a rotation and a
+translation along a screw axis. The second joint is a revolute joint, as
+the red piece of the robot arm only undergoes pure rotation. The third
+joint is a prismatic joint, as it simply moves up and down with respect
+to its previous joint.<br />
+We refer to each of these independent segments in a robot arm as a
+<strong>robot link</strong>. Note that we assume each link is a rigid body - this
+will allow us to apply the theory of rigid body transformations to the
+motion of complex robot arms.</p>
+</div>
+<div class="section" id="describing-robot-configurations">
+<h2>Describing Robot Configurations<a class="headerlink" href="#describing-robot-configurations" title="Permalink to this headline">#</a></h2>
+<p>Once we begin forming more complex manipulator arms composed of multiple
+joints, it becomes more and more challenging to keep track of the
+possible configurations of the robot. For example, if we have a robot
+arm with six independent joints, changing any one of the six joint
+positions will give an entirely new robot configuration!<br />
+In this section, we’ll develop a precise mathematical framework for
+describing the set of <em>all</em> of possible positions for a robot arm. This
+set will provide us with a convenient way of assessing where a robot arm
+is capable of moving.<br />
+We’ll begin this process with a precise definition of the space of robot
+arm configurations.</p>
+<div class="proof definition admonition" id="joint_space">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Joint Space</strong><br />
+The joint space of a robot arm is the set <span class="math notranslate nohighlight">\(Q\)</span> of all possible joint
+angle or position combinations for the manipulator arm.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    Q = \{\text{All Joint Configurations}\}
+\end{aligned}\]</div>
+</div>
+</div><p>How may we describe this set in more mathematical terms? Let’s take a
+moment to think about the sets of possible joint positions and angles
+for the types of joints we discussed in the previous section.<br />
+Consider the following top-down view of a revolute joint. We know that
+we may represent the position of the joint using an angle <span class="math notranslate nohighlight">\(\theta\)</span>, the
+displacement of the joint relative to its starting position.</p>
+<p><img alt="image" src="_images/s1.png" /><br />
+<em>Above: the configuration of a revolute joint changes depending on the
+angle <span class="math notranslate nohighlight">\(\theta\)</span>. The end effector traces out a circle as <span class="math notranslate nohighlight">\(\theta\)</span>
+varies.</em></p>
+<p>How can we describe the set of all possible angles of the revolute
+joint? Let’s think about the conditions the angle <span class="math notranslate nohighlight">\(\theta\)</span> is subject
+to.<br />
+We know that at the very least, <span class="math notranslate nohighlight">\(\theta\)</span> will always be a real number.
+Can we be any more specific about the set of possible <span class="math notranslate nohighlight">\(\theta\)</span> values?
+Since <span class="math notranslate nohighlight">\(\theta\)</span> refers to the angle of <em>rotation</em> of a joint, we know
+that after <span class="math notranslate nohighlight">\(\theta = 2\pi\)</span>, the configurations will begin to repeat
+themselves!<br />
+Because of this, the set of all possible configurations of a revolute
+joint may be described by an angle <span class="math notranslate nohighlight">\(\theta\)</span> between 0 and <span class="math notranslate nohighlight">\(2\pi\)</span>, since
+after <span class="math notranslate nohighlight">\(2\pi\)</span>, the joint will be back where it started.<br />
+We name the set of possible <span class="math notranslate nohighlight">\(\theta\)</span> values for a revolute joint
+<span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span>, where <span class="math notranslate nohighlight">\(\mathbb{S}\)</span> refers to the circular nature of the
+set<a class="footnote-reference brackets" href="#id4" id="id1">1</a> and <span class="math notranslate nohighlight">\(1\)</span> refers to the number of angles we need to describe our
+position on the circle.<a class="footnote-reference brackets" href="#id5" id="id2">2</a><br />
+Mathematically, the set <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span> may be be identified by the
+interval <span class="math notranslate nohighlight">\(\theta \in [0, 2\pi)\)</span>, where we don’t include the second
+endpoint to avoid repeating angular configuations.<br />
+Let’s now think about the set of all possible values for the position of
+a prismatic joint. We know that a prismatic joint is a joint that is
+able to translate along a fixed direction in space. Because this
+direction is fixed for every prismatic joint, all we need to describe
+the position of a prismatic joint is the distance we’ve moved along that
+direction, which is a real number in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</p>
+<p><img alt="image" src="_images/prismaticPositions.png" /><br />
+<em>Above: the position of a prismatic joint may be any real number</em></p>
+<p>Is it possible to get any more specific than this set for a prismatic
+joint? Let’s think about it in a way similar to the case of a revolute
+joint.<br />
+We know that a prismatic joint involves a translation along a single
+direction <span class="math notranslate nohighlight">\(v\)</span>. If we keep moving along <span class="math notranslate nohighlight">\(v\)</span> in one direction, is there
+any way we’ll end up back where we started like we did in the revolute
+case?</p>
+<p><img alt="image" src="_images/translationR.png" /><br />
+<em>Above: by translating along a single direction <span class="math notranslate nohighlight">\(v\)</span>, is there any way we
+can get back to where we started?</em></p>
+<p>As we can see in the image above, if we move along a single direction in
+space, there’s no way we’ll ever end up back at our starting position!<br />
+This means that there is no “periodic behavior” in the position of a
+prismatic joint, unlike in the case of a revolute joint. Because of
+this, we conclude that we must use the entire set of real numbers,
+<span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, to represent the set of all positions of a prismatic
+joint.<br />
+With the sets <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, we’re now ready to
+describe the set of all possible positions for any individual robot
+joint. What we still need, however, is a way to mathematically write the
+set of all combinations of elements of these sets. This comes in the
+form of the Cartesian product.<a class="footnote-reference brackets" href="#id6" id="id3">3</a></p>
+<div class="proof definition admonition" id="cart_prod">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Cartesian Product</strong><br />
+The Cartesian product of two sets <span class="math notranslate nohighlight">\(A = \{A_1, A_2, ..., A_n\}\)</span> and
+<span class="math notranslate nohighlight">\(B = \{B_1, B_2, ..., B_m\}\)</span>, written <span class="math notranslate nohighlight">\(A\times B\)</span>, is the set of all
+combinations of elements of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    A\times B = \{(A_1, B_1), (A_1, B_2), ..., (A_2, B_1), (A_2, B_2), ... (A_n, B_m)\}
+\end{aligned}\]</div>
+</div>
+</div><p>We may use this Cartesian product as a tool to write out the set of all
+possible joint configurations of our robots - after all, each robot
+configuration is just one combination of joint positions!<br />
+As a demonstration of how the Cartesian product is used, we’ll write out
+an expression for the joint space, <span class="math notranslate nohighlight">\(Q\)</span>, of the following robot arm:</p>
+<p><img alt="image" src="_images/JointSpaceArm.png" /></p>
+<p>Let’s first identify the types of joints in this arm. The first joint is
+revolute, the second joint is revolute, and the third joint is
+prismatic, as it is a purely translational joint.<br />
+Now, we want to write an expression for the joint space <span class="math notranslate nohighlight">\(Q\)</span> - the set of
+<em>all</em> possible joint configurations of this robot. We know that this is
+the set of all possible <em>combinations</em> of the three joints above.<br />
+Since the first two joints are revolute, we know that the first and
+second joints may be described by <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span>. Since the third joint
+is prismatic, the set of all possible positions of the third joint is
+<span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.<br />
+Since the joint space is the set of all <em>combinations</em> of joint
+positions and we know the sets corresponding to each joint, we may
+express <span class="math notranslate nohighlight">\(Q\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    Q = \mathbb{S}^1\times \mathbb{S}^1 \times \mathbb{R}
+\end{aligned}\]</div>
+<p>Thus, using the Cartesian product to express the set of
+combinations, we’ve identified the set of <em>all</em> possible joint positions
+for the robot.<br />
+What does a single element of this joint space, <span class="math notranslate nohighlight">\(\theta \in Q\)</span>, actually
+look like? Let’s rewrite the joint space of the robot above in
+traditional set-builder notation to gain some perspective.</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    Q = \mathbb{S}^1\times \mathbb{S}^1 \times \mathbb{R}
+    = \{(\theta_1, \theta_2, \theta_3) \; | \; \theta_1, \theta_2 \in \mathbb{S}^1, \theta_3 \in \mathbb{R} \}
+\end{aligned}\]</div>
+<p>We see that each element of the joint space of this
+robot, <span class="math notranslate nohighlight">\(\theta \in Q\)</span>, is actually list of the three joint positions!
+Because of this, we often express the configuration of a robot as a
+vector of the robot’s joint positions. For the robot above, for example,
+we could express its joint positions as the vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \theta = \begin{bmatrix}
+    \theta_1\\
+    \theta_2\\
+    \theta_3
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\theta_1\)</span> refers to the position of the first
+joint, <span class="math notranslate nohighlight">\(\theta_2\)</span> the position of the second joint, and <span class="math notranslate nohighlight">\(\theta_3\)</span> the
+position of the third joint. This is a common convention that we’ll use
+going forwards.<br />
+Let’s zoom out for a moment, and take a higher level overview of our
+analysis of the joint space of this robot. Are there any patterns we can
+extract from our final expression?<br />
+We found that when we had two revolute joints and a single prismatic
+joint, we had two appearances of <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span> in our Cartesian product
+and one appearance of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. It turns out that this pattern of
+the number of <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span>s and <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>s in the Cartesian product
+matching the number of revolute and prismatic joints will generalize to
+robots composed of arbitrary numbers of revolute and prismatic joints.<br />
+If we have a robot with <span class="math notranslate nohighlight">\(n\)</span> revolute joints and <span class="math notranslate nohighlight">\(m\)</span> prismatic joints,
+the joint space of the robot may be expressed:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    Q = \mathbb{S}^1 \times \mathbb{S}^1 \times ... \times \mathbb{S}^1 \times \mathbb{R} \times \mathbb{R} \times  ... \times \mathbb{R} 
+\end{aligned}\]</div>
+<p>Where we have <span class="math notranslate nohighlight">\(n\)</span> appearances of <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span> and <span class="math notranslate nohighlight">\(m\)</span>
+appearances of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.<br />
+It’s important to note that the order in which we write the sets in a
+Cartesian product has <em>no effect</em> on the final resulting set! This is
+because the Cartesian product is simply all of the possible combinations
+of each set, and thus <em>doesn’t</em> depend on the order in which we write
+the sets.<br />
+Outside of joint space, are there any other high level descriptions of a
+robot that provide us with some useful information about our system? A
+common piece of information about a robot arm is its <em>degrees of
+freedom</em>, which we define below.</p>
+<div class="proof definition admonition" id="dof">
+<p class="admonition-title"><span class="caption-number">Definition 14 </span></p>
+<div class="definition-content section" id="proof-content">
+<p><strong>Degrees of Freedom</strong><br />
+The degrees of freedom (DOF) of a robot arm are the number of joints in
+the robot which we may independently move.</p>
+</div>
+</div><p>Let’s try to find the number of degrees of freedom of the arm below,
+which has a screw joint followed by a revolute joint followed by a
+prismatic joint.</p>
+<p><img alt="image" src="_images/complexJoints.png" /></p>
+<p>Let’s consider the first joint, the screw - how many degrees of freedom
+does this joint add to the system? We know that this joint introduces
+both a rotation and a translation into the system. However, we know that
+the rotation and translation <em>aren’t</em> independent motions!<br />
+When we rotate a screw joint by some amount, we know that the pitch of
+the screw will give us the corresponding translation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    d = h\theta
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(d\)</span> is the distance the joint translates, <span class="math notranslate nohighlight">\(h\)</span> is
+the screw pitch, and <span class="math notranslate nohighlight">\(\theta\)</span> is the angle the joint rotates. Because of
+this relationship between rotation and translation, we may only control
+one parameter at a time in a screw joint. Thus, the screw joint adds
+only one degree of freedom to the system.<br />
+Next, we consider the revolute joint. Here, we only have one parameter
+we can control - the angle of rotation about the axis. What’s more, we
+may change this rotation totally independently of the other parameters
+in the robot! The revolute joint therefore adds one more degree of
+freedom.<br />
+Finally, we consider the prismatic joint. We’re able to move the
+prismatic joint up and down to any position we want. Does our ability to
+move this joint depend on any of the others? Since we can control the
+prismatic arm entirely independently from the other joints in the robot,
+we conclude that the prismatic joint also adds a degree of freedom.<br />
+Adding up each degree of freedom, we conclude that this robot arm has
+three total degrees of freedom.</p>
+</div>
+<div class="section" id="the-product-of-exponentials">
+<h2>The Product of Exponentials<a class="headerlink" href="#the-product-of-exponentials" title="Permalink to this headline">#</a></h2>
+<p>Now that we have an understanding of the different joints and the
+possible configurations of a robot arm, we can tackle the practical
+problem of describing robot arm motion. Solving this problem will allow
+us to gain a <em>complete</em> description of the motion of our robot arm using
+<em>just</em> the angles.</p>
+<p><img alt="image" src="_images/forwardKin.png" /><br />
+<em>Above: how can we find the transformation between frames <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span>
+for arbitrary joint angles?</em></p>
+<p>Let’s hone in on exactly what it is that we want. Given <em>any</em> choice of
+joint angles <span class="math notranslate nohighlight">\(\theta = (\theta_1, \theta_2, ...,\theta_n)\)</span>, we want to
+be able to figure out the rigid body transformation between two key
+frames on a robot: the tool frame <span class="math notranslate nohighlight">\(T\)</span> and the spatial frame <span class="math notranslate nohighlight">\(S\)</span>.<br />
+The tool frame is a frame that moves with the robot, and is rigidly
+attached to the end of the final joint of the robot, a position known as
+the <em>end effector</em>. Whenever we rotate and translate the final joint of
+the robot, the tool frame rotates and translates with it. You can think
+of the tool frame as the frame attached to the gripper on the end of the
+Sawyer robots in the lab.<br />
+The spatial frame, on the other hand, is a frame <em>fixed</em> in space to the
+base of the robot. You can think of this as a reference frame attached
+to the base of your Sawyer robot. This frame <em>never</em> moves, even as the
+robot arm rotates and translates in space.<br />
+We’d now like to find the following rigid body transformation matrix for
+a robot with a joint space <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{st}(\theta) \in SE(3), \; \theta \in Q
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(g_{st}(\theta)\)</span> is the rigid body transformation
+between the spatial and tool frames of the robot for <em>any</em> joint
+configuration <span class="math notranslate nohighlight">\(\theta = (\theta_1, \theta_2, ..., \theta_n) \in Q\)</span>.</p>
+<p><img alt="image" src="_images/gst_theta.png" /><br />
+<em>Above: how can we find the transformation between <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span> for <em>any</em>
+robot configuration?</em></p>
+<p>Because <span class="math notranslate nohighlight">\(g_st(\theta)\)</span> is a rigid body transformation that depends on
+the positions of all of the joints, it is a function that maps from the
+joint space of the robot to the set of rigid body transformations. We
+may express this mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{st}(\theta): Q \to SE(3)
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\theta = (\theta_1, \theta_2, ..., \theta_n) \in Q\)</span> is a vector
+containing all of the joint positions of the robot. This map from the
+joint angles of a robot to the rigid body transformation between its
+spatial and tool frames is called the <strong>forward kinematics map</strong>.<br />
+How can we find this forward kinematics map in a convenient way? One
+valid method is to start at the tool frame, put a reference frame on
+each joint of the robot, and transform from joint to joint until we
+reach the spatial frame. However, since each joint has an <em>arbitrary</em>
+position <span class="math notranslate nohighlight">\(\theta_i\)</span>, this is something that will be challenging to write
+out!<br />
+We’ll find that this problem is <em>greatly</em> simplified by using
+exponential coordinates and screw motions. Let’s begin developing the
+mathematics of this approach!<br />
+To do this, we’ll start with a very general template for what a robot
+arm is - this way, our resulting formula will apply to <em>any</em> robot arm.
+Imagine we have a robot with <em>n</em> arbitrary joints. Each joint may be
+either a revolute, prismatic, or screw joint.</p>
+<p><img alt="image" src="_images/forwardKinRobot.png" /><br />
+<em>Above: an arbitrary robot with <span class="math notranslate nohighlight">\(n\)</span> joints. Note that the … refers to
+the remaining joints of the robot between the three that have been
+drawn.</em></p>
+<p>Recall that our goal is to find the transformation <span class="math notranslate nohighlight">\(g_{st}(\theta)\)</span> from
+the base frame <span class="math notranslate nohighlight">\(S\)</span> of the robot to the tool frame <span class="math notranslate nohighlight">\(T\)</span> as a function of
+each of the joint angles <span class="math notranslate nohighlight">\((\theta_1, ..., \theta_n)\)</span>. Where should we
+begin our search for this transformation?<br />
+First, let’s think about what this transformation will do. If we apply
+<span class="math notranslate nohighlight">\(g_{st}\)</span> to a point <span class="math notranslate nohighlight">\(p_t\)</span> in the tool frame, we will get back <span class="math notranslate nohighlight">\(p_s\)</span>, the
+point as seen from the spatial frame. This fact comes from the
+definition of a rigid body transformation.</p>
+<p><img alt="image" src="_images/forwardKinTransf.png" /><br />
+<em>Above: by applying <span class="math notranslate nohighlight">\(g_{st}\)</span> to a point <span class="math notranslate nohighlight">\(p_t\)</span> in the tool frame, we will
+get <span class="math notranslate nohighlight">\(p_s\)</span>, its representation in the spatial frame.</em></p>
+<p>Let’s see if we can compute the representation of <span class="math notranslate nohighlight">\(p_t\)</span> in the spatial
+frame using exponential coordinates! We may begin by transforming the
+point <span class="math notranslate nohighlight">\(p_t\)</span> from frame <span class="math notranslate nohighlight">\(T\)</span> into frame <span class="math notranslate nohighlight">\(S\)</span> in the <em>reference
+configuration</em>. This is the configuration where each joint position is
+zero and the robot <em>hasn’t</em> yet moved.<br />
+We may accomplish this transformation using the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g_{st}(0) = 
+    \begin{bmatrix}
+    R_{st}(0) &amp; p_{st}(0)\\
+    0 &amp; 1
+    \end{bmatrix} \in SE(3)
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(R_{st}(0)\)</span> is the rotation matrix between frames
+<span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span> in the reference configuration and <span class="math notranslate nohighlight">\(p_{st}(0)\)</span> is the
+translation between the frames. Note that since the robot hasn’t yet
+moved, this matrix is relatively simple to find.<br />
+Once we have this transformation, we apply it to point <span class="math notranslate nohighlight">\(p_t\)</span> to
+transform it into the spatial frame:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    p_s(\theta_1 = 0, \theta_2 = 0, ..., \theta_n = 0) = g_{st}(0)p_t
+\end{aligned}\]</div>
+<p>This takes the point <span class="math notranslate nohighlight">\(p_t\)</span> from the tool frame into the
+spatial frame. Now that we have this point in the spatial frame, we’re
+ready to begin moving the joints of the robot! Let’s look at what
+happens to this point when we move the furthest out joint, joint <span class="math notranslate nohighlight">\(n\)</span>, by
+amount <span class="math notranslate nohighlight">\(\theta_n\)</span>.</p>
+<p><img alt="image" src="_images/firstTransf.png" /><br />
+<em>Above: moving joint <span class="math notranslate nohighlight">\(n\)</span> by amount <span class="math notranslate nohighlight">\(\theta_n\)</span></em></p>
+<p>Since joint <span class="math notranslate nohighlight">\(n\)</span> is one of the three fundamental joints, we know from our
+development of robot joints that we may represent its motion using a
+twist <span class="math notranslate nohighlight">\(\xi_n\)</span> and a scalar <span class="math notranslate nohighlight">\(\theta_n\)</span>. If we solve for the twist of
+joint <span class="math notranslate nohighlight">\(n\)</span> in the spatial frame, the transformation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_n = e^{\hat\xi_n\theta_n}
+\end{aligned}\]</div>
+<p>Will transform points by the motion of joint <span class="math notranslate nohighlight">\(n\)</span> in the
+spatial frame. Thus, to find the position of point <span class="math notranslate nohighlight">\(p_t\)</span> in the spatial
+frame after moving joint <span class="math notranslate nohighlight">\(n\)</span> to position <span class="math notranslate nohighlight">\(\theta_n\)</span>, we may compute:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    p_s(\theta_1 = 0, \theta_2 = 0, ..., \theta_n = \theta_n) = e^{\hat\xi_n\theta_n}g_{st}(0) p_t
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(g_{st}(0)\)</span> first transforms <span class="math notranslate nohighlight">\(p_t\)</span> into the
+spatial frame and <span class="math notranslate nohighlight">\(exp(\hat\xi_n\theta_n)\)</span> moves <span class="math notranslate nohighlight">\(p_t\)</span> in the spatial
+frame according to the motion of joint <span class="math notranslate nohighlight">\(n\)</span>.<br />
+Now that we’ve found the point in the spatial frame after moving joint
+<span class="math notranslate nohighlight">\(n\)</span>, we may do the same for the next joint, <span class="math notranslate nohighlight">\(n-1\)</span>. We know that there is
+some twist <span class="math notranslate nohighlight">\(\xi_{n-1}\)</span> in the spatial frame and some scalar
+<span class="math notranslate nohighlight">\(\theta_{n-1}\)</span> corresponding to the motion of joint <span class="math notranslate nohighlight">\(n-1\)</span>.<br />
+What do we know about the value of this twist? Since we started out by
+moving the furthest-out joint, joint <span class="math notranslate nohighlight">\(n\)</span>, all of the other joints
+further in weren’t affected at all by the motion of joint <span class="math notranslate nohighlight">\(n\)</span>!<br />
+This means that when computing the twist of joint <span class="math notranslate nohighlight">\(n-1\)</span>, the twist will
+<em>not</em> be affected by moving joint <span class="math notranslate nohighlight">\(n\)</span>, and will therefore be same as it
+is in the reference configuration. Since we don’t have to account for
+the motion of joint <span class="math notranslate nohighlight">\(n\)</span>, this makes <span class="math notranslate nohighlight">\(\xi_{n-1}\)</span> just as easy to
+calculate as <span class="math notranslate nohighlight">\(\xi_n\)</span>. This is why we start our calculation by moving the
+furthest-out joint.</p>
+<p><img alt="image" src="_images/firstTransf.png" /><br />
+<em>Above: After moving joint <span class="math notranslate nohighlight">\(n\)</span>, the rest of the joints are all still in
+the same position. This allows us to calculate all of the twists using
+the reference configuration joint positions.</em></p>
+<p>After moving joints <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(n-1\)</span>, we compute the position of <span class="math notranslate nohighlight">\(p_t\)</span> in
+the spatial frame as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    p_s(\theta_1 = 0, \theta_2 = 0, ..., \theta_{n-1} = \theta_{n-1}, \theta_n = \theta_n) = e^{(\hat\xi_{n-1}\theta_{n-1})}e^{(\hat\xi_n \theta_n)}g_{st}(0)p_t
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(g_{st}(0)\)</span> converts <span class="math notranslate nohighlight">\(p_t\)</span> to the spatial frame,
+<span class="math notranslate nohighlight">\(exp(\hat\xi_n\theta_n)\)</span> moves the point according to the motion of
+joint <span class="math notranslate nohighlight">\(n\)</span>, and <span class="math notranslate nohighlight">\(exp(\hat\xi_{n-1}\theta_{n-1})\)</span> moves the point
+according to the motion of joint <span class="math notranslate nohighlight">\(n-1\)</span>.<br />
+We may repeat this process of finding a twist corresponding to the
+motion of a joint and finding the exponential of that twist for the
+remaining <span class="math notranslate nohighlight">\(n-2\)</span> joints in the robot! To avoid the problem of inner joint
+motions affecting the positions of outer joints, we continue to apply
+these transformations from the outside in.<br />
+After finding all of the transformations, we find that the final
+position of point <span class="math notranslate nohighlight">\(p_t\)</span> in the spatial frame after moving all <span class="math notranslate nohighlight">\(n\)</span> robot
+joints is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    p_s = e^{\hat\xi_1\theta_1}e^{\hat\xi_2\theta_2}\cdot\cdot\cdot e^{\hat\xi_n\theta_n}g_{st}(0)p_t
+\end{aligned}\]</div>
+<p>Where each of the twists is computed with respect to its
+reference position due to the order of multiplication.<br />
+What does this total calculation give us? Since we start by transforming
+point <span class="math notranslate nohighlight">\(p_t\)</span> into the spatial frame in the reference configuration, and
+then proceed to transform it in the spatial frame according to the
+motion of each joint, we know that the result is <span class="math notranslate nohighlight">\(p_s\)</span>! This is the
+point <span class="math notranslate nohighlight">\(p_t\)</span> in the spatial frame, where the joints of the robot are in
+configuration <span class="math notranslate nohighlight">\(\theta = (\theta_1, \theta_2, ..., \theta_n)\in Q\)</span>.<br />
+Thus, the product of all of these transformations has provided us with a
+map between a point in the tool frame <span class="math notranslate nohighlight">\(T\)</span> and its representation in the
+spatial frame <span class="math notranslate nohighlight">\(S\)</span> after moving the robot to an arbitrary configuration.<br />
+This is <em>exactly</em> the map that we were looking for! Thus, we conclude
+that we may compute <span class="math notranslate nohighlight">\(g_{st}(\theta) \in SE(3)\)</span> for an arbitrary
+configuration <span class="math notranslate nohighlight">\(\theta \in Q\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{st}(\theta) = e^{\hat\xi_1\theta_1}e^{\hat\xi_2\theta_2}\cdot\cdot\cdot e^{\hat\xi_n\theta_n}g_{st}(0)
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\xi_i\)</span> is the twist in the spatial frame
+associated with the <span class="math notranslate nohighlight">\(i^{th}\)</span> joint, <span class="math notranslate nohighlight">\(\theta_i\)</span> is the position of the
+<span class="math notranslate nohighlight">\(i^{th}\)</span> joint, and <span class="math notranslate nohighlight">\(g_{st}(0)\in SE(3)\)</span> is the transformation between
+<span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span> in the case where no joints have been moved. This
+transformation formula is called the <strong>product of exponentials</strong>
+formula.<br />
+Let’s summarize what we’ve just done. In this section, our goal was to
+find some way of getting from an arbitrary set of joint angles for any
+robot, <span class="math notranslate nohighlight">\(\theta = (\theta_1, \theta_2, ..., \theta_n) \in Q\)</span>, to a rigid
+body transformation <span class="math notranslate nohighlight">\(g_{st}(\theta)\)</span> between the spatial frame at the
+base of the robot and the end effector frame on the end of the robot. We
+found that we were able to accomplish this in an elegant manner using
+the product of exponentials formula.<br />
+Let’s do an example to gain a feel for what it’s like to use the product
+of exponentials formula in practice.<br />
+<strong>Example:</strong> <em>Find the forward kinematics map between the spatial and
+tool frames for the following robot manipulator arm, which is depicted
+below in the reference configuration.</em></p>
+<p><img alt="image" src="_images/forwardKinEx.png" /></p>
+<p><em>The lengths of the first and second links are <span class="math notranslate nohighlight">\(l_1\)</span> and <span class="math notranslate nohighlight">\(l_2\)</span>
+respectively, and the <span class="math notranslate nohighlight">\(z\)</span> position of frame <span class="math notranslate nohighlight">\(T\)</span> in the reference
+configuration is <span class="math notranslate nohighlight">\(l_0\)</span>.</em><br />
+<br />
+In this problem, we’re asked to find the forward kinematics map of a
+robot arm. Remember, this is just the transformation <span class="math notranslate nohighlight">\(g_{st}(\theta)\)</span>
+between the spatial and tool frames of the robot. Let’s get started!<br />
+First, to understand what we need to find, we’ll lay out the product of
+exponentials formula for this robot. Since the robot has three joints,
+we know we may use the following product of exponentials formula to find
+<span class="math notranslate nohighlight">\(g_{st}(\theta)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{st}(\theta) = e^{\hat\xi_1\theta_1}e^{\hat\xi_2\theta_2}e^{\hat\xi_3\theta_3}g_{st}(0)
+\end{aligned}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\xi_1\)</span>, <span class="math notranslate nohighlight">\(\xi_2\)</span>, and <span class="math notranslate nohighlight">\(\xi_3\)</span> are the twists
+associated with the first, second, and third joints of the robot. To
+find the forward kinematics map, we simply need to fill in the terms in
+this product of exponentials equation!<br />
+We may begin by finding <span class="math notranslate nohighlight">\(g_{st}(0)\)</span>, the transformation between the
+spatial and tool frames in the reference configuration. Since this
+matrix is a rigid body transformation in <span class="math notranslate nohighlight">\(SE(3)\)</span>, it will have the
+following form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g_{st}(0) = 
+    \begin{bmatrix}
+        R_{st}(0) &amp; p_{st}(0) \\
+        0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>First, let’s solve for the the rotation matrix
+<span class="math notranslate nohighlight">\(R_{st}(0)\)</span>. Referring to the drawing provided, we know that the frames
+appear as follows:</p>
+<p><img alt="image" src="_images/spatialTool.png" /></p>
+<p>When we take a close look at these two frames, we notice that even
+though we haven’t yet moved any joints, the tool frame has a naturally
+different orientation to the spatial frame! This means that <span class="math notranslate nohighlight">\(R_{st}(0)\)</span>
+is <em>not</em> the identity matrix!<br />
+We may find the columns of <span class="math notranslate nohighlight">\(R_{st}(0)\)</span> by looking at how the basis
+vectors of frame <span class="math notranslate nohighlight">\(T\)</span> appear from frame <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    R_{st}(0) = \begin{bmatrix}
+        [x_t]_s &amp; [y_t]_s &amp; [z_t]_s
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        0 &amp; 0 &amp; 1\\
+        1 &amp; 0 &amp; 0\\
+        0 &amp; 1 &amp; 0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Perfect! Now, we solve for <span class="math notranslate nohighlight">\(p_{st}(0)\)</span>, the vector in
+the spatial frame pointing from the origin of frame <span class="math notranslate nohighlight">\(S\)</span> to the origin of
+frame <span class="math notranslate nohighlight">\(T\)</span> in the reference configuration. We see from the drawing that
+in the reference configuration, frame <span class="math notranslate nohighlight">\(T\)</span> is shifted over by <span class="math notranslate nohighlight">\(l_1 + l_2\)</span>
+in the y-direction of the spatial frame, and is shifted up by <span class="math notranslate nohighlight">\(l_0\)</span> in
+the z-direction of the spatial frame.<br />
+Thus, we compute the total translation vector by summing these two
+translations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    p_{st}(0) = \begin{bmatrix}
+        0\\
+        l_1 + l_2\\
+        0
+    \end{bmatrix}
+    + 
+    \begin{bmatrix}
+        0\\
+        0\\
+        l_0
+    \end{bmatrix}
+     = \begin{bmatrix}
+         0\\
+         l_1 + l_2\\
+         l_0
+     \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Putting this together with the rotation matrix, we find
+the rigid body transformation between <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span> in the reference
+configuration:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    g_{st}(0) = 
+    \begin{bmatrix}
+        0 &amp; 0 &amp; 1 &amp; 0\\
+        1 &amp; 0 &amp; 0 &amp; l_1 + l_2\\
+        0 &amp; 1 &amp; 0 &amp; l_0\\
+        0 &amp; 0 &amp; 0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Great! Referring to the product of exponentials formula,
+we see that all that remains is to compute the twists for each joint.
+Let’s start with the first joint.</p>
+<p><img alt="image" src="_images/firstJoint.png" /></p>
+<p>We notice that this is a <em>revolute</em> joint, as moving this joint gives a
+purely rotational motion. Using our developments from earlier, we know
+that the twist of a revolute joint is of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+        -\omega \times q\\
+        \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\omega\)</span> is the unit vector axis of rotation and
+<span class="math notranslate nohighlight">\(q\)</span> is any point on the axis in the spatial frame. Looking at the
+diagram, we notice that a movement of joint 1 will correspond to a
+rotation about the z-axis in the spatial frame! Thus:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \omega = \begin{bmatrix}
+        0\\
+        0\\
+        1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, all we need to complete the twist is a point on
+this axis in the spatial frame. Recall that since the product of
+exponentials formula goes from the outside-in, this point should be on
+the position of the axis in its reference configuration.<br />
+Looking at the diagram, we notice that this axis of rotation passes
+<em>straight</em> through the origin! Thus, we may choose the point
+<span class="math notranslate nohighlight">\(q = [0, 0, 0]^T\)</span> as the point on our axis of rotation. Calculating
+<span class="math notranslate nohighlight">\(-\omega \times q\)</span>, we find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    -\omega \times q = 
+    -\begin{bmatrix}
+        0\\
+        0\\
+        1
+    \end{bmatrix}
+    \times 
+    \begin{bmatrix}
+        0\\
+        0\\
+        0
+    \end{bmatrix}
+     = 
+     \begin{bmatrix}
+        0\\
+        0\\
+        0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>It’s important to note that by choosing a convenient
+point on our axis of rotation, such as <span class="math notranslate nohighlight">\([0, 0, 0]\)</span>, we can <em>greatly</em>
+simplify the calculations we need to do.<br />
+Using these vectors, we know that the twist of the first joint is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_1 = 
+    \begin{bmatrix}
+       -\omega \times q\\
+       \omega
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+       0\\
+       0\\
+       0\\
+       0\\
+       0\\
+       1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Next, we’ll solve for <span class="math notranslate nohighlight">\(\xi_2\)</span>, the twist of the second
+joint. Looking at the drawing of the robot:</p>
+<p><img alt="image" src="_images/joint2.png" /></p>
+<p>We observe that the second joint is also revolute! It will therefore
+also have a twist of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_2 = 
+    \begin{bmatrix}
+       -\omega \times q\\
+       \omega
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Looking at the picture, we observe that the axis of
+rotation is the positive z axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \omega = 
+    \begin{bmatrix}
+       0\\
+       0\\
+       1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, we must find a point <span class="math notranslate nohighlight">\(q\)</span> in the spatial frame on
+this axis of rotation. Once again, remember that the order
+multiplication in the product of exponentials formula means that we
+<em>don’t</em> have to account for the motion of joint 1 when finding this
+point! All we have to do is pick a point on the axis in the reference
+configuration.<br />
+Since the second joint is positioned at <span class="math notranslate nohighlight">\(l_2\)</span> along the y-axis of the
+spatial frame, its axis of rotation doesn’t pass through the origin of
+the spatial frame! Thus, for this joint, we instead choose the following
+point on the axis of rotation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    q = 
+    \begin{bmatrix}
+        0\\
+        l_1\\
+        0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now, we compute <span class="math notranslate nohighlight">\(-\omega \times q\)</span> to complete our
+calculation of the twist:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    -\omega \times q = 
+    \begin{bmatrix}
+       0\\
+       0\\
+       1
+    \end{bmatrix}
+    \times 
+    \begin{bmatrix}
+        0\\
+        l_1\\
+        0
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+       l_1\\
+       0\\
+       0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Remember to account for the negative sign when
+completing this calculation!<br />
+Using <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(-\omega\times q\)</span>, we find that the second twist is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_2 = 
+    \begin{bmatrix}
+    l_1\\
+    0\\
+    0\\
+    0\\
+    0\\
+    1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>This completes the calculations for the second joint.
+Now, we turn our attention to the third joint:</p>
+<p><img alt="image" src="_images/joint3.png" /></p>
+<p>We see from the drawing that the third joint is <em>prismatic</em>, as it
+consists of a pure translation in the negative z direction. We know that
+the twist of a prismatic joint is of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi = 
+    \begin{bmatrix}
+    v\\
+    0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(v\)</span> is a unit vector pointing in the direction of
+translation. Here, the direction of translation points in the negative z
+direction in the spatial frame. Thus, we find that <span class="math notranslate nohighlight">\(\xi_3\)</span> may be
+computed:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_3 = 
+    \begin{bmatrix}
+    0\\
+    0\\
+    -1\\
+    0\\
+    0\\
+    0
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Now that we’ve solved for <span class="math notranslate nohighlight">\(g_{st}(0)\)</span> and the twists for
+each joint, we have <em>all</em> we need to fill in the product of exponentials
+formula! Using the three twists and initial transformation, we compute
+the forward kinematics map between <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    g_{st}(\theta) = e^{\hat\xi_1\theta_1}e^{\hat\xi_2\theta_2}e^{\hat\xi_3\theta_3}g_{st}(0)
+\end{aligned}\]</div>
+<p>Where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \xi_1 = \begin{bmatrix}
+       0\\
+       0\\
+       0\\
+       0\\
+       0\\
+       1
+    \end{bmatrix}&amp;, \; 
+    \xi_2 = \begin{bmatrix}
+    l_1\\
+    0\\
+    0\\
+    0\\
+    0\\
+    1
+    \end{bmatrix}, \; 
+    \xi_3 = \begin{bmatrix}
+    0\\
+    0\\
+    -1\\
+    0\\
+    0\\
+    0
+    \end{bmatrix}\\
+    g_{st}(0) &amp;= \begin{bmatrix}
+        0 &amp; 0 &amp; 1 &amp; 0\\
+        1 &amp; 0 &amp; 0 &amp; l_1 + l_2\\
+        0 &amp; 1 &amp; 0 &amp; l_0\\
+        0 &amp; 0 &amp; 0 &amp; 1
+    \end{bmatrix}
+\end{aligned}\end{split}\]</div>
+<p>Note that if desired, the actual final matrix value for
+<span class="math notranslate nohighlight">\(g_{st}(\theta)\)</span> may be computed by multiplying the closed-form
+expressions for the exponentials of twists. This completes the problem!</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The letter <span class="math notranslate nohighlight">\(\mathbb{S}\)</span> comes from a convention of mathematical
+topology, where a 2D circle is referred to as a “1-sphere.”
+Interestingly, the set of quaternions of unit magnitude may be
+identified by <span class="math notranslate nohighlight">\(\mathbb{S}^3\)</span>, the three-sphere.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Note that the <span class="math notranslate nohighlight">\(1\)</span> in <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span> <em>doesn’t</em> refer to an
+exponent, but rather the number of parameters we need to identify
+our position on the circle. Since for a 2D circle, we only need one
+angle to find our position, we describe a position on a 2D circle
+using the set <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span>.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Although the symbol <span class="math notranslate nohighlight">\(\times\)</span> is the same, the Cartesian product is
+<em>not</em> the same thing as the vector cross product. As a rule of
+thumb, when you see <span class="math notranslate nohighlight">\(\times\)</span> applied to sets, think of the Cartesian
+product, while when you see <span class="math notranslate nohighlight">\(\times\)</span> applied to vectors, think of
+the cross product.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="screw_motion.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Screw Motion</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Massimiliano de Sa<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
