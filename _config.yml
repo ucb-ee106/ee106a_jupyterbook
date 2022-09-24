@@ -3,7 +3,7 @@
 
 title: Introduction to Robotics
 author: Massimiliano de Sa
-logo: 106A_logo.jpg
+logo: 106A_logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -30,6 +30,7 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  favicon: exp_favicon.png
 
 # Enable the proof syntax in Sphinx
 sphinx:
